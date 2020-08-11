@@ -1,59 +1,56 @@
-
-
-create table Generes
+CREATE TABLE Generes
 (
-	Id		int identity(1, 1) primary key,
-	Genere	varchar(255) not null
+    Id        INT IDENTITY(1, 1) PRIMARY KEY,
+    Genere    VARCHAR(255) NOT NULL
 )
 
 
-create table Bands 
+CREATE TABLE Bands 
 (
-	Id			int identity(1, 1) primary key not null,
-	BandName	nvarchar(255) not null,
-	Established	date not null,
-	ActiveUntil	date null
+    Id             INT IDENTITY(1, 1) PRIMARY KEY NOT NULL,
+    BandName       NVARCHAR(255) NOT NULL,
+    Established    DATE NOT NULL,
+    ActiveUntil    DATE NULL
 )
 
 
-create table BandsGeneres
+CREATE TABLE BandsGeneres
 (
-	Id			int identity(1, 1) primary key not null,
-	GenereId	int not null,
-	BandId		int not null,
-	constraint	FK__GenereId__Generes FOREIGN KEY (GenereId) REFERENCES Generes (Id),
-	constraint	FK__BandId__BandsGeneres FOREIGN KEY (BandId) REFERENCES Bands (Id)
+    Id            INT IDENTITY(1, 1) PRIMARY KEY NOT NULL,
+    GenereId      INT NOT NULL,
+    BandId        INT NOT NULL,
+    constraint    FK__GenereId__Generes FOREIGN KEY (GenereId) REFERENCES Generes (Id),
+    constraint    FK__BandId__BandsGeneres FOREIGN KEY (BandId) REFERENCES Bands (Id)
 )
 
 
-create table Members
+CREATE TABLE Members
 (
-	Id			int identity(1, 1) primary key not null,
-	BandId		int not null,
-	FirstName	nvarchar(255) not null,
-	LastName	nvarchar(255) not null,
-	IsPresent	bit not null
-	constraint	FK__BandId__MembersBands FOREIGN KEY (BandId) REFERENCES Bands (Id),
+    Id            INT IDENTITY(1, 1) PRIMARY KEY NOT NULL,
+    BandId        INT NOT NULL,
+    FirstName     NVARCHAR(255) NOT NULL,
+    LastName      NVARCHAR(255) NOT NULL,
+    IsPresent     BIT NOT NULL
+    constraint    FK__BandId__MembersBands FOREIGN KEY (BandId) REFERENCES Bands (Id),
 )
 
 
-create table Albums
+CREATE TABLE Albums
 (
-	Id			int identity(1, 1) primary key not null,
-	BandId		int not null,
-	AlbumName	nvarchar(255) not null,
-	Issued		date not null
-	constraint	FK__BandId__AlbumsBands FOREIGN KEY (BandId) REFERENCES Bands (Id),
+    Id            INT IDENTITY(1, 1) PRIMARY KEY NOT NULL,
+    BandId        INT NOT NULL,
+    AlbumName     NVARCHAR(255) NOT NULL,
+    Issued        DATE NOT NULL
+    constraint    FK__BandId__AlbumsBands FOREIGN KEY (BandId) REFERENCES Bands (Id),
 )
 
 
-create table Songs
+CREATE TABLE Songs
 (
-	Id			int identity(1, 1) primary key not null,
-	AlbumId		int not null,	
-	SongName	nvarchar(255) not null,
-	SongUrl		varchar(2048) null,
-	SongLyrics	varchar(max) not null,
-	constraint	FK__AlbumId__Albums FOREIGN KEY (AlbumId) REFERENCES Albums (Id)
+    Id            INT IDENTITY(1, 1) PRIMARY KEY NOT NULL,
+    AlbumId       INT NOT NULL,    
+    SongName      NVARCHAR(255) NOT NULL,
+    SongUrl       VARCHAR(2048) NULL,
+    SongLyrics    VARCHAR(MAX) NOT NULL,
+    constraint    FK__AlbumId__Albums FOREIGN KEY (AlbumId) REFERENCES Albums (Id)
 )
-

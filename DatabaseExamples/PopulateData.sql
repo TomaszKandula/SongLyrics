@@ -1,5 +1,3 @@
-
-
 SET QUOTED_IDENTIFIER ON
 SET ARITHABORT ON
 SET XACT_ABORT ON
@@ -12,7 +10,7 @@ BEGIN TRY
         BULK INSERT 
             Generes
         FROM 
-            'L:\03_Knowledge Base\$_Examples\2. SongLyrics\DatabaseExamples\Generes.csv'
+            'C:\...\DatabaseExamples\Generes.csv'
         WITH
         (
             FIRSTROW = 2,
@@ -24,7 +22,7 @@ BEGIN TRY
         BULK INSERT 
             Bands
         FROM 
-            'L:\03_Knowledge Base\$_Examples\2. SongLyrics\DatabaseExamples\Bands.csv'
+            'C:\...\DatabaseExamples\Bands.csv'
         WITH
         (
             FIRSTROW = 2,
@@ -36,7 +34,7 @@ BEGIN TRY
         BULK INSERT 
             BandsGeneres
         FROM 
-            'L:\03_Knowledge Base\$_Examples\2. SongLyrics\DatabaseExamples\BandsGeneres.csv'
+            'C:\...\DatabaseExamples\BandsGeneres.csv'
         WITH
         (
             FIRSTROW = 2,
@@ -48,7 +46,7 @@ BEGIN TRY
         BULK INSERT 
             Members
         FROM 
-            'L:\03_Knowledge Base\$_Examples\2. SongLyrics\DatabaseExamples\Members.csv'
+            'C:\...\DatabaseExamples\Members.csv'
         WITH
         (
             FIRSTROW = 2,
@@ -60,7 +58,7 @@ BEGIN TRY
         BULK INSERT 
             Albums
         FROM 
-            'L:\03_Knowledge Base\$_Examples\2. SongLyrics\DatabaseExamples\Albums.csv'
+            'C:\...\DatabaseExamples\Albums.csv'
         WITH
         (
             FIRSTROW = 2,
@@ -72,7 +70,7 @@ BEGIN TRY
         BULK INSERT 
             Songs
         FROM 
-            'L:\03_Knowledge Base\$_Examples\2. SongLyrics\DatabaseExamples\Songs.csv'
+            'C:\...\DatabaseExamples\Songs.csv'
         WITH
         (
             FIRSTROW = 2,
@@ -88,4 +86,3 @@ BEGIN CATCH
     IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION
     ;THROW
 END CATCH
-

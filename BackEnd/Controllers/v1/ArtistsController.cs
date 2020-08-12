@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using BackEnd.Logic;
 using BackEnd.Models.Json;
 using BackEnd.Extensions.AppLogger;
 
@@ -13,15 +14,17 @@ namespace BackEnd.Controllers.v1
     public class ArtistsController : ControllerBase
     {
 
-        private readonly IAppLogger FAppLogger;
+        private readonly IAppLogger    FAppLogger;
+        private readonly ILogicContext FLogicContext;
 
-        public ArtistsController(IAppLogger AAppLogger) 
+        public ArtistsController(IAppLogger AAppLogger, ILogicContext ALogicContext) 
         {
-            FAppLogger = AAppLogger;
+            FAppLogger    = AAppLogger;
+            FLogicContext = ALogicContext;
         }
 
         /// <summary>
-        /// 
+        /// Return all bands from the entire collection.
         /// </summary>
         /// <returns></returns>
         // GET api/v1/artists/bands/
@@ -32,8 +35,7 @@ namespace BackEnd.Controllers.v1
             var LResponse = new ReturnBands();
             try
             {
-
-
+                LResponse.Bands = await FLogicContext.Artists.GetBands(null);
                 return StatusCode(200, LResponse);
 
             }
@@ -59,10 +61,8 @@ namespace BackEnd.Controllers.v1
             var LResponse = new ReturnMembers();
             try
             {
-
-
+                LResponse.Members = await FLogicContext.Artists.GetMembers(Id);
                 return StatusCode(200, LResponse);
-
             }
             catch (Exception E)
             {

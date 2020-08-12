@@ -1,48 +1,64 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.ResponseCompression;
+using BackEnd.Models.Database;
 
 namespace SongLyrics
 {
+
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+
+        public IConfiguration FConfiguration { get; }
+
+        public Startup(IConfiguration AConfiguration)
         {
-            Configuration = configuration;
+            FConfiguration = AConfiguration;
         }
 
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection AServices)
         {
-            services.AddControllers();
-        }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
+            AServices.AddMvc(Option => Option.CacheProfiles
+                .Add("ResponseCache", new CacheProfile()
+                {
+                    Duration = 5,
+                    Location = ResponseCacheLocation.Any,
+                    NoStore = false
+                }));
+
+            AServices.AddControllers();
+            AServices.AddDbContext<DbModel>(Options => Options.UseSqlServer(FConfiguration.GetConnectionString("DbConnect"), AddOptions => AddOptions.EnableRetryOnFailure()));
+
+            AServices.AddResponseCompression(Options =>
             {
-                app.UseDeveloperExceptionPage();
+                Options.Providers.Add<GzipCompressionProvider>();
+            });
+
+        }
+
+        public void Configure(IApplicationBuilder AApplication, IWebHostEnvironment AEnvironment)
+        {
+
+            if (AEnvironment.IsDevelopment())
+            {
+                AApplication.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
+            AApplication.UseRouting();
+            AApplication.UseAuthorization();
+            AApplication.UseEndpoints(LEndpoints =>
             {
-                endpoints.MapControllers();
+                LEndpoints.MapControllers();
             });
+
         }
+
     }
+
 }

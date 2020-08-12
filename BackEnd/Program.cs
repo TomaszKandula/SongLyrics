@@ -1,26 +1,64 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Events;
 
 namespace SongLyrics
 {
+
     public class Program
     {
-        public static void Main(string[] args)
+
+        public static IHostBuilder CreateWebHostBuilder(string[] Args) =>
+            Host.CreateDefaultBuilder(Args)
+                .ConfigureWebHostDefaults(WebBuilder =>
+                {
+                    WebBuilder.UseStartup<Startup>();
+                    WebBuilder.UseSerilog();
+                });
+
+        public static int Main(string[] Args)
         {
-            CreateHostBuilder(args).Build().Run();
+
+            var LogsPath = AppDomain.CurrentDomain.BaseDirectory + "\\Logs";
+            if (!Directory.Exists(LogsPath))
+            {
+                Directory.CreateDirectory(LogsPath);
+            }
+
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Information()
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
+                .Enrich.FromLogContext()
+                .WriteTo.File(
+                    LogsPath + "\\log-.txt",
+                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}",
+                    rollingInterval: RollingInterval.Day,
+                    rollOnFileSizeLimit: true,
+                    retainedFileCountLimit: null,
+                    shared: false)
+                .CreateLogger();
+
+            try
+            {
+                Log.Information("Starting WebHost...");
+                CreateWebHostBuilder(Args).Build().Run();
+                return 0;
+            }
+            catch (Exception E)
+            {
+                Log.Fatal(E, "WebHost has been terminated unexpectedly.");
+                return 1;
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
+
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
     }
+
 }

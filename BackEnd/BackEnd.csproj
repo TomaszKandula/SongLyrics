@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Extensions\AppLogger\" />
     <Folder Include="Models\Json\" />
     <Folder Include="Logic\" />
   </ItemGroup>

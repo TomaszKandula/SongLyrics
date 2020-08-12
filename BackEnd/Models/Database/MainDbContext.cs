@@ -3,14 +3,14 @@
 namespace BackEnd.Models.Database
 {
 
-    public class DbModel : DbContext
+    public class MainDbContext : DbContext
     {
 
-        public DbModel(DbContextOptions<DbModel> options) : base(options)
+        public MainDbContext(DbContextOptions<MainDbContext> options) : base(options)
         {
         }
 
-        public DbModel()
+        public MainDbContext()
         {
         }
 

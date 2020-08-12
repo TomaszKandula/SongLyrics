@@ -33,7 +33,7 @@ namespace SongLyrics
                 }));
 
             AServices.AddControllers();
-            AServices.AddDbContext<DbModel>(Options => Options.UseSqlServer(FConfiguration.GetConnectionString("DbConnect"), AddOptions => AddOptions.EnableRetryOnFailure()));
+            AServices.AddDbContext<MainDbContext>(Options => Options.UseSqlServer(FConfiguration.GetConnectionString("DbConnect"), AddOptions => AddOptions.EnableRetryOnFailure()));
 
             AServices.AddResponseCompression(Options =>
             {

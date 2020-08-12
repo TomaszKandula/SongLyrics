@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>63d89ee9-fd63-46c4-afd7-dc8c3eda829d</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,6 +12,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Extensions\AppLogger\" />
+    <Folder Include="Models\Database\" />
+    <Folder Include="Models\Json\" />
+    <Folder Include="Logic\" />
   </ItemGroup>
 
 

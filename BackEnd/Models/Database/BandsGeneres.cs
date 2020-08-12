@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace BackEnd.Models.Database
+﻿namespace BackEnd.Models.Database
 {
     public partial class BandsGeneres
     {
@@ -10,5 +7,6 @@ namespace BackEnd.Models.Database
         public int BandId { get; set; }
 
         public virtual Bands Band { get; set; }
+        public virtual Generes Genere { get; set; }
     }
 }

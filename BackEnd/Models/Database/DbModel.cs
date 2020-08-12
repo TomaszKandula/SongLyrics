@@ -95,7 +95,6 @@ namespace BackEnd.Models.Database
                     .HasConstraintName("FK__AlbumId__Albums");
             });
 
-            OnModelCreatingPartial(modelBuilder);
         }
 
     }

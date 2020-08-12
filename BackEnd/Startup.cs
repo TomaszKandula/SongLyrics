@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.ResponseCompression;
+using BackEnd.Logic;
 using BackEnd.Models.Database;
 using BackEnd.Extensions.AppLogger;
 
@@ -40,6 +41,7 @@ namespace SongLyrics
                 Options.UseSqlServer(FConfiguration.GetConnectionString("DbConnect"),
                 AddOptions => AddOptions.EnableRetryOnFailure());
             });
+            AServices.AddScoped<ILogicContext, LogicContext>();
 
             AServices.AddResponseCompression(Options =>
             {

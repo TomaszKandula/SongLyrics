@@ -22,7 +22,7 @@ namespace SongLyrics
         public static int Main(string[] Args)
         {
 
-            var LogsPath = AppDomain.CurrentDomain.BaseDirectory + "\\Logs";
+            var LogsPath = AppDomain.CurrentDomain.BaseDirectory + "\\logs";
             if (!Directory.Exists(LogsPath))
             {
                 Directory.CreateDirectory(LogsPath);
@@ -32,13 +32,15 @@ namespace SongLyrics
                 .MinimumLevel.Information()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
                 .Enrich.FromLogContext()
-                .WriteTo.File(
+                .WriteTo.File
+                (
                     LogsPath + "\\log-.txt",
                     outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}",
                     rollingInterval: RollingInterval.Day,
                     rollOnFileSizeLimit: true,
                     retainedFileCountLimit: null,
-                    shared: false)
+                    shared: false
+                 )
                 .CreateLogger();
 
             try

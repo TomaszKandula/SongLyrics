@@ -35,7 +35,11 @@ namespace SongLyrics
 
             AServices.AddControllers();
             AServices.AddSingleton<IAppLogger, AppLogger>();
-            AServices.AddDbContext<MainDbContext>(Options => Options.UseSqlServer(FConfiguration.GetConnectionString("DbConnect"), AddOptions => AddOptions.EnableRetryOnFailure()));
+            AServices.AddDbContext<MainDbContext>(Options => 
+            {
+                Options.UseSqlServer(FConfiguration.GetConnectionString("DbConnect"),
+                AddOptions => AddOptions.EnableRetryOnFailure());
+            });
 
             AServices.AddResponseCompression(Options =>
             {
@@ -54,9 +58,9 @@ namespace SongLyrics
 
             AApplication.UseRouting();
             AApplication.UseAuthorization();
-            AApplication.UseEndpoints(LEndpoints =>
+            AApplication.UseEndpoints(Options =>
             {
-                LEndpoints.MapControllers();
+                Options.MapControllers();
             });
 
         }

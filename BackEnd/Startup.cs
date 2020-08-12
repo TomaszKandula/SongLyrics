@@ -56,6 +56,7 @@ namespace SongLyrics
                 AApplication.UseDeveloperExceptionPage();
             }
 
+            AApplication.UseStaticFiles();
             AApplication.UseRouting();
             AApplication.UseAuthorization();
             AApplication.UseEndpoints(Options =>

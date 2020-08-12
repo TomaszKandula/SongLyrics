@@ -17,6 +17,7 @@ namespace BackEnd.Models.Database
         public virtual DbSet<Albums> Albums { get; set; }
         public virtual DbSet<Bands> Bands { get; set; }
         public virtual DbSet<BandsGeneres> BandsGeneres { get; set; }
+        public virtual DbSet<Generes> Generes { get; set; }
         public virtual DbSet<Members> Members { get; set; }
         public virtual DbSet<Songs> Songs { get; set; }
 
@@ -55,6 +56,20 @@ namespace BackEnd.Models.Database
                     .HasForeignKey(d => d.BandId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__BandId__BandsGeneres");
+
+                entity.HasOne(d => d.Genere)
+                    .WithMany(p => p.BandsGeneres)
+                    .HasForeignKey(d => d.GenereId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__GenereId__Generes");
+            });
+
+            modelBuilder.Entity<Generes>(entity =>
+            {
+                entity.Property(e => e.Genere)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Members>(entity =>

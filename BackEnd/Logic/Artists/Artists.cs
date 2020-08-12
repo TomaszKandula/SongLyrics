@@ -88,7 +88,22 @@ namespace BackEnd.Logic.Artists
 
             var Members = await GetMembers(BandId);
 
+            var BandsDetails = (await FMainDbContext.BandsGeneres
+                .Include(R => R.Band)
+                .Include(R => R.Genere)
+                .AsNoTracking()
+                .Where(R => R.BandId == BandId)
+                .ToListAsync())
+                .SingleOrDefault();
 
+            return new ReturnBandDetails 
+            { 
+                Name        = BandsDetails.Band.BandName,
+                Established = BandsDetails.Band.Established,
+                ActiveUntil = BandsDetails.Band.ActiveUntil,
+                Genere      = BandsDetails.Genere.Genere,
+                Members     = Members
+            };
 
         }
 

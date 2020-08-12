@@ -22,6 +22,13 @@ namespace BackEnd.Logic.Artists
         /// <returns></returns>
         Task<List<Member>> GetMembers(int BandId);
 
+        /// <summary>
+        /// Return band details for given Band Id.
+        /// </summary>
+        /// <param name="BandId"></param>
+        /// <returns></returns>
+        Task<ReturnBandDetails> GetBandDetails(int BandId);
+
     }
 
 }

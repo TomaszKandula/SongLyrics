@@ -50,7 +50,7 @@ namespace BackEnd.Controllers.v1
         }
 
         /// <summary>
-        /// 
+        /// Return list of all band members.
         /// </summary>
         /// <returns></returns>
         // GET api/v1/artists/bands/{id}/members/
@@ -75,7 +75,7 @@ namespace BackEnd.Controllers.v1
         }
 
         /// <summary>
-        /// 
+        /// Return all band details for fiven band Id.
         /// </summary>
         /// <returns></returns>
         // GET api/v1/artists/bands/{id}/details/
@@ -87,6 +87,13 @@ namespace BackEnd.Controllers.v1
             try
             {
 
+                var BandDetails = await FLogicContext.Artists.GetBandDetails(Id);
+
+                LResponse.Name        = BandDetails.Name;
+                LResponse.Established = BandDetails.Established;
+                LResponse.ActiveUntil = BandDetails.ActiveUntil;
+                LResponse.Genere      = BandDetails.Genere;
+                LResponse.Members     = BandDetails.Members;
 
                 return StatusCode(200, LResponse);
 

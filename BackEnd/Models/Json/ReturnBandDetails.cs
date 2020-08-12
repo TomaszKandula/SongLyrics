@@ -15,7 +15,7 @@ namespace BackEnd.Models.Json
         public DateTime Established { get; set; }
 
         [JsonPropertyName("ActiveUntil")]
-        public DateTime ActiveUntil { get; set; }
+        public DateTime? ActiveUntil { get; set; }
 
         [JsonPropertyName("Genere")]
         public string Genere { get; set; }

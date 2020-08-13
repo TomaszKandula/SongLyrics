@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using BackEnd.Models.Json;
 using BackEnd.Models.Database;
+using System;
 
 namespace BackEnd.Logic.Artists
 {
@@ -88,22 +89,21 @@ namespace BackEnd.Logic.Artists
 
             var Members = await GetMembers(BandId);
 
-            var BandsDetails = (await FMainDbContext.BandsGeneres
+            return (await FMainDbContext.BandsGeneres
                 .Include(R => R.Band)
                 .Include(R => R.Genere)
                 .AsNoTracking()
                 .Where(R => R.BandId == BandId)
+                .Select(R => new ReturnBandDetails 
+                {
+                    Name        = R.Band.BandName,
+                    Established = R.Band.Established,
+                    ActiveUntil = R.Band.ActiveUntil,
+                    Genere      = R.Genere.Genere,
+                    Members     = Members
+                })
                 .ToListAsync())
-                .SingleOrDefault();
-
-            return new ReturnBandDetails 
-            { 
-                Name        = BandsDetails.Band.BandName,
-                Established = BandsDetails.Band.Established,
-                ActiveUntil = BandsDetails.Band.ActiveUntil,
-                Genere      = BandsDetails.Genere.Genere,
-                Members     = Members
-            };
+                .Single();
 
         }
 

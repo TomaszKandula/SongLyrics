@@ -1,6 +1,7 @@
 using Moq;
 using Xunit;
 using System.Linq;
+using FluentAssertions;
 using MockQueryable.Moq;
 using BackEnd.Logic.Music;
 using BackEnd.Logic.Artists;
@@ -50,8 +51,40 @@ namespace SongLyricsBackEnd.UnitTests
         }
 
         [Fact]
-        public void Test1()
+        public async void GetBands()
         {
+
+            var LResult1 = await FArtists.GetBands(null);
+            var LResult2 = await FArtists.GetBands(1);
+            var LResult3 = await FArtists.GetBands(100);
+
+            LResult1.Should().NotBeEmpty();
+            LResult2.Should().NotBeEmpty();
+            LResult3.Should().BeEmpty();
+
+        }
+
+        [Fact]
+        public async void GetMembers() 
+        {
+
+            var LResult1 = await FArtists.GetMembers(2);
+            var LResult2 = await FArtists.GetMembers(45);
+
+            LResult1.Should().NotBeEmpty();
+            LResult2.Should().BeEmpty();
+        
+        }
+
+        [Fact]
+        public async void GetBandDetails() 
+        {
+
+            var LResult = await FArtists.GetBandDetails(1);
+
+            LResult.Name.Should().Be("Queen");
+            LResult.Genere.Should().Be("Rock");
+            LResult.Members.Should().HaveCount(4);
 
         }
 

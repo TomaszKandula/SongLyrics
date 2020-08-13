@@ -45,7 +45,7 @@ namespace BackEnd.UnitTests.Mocks
                     Id        = 1,
                     BandId    = 1,
                     AlbumName = "Queen",
-                    Issued    = DateTime.Parse("1973-01-01")
+                    Issued    = DateTime.Parse("1973-01-01"),
                 },
 
                 new Albums
@@ -114,14 +114,37 @@ namespace BackEnd.UnitTests.Mocks
                 { 
                     Id       = 1,
                     BandId   = 1,
-                    GenereId = 1
+                    GenereId = 1,
+                    Band = new Bands 
+                    {
+                        BandName    = "Queen",
+                        Established = DateTime.Parse("1970-01-01"),
+                        ActiveUntil = null
+                    },
+                    Genere = new Generes 
+                    { 
+                        Id = 1,
+                        Genere = "Rock"
+                    }
+
                 },
                 
                 new BandsGeneres
                 {
                     Id       = 2,
                     BandId   = 2,
-                    GenereId = 1
+                    GenereId = 1,
+                    Band = new Bands
+                    {
+                        BandName    = "Led Zeppelin",
+                        Established = DateTime.Parse("1968-01-01"),
+                        ActiveUntil = DateTime.Parse("1980-01-01")
+                    },
+                    Genere = new Generes
+                    {
+                        Id = 1,
+                        Genere = "Rock"
+                    }
                 }
 
             };

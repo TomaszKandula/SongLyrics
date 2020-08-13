@@ -50,7 +50,7 @@ CREATE TABLE Songs
     Id            INT IDENTITY(1, 1) PRIMARY KEY NOT NULL,
     AlbumId       INT NOT NULL,    
     BandId        INT NOT NULL,
-	SongName      NVARCHAR(255) NOT NULL,
+    SongName      NVARCHAR(255) NOT NULL,
     SongUrl       VARCHAR(2048) NULL,
     SongLyrics    VARCHAR(MAX) NOT NULL,
     CONSTRAINT    FK__AlbumId__Albums FOREIGN KEY (AlbumId) REFERENCES Albums (Id),

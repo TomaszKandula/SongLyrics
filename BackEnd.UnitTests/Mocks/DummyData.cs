@@ -46,6 +46,12 @@ namespace BackEnd.UnitTests.Mocks
                     BandId    = 1,
                     AlbumName = "Queen",
                     Issued    = DateTime.Parse("1973-01-01"),
+                    Band = new Bands
+                    {
+                        BandName    = "Queen",
+                        Established = DateTime.Parse("1970-01-01"),
+                        ActiveUntil = null
+                    },
                 },
 
                 new Albums
@@ -53,7 +59,13 @@ namespace BackEnd.UnitTests.Mocks
                     Id        = 2,
                     BandId    = 1,
                     AlbumName = "Queen II",
-                    Issued    = DateTime.Parse("1974-01-01")
+                    Issued    = DateTime.Parse("1974-01-01"),
+                    Band = new Bands
+                    {
+                        BandName    = "Queen",
+                        Established = DateTime.Parse("1970-01-01"),
+                        ActiveUntil = null
+                    },
                 },
 
                 new Albums
@@ -61,7 +73,13 @@ namespace BackEnd.UnitTests.Mocks
                     Id        = 3,
                     BandId    = 2,
                     AlbumName = "Led Zeppelin",
-                    Issued    = DateTime.Parse("1969-01-01")
+                    Issued    = DateTime.Parse("1969-01-01"),
+                    Band = new Bands
+                    {
+                        BandName    = "Led Zeppelin",
+                        Established = DateTime.Parse("1968-01-01"),
+                        ActiveUntil = DateTime.Parse("1980-01-01")
+                    }
                 },
 
                 new Albums
@@ -69,7 +87,13 @@ namespace BackEnd.UnitTests.Mocks
                     Id        = 4,
                     BandId    = 2,
                     AlbumName = "Led Zeppelin II",
-                    Issued    = DateTime.Parse("1969-01-01")
+                    Issued    = DateTime.Parse("1969-01-01"),
+                    Band = new Bands
+                    {
+                        BandName    = "Led Zeppelin",
+                        Established = DateTime.Parse("1968-01-01"),
+                        ActiveUntil = DateTime.Parse("1980-01-01")
+                    }
                 },
 
             };
@@ -163,7 +187,13 @@ namespace BackEnd.UnitTests.Mocks
                     BandId    = 1,
                     FirstName = "Brian",
                     LastName  = "May",
-                    IsPresent = true
+                    IsPresent = true,
+                    Band = new Bands
+                    {
+                        BandName    = "Queen",
+                        Established = DateTime.Parse("1970-01-01"),
+                        ActiveUntil = null
+                    }
                 },
 
                 new Members
@@ -172,8 +202,13 @@ namespace BackEnd.UnitTests.Mocks
                     BandId    = 1,
                     FirstName = "Roger",
                     LastName  = "Taylor",
-                    IsPresent = true
-                },
+                    IsPresent = true,
+                    Band = new Bands
+                    {
+                        BandName    = "Queen",
+                        Established = DateTime.Parse("1970-01-01"),
+                        ActiveUntil = null
+                    }                },
 
                 new Members
                 {
@@ -181,7 +216,13 @@ namespace BackEnd.UnitTests.Mocks
                     BandId    = 1,
                     FirstName = "John",
                     LastName  = "Deacon",
-                    IsPresent = false
+                    IsPresent = false,
+                    Band = new Bands
+                    {
+                        BandName    = "Queen",
+                        Established = DateTime.Parse("1970-01-01"),
+                        ActiveUntil = null
+                    }
                 },
 
                 new Members
@@ -190,7 +231,13 @@ namespace BackEnd.UnitTests.Mocks
                     BandId    = 1,
                     FirstName = "Freddie",
                     LastName  = "Mercury",
-                    IsPresent = false
+                    IsPresent = false,
+                    Band = new Bands
+                    {
+                        BandName    = "Queen",
+                        Established = DateTime.Parse("1970-01-01"),
+                        ActiveUntil = null
+                    }
                 },
 
                 new Members
@@ -199,7 +246,13 @@ namespace BackEnd.UnitTests.Mocks
                     BandId    = 2,
                     FirstName = "Robert",
                     LastName  = "Plant",
-                    IsPresent = false
+                    IsPresent = false,
+                    Band = new Bands
+                    {
+                        BandName    = "Led Zeppelin",
+                        Established = DateTime.Parse("1968-01-01"),
+                        ActiveUntil = DateTime.Parse("1980-01-01")
+                    },
                 },
 
                 new Members
@@ -208,7 +261,13 @@ namespace BackEnd.UnitTests.Mocks
                     BandId    = 2,
                     FirstName = "Jimmy",
                     LastName  = "Page",
-                    IsPresent = false
+                    IsPresent = false,
+                    Band = new Bands
+                    {
+                        BandName    = "Led Zeppelin",
+                        Established = DateTime.Parse("1968-01-01"),
+                        ActiveUntil = DateTime.Parse("1980-01-01")
+                    },
                 },
 
                 new Members
@@ -217,7 +276,13 @@ namespace BackEnd.UnitTests.Mocks
                     BandId    = 2,
                     FirstName = "John",
                     LastName  = "Jones",
-                    IsPresent = false
+                    IsPresent = false,
+                    Band = new Bands
+                    {
+                        BandName    = "Led Zeppelin",
+                        Established = DateTime.Parse("1968-01-01"),
+                        ActiveUntil = DateTime.Parse("1980-01-01")
+                    },
                 },
 
                 new Members
@@ -226,7 +291,13 @@ namespace BackEnd.UnitTests.Mocks
                     BandId    = 2,
                     FirstName = "John",
                     LastName  = "Bonham",
-                    IsPresent = false
+                    IsPresent = false,
+                    Band = new Bands
+                    {
+                        BandName    = "Led Zeppelin",
+                        Established = DateTime.Parse("1968-01-01"),
+                        ActiveUntil = DateTime.Parse("1980-01-01")
+                    },
                 }
 
             };
@@ -246,7 +317,20 @@ namespace BackEnd.UnitTests.Mocks
                     BandId     = 1,
                     SongName   = "Keep Yourself Alive",
                     SongLyrics = "aaa aaa aaa",
-                    SongUrl    = "youtube.com/aaa"
+                    SongUrl    = "youtube.com/aaa",
+                    Band = new Bands
+                    {
+                        BandName    = "Queen",
+                        Established = DateTime.Parse("1970-01-01"),
+                        ActiveUntil = null
+                    },
+                    Album = new Albums
+                    {
+                        Id        = 1,
+                        BandId    = 1,
+                        AlbumName = "Queen",
+                        Issued    = DateTime.Parse("1973-01-01")
+                    }
                 },
 
                 new Songs
@@ -256,7 +340,20 @@ namespace BackEnd.UnitTests.Mocks
                     BandId     = 1,
                     SongName   = "Liar",
                     SongLyrics = "bbb bbb bbb",
-                    SongUrl    = "youtube.com/bbb"
+                    SongUrl    = "youtube.com/bbb",
+                    Band = new Bands
+                    {
+                        BandName    = "Queen",
+                        Established = DateTime.Parse("1970-01-01"),
+                        ActiveUntil = null
+                    },
+                    Album = new Albums
+                    {
+                        Id        = 1,
+                        BandId    = 1,
+                        AlbumName = "Queen",
+                        Issued    = DateTime.Parse("1973-01-01")
+                    }
                 },
 
                 new Songs
@@ -266,7 +363,20 @@ namespace BackEnd.UnitTests.Mocks
                     BandId     = 1,
                     SongName   = "Seven Seas of Rhye",
                     SongLyrics = "ccc ccc ccc",
-                    SongUrl    = "youtube.com/ccc"
+                    SongUrl    = "youtube.com/ccc",
+                    Band = new Bands
+                    {
+                        BandName    = "Queen",
+                        Established = DateTime.Parse("1970-01-01"),
+                        ActiveUntil = null
+                    },
+                    Album = new Albums
+                    {
+                        Id        = 2,
+                        BandId    = 1,
+                        AlbumName = "Queen II",
+                        Issued    = DateTime.Parse("1974-01-01")
+                    }
                 },
 
                 new Songs
@@ -276,7 +386,20 @@ namespace BackEnd.UnitTests.Mocks
                     BandId     = 1,
                     SongName   = "White Queen",
                     SongLyrics = "ddd ddd ddd",
-                    SongUrl    = "youtube.com/ddd"
+                    SongUrl    = "youtube.com/ddd",
+                    Band = new Bands
+                    {
+                        BandName    = "Queen",
+                        Established = DateTime.Parse("1970-01-01"),
+                        ActiveUntil = null
+                    },
+                    Album = new Albums
+                    {
+                        Id        = 2,
+                        BandId    = 1,
+                        AlbumName = "Queen II",
+                        Issued    = DateTime.Parse("1974-01-01")
+                    }
                 },
 
                 new Songs
@@ -286,7 +409,20 @@ namespace BackEnd.UnitTests.Mocks
                     BandId     = 2,
                     SongName   = "Good Times Bad Times",
                     SongLyrics = "eee eee eee",
-                    SongUrl    = "youtube.com/eee"
+                    SongUrl    = "youtube.com/eee",
+                    Band = new Bands
+                    {
+                        BandName    = "Led Zeppelin",
+                        Established = DateTime.Parse("1968-01-01"),
+                        ActiveUntil = DateTime.Parse("1980-01-01")
+                    },
+                    Album = new Albums
+                    {
+                        Id        = 3,
+                        BandId    = 2,
+                        AlbumName = "Led Zeppelin",
+                        Issued    = DateTime.Parse("1969-01-01")
+                    }
                 },
 
                 new Songs
@@ -296,7 +432,20 @@ namespace BackEnd.UnitTests.Mocks
                     BandId     = 2,
                     SongName   = "You Shook Me",
                     SongLyrics = "fff fff fff",
-                    SongUrl    = "youtube.com/fff"
+                    SongUrl    = "youtube.com/fff",
+                    Band = new Bands
+                    {
+                        BandName    = "Led Zeppelin",
+                        Established = DateTime.Parse("1968-01-01"),
+                        ActiveUntil = DateTime.Parse("1980-01-01")
+                    },
+                    Album = new Albums
+                    {
+                        Id        = 3,
+                        BandId    = 2,
+                        AlbumName = "Led Zeppelin",
+                        Issued    = DateTime.Parse("1969-01-01")
+                    }
                 },
 
                 new Songs
@@ -306,7 +455,20 @@ namespace BackEnd.UnitTests.Mocks
                     BandId     = 2,
                     SongName   = "Whole Lotta Love",
                     SongLyrics = "ggg ggg ggg",
-                    SongUrl    = "youtube.com/ggg"
+                    SongUrl    = "youtube.com/ggg",
+                    Band = new Bands
+                    {
+                        BandName    = "Led Zeppelin",
+                        Established = DateTime.Parse("1968-01-01"),
+                        ActiveUntil = DateTime.Parse("1980-01-01")
+                    },
+                    Album = new Albums
+                    {
+                        Id        = 4,
+                        BandId    = 2,
+                        AlbumName = "Led Zeppelin II",
+                        Issued    = DateTime.Parse("1969-01-01")
+                    }
                 },
 
                 new Songs
@@ -316,7 +478,20 @@ namespace BackEnd.UnitTests.Mocks
                     BandId     = 2,
                     SongName   = "Moby Dick",
                     SongLyrics = "hhh hhh hhh",
-                    SongUrl    = "youtube.com/hhh"
+                    SongUrl    = "youtube.com/hhh",
+                    Band = new Bands
+                    {
+                        BandName    = "Led Zeppelin",
+                        Established = DateTime.Parse("1968-01-01"),
+                        ActiveUntil = DateTime.Parse("1980-01-01")
+                    },
+                    Album = new Albums
+                    {
+                        Id        = 4,
+                        BandId    = 2,
+                        AlbumName = "Led Zeppelin II",
+                        Issued    = DateTime.Parse("1969-01-01")
+                    }
                 },
 
             };

@@ -114,7 +114,7 @@ namespace BackEnd.Controllers.v1
             var LResponse = new ReturnSongs();
             try
             {
-
+                LResponse.Songs = await FLogicContext.Music.GetSongs(null);
                 return StatusCode(200, LResponse);
             }
             catch (Exception E)
@@ -139,7 +139,7 @@ namespace BackEnd.Controllers.v1
             var LResponse = new ReturnSongs();
             try
             {
-
+                LResponse.Songs = await FLogicContext.Music.GetSongs(Id);
                 return StatusCode(200, LResponse);
             }
             catch (Exception E)
@@ -165,7 +165,7 @@ namespace BackEnd.Controllers.v1
             var LResponse = new ReturnSongs();
             try
             {
-
+                LResponse.Songs = await FLogicContext.Music.GetAlbumSong(AlbumId);
                 return StatusCode(200, LResponse);
             }
             catch (Exception E)

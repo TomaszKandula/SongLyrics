@@ -130,6 +130,31 @@ namespace BackEnd.Logic.Music
         
         }
 
+        /// <summary>
+        /// Return specific song from given band's album.
+        /// </summary>
+        /// <param name="AlbumId"></param>
+        /// <returns></returns>
+        public async Task<List<Song>> GetAlbumSong(int AlbumId) 
+        {
+
+            return await FMainDbContext.Songs
+                .AsNoTracking()
+                .Include(R => R.Album)
+                .Include(R => R.Band)
+                .Where(R => R.AlbumId == AlbumId)
+                .Select(R => new Song
+                {
+                    Name      = R.SongName,
+                    Lyrics    = R.SongLyrics,
+                    Url       = R.SongUrl,
+                    AlbumName = R.Album.AlbumName,
+                    BandName  = R.Band.BandName
+                })
+                .ToListAsync();
+
+        }
+
     }
 
 }

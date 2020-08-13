@@ -10,6 +10,7 @@ namespace BackEnd.Models.Database
             Albums = new HashSet<Albums>();
             BandsGeneres = new HashSet<BandsGeneres>();
             Members = new HashSet<Members>();
+            Songs = new HashSet<Songs>();
         }
 
         public int Id { get; set; }
@@ -20,5 +21,6 @@ namespace BackEnd.Models.Database
         public virtual ICollection<Albums> Albums { get; set; }
         public virtual ICollection<BandsGeneres> BandsGeneres { get; set; }
         public virtual ICollection<Members> Members { get; set; }
+        public virtual ICollection<Songs> Songs { get; set; }
     }
 }

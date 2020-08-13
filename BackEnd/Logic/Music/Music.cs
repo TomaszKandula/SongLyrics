@@ -96,6 +96,7 @@ namespace BackEnd.Logic.Music
                 return await FMainDbContext.Songs
                     .AsNoTracking()
                     .Include(R => R.Album)
+                    .Include(R => R.Band)
                     .Where(R => R.Id == SongId)
                     .Select(R => new Song 
                     { 
@@ -103,7 +104,7 @@ namespace BackEnd.Logic.Music
                         Lyrics    = R.SongLyrics,
                         Url       = R.SongUrl,
                         AlbumName = R.Album.AlbumName,
-                        BandName   = ""
+                        BandName  = R.Band.BandName
                     })
                     .ToListAsync();
 
@@ -114,13 +115,14 @@ namespace BackEnd.Logic.Music
                 return await FMainDbContext.Songs
                     .AsNoTracking()
                     .Include(R => R.Album)
+                    .Include(R => R.Band)
                     .Select(R => new Song 
                     { 
                         Name      = R.SongName,
                         Lyrics    = R.SongLyrics,
                         Url       = R.SongUrl,
                         AlbumName = R.Album.AlbumName,
-                        BandName   = ""
+                        BandName  = R.Band.BandName
                     })
                     .ToListAsync();
 

@@ -108,6 +108,13 @@ namespace BackEnd.Models.Database
                     .HasForeignKey(d => d.AlbumId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__AlbumId__Albums");
+
+                entity.HasOne(d => d.Band)
+                    .WithMany(p => p.Songs)
+                    .HasForeignKey(d => d.BandId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__BandId__Bands");
+
             });
 
         }

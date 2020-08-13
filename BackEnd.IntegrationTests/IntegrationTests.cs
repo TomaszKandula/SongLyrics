@@ -62,15 +62,33 @@ namespace SongLyricsBackEnd.IntegrationTests
         [Fact]
         public async void GetBands()
         {
-            var LResult = await FMainDbContext.Bands.AsNoTracking().Select(R => R).ToListAsync();
+
+            var LResult = await FMainDbContext.Bands
+                .AsNoTracking()
+                .Select(R => R)
+                .ToListAsync();
+
             LResult.Should().NotBeEmpty();
+
         }
 
         [Fact]
-        public async void GetAbums()
+        public async void GetAlbums()
         {
-            var LResult = await FMainDbContext.Albums.AsNoTracking().Select(R => R).ToListAsync();
-            LResult.Should().NotBeEmpty();
+
+            var LResult = await FMainDbContext.Albums
+                .Include(R => R.Band)
+                .AsNoTracking()
+                .Select(R => new 
+                { 
+                    R.Band.BandName,
+                    R.AlbumName,
+                    R.Issued
+                })
+                .ToListAsync();
+
+            LResult.Should().HaveCount(15);
+
         }
 
         [Fact]
@@ -95,22 +113,56 @@ namespace SongLyricsBackEnd.IntegrationTests
         [Fact]
         public async void GetGeneres()
         {
-            var LResult = await FMainDbContext.Generes.AsNoTracking().Select(R => R).ToListAsync();
+
+            var LResult = await FMainDbContext.Generes
+                .AsNoTracking()
+                .Select(R => R)
+                .ToListAsync();
+
             LResult.Should().NotBeEmpty();
+
         }
 
         [Fact]
         public async void GetMembers()
         {
-            var LResult = await FMainDbContext.Members.AsNoTracking().Select(R => R).ToListAsync();
-            LResult.Should().NotBeEmpty();
+
+            var LResult = await FMainDbContext.Members
+                .Include(R => R.Band)
+                .AsNoTracking()
+                .Select(R => new 
+                { 
+                    R.Band.BandName,
+                    R.FirstName,
+                    R.LastName,
+                    R.IsPresent
+                })
+                .ToListAsync();
+
+            LResult.Should().HaveCount(4);
+
         }
 
         [Fact]
         public async void GetSongs()
         {
-            var LResult = await FMainDbContext.Songs.AsNoTracking().Select(R => R).ToListAsync();
-            LResult.Should().NotBeEmpty();
+
+            var LResult = await FMainDbContext.Songs
+                .Include(R => R.Band)
+                .Include(R => R.Album)
+                .AsNoTracking()
+                .Select(R => new 
+                { 
+                    R.Album.AlbumName,
+                    R.Band.BandName,
+                    R.SongName,
+                    R.SongLyrics,
+                    R.SongUrl
+                })
+                .ToListAsync();
+
+            LResult.Should().HaveCount(10);
+
         }
 
     }

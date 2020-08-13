@@ -208,7 +208,8 @@ namespace BackEnd.UnitTests.Mocks
                         BandName    = "Queen",
                         Established = DateTime.Parse("1970-01-01"),
                         ActiveUntil = null
-                    }                },
+                    }                
+                },
 
                 new Members
                 {

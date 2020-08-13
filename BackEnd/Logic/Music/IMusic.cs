@@ -34,7 +34,7 @@ namespace BackEnd.Logic.Music
         /// </summary>
         /// <param name="AlbumId"></param>
         /// <returns></returns>
-        Task<List<Song>> GetAlbumSong(int AlbumId);
+        Task<List<Song>> GetAlbumSongs(int AlbumId);
 
     }
 

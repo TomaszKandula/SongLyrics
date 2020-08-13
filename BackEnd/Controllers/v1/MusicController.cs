@@ -1,7 +1,9 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BackEnd.Logic;
+using BackEnd.Helpers;
 using BackEnd.Models.Json;
 using BackEnd.Extensions.AppLogger;
 
@@ -35,7 +37,17 @@ namespace BackEnd.Controllers.v1
             var LResponse = new ReturnAlbums();
             try
             {
-                LResponse.Albums = await FLogicContext.Music.GetAlbums(null);
+                var LResult = await FLogicContext.Music.GetAlbums(null);
+
+                if (!LResult.Any())
+                {
+                    LResponse.Error.ErrorCode = Constants.Errors.EmptyAlbumList.ErrorCode;
+                    LResponse.Error.ErrorDesc = Constants.Errors.EmptyAlbumList.ErrorDesc;
+                    FAppLogger.LogWarn($"GET api/v1/music/albums/. {LResponse.Error.ErrorDesc}.");
+                    return StatusCode(200, LResponse);
+                }
+
+                LResponse.Albums = LResult;
                 return StatusCode(200, LResponse);
 
             }
@@ -62,7 +74,18 @@ namespace BackEnd.Controllers.v1
             var LResponse = new ReturnAlbums();
             try
             {
-                LResponse.Albums = await FLogicContext.Music.GetAlbums(Id);
+
+                var LResult = await FLogicContext.Music.GetAlbums(Id);
+
+                if (LResult.Count == 0)
+                {
+                    LResponse.Error.ErrorCode = Constants.Errors.NoAlbumFound.ErrorCode;
+                    LResponse.Error.ErrorDesc = Constants.Errors.NoAlbumFound.ErrorDesc;
+                    FAppLogger.LogWarn($"GET api/v1/music/albums/{Id}. {LResponse.Error.ErrorDesc}.");
+                    return StatusCode(200, LResponse);
+                }
+
+                LResponse.Albums = LResult;
                 return StatusCode(200, LResponse);
 
             }
@@ -89,8 +112,20 @@ namespace BackEnd.Controllers.v1
             var LResponse = new ReturnAlbums();
             try
             {
-                LResponse.Albums = await FLogicContext.Music.GetAlbum(BandId);
+
+                var LResult = await FLogicContext.Music.GetAlbum(BandId);
+
+                if (!LResult.Any())
+                {
+                    LResponse.Error.ErrorCode = Constants.Errors.EmptyBandAlbumsList.ErrorCode;
+                    LResponse.Error.ErrorDesc = Constants.Errors.EmptyBandAlbumsList.ErrorDesc;
+                    FAppLogger.LogWarn($"GET api/v1/music/albums/?BandId={BandId}. {LResponse.Error.ErrorDesc}.");
+                    return StatusCode(200, LResponse);
+                }
+
+                LResponse.Albums = LResult;
                 return StatusCode(200, LResponse);
+
             }
             catch (Exception E)
             {
@@ -114,8 +149,20 @@ namespace BackEnd.Controllers.v1
             var LResponse = new ReturnSongs();
             try
             {
-                LResponse.Songs = await FLogicContext.Music.GetSongs(null);
+
+                var LResult = await FLogicContext.Music.GetSongs(null);
+
+                if (!LResult.Any()) 
+                {
+                    LResponse.Error.ErrorCode = Constants.Errors.EmptySongList.ErrorCode;
+                    LResponse.Error.ErrorDesc = Constants.Errors.EmptySongList.ErrorDesc;
+                    FAppLogger.LogWarn($"GET api/v1/music/songs/. {LResponse.Error.ErrorDesc}.");
+                    return StatusCode(200, LResponse);
+                }
+
+                LResponse.Songs = LResult;               
                 return StatusCode(200, LResponse);
+            
             }
             catch (Exception E)
             {
@@ -139,8 +186,20 @@ namespace BackEnd.Controllers.v1
             var LResponse = new ReturnSongs();
             try
             {
-                LResponse.Songs = await FLogicContext.Music.GetSongs(Id);
+
+                var LResult = await FLogicContext.Music.GetSongs(Id);
+
+                if (LResult.Count == 0) 
+                {
+                    LResponse.Error.ErrorCode = Constants.Errors.NoSongFound.ErrorCode;
+                    LResponse.Error.ErrorDesc = Constants.Errors.NoSongFound.ErrorDesc;
+                    FAppLogger.LogWarn($"GET api/v1/music/songs/{Id}. {LResponse.Error.ErrorDesc}.");
+                    return StatusCode(200, LResponse);
+                }
+
+                LResponse.Songs = LResult;
                 return StatusCode(200, LResponse);
+
             }
             catch (Exception E)
             {
@@ -165,8 +224,20 @@ namespace BackEnd.Controllers.v1
             var LResponse = new ReturnSongs();
             try
             {
-                LResponse.Songs = await FLogicContext.Music.GetAlbumSong(AlbumId);
+
+                var LResult = await FLogicContext.Music.GetAlbumSongs(AlbumId);
+
+                if (!LResult.Any()) 
+                {
+                    LResponse.Error.ErrorCode = Constants.Errors.EmptyAlbumSongsList.ErrorCode;
+                    LResponse.Error.ErrorDesc = Constants.Errors.EmptyAlbumSongsList.ErrorDesc;
+                    FAppLogger.LogWarn($"GET api/v1/music/songs/. {LResponse.Error.ErrorDesc}.");
+                    return StatusCode(200, LResponse);
+                }
+
+                LResponse.Songs = LResult;
                 return StatusCode(200, LResponse);
+
             }
             catch (Exception E)
             {

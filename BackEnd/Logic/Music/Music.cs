@@ -135,7 +135,7 @@ namespace BackEnd.Logic.Music
         /// </summary>
         /// <param name="AlbumId"></param>
         /// <returns></returns>
-        public async Task<List<Song>> GetAlbumSong(int AlbumId) 
+        public async Task<List<Song>> GetAlbumSongs(int AlbumId) 
         {
 
             return await FMainDbContext.Songs

@@ -1,4 +1,6 @@
-﻿namespace BackEnd.Helpers
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace BackEnd.Helpers
 {
 
     /// <summary>
@@ -11,9 +13,23 @@
         public static class Errors
         { 
             
+            internal class EmptyBandList 
+            {
+                public const string ErrorCode = "empty_band_list";
+                public const string ErrorDesc = "There are no bands listed.";
+            }
+
+            internal class EmptyMembersList
+            {
+                public const string ErrorCode = "empty_members_list";
+                public const string ErrorDesc = "The given band has no members listed.";
+            }
 
 
-        
+
+
+
+
         }
 
     }

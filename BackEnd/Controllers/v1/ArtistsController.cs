@@ -1,7 +1,9 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BackEnd.Logic;
+using BackEnd.Helpers;
 using BackEnd.Models.Json;
 using BackEnd.Extensions.AppLogger;
 
@@ -35,7 +37,18 @@ namespace BackEnd.Controllers.v1
             var LResponse = new ReturnBands();
             try
             {
-                LResponse.Bands = await FLogicContext.Artists.GetBands(null);
+
+                var LResult = await FLogicContext.Artists.GetBands(null);
+
+                if (!LResult.Any()) 
+                {
+                    LResponse.Error.ErrorCode = Constants.Errors.EmptyBandList.ErrorCode;
+                    LResponse.Error.ErrorDesc = Constants.Errors.EmptyBandList.ErrorDesc;
+                    FAppLogger.LogWarn($"GET api/v1/artists/bands/. {LResponse.Error.ErrorDesc}.");
+                    return StatusCode(200, LResponse);
+                }
+
+                LResponse.Bands = LResult;
                 return StatusCode(200, LResponse);
 
             }
@@ -61,8 +74,20 @@ namespace BackEnd.Controllers.v1
             var LResponse = new ReturnMembers();
             try
             {
-                LResponse.Members = await FLogicContext.Artists.GetMembers(Id);
+                
+                var LResult = await FLogicContext.Artists.GetMembers(Id);
+
+                if (!LResult.Any())
+                {
+                    LResponse.Error.ErrorCode = Constants.Errors.EmptyMembersList.ErrorCode;
+                    LResponse.Error.ErrorDesc = Constants.Errors.EmptyMembersList.ErrorDesc;
+                    FAppLogger.LogWarn($"GET api/v1/artists/bands/{Id}/members/. {LResponse.Error.ErrorDesc}.");
+                    return StatusCode(200, LResponse);
+                }
+
+                LResponse.Members = LResult;
                 return StatusCode(200, LResponse);
+            
             }
             catch (Exception E)
             {
@@ -87,13 +112,13 @@ namespace BackEnd.Controllers.v1
             try
             {
 
-                var BandDetails = await FLogicContext.Artists.GetBandDetails(Id);
+                var LBandDetails = await FLogicContext.Artists.GetBandDetails(Id);
 
-                LResponse.Name        = BandDetails.Name;
-                LResponse.Established = BandDetails.Established;
-                LResponse.ActiveUntil = BandDetails.ActiveUntil;
-                LResponse.Genere      = BandDetails.Genere;
-                LResponse.Members     = BandDetails.Members;
+                LResponse.Name        = LBandDetails.Name;
+                LResponse.Established = LBandDetails.Established;
+                LResponse.ActiveUntil = LBandDetails.ActiveUntil;
+                LResponse.Genere      = LBandDetails.Genere;
+                LResponse.Members     = LBandDetails.Members;
 
                 return StatusCode(200, LResponse);
 

@@ -11,7 +11,7 @@ namespace BackEnd.Logic
         private readonly MainDbContext FMainDbContext;
 
         private IArtists FArtists;
-        private IMusic FMusic;
+        private IMusic   FMusic;
 
         public LogicContext(MainDbContext AMainDbContext) 
         {

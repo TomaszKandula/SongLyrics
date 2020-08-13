@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using BackEnd.Logic;
 using BackEnd.Models.Json;
 using BackEnd.Extensions.AppLogger;
 
@@ -13,15 +14,17 @@ namespace BackEnd.Controllers.v1
     public class MusicController : ControllerBase
     {
 
-        private readonly IAppLogger FAppLogger;
+        private readonly IAppLogger    FAppLogger;
+        private readonly ILogicContext FLogicContext;
 
-        public MusicController(IAppLogger AAppLogger) 
+        public MusicController(IAppLogger AAppLogger, ILogicContext ALogicContext) 
         {
-            FAppLogger = AAppLogger;
+            FAppLogger    = AAppLogger;
+            FLogicContext = ALogicContext;
         }
 
         /// <summary>
-        /// Return all albums from collection.
+        /// Return all albums from the entire collection.
         /// </summary>
         /// <returns></returns>
         // GET api/v1/music/albums/
@@ -32,8 +35,7 @@ namespace BackEnd.Controllers.v1
             var LResponse = new ReturnAlbums();
             try
             {
-
-
+                LResponse.Albums = await FLogicContext.Music.GetAlbums(null);
                 return StatusCode(200, LResponse);
 
             }
@@ -48,7 +50,7 @@ namespace BackEnd.Controllers.v1
         }
 
         /// <summary>
-        /// Return specific album from collection.
+        /// Return specific album from the entire collection.
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
@@ -60,8 +62,7 @@ namespace BackEnd.Controllers.v1
             var LResponse = new ReturnAlbums();
             try
             {
-
-
+                LResponse.Albums = await FLogicContext.Music.GetAlbums(Id);
                 return StatusCode(200, LResponse);
 
             }
@@ -88,10 +89,8 @@ namespace BackEnd.Controllers.v1
             var LResponse = new ReturnAlbums();
             try
             {
-
-
+                LResponse.Albums = await FLogicContext.Music.GetAlbum(BandId);
                 return StatusCode(200, LResponse);
-
             }
             catch (Exception E)
             {
@@ -116,9 +115,7 @@ namespace BackEnd.Controllers.v1
             try
             {
 
-
                 return StatusCode(200, LResponse);
-
             }
             catch (Exception E)
             {
@@ -143,9 +140,7 @@ namespace BackEnd.Controllers.v1
             try
             {
 
-
                 return StatusCode(200, LResponse);
-
             }
             catch (Exception E)
             {
@@ -171,9 +166,7 @@ namespace BackEnd.Controllers.v1
             try
             {
 
-
                 return StatusCode(200, LResponse);
-
             }
             catch (Exception E)
             {

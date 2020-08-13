@@ -6,11 +6,20 @@ namespace BackEnd.Models.Json
 {
 
     public class Album 
-    { 
-        public int Id { get; set; }    
-        public string AlbumName { get; set; }   
+    {
+
+        [JsonPropertyName("Id")]
+        public int Id { get; set; }
+
+        [JsonPropertyName("AlbumName")]
+        public string AlbumName { get; set; }
+
+        [JsonPropertyName("Issued")]
         public DateTime Issued { get; set; }
+
+        [JsonPropertyName("BandName")]
         public string BandName { get; set; }
+
     }
 
     public class ReturnAlbums

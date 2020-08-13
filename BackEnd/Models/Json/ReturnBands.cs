@@ -5,9 +5,14 @@ namespace BackEnd.Models.Json
 {
 
     public class Band 
-    { 
+    {
+
+        [JsonPropertyName("Id")]
         public int Id { get; set; }
+
+        [JsonPropertyName("Name")]
         public string Name { get; set; }
+
     }
 
     public class ReturnBands

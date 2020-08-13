@@ -5,11 +5,20 @@ namespace BackEnd.Models.Json
 {
 
     public class Member 
-    { 
+    {
+
+        [JsonPropertyName("Id")]
         public int Id { get; set; }
+
+        [JsonPropertyName("FirstName")]
         public string FirstName { get; set; }
-        public string LastName { get; set; }   
+
+        [JsonPropertyName("LastName")]
+        public string LastName { get; set; }
+
+        [JsonPropertyName("Status")]
         public string Status { get; set; }
+
     }
 
     public class ReturnMembers

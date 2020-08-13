@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using BackEnd.Models.Json;
 using BackEnd.Models.Database;
-using System;
 
 namespace BackEnd.Logic.Artists
 {

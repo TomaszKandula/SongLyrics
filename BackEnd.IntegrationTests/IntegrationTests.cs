@@ -1,4 +1,6 @@
 using Xunit;
+using System;
+using System.IO;
 using System.Linq;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
@@ -6,12 +8,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using BackEnd.Models.Database;
 using BackEnd.Utilities.AppLogger;
+using Serilog;
+using Serilog.Events;
 
 namespace SongLyricsBackEnd.IntegrationTests
 {
 
     public class Startup
-    {   
+    {
     }
 
     public class DbFixture
@@ -22,17 +26,12 @@ namespace SongLyricsBackEnd.IntegrationTests
         public DbFixture() 
         {
 
-            var LConfiguration = new ConfigurationBuilder()
-                        .AddUserSecrets<DbFixture>()
-                        .Build();
-
+            var LConfiguration = new ConfigurationBuilder().AddUserSecrets<DbFixture>().Build();
             var ConnectionString = LConfiguration.GetValue<string>("DbConnect");
-
             var LServices = new ServiceCollection();
 
             LServices.AddDbContext<MainDbContext>(Options => Options.UseSqlServer(ConnectionString), ServiceLifetime.Transient);
             LServices.AddSingleton<IAppLogger, AppLogger>();
-
             FServiceProvider = LServices.BuildServiceProvider();
 
         }
@@ -54,6 +53,44 @@ namespace SongLyricsBackEnd.IntegrationTests
 
             FMainDbContext = FServiceProvider.GetService<MainDbContext>();
             FAppLogger     = FServiceProvider.GetService<IAppLogger>();
+
+        }
+
+        /* APPLOGGER TESTS */
+
+        [Fact]
+        public void SeriLogConfig() 
+        {
+
+            // Arrange
+            var LogsPath = AppDomain.CurrentDomain.BaseDirectory + "\\test-logs";
+            var FileName = $"log-{string.Format("{0:yyyyMMdd}", DateTime.Now)}.txt";
+
+            if (!Directory.Exists(LogsPath))
+            {
+                Directory.CreateDirectory(LogsPath);
+            }
+
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Information()
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
+                .Enrich.FromLogContext()
+                .WriteTo.File
+                (
+                    LogsPath + "\\log-.txt",
+                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}",
+                    rollingInterval: RollingInterval.Day,
+                    rollOnFileSizeLimit: true,
+                    retainedFileCountLimit: null,
+                    shared: false
+                 )
+                .CreateLogger();
+
+            // Act
+            FAppLogger.LogInfo("Integration Tests for SeriLog sitting behind AppLogger.");
+
+            // Assert
+            File.Exists(LogsPath + "\\" + FileName).Should().BeTrue();
 
         }
 

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using BackEnd.Models.Database;
-using BackEnd.Extensions.AppLogger;
+using BackEnd.Utilities.AppLogger;
 
 namespace SongLyricsBackEnd.IntegrationTests
 {

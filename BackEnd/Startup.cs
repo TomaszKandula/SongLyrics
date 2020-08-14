@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.ResponseCompression;
 using BackEnd.Logic;
 using BackEnd.Models.Database;
-using BackEnd.Extensions.AppLogger;
+using BackEnd.Utilities.AppLogger;
 
 namespace SongLyrics
 {

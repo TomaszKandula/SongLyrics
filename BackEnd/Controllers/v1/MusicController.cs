@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using BackEnd.Logic;
 using BackEnd.Helpers;
 using BackEnd.Models.Json;
-using BackEnd.Extensions.AppLogger;
+using BackEnd.Utilities.AppLogger;
 
 namespace BackEnd.Controllers.v1
 {

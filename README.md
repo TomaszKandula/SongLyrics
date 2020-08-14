@@ -1,6 +1,8 @@
 # SongLyrics
 
-SongLyrics project allow to traverse through different artists to find songs from albums for lyrics.
+SongLyrics project allow to traverse through different artists to find songs from albums for lyrics. This projects will also allow to register an account, users will be able to add and modify artists data (albums, songs, lyrics).
+
+The project will be deployed on Azure cloud, the domain is yet to be determined. 
 
 ## Tech-stack
 
@@ -23,11 +25,11 @@ It is not yet started.
 
 Unit Tests and Integration Tests are provided using [XUnit](https://github.com/xunit/xunit) and [FluentAssertions](https://github.com/fluentassertions/fluentassertions).
 
-*Kibana and ElasticSearch are planned to be used.
+*Kibana and ElasticSearch with Docker are planned to be used.
 
 ## Setting-up the database
 
-Connection string have to be setup in __secrets.json__ (BackEnd project):
+For testing, local SQL server/database is used, connection string have to be setup in __secrets.json__ (BackEnd project):
 
 ```
 {

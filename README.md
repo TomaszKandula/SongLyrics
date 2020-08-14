@@ -10,10 +10,9 @@ The project will be deployed on Azure cloud, the domain is yet to be determined.
 
 Planned:
 
-1. React.js with Redux.js.
+1. React.js
+1. Redux.js.
 1. Materialize via CDN.
-1. Vanilla JavaScript with AJAX.
-1. WebPack module bundler.
 
 It is not yet started.
 

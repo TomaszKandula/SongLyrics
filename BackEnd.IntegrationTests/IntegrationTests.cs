@@ -66,6 +66,11 @@ namespace SongLyricsBackEnd.IntegrationTests
             var LogsPath = AppDomain.CurrentDomain.BaseDirectory + "\\test-logs";
             var FileName = $"log-{string.Format("{0:yyyyMMdd}", DateTime.Now)}.txt";
 
+            var TestTextInfo  = "Integration Tests for SeriLog sitting behind AppLogger (INFO).";
+            var TestTextWarn  = "Integration Tests for SeriLog sitting behind AppLogger (WARN).";
+            var TestTextError = "Integration Tests for SeriLog sitting behind AppLogger (ERROR).";
+            var TestTextFatal = "Integration Tests for SeriLog sitting behind AppLogger (FATAL).";
+
             if (!Directory.Exists(LogsPath))
             {
                 Directory.CreateDirectory(LogsPath);
@@ -87,10 +92,20 @@ namespace SongLyricsBackEnd.IntegrationTests
                 .CreateLogger();
 
             // Act
-            FAppLogger.LogInfo("Integration Tests for SeriLog sitting behind AppLogger.");
+            FAppLogger.LogInfo(TestTextInfo);
+            FAppLogger.LogWarn(TestTextWarn);
+            FAppLogger.LogError(TestTextError);
+            FAppLogger.LogFatality(TestTextFatal);
+
+            // Release file lock and get the content
+            Log.CloseAndFlush();
+            var TestLogFile = File.ReadAllText(LogsPath + "\\" + FileName);
 
             // Assert
-            File.Exists(LogsPath + "\\" + FileName).Should().BeTrue();
+            TestLogFile.Should().Contain(TestTextInfo);
+            TestLogFile.Should().Contain(TestTextWarn);
+            TestLogFile.Should().Contain(TestTextError);
+            TestLogFile.Should().Contain(TestTextFatal);
 
         }
 

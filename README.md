@@ -19,8 +19,11 @@ It is not yet started.
 
 1. Web API (NET Core 3.1 / C# language).
 1. SQL Database, Entity Framework Core.
+1. SeriLog for structural logging*.
 
 Unit Tests and Integration Tests are provided using [XUnit](https://github.com/xunit/xunit) and [FluentAssertions](https://github.com/fluentassertions/fluentassertions).
+
+*Kibana and ElasticSearch are planned to be used.
 
 ## Setting-up the database
 

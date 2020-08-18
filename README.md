@@ -41,13 +41,7 @@ For testing, local SQL server/database is used, connection string have to be set
 }
 ```
 
-and for Integration Test (BackEnd.IntegrationTests project):
-
-```
-{
-    "DbConnect": "<your_connection_string_goes_here>"
-}
-```
+Integration Tests uses the same secrets.json.
 
 The database have six tables so far, because this project have already database setup, one may use SQL scripts to create tables and populate database tables from CSV files, all provided here: [Database Examples](https://github.com/TomaszKandula/SongLyrics/tree/master/DatabaseExamples).
 

@@ -108,14 +108,13 @@ namespace SongLyricsBackEnd.IntegrationTests
 
             if (BandId != null)
             {
-                LReturnAlbums.Albums.Should().HaveCount(1);
+                LReturnAlbums.Albums.Should().HaveCount(15);
             }
             else
             {
                 LReturnAlbums.Albums.Select(R => R.AlbumName).ToList()[3].Should().Be("A Night at the Opera");
                 LReturnAlbums.Albums.Select(R => R.AlbumName).ToList()[5].Should().Be("News of the World");
                 LReturnAlbums.Albums.Select(R => R.AlbumName).ToList()[13].Should().Be("Innuendo");
-                LReturnAlbums.Albums.Should().HaveCount(15);
             }
 
         }
@@ -147,6 +146,28 @@ namespace SongLyricsBackEnd.IntegrationTests
             {
                 LReturnSongs.Songs.Should().HaveCount(10);
             }
+
+        }
+
+        [Theory]
+        [InlineData(6)]
+        public async Task GetSong(int Id) 
+        {
+
+            // Arrange
+            var LRequest = $"/api/v1/music/songs/{Id}";
+
+            // Act
+            var LResponse = await FClient.GetAsync(LRequest);
+
+            // Require success status code
+            LResponse.EnsureSuccessStatusCode();
+
+            // Deserialize response and check results            
+            var LStringResponse = await LResponse.Content.ReadAsStringAsync();
+            var LReturnSongs = JsonConvert.DeserializeObject<ReturnSongs>(LStringResponse);
+
+            LReturnSongs.Songs.Select(R => R.Name).ToList().Single().Should().Be("The Night Comes Down");
 
         }
 

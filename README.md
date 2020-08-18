@@ -53,7 +53,7 @@ The database have six tables so far, because this project have already database 
 
 ## Integration Tests
 
-Focuses on testing dependencies and theirs configuration. There are no HTTP tests at this point, but planned.
+Focuses on testing HTTP responses, dependencies and theirs configuration.
 
 ## Unit Tests
 

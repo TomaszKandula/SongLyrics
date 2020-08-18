@@ -1,8 +1,8 @@
 # SongLyrics
 
-SongLyrics project allow to traverse through different artists to find songs from albums for lyrics. This projects will also allow to register an account, users will be able to add and modify artists data (albums, songs, lyrics).
+SongLyrics project allow to traverse through different artists to find songs from albums for lyrics. 
 
-The project will be deployed on Azure cloud, the domain is yet to be determined. 
+In the future, this project will also allow to register an account, and users will be able to add and modify artists data (albums, songs, lyrics etc.). The project will be deployed on Azure cloud, the domain is yet to be determined.
 
 ## Tech-stack
 
@@ -54,6 +54,8 @@ Focuses on testing HTTP responses, dependencies and theirs configuration.
 Covers all the logic used in the controllers (please note that the endpoints does not provide any business logic, they are only responsible for handling requests, validation etc.). All dependencies are mocked. For mocking [Moq](https://github.com/moq/moq4) and [MockQueryable.Moq](https://github.com/romantitov/MockQueryable) have been used. 
 
 ## REST API
+
+Currently, all controllers are public.
 
 ### Artists controller
 

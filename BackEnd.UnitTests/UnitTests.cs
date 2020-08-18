@@ -10,10 +10,6 @@ using BackEnd.UnitTests.Mocks;
 namespace SongLyricsBackEnd.UnitTests
 {
 
-    public class Startup
-    {
-    }
-
     public class UnitTests
     {
 
@@ -97,7 +93,7 @@ namespace SongLyricsBackEnd.UnitTests
             var LResult3 = await FMusic.GetAlbums(45);
 
             LResult1.Should().HaveCount(4);
-            LResult2.Should().HaveCount(1);
+            LResult2.Should().HaveCount(2);
             LResult3.Should().BeEmpty();
 
         }

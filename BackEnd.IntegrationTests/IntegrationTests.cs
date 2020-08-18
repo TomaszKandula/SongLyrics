@@ -87,12 +87,14 @@ namespace SongLyricsBackEnd.IntegrationTests
 
         }
 
-        [Fact]
-        public async Task GetAlbums() 
+        [Theory]
+        [InlineData(1)]
+        [InlineData(null)]
+        public async Task GetAlbums(int? BandId) 
         {
 
             // Arrange
-            var LRequest = $"/api/v1/music/albums/";
+            var LRequest = $"/api/v1/music/albums/?BandId={BandId}";
 
             // Act
             var LResponse = await FClient.GetAsync(LRequest);
@@ -104,12 +106,21 @@ namespace SongLyricsBackEnd.IntegrationTests
             var LStringResponse = await LResponse.Content.ReadAsStringAsync();
             var LReturnAlbums = JsonConvert.DeserializeObject<ReturnAlbums>(LStringResponse);
 
-            LReturnAlbums.Albums.Select(R => R.AlbumName).ToList()[3].Should().Be("A Night at the Opera");
-            LReturnAlbums.Albums.Select(R => R.AlbumName).ToList()[5].Should().Be("News of the World");
-            LReturnAlbums.Albums.Select(R => R.AlbumName).ToList()[13].Should().Be("Innuendo");
-            LReturnAlbums.Albums.Should().HaveCount(15);
+            if (BandId != null)
+            {
+                LReturnAlbums.Albums.Should().HaveCount(1);
+            }
+            else 
+            {
+                LReturnAlbums.Albums.Select(R => R.AlbumName).ToList()[3].Should().Be("A Night at the Opera");
+                LReturnAlbums.Albums.Select(R => R.AlbumName).ToList()[5].Should().Be("News of the World");
+                LReturnAlbums.Albums.Select(R => R.AlbumName).ToList()[13].Should().Be("Innuendo");
+                LReturnAlbums.Albums.Should().HaveCount(15);
+            }
 
         }
+
+
 
     }
 

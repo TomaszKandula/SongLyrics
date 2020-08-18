@@ -111,27 +111,13 @@ namespace SongLyricsBackEnd.UnitTests
             var LResult3 = await FMusic.GetAlbum(99);
 
             LResult1.Select(R => R.AlbumName).First().Should().Be("Queen");
-            LResult2.Select(R => R.AlbumName).First().Should().Be("Led Zeppelin");
+            LResult2.Select(R => R.AlbumName).First().Should().Be("Queen II");
             LResult3.Should().BeEmpty();
 
         }
 
         [Fact]
-        public async void GetSongs() 
-        {
-
-            var LResult1 = await FMusic.GetSongs(null);
-            var LResult2 = await FMusic.GetSongs(7);
-            var LResult3 = await FMusic.GetSongs(100);
-
-            LResult1.Should().HaveCount(8);
-            LResult2.Select(R => R.Name).First().Should().Be("Whole Lotta Love");
-            LResult3.Should().BeEmpty();
-
-        }
-
-        [Fact]
-        public async void GetAlbumSongs() 
+        public async void GetAlbumSongs()
         {
 
             var LResult1 = await FMusic.GetAlbumSongs(1);
@@ -140,6 +126,18 @@ namespace SongLyricsBackEnd.UnitTests
             LResult1.Select(R => R.Name).ToList()[0].Should().Be("Keep Yourself Alive");
             LResult1.Select(R => R.Name).ToList()[1].Should().Be("Liar");
             LResult2.Should().BeEmpty();
+
+        }
+
+        [Fact]
+        public async void GetSong() 
+        {
+
+            var LResult2 = await FMusic.GetSong(7);
+            var LResult3 = await FMusic.GetSong(100);
+
+            LResult2.Select(R => R.Name).First().Should().Be("Whole Lotta Love");
+            LResult3.Should().BeEmpty();
 
         }
 

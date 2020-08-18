@@ -19,20 +19,20 @@ namespace BackEnd.Logic.Music
         }
 
         /// <summary>
-        /// Return all albums/given album from the entire collection.
+        /// Return all albums/given album (by BandId) from the entire collection.
         /// </summary>
-        /// <param name="AlbumId"></param>
+        /// <param name="BandId"></param>
         /// <returns></returns>
-        public async Task<List<Album>> GetAlbums(int? AlbumId) 
+        public async Task<List<Album>> GetAlbums(int? BandId) 
         {
 
-            if (AlbumId != null)
+            if (BandId != null)
             {
 
                 return await FMainDbContext.Albums
                     .AsNoTracking()
                     .Include(R => R.Band)
-                    .Where(R => R.Id == AlbumId)
+                    .Where(R => R.BandId == BandId)
                     .Select(R => new Album 
                     { 
                         Id        = R.Id,
@@ -63,15 +63,15 @@ namespace BackEnd.Logic.Music
         /// <summary>
         /// Return specific album for given Band Id.
         /// </summary>
-        /// <param name="bandId"></param>
+        /// <param name="AlbumId"></param>
         /// <returns></returns>
-        public async Task<List<Album>> GetAlbum(int BandId) 
+        public async Task<List<Album>> GetAlbum(int AlbumId) 
         { 
 
              return await FMainDbContext.Albums
                 .AsNoTracking()
                 .Include(R => R.Band)
-                .Where(R => R.BandId == BandId)
+                .Where(R => R.Id == AlbumId)
                 .Select(R => new Album 
                 { 
                     Id        = R.Id,
@@ -83,23 +83,23 @@ namespace BackEnd.Logic.Music
         }
 
         /// <summary>
-        /// Return all songs/given song from the entire collection.
+        /// Return specific song (or songs) from given band's album.
         /// </summary>
-        /// <param name="SongId"></param>
+        /// <param name="AlbumId"></param>
         /// <returns></returns>
-        public async Task<List<Song>> GetSongs(int? SongId) 
+        public async Task<List<Song>> GetAlbumSongs(int? AlbumId) 
         {
 
-            if (SongId != null)
+            if (AlbumId != null)
             {
 
                 return await FMainDbContext.Songs
                     .AsNoTracking()
                     .Include(R => R.Album)
                     .Include(R => R.Band)
-                    .Where(R => R.Id == SongId)
-                    .Select(R => new Song 
-                    { 
+                    .Where(R => R.AlbumId == AlbumId)
+                    .Select(R => new Song
+                    {
                         Name      = R.SongName,
                         Lyrics    = R.SongLyrics,
                         Url       = R.SongUrl,
@@ -111,13 +111,13 @@ namespace BackEnd.Logic.Music
             }
             else 
             {
-            
+
                 return await FMainDbContext.Songs
                     .AsNoTracking()
                     .Include(R => R.Album)
                     .Include(R => R.Band)
-                    .Select(R => new Song 
-                    { 
+                    .Select(R => new Song
+                    {
                         Name      = R.SongName,
                         Lyrics    = R.SongLyrics,
                         Url       = R.SongUrl,
@@ -127,22 +127,22 @@ namespace BackEnd.Logic.Music
                     .ToListAsync();
 
             }
-        
+
         }
 
         /// <summary>
-        /// Return specific song from given band's album.
+        /// Return given song from the entire collection.
         /// </summary>
-        /// <param name="AlbumId"></param>
+        /// <param name="SongId"></param>
         /// <returns></returns>
-        public async Task<List<Song>> GetAlbumSongs(int AlbumId) 
+        public async Task<List<Song>> GetSong(int SongId)
         {
 
             return await FMainDbContext.Songs
                 .AsNoTracking()
                 .Include(R => R.Album)
                 .Include(R => R.Band)
-                .Where(R => R.AlbumId == AlbumId)
+                .Where(R => R.Id == SongId)
                 .Select(R => new Song
                 {
                     Name      = R.SongName,

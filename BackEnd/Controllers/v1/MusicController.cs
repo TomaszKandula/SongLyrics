@@ -26,7 +26,7 @@ namespace BackEnd.Controllers.v1
         }
 
         /// <summary>
-        /// Return all albums (or given one) from the entire collection.
+        /// Return all albums (or given one by BandId) from the entire collection.
         /// </summary>
         /// <returns></returns>
         // GET api/v1/music/albums/?BandId={id}
@@ -75,7 +75,7 @@ namespace BackEnd.Controllers.v1
             try
             {
 
-                var LResult = await FLogicContext.Music.GetAlbums(Id);
+                var LResult = await FLogicContext.Music.GetAlbum(Id);
 
                 if (LResult.Count == 0)
                 {
@@ -100,19 +100,19 @@ namespace BackEnd.Controllers.v1
         }
 
         /// <summary>
-        /// Return all songs (or the given one belonging to the album) from collection.
+        /// Return all songs from the entire collection or songs belonging to given album.
         /// </summary>
         /// <returns></returns>
-        // GET api/v1/music/songs/?SongId={id}
+        // GET api/v1/music/songs/?AlbumId={id}
         [HttpGet("songs")]
-        public async Task<IActionResult> GetSongs([FromQuery] int? SongId) 
+        public async Task<IActionResult> GetSongs([FromQuery] int? AlbumId) 
         {
 
             var LResponse = new ReturnSongs();
             try
             {
 
-                var LResult = await FLogicContext.Music.GetSongs(SongId);
+                var LResult = await FLogicContext.Music.GetAlbumSongs(AlbumId);
 
                 if (!LResult.Any()) 
                 {
@@ -134,7 +134,45 @@ namespace BackEnd.Controllers.v1
                 return StatusCode(500, LResponse);
             }
 
-        }             
+        }
+
+        /// <summary>
+        /// Return all songs from the entire collection.
+        /// </summary>
+        /// <returns></returns>
+        // GET api/v1/music/songs/{Id}/
+        [HttpGet("songs/{id}")]
+        public async Task<IActionResult> GetSong(int Id)
+        {
+
+            var LResponse = new ReturnSongs();
+            try
+            {
+
+                var LResult = await FLogicContext.Music.GetSong(Id);
+
+                if (!LResult.Any())
+                {
+                    LResponse.Error.ErrorCode = Constants.Errors.EmptySongList.ErrorCode;
+                    LResponse.Error.ErrorDesc = Constants.Errors.EmptySongList.ErrorDesc;
+                    FAppLogger.LogWarn($"GET api/v1/music/songs/{Id}. {LResponse.Error.ErrorDesc}.");
+                    return StatusCode(200, LResponse);
+                }
+
+                LResponse.Songs = LResult;
+                return StatusCode(200, LResponse);
+
+            }
+            catch (Exception E)
+            {
+                LResponse.Error.ErrorCode = E.HResult.ToString();
+                LResponse.Error.ErrorDesc = string.IsNullOrEmpty(E.InnerException?.Message) ? E.Message : $"{E.Message} ({ E.InnerException.Message}).";
+                FAppLogger.LogFatality($"GET api/v1/music/songs/{Id} | Error has been raised while processing request. Message: {LResponse.Error.ErrorDesc}.");
+                return StatusCode(500, LResponse);
+            }
+
+        }
+
 
     }
 

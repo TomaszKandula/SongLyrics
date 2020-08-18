@@ -21,7 +21,7 @@ namespace SongLyricsBackEnd.IntegrationTests
         }
 
         [Fact]
-        public async Task GetBands() 
+        public async Task GetBands()
         {
 
             // Arrange
@@ -65,7 +65,7 @@ namespace SongLyricsBackEnd.IntegrationTests
 
         [Theory]
         [InlineData(1)]
-        public async Task GetBandDetails(int Id) 
+        public async Task GetBandDetails(int Id)
         {
 
             // Arrange
@@ -90,7 +90,7 @@ namespace SongLyricsBackEnd.IntegrationTests
         [Theory]
         [InlineData(1)]
         [InlineData(null)]
-        public async Task GetAlbums(int? BandId) 
+        public async Task GetAlbums(int? BandId)
         {
 
             // Arrange
@@ -110,7 +110,7 @@ namespace SongLyricsBackEnd.IntegrationTests
             {
                 LReturnAlbums.Albums.Should().HaveCount(1);
             }
-            else 
+            else
             {
                 LReturnAlbums.Albums.Select(R => R.AlbumName).ToList()[3].Should().Be("A Night at the Opera");
                 LReturnAlbums.Albums.Select(R => R.AlbumName).ToList()[5].Should().Be("News of the World");
@@ -120,7 +120,35 @@ namespace SongLyricsBackEnd.IntegrationTests
 
         }
 
+        [Theory]
+        [InlineData(1)]
+        [InlineData(null)]
+        public async Task GetSongs(int? AlbumId) 
+        {
 
+            // Arrange
+            var LRequest = $"/api/v1/music/songs/?AlbumId={AlbumId}";
+
+            // Act
+            var LResponse = await FClient.GetAsync(LRequest);
+
+            // Require success status code
+            LResponse.EnsureSuccessStatusCode();
+
+            // Deserialize response and check results            
+            var LStringResponse = await LResponse.Content.ReadAsStringAsync();
+            var LReturnSongs = JsonConvert.DeserializeObject<ReturnSongs>(LStringResponse);
+
+            if (AlbumId != null)
+            {
+                LReturnSongs.Songs.Should().HaveCount(1);
+            }
+            else 
+            {
+                LReturnSongs.Songs.Should().HaveCount(10);
+            }
+
+        }
 
     }
 

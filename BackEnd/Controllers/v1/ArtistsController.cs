@@ -26,7 +26,7 @@ namespace BackEnd.Controllers.v1
         }
 
         /// <summary>
-        /// Return all bands from the entire collection.
+        /// Returns all bands from the entire collection.
         /// </summary>
         /// <returns></returns>
         // GET api/v1/artists/bands/
@@ -63,7 +63,7 @@ namespace BackEnd.Controllers.v1
         }
 
         /// <summary>
-        /// Return list of all band members.
+        /// Returns list of all band members.
         /// </summary>
         /// <returns></returns>
         // GET api/v1/artists/bands/{id}/members/
@@ -100,7 +100,7 @@ namespace BackEnd.Controllers.v1
         }
 
         /// <summary>
-        /// Return all band details for fiven band Id.
+        /// Returns all band detail for given band (by its Id).
         /// </summary>
         /// <returns></returns>
         // GET api/v1/artists/bands/{id}/details/

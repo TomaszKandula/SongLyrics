@@ -26,7 +26,7 @@ namespace BackEnd.Controllers.v1
         }
 
         /// <summary>
-        /// Return all albums (or given one by BandId) from the entire collection.
+        /// Returns all albums (or given band album) from the entire collection.
         /// </summary>
         /// <returns></returns>
         // GET api/v1/music/albums/?BandId={id}
@@ -62,7 +62,7 @@ namespace BackEnd.Controllers.v1
         }
 
         /// <summary>
-        /// Return specific album from the entire collection.
+        /// Returns specific album from the entire collection.
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
@@ -100,7 +100,7 @@ namespace BackEnd.Controllers.v1
         }
 
         /// <summary>
-        /// Return all songs from the entire collection or songs belonging to given album.
+        /// Returns all songs from the entire collection or songs belonging to given album.
         /// </summary>
         /// <returns></returns>
         // GET api/v1/music/songs/?AlbumId={id}
@@ -137,7 +137,7 @@ namespace BackEnd.Controllers.v1
         }
 
         /// <summary>
-        /// Return all songs from the entire collection.
+        /// Returns selected song from the entire collection.
         /// </summary>
         /// <returns></returns>
         // GET api/v1/music/songs/{Id}/

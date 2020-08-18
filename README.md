@@ -41,9 +41,9 @@ For testing, local SQL server/database is used, connection string have to be set
 }
 ```
 
-Integration Tests uses the same secrets.json.
+Integration Tests uses the same __secrets.json__.
 
-The database have six tables so far, because this project have already database setup, one may use SQL scripts to create tables and populate database tables from CSV files, all provided here: [Database Examples](https://github.com/TomaszKandula/SongLyrics/tree/master/DatabaseExamples).
+The database have six tables so far, because this project have already database setup ([database first approach](https://entityframeworkcore.com/approach-database-first)), one may use SQL scripts to create tables and populate database tables from CSV files, all provided here: [Database Examples](https://github.com/TomaszKandula/SongLyrics/tree/master/DatabaseExamples).
 
 ## Integration Tests
 

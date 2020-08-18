@@ -1,219 +1,113 @@
 using Xunit;
-using System;
-using System.IO;
-using System.Linq;
 using FluentAssertions;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using BackEnd.Models.Database;
-using BackEnd.Utilities.AppLogger;
-using Serilog;
-using Serilog.Events;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using BackEnd.Models.Json;
+using BackEnd.IntegrationTests;
 
 namespace SongLyricsBackEnd.IntegrationTests
 {
 
-    public class Startup
-    {
-    }
-
-    public class DbFixture
+    public class IntegrationTests : IClassFixture<TestFixture<SongLyrics.Startup>>
     {
 
-        public ServiceProvider FServiceProvider { get; private set; }
+        private readonly HttpClient FClient;
 
-        public DbFixture() 
+        public IntegrationTests(TestFixture<SongLyrics.Startup> ACustomFixture)
         {
-
-            var LConfiguration = new ConfigurationBuilder().AddUserSecrets<DbFixture>().Build();
-            var ConnectionString = LConfiguration.GetValue<string>("DbConnect");
-            var LServices = new ServiceCollection();
-
-            LServices.AddDbContext<MainDbContext>(Options => Options.UseSqlServer(ConnectionString), ServiceLifetime.Transient);
-            LServices.AddSingleton<IAppLogger, AppLogger>();
-            FServiceProvider = LServices.BuildServiceProvider();
-
+            FClient = ACustomFixture.FClient;
         }
-
-    }
-
-    public class IntegrationTests : IClassFixture<DbFixture>
-    {
-
-        private readonly ServiceProvider FServiceProvider;
-
-        private readonly MainDbContext FMainDbContext;
-        private readonly IAppLogger    FAppLogger;
-
-        public IntegrationTests(DbFixture ADbFixture)
-        {
-
-            FServiceProvider = ADbFixture.FServiceProvider;
-
-            FMainDbContext = FServiceProvider.GetService<MainDbContext>();
-            FAppLogger     = FServiceProvider.GetService<IAppLogger>();
-
-        }
-
-        /* APPLOGGER TESTS */
 
         [Fact]
-        public void SeriLogConfig() 
+        public async Task GetBands() 
         {
 
             // Arrange
-            var LogsPath = AppDomain.CurrentDomain.BaseDirectory + "\\test-logs";
-            var FileName = $"log-{string.Format("{0:yyyyMMdd}", DateTime.Now)}.txt";
-
-            var TestTextInfo  = "Integration Tests for SeriLog sitting behind AppLogger (INFO).";
-            var TestTextWarn  = "Integration Tests for SeriLog sitting behind AppLogger (WARN).";
-            var TestTextError = "Integration Tests for SeriLog sitting behind AppLogger (ERROR).";
-            var TestTextFatal = "Integration Tests for SeriLog sitting behind AppLogger (FATAL).";
-
-            if (!Directory.Exists(LogsPath))
-            {
-                Directory.CreateDirectory(LogsPath);
-            }
-
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Information()
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
-                .Enrich.FromLogContext()
-                .WriteTo.File
-                (
-                    LogsPath + "\\log-.txt",
-                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}",
-                    rollingInterval: RollingInterval.Day,
-                    rollOnFileSizeLimit: true,
-                    retainedFileCountLimit: null,
-                    shared: false
-                 )
-                .CreateLogger();
+            var LRequest = "/api/v1/artists/bands/";
 
             // Act
-            FAppLogger.LogInfo(TestTextInfo);
-            FAppLogger.LogWarn(TestTextWarn);
-            FAppLogger.LogError(TestTextError);
-            FAppLogger.LogFatality(TestTextFatal);
+            var LResponse = await FClient.GetAsync(LRequest);
 
-            // Release file lock and get the content
-            Log.CloseAndFlush();
-            var TestLogFile = File.ReadAllText(LogsPath + "\\" + FileName);
+            // Require success status code
+            LResponse.EnsureSuccessStatusCode();
 
-            // Assert
-            TestLogFile.Should().Contain(TestTextInfo);
-            TestLogFile.Should().Contain(TestTextWarn);
-            TestLogFile.Should().Contain(TestTextError);
-            TestLogFile.Should().Contain(TestTextFatal);
+            // Deserialize response and check results            
+            var LStringResponse = await LResponse.Content.ReadAsStringAsync();
+            var LReturnBands = JsonConvert.DeserializeObject<ReturnBands>(LStringResponse);
+
+            LReturnBands.Bands.Select(R => R.Name).ToList()[0].Should().Be("Queen");
 
         }
 
-        /* DATABASE RETRIEVAL TESTS */
-
-        [Fact]
-        public async void GetBands()
+        [Theory]
+        [InlineData(1)]
+        public async Task GetMembers(int Id)
         {
 
-            var LResult = await FMainDbContext.Bands
-                .AsNoTracking()
-                .Select(R => R)
-                .ToListAsync();
+            // Arrange
+            var LRequest = $"/api/v1/artists/bands/{Id}/members/";
 
-            LResult.Should().NotBeEmpty();
+            // Act
+            var LResponse = await FClient.GetAsync(LRequest);
+
+            // Require success status code
+            LResponse.EnsureSuccessStatusCode();
+
+            // Deserialize response and check results            
+            var LStringResponse = await LResponse.Content.ReadAsStringAsync();
+            var LReturnMembers = JsonConvert.DeserializeObject<ReturnMembers>(LStringResponse);
+
+            LReturnMembers.Members.Should().HaveCount(4);
 
         }
 
-        [Fact]
-        public async void GetAlbums()
+        [Theory]
+        [InlineData(1)]
+        public async Task GetBandDetails(int Id) 
         {
 
-            var LResult = await FMainDbContext.Albums
-                .Include(R => R.Band)
-                .AsNoTracking()
-                .Select(R => new 
-                { 
-                    R.Band.BandName,
-                    R.AlbumName,
-                    R.Issued
-                })
-                .ToListAsync();
+            // Arrange
+            var LRequest = $"/api/v1/artists/bands/{Id}/details/";
 
-            LResult.Should().HaveCount(15);
+            // Act
+            var LResponse = await FClient.GetAsync(LRequest);
 
-        }
+            // Require success status code
+            LResponse.EnsureSuccessStatusCode();
 
-        [Fact]
-        public async void GetBandGeneres()
-        {
+            // Deserialize response and check results            
+            var LStringResponse = await LResponse.Content.ReadAsStringAsync();
+            var LReturnBandDetails = JsonConvert.DeserializeObject<ReturnBandDetails>(LStringResponse);
 
-            var LResult = await FMainDbContext.BandsGeneres
-                .Include(R => R.Band)
-                .Include(R => R.Genere)
-                .AsNoTracking()
-                .Select(R => new 
-                { 
-                    R.Band.BandName,
-                    R.Genere.Genere
-                })
-                .ToListAsync();
-
-            LResult.Should().NotBeEmpty();
+            LReturnBandDetails.Genere.Should().Be("Rock");
+            LReturnBandDetails.Name.Should().Be("Queen");
+            LReturnBandDetails.Members.Should().HaveCount(4);
 
         }
 
         [Fact]
-        public async void GetGeneres()
+        public async Task GetAlbums() 
         {
 
-            var LResult = await FMainDbContext.Generes
-                .AsNoTracking()
-                .Select(R => R)
-                .ToListAsync();
+            // Arrange
+            var LRequest = $"/api/v1/music/albums/";
 
-            LResult.Should().NotBeEmpty();
+            // Act
+            var LResponse = await FClient.GetAsync(LRequest);
 
-        }
+            // Require success status code
+            LResponse.EnsureSuccessStatusCode();
 
-        [Fact]
-        public async void GetMembers()
-        {
+            // Deserialize response and check results            
+            var LStringResponse = await LResponse.Content.ReadAsStringAsync();
+            var LReturnAlbums = JsonConvert.DeserializeObject<ReturnAlbums>(LStringResponse);
 
-            var LResult = await FMainDbContext.Members
-                .Include(R => R.Band)
-                .AsNoTracking()
-                .Select(R => new 
-                { 
-                    R.Band.BandName,
-                    R.FirstName,
-                    R.LastName,
-                    R.IsPresent
-                })
-                .ToListAsync();
-
-            LResult.Should().HaveCount(4);
-
-        }
-
-        [Fact]
-        public async void GetSongs()
-        {
-
-            var LResult = await FMainDbContext.Songs
-                .Include(R => R.Band)
-                .Include(R => R.Album)
-                .AsNoTracking()
-                .Select(R => new 
-                { 
-                    R.Album.AlbumName,
-                    R.Band.BandName,
-                    R.SongName,
-                    R.SongLyrics,
-                    R.SongUrl
-                })
-                .ToListAsync();
-
-            LResult.Should().HaveCount(10);
+            LReturnAlbums.Albums.Select(R => R.AlbumName).ToList()[3].Should().Be("A Night at the Opera");
+            LReturnAlbums.Albums.Select(R => R.AlbumName).ToList()[5].Should().Be("News of the World");
+            LReturnAlbums.Albums.Select(R => R.AlbumName).ToList()[13].Should().Be("Innuendo");
+            LReturnAlbums.Albums.Should().HaveCount(15);
 
         }
 

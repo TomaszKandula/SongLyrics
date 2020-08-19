@@ -25,7 +25,7 @@ namespace SongLyricsBackEnd.IntegrationTests
         {
 
             // Arrange
-            var LRequest = "/api/v1/artists/bands/";
+            var LRequest = "/api/v1/bands/";
 
             // Act
             var LResponse = await FClient.GetAsync(LRequest);
@@ -47,7 +47,7 @@ namespace SongLyricsBackEnd.IntegrationTests
         {
 
             // Arrange
-            var LRequest = $"/api/v1/artists/bands/{Id}/members/";
+            var LRequest = $"/api/v1/bands/{Id}/members/";
 
             // Act
             var LResponse = await FClient.GetAsync(LRequest);
@@ -69,7 +69,7 @@ namespace SongLyricsBackEnd.IntegrationTests
         {
 
             // Arrange
-            var LRequest = $"/api/v1/artists/bands/{Id}/details/";
+            var LRequest = $"/api/v1/bands/{Id}/details/";
 
             // Act
             var LResponse = await FClient.GetAsync(LRequest);

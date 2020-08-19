@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore;
 using BackEnd.Models.Json;
 using BackEnd.Models.Database;
 
-namespace BackEnd.Logic.Artists
+namespace BackEnd.Logic.Bands
 {
 
-    public class Artists : IArtists
+    public class Bands : IBands
     {
 
         private readonly MainDbContext FMainDbContext;
 
-        public Artists(MainDbContext AMainDbContext) 
+        public Bands(MainDbContext AMainDbContext) 
         {
             FMainDbContext = AMainDbContext;
         }

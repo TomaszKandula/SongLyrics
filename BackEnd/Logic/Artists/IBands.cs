@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using BackEnd.Models.Json;
 
-namespace BackEnd.Logic.Artists
+namespace BackEnd.Logic.Bands
 {
 
-    public interface IArtists
+    public interface IBands
     {
 
         /// <summary>

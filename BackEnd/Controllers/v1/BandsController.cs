@@ -38,7 +38,7 @@ namespace BackEnd.Controllers.v1
             try
             {
 
-                var LResult = await FLogicContext.Artists.GetBands(null);
+                var LResult = await FLogicContext.Bands.GetBands(null);
 
                 if (!LResult.Any()) 
                 {
@@ -75,7 +75,7 @@ namespace BackEnd.Controllers.v1
             try
             {
                 
-                var LResult = await FLogicContext.Artists.GetMembers(Id);
+                var LResult = await FLogicContext.Bands.GetMembers(Id);
 
                 if (!LResult.Any())
                 {
@@ -112,7 +112,7 @@ namespace BackEnd.Controllers.v1
             try
             {
 
-                var LBandDetails = await FLogicContext.Artists.GetBandDetails(Id);
+                var LBandDetails = await FLogicContext.Bands.GetBandDetails(Id);
 
                 LResponse.Name        = LBandDetails.Name;
                 LResponse.Established = LBandDetails.Established;

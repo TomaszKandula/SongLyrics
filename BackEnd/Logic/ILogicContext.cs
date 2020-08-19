@@ -1,12 +1,12 @@
 ﻿using BackEnd.Logic.Music;
-using BackEnd.Logic.Artists;
+using BackEnd.Logic.Bands;
 
 namespace BackEnd.Logic
 {
 
     public interface ILogicContext
     {
-        IArtists Artists { get; }
+        IBands Bands { get; }
         IMusic Music { get; }
     }
 

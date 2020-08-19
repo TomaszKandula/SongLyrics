@@ -1,5 +1,5 @@
 ﻿using BackEnd.Logic.Music;
-using BackEnd.Logic.Artists;
+using BackEnd.Logic.Bands;
 using BackEnd.Models.Database;
 
 namespace BackEnd.Logic
@@ -10,7 +10,7 @@ namespace BackEnd.Logic
 
         private readonly MainDbContext FMainDbContext;
 
-        private IArtists FArtists;
+        private IBands FArtists;
         private IMusic   FMusic;
 
         public LogicContext(MainDbContext AMainDbContext) 
@@ -18,7 +18,7 @@ namespace BackEnd.Logic
             FMainDbContext = AMainDbContext;
         }
 
-        public IArtists Artists 
+        public IBands Bands 
         {
 
             get 
@@ -26,7 +26,7 @@ namespace BackEnd.Logic
 
                 if (FArtists == null) 
                 {
-                    FArtists = new Artists.Artists(FMainDbContext);
+                    FArtists = new Bands.Bands(FMainDbContext);
                 }
 
                 return FArtists;

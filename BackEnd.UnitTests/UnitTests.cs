@@ -4,7 +4,7 @@ using System.Linq;
 using FluentAssertions;
 using MockQueryable.Moq;
 using BackEnd.Logic.Music;
-using BackEnd.Logic.Artists;
+using BackEnd.Logic.Bands;
 using BackEnd.UnitTests.Mocks;
 
 namespace SongLyricsBackEnd.UnitTests
@@ -15,8 +15,8 @@ namespace SongLyricsBackEnd.UnitTests
 
         private readonly Mock<MainDbContext> FMockDbContext;
 
-        private readonly IArtists FArtists;
-        private readonly IMusic   FMusic;
+        private readonly IBands FBands;
+        private readonly IMusic FMusic;
 
         public UnitTests() 
         {
@@ -41,7 +41,7 @@ namespace SongLyricsBackEnd.UnitTests
             FMockDbContext.Setup(R => R.Songs).Returns(SongsDbSet.Object);
 
             // Create test instance with mocked depenencies
-            FArtists = new Artists(FMockDbContext.Object);
+            FBands = new Bands(FMockDbContext.Object);
             FMusic = new Music(FMockDbContext.Object);
 
         }
@@ -50,9 +50,9 @@ namespace SongLyricsBackEnd.UnitTests
         public async void GetBands()
         {
 
-            var LResult1 = await FArtists.GetBands(null);
-            var LResult2 = await FArtists.GetBands(1);
-            var LResult3 = await FArtists.GetBands(100);
+            var LResult1 = await FBands.GetBands(null);
+            var LResult2 = await FBands.GetBands(1);
+            var LResult3 = await FBands.GetBands(100);
 
             LResult1.Should().NotBeEmpty();
             LResult2.Should().NotBeEmpty();
@@ -64,8 +64,8 @@ namespace SongLyricsBackEnd.UnitTests
         public async void GetMembers() 
         {
 
-            var LResult1 = await FArtists.GetMembers(2);
-            var LResult2 = await FArtists.GetMembers(45);
+            var LResult1 = await FBands.GetMembers(2);
+            var LResult2 = await FBands.GetMembers(45);
 
             LResult1.Should().NotBeEmpty();
             LResult2.Should().BeEmpty();
@@ -76,7 +76,7 @@ namespace SongLyricsBackEnd.UnitTests
         public async void GetBandDetails() 
         {
 
-            var LResult = await FArtists.GetBandDetails(1);
+            var LResult = await FBands.GetBandDetails(1);
 
             LResult.Name.Should().Be("Queen");
             LResult.Genere.Should().Be("Rock");

@@ -57,12 +57,12 @@ Covers all the logic used in the controllers (please note that the endpoints doe
 
 Currently, all controllers are public.
 
-### Artists controller
+### Bands controller
 
 #### Return bands
 
 ```
-GET /api/v1/artists/bands/
+GET /api/v1/bands/
 ```
 
 When succeed returns **200** status code and returns list of bands from the entire collection.
@@ -70,7 +70,7 @@ When succeed returns **200** status code and returns list of bands from the enti
 #### Return band members
 
 ```
-GET /api/v1/artists/bands/{id}/members/
+GET /api/v1/bands/{id}/members/
 ```
 
 When succeed returns **200** status code and returns list of all band members.
@@ -78,7 +78,7 @@ When succeed returns **200** status code and returns list of all band members.
 #### Returns band detail
 
 ```
-GET /api/v1/artists/bands/{id}/details/
+GET /api/v1/bands/{id}/details/
 ```
 
 When succeed returns **200** status code and returns:
@@ -89,33 +89,35 @@ When succeed returns **200** status code and returns:
 1. Music genere.
 1. List of members.
 
-### Music controller
+### Albums controller
 
-#### Return all albums (or given band album)
+##### Return all albums (or given band album)
 
 ```
-GET /api/v1/music/albums/?BandId={id}
+GET /api/v1/albums/?BandId={id}
 ```
 
 When succeed returns **200** status code and returns albums or abum recorded by selected band id.
 
-#### Return specific album
+##### Return specific album
 
 ```
-GET /api/v1/music/albums/{id}/
+GET /api/v1/albums/{id}/
 ```
 
 When succeed returns **200** status code and returns specific album.
 
-#### Return songs
+### Songs controller
+
+##### Return songs
 
 ```
-GET /api/v1/music/songs/?AlbumId={id}
+GET /api/v1/songs/?AlbumId={id}
 ```
 
 When succeed returns **200** status code and returns all songs from the entire collection or songs belonging to given album.
 
-#### Return song
+##### Return song
 
 ```
 GET /api/v1/music/songs/{Id}/

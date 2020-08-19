@@ -94,7 +94,7 @@ namespace SongLyricsBackEnd.IntegrationTests
         {
 
             // Arrange
-            var LRequest = $"/api/v1/music/albums/?BandId={BandId}";
+            var LRequest = $"/api/v1/albums/?BandId={BandId}";
 
             // Act
             var LResponse = await FClient.GetAsync(LRequest);
@@ -126,7 +126,7 @@ namespace SongLyricsBackEnd.IntegrationTests
         {
 
             // Arrange
-            var LRequest = $"/api/v1/music/songs/?AlbumId={AlbumId}";
+            var LRequest = $"/api/v1/songs/?AlbumId={AlbumId}";
 
             // Act
             var LResponse = await FClient.GetAsync(LRequest);
@@ -155,7 +155,7 @@ namespace SongLyricsBackEnd.IntegrationTests
         {
 
             // Arrange
-            var LRequest = $"/api/v1/music/songs/{Id}";
+            var LRequest = $"/api/v1/songs/{Id}";
 
             // Act
             var LResponse = await FClient.GetAsync(LRequest);

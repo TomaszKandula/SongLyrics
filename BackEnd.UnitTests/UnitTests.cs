@@ -3,8 +3,9 @@ using Xunit;
 using System.Linq;
 using FluentAssertions;
 using MockQueryable.Moq;
-using BackEnd.Logic.Music;
 using BackEnd.Logic.Bands;
+using BackEnd.Logic.Songs;
+using BackEnd.Logic.Albums;
 using BackEnd.UnitTests.Mocks;
 
 namespace SongLyricsBackEnd.UnitTests
@@ -15,8 +16,9 @@ namespace SongLyricsBackEnd.UnitTests
 
         private readonly Mock<MainDbContext> FMockDbContext;
 
-        private readonly IBands FBands;
-        private readonly IMusic FMusic;
+        private readonly IBands  FBands;
+        private readonly IAlbums FAlbums;
+        private readonly ISongs  FSongs;
 
         public UnitTests() 
         {
@@ -41,8 +43,9 @@ namespace SongLyricsBackEnd.UnitTests
             FMockDbContext.Setup(R => R.Songs).Returns(SongsDbSet.Object);
 
             // Create test instance with mocked depenencies
-            FBands = new Bands(FMockDbContext.Object);
-            FMusic = new Music(FMockDbContext.Object);
+            FBands  = new Bands(FMockDbContext.Object);
+            FAlbums = new Albums(FMockDbContext.Object);
+            FSongs  = new Songs(FMockDbContext.Object);
 
         }
 
@@ -88,9 +91,9 @@ namespace SongLyricsBackEnd.UnitTests
         public async void GetAlbums() 
         {
 
-            var LResult1 = await FMusic.GetAlbums(null);
-            var LResult2 = await FMusic.GetAlbums(1);
-            var LResult3 = await FMusic.GetAlbums(45);
+            var LResult1 = await FAlbums.GetAlbums(null);
+            var LResult2 = await FAlbums.GetAlbums(1);
+            var LResult3 = await FAlbums.GetAlbums(45);
 
             LResult1.Should().HaveCount(4);
             LResult2.Should().HaveCount(2);
@@ -102,9 +105,9 @@ namespace SongLyricsBackEnd.UnitTests
         public async void GetAlbum() 
         {
 
-            var LResult1 = await FMusic.GetAlbum(1);
-            var LResult2 = await FMusic.GetAlbum(2);
-            var LResult3 = await FMusic.GetAlbum(99);
+            var LResult1 = await FAlbums.GetAlbum(1);
+            var LResult2 = await FAlbums.GetAlbum(2);
+            var LResult3 = await FAlbums.GetAlbum(99);
 
             LResult1.Select(R => R.AlbumName).First().Should().Be("Queen");
             LResult2.Select(R => R.AlbumName).First().Should().Be("Queen II");
@@ -116,8 +119,8 @@ namespace SongLyricsBackEnd.UnitTests
         public async void GetAlbumSongs()
         {
 
-            var LResult1 = await FMusic.GetAlbumSongs(1);
-            var LResult2 = await FMusic.GetAlbumSongs(100);
+            var LResult1 = await FSongs.GetAlbumSongs(1);
+            var LResult2 = await FSongs.GetAlbumSongs(100);
 
             LResult1.Select(R => R.Name).ToList()[0].Should().Be("Keep Yourself Alive");
             LResult1.Select(R => R.Name).ToList()[1].Should().Be("Liar");
@@ -129,8 +132,8 @@ namespace SongLyricsBackEnd.UnitTests
         public async void GetSong() 
         {
 
-            var LResult2 = await FMusic.GetSong(7);
-            var LResult3 = await FMusic.GetSong(100);
+            var LResult2 = await FSongs.GetSong(7);
+            var LResult3 = await FSongs.GetSong(100);
 
             LResult2.Select(R => R.Name).First().Should().Be("Whole Lotta Love");
             LResult3.Should().BeEmpty();

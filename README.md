@@ -14,7 +14,7 @@ Planned:
 1. Redux.js.
 1. Materialize via CDN.
 
-It is not yet started.
+Under development.
 
 ### Back-end
 

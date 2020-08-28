@@ -1,67 +1,71 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace WebApplication1
 {
+
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+
+        public IConfiguration FConfiguration { get; }
+
+        public Startup(IConfiguration AConfiguration)
         {
-            Configuration = configuration;
+            FConfiguration = AConfiguration;
         }
 
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection AServices)
         {
 
-            services.AddControllersWithViews();
+            AServices.AddControllersWithViews();
 
             // In production, the React files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
+            AServices.AddSpaStaticFiles(LConfiguration =>
             {
-                configuration.RootPath = "ClientApp/build";
+                LConfiguration.RootPath = "ClientApp/build";
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder AApplication, IWebHostEnvironment AEnvironment)
         {
-            if (env.IsDevelopment())
+
+            if (AEnvironment.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                AApplication.UseDeveloperExceptionPage();
             }
             else
             {
-                app.UseExceptionHandler("/Error");
+                AApplication.UseExceptionHandler("/Error");
             }
 
-            app.UseStaticFiles();
-            app.UseSpaStaticFiles();
+            AApplication.UseStaticFiles();
+            AApplication.UseSpaStaticFiles();
 
-            app.UseRouting();
+            AApplication.UseRouting();
 
-            app.UseEndpoints(endpoints =>
+            AApplication.UseEndpoints(LEndpoints =>
             {
-                endpoints.MapControllerRoute(
+                LEndpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
             });
 
-            app.UseSpa(spa =>
+            AApplication.UseSpa(LSpa =>
             {
-                spa.Options.SourcePath = "ClientApp";
 
-                if (env.IsDevelopment())
+                LSpa.Options.SourcePath = "ClientApp";
+
+                if (AEnvironment.IsDevelopment())
                 {
-                    spa.UseReactDevelopmentServer(npmScript: "start");
+                    LSpa.UseReactDevelopmentServer(npmScript: "start");
                 }
+
             });
+
         }
     }
 }

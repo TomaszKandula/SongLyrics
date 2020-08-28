@@ -1,22 +1,42 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
-import { Layout } from './components/Layout';
-import { Home } from './components/Home';
-import { FetchData } from './components/FetchData';
-import { Counter } from './components/Counter';
+import { Header } from './components/header';
+import { Footer } from './components/footer';
 
-import './custom.css'
+export default class App extends Component
+{
 
-export default class App extends Component {
-  static displayName = App.name;
+    static displayName = App.name;
 
-  render () {
-    return (
-      <Layout>
-        <Route exact path='/' component={Home} />
-        <Route path='/counter' component={Counter} />
-        <Route path='/fetch-data' component={FetchData} />
-      </Layout>
-    );
-  }
+    render()
+    {
+        return (
+            <div>
+            <Header />
+            <div>
+                <p>
+                    Main container
+                </p>
+                <p>
+                    Line 1
+                </p>
+                <p>
+                    Line 2
+                </p>
+                <p>
+                    Line 3
+                </p>
+                <p>
+                    Line 4
+                </p>
+                <p>
+                    Line 5
+                </p>
+            </div>
+            <Footer />
+            </div>
+        );
+
+    }
+
 }

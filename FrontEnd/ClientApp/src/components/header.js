@@ -3,15 +3,19 @@
 export class Header extends Component
 {
 
-    static displayName = Header.name;
+    render()
+    {
 
-    render() {
         return (
-            <nav>
-                <div class="nav-wrapper grey lighten-5">
-                    <a href="../" class="brand-logo center grey-text darken-4">Song Lyrics</a>
+            <nav class="grey lighten-5">
+                <div class="container">
+                    <div class="nav-wrapper grey lighten-5">
+                        <a href="../" class="brand-logo grey-text darken-4">Song Lyrics</a>
+                    </div>
                 </div>
             </nav>
         );
+
     }
+
 }

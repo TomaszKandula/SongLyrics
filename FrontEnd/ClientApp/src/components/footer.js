@@ -1,10 +1,11 @@
 ﻿import React, { Component } from 'react';
 
-export class Footer extends Component {
+export class Footer extends Component
+{
 
-    static displayName = Footer.name;
+    render()
+    {
 
-    render() {
         return (
             <footer class="page-footer grey lighten-5">
                 <div class="container">
@@ -29,12 +30,16 @@ export class Footer extends Component {
                     </div>
 
                 </div>
+
                 <div class="footer-copyright grey lighten-4">
                     <div class="container">
                         <span class="grey-text darken-4">The source code is available at <a href="https://github.com/TomaszKandula/SongLyrics" target="_blank">GitHub</a>.</span>
                     </div>
                 </div>
+
             </footer>
         );
+
     }
+
 }

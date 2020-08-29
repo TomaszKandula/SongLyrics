@@ -1,6 +1,6 @@
 ﻿import React, { Component } from "react";
 
-export class BandList extends Component
+export class BandDetails extends Component
 {
 
     render()
@@ -8,7 +8,7 @@ export class BandList extends Component
 
         return (
             <div>
-
+                BandDetails
             </div>
         );
 

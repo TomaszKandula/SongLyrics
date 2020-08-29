@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Route } from "react-router";
-import { Header } from "./components/header";
-import { Footer } from "./components/footer";
-import { Container } from "./components/container";
+import { Layout } from "./components/layout";
+import { Header } from "./components/layouts/header";
+import { Footer } from "./components/layouts/footer";
 
 export default class App extends Component
 {
@@ -22,7 +22,7 @@ export default class App extends Component
         return (
             <div>
                 <Header />
-                <Container />
+                <Layout />
                 <Footer />
             </div>
         );

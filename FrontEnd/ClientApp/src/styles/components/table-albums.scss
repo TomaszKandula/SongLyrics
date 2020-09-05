@@ -1,0 +1,29 @@
+﻿.albumsTable 
+{
+    width: 100%;
+}
+
+
+.albumsTableCol1 
+{
+    width: 15%;
+}
+
+
+.albumsTableCol2 
+{
+    width: 100%;
+}
+
+
+table.albumsTable > tbody > tr:hover 
+{
+    background-color: #ffebee;
+    color: dimgray;
+}
+
+
+table.albumsTable > tbody > tr 
+{
+    color: darkgrey;
+}

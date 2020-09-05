@@ -10,13 +10,15 @@ export class BandsView extends Component
 
             <div>
 
+                <div className="row margin-t-30"></div>
+
                 <div className="row">
 
-                    <div className="col s2">
+                    <div className="col s1">
                         &nbsp;
                     </div>
 
-                    <div className="col s8">
+                    <div className="col s10">
 
                         <div className="row">
 
@@ -66,13 +68,13 @@ export class BandsView extends Component
 
                     </div>
 
-                    <div className="col s2">
+                    <div className="col s1">
                         &nbsp;
                     </div>
 
                 </div>
 
-                <div className="row customBtmMargin"></div>
+                <div className="row margin-t-50"></div>
 
              </div>
 

@@ -1,0 +1,29 @@
+﻿.songsTable 
+{
+    width: 100%;
+}
+
+
+.songsTableCol1 
+{
+    width: 15%;
+}
+
+
+.songsTableCol2 
+{
+    width: 100%;
+}
+
+
+table.songsTable > tbody > tr:hover 
+{
+    background-color: #ede7f6;
+    color: dimgray;
+}
+
+
+table.songsTable > tbody > tr 
+{
+    color: darkgrey;
+}

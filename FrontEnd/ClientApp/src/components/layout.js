@@ -1,7 +1,7 @@
 ﻿import React, { Component } from "react";
 import { BandsView } from "./views/bandsView";
-//import { AlbumsView } from "./views/albumsView";
-//import { SongsView } from "./views/songsView";
+import { AlbumsView } from "./views/albumsView";
+import { SongsView } from "./views/songsView";
 
 import "../styles/main.scss";
 
@@ -13,7 +13,7 @@ export class Layout extends Component
 
         return (
             <div className="container">
-                <BandsView />
+                <SongsView />
             </div>
         );
 

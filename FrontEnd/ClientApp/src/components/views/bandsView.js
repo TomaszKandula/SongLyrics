@@ -10,21 +10,21 @@ export class BandsView extends Component
 
             <div>
 
-                <div class="row">
+                <div className="row">
 
-                    <div class="col s2">
+                    <div className="col s2">
                         &nbsp;
                     </div>
 
-                    <div class="col s9">
+                    <div className="col s9">
 
-                        <div class="row">
+                        <div className="row">
 
-                            <div class="col s8">
+                            <div className="col s8">
 
-                                <div class="row" id="topbarsearch">
-                                    <div class="input-field col s6 s12 black-text">
-                                        <i class="grey-text material-icons prefix">search</i>
+                                <div className="row" id="topbarsearch">
+                                    <div className="input-field col s6 s12 black-text">
+                                        <i className="grey-text material-icons prefix">search</i>
                                         <input type="text" placeholder="Search for band" id="autocomplete-input" class="autocomplete black-text" />
                                     </div>
                                 </div>
@@ -33,9 +33,13 @@ export class BandsView extends Component
 
                         </div>
 
-                        <div class="row">
+                        <div className="row">
 
-                            <table class="highlight">
+                            <table className="bandsTable">
+
+                                <col className="bandsTableCol1" />
+                                <col className="bandsTableCol2" />
+
                                 <thead>
                                     <tr>
                                         <th>Lp</th>
@@ -63,7 +67,7 @@ export class BandsView extends Component
 
                     </div>
 
-                    <div class="col s2">
+                    <div className="col s2">
                         &nbsp;
                     </div>
 

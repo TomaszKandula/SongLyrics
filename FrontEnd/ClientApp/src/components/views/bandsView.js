@@ -25,7 +25,7 @@ export class BandsView extends Component
                                 <div className="row" id="topbarsearch">
                                     <div className="input-field col s6 s12 black-text">
                                         <i className="grey-text material-icons prefix">search</i>
-                                        <input type="text" placeholder="Search for band" id="autocomplete-input" class="autocomplete black-text" />
+                                        <input type="text" placeholder="Search for band" id="autocomplete-input" className="autocomplete black-text" />
                                     </div>
                                 </div>
 
@@ -36,9 +36,6 @@ export class BandsView extends Component
                         <div className="row">
 
                             <table className="bandsTable">
-
-                                <col className="bandsTableCol1" />
-                                <col className="bandsTableCol2" />
 
                                 <thead>
                                     <tr>

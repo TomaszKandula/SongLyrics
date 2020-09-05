@@ -3,6 +3,8 @@ import { BandsView } from "./views/bandsView";
 import { AlbumsView } from "./views/albumsView";
 import { SongsView } from "./views/songsView";
 
+import "../styles/main.scss";
+
 export class Layout extends Component
 {
 

@@ -16,7 +16,7 @@ export class BandsView extends Component
                         &nbsp;
                     </div>
 
-                    <div className="col s9">
+                    <div className="col s8">
 
                         <div className="row">
 
@@ -35,30 +35,32 @@ export class BandsView extends Component
 
                         <div className="row">
 
-                            <table className="bandsTable">
+                            <div className="col s8">
 
-                                <thead>
-                                    <tr>
-                                        <th>Lp</th>
-                                        <th>Band Name</th>
-                                    </tr>
-                                </thead>
+                                <table className="bandsTable">
+                                    <thead>
+                                        <tr>
+                                            <th className="bandsTableCol1">Lp</th>
+                                            <th className="bandsTableCol2">Band Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td className="bandsTableCol1">1</td>
+                                            <td className="bandsTableCol2">Queen</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="bandsTableCol1">2</td>
+                                            <td className="bandsTableCol2">Led Zeppelin</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="bandsTableCol1">3</td>
+                                            <td className="bandsTableCol2">Metallica</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Queen</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Led Zeppelin</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Metallica</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            </div>
 
                         </div>
 
@@ -69,6 +71,8 @@ export class BandsView extends Component
                     </div>
 
                 </div>
+
+                <div className="row customBtmMargin"></div>
 
              </div>
 

@@ -1,19 +1,29 @@
 ﻿
-.bandsTableCol1
+
+.bandsTable
 {
-    width: 50px;
+    width: 100%;
 }
 
-.bandsTableCol2
+
+.bandsTableCol1 
 {
-    width: 200px;
+    width: 15%;
 }
+
+
+.bandsTableCol2 
+{
+    width: 100%;
+}
+
 
 table.bandsTable > tbody > tr:hover 
 {
     background-color: #e1f5fe;
     color: dimgray;
 }
+
 
 table.bandsTable > tbody > tr 
 {

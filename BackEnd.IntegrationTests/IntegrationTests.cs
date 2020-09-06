@@ -140,7 +140,7 @@ namespace SongLyricsBackEnd.IntegrationTests
 
             if (AlbumId != null)
             {
-                LReturnSongs.Songs.Should().HaveCount(1);
+                LReturnSongs.Songs.Should().HaveCount(10);
             }
             else 
             {

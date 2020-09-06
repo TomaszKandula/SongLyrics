@@ -30,6 +30,9 @@ namespace BackEnd.Models.Json
         [JsonPropertyName("Songs")]
         public List<Song> Songs { get; set; }
 
+        [JsonPropertyName("IsSucceeded")]
+        public bool IsSucceeded { get; set; }
+
         [JsonPropertyName("Error")]
         public ErrorHandler Error { get; set; }
 

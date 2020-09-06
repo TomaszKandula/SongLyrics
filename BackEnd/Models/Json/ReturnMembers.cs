@@ -27,6 +27,9 @@ namespace BackEnd.Models.Json
         [JsonPropertyName("Members")]
         public List<Member> Members { get; set; }
 
+        [JsonPropertyName("IsSucceeded")]
+        public bool IsSucceeded { get; set; }
+
         [JsonPropertyName("Error")]
         public ErrorHandler Error { get; set; }
 

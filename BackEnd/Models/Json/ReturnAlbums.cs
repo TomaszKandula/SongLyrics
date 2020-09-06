@@ -28,6 +28,9 @@ namespace BackEnd.Models.Json
         [JsonPropertyName("Albums")]
         public List<Album> Albums { get; set; }
 
+        [JsonPropertyName("IsSucceeded")]
+        public bool IsSucceeded { get; set; }
+
         [JsonPropertyName("Error")]
         public ErrorHandler Error { get; set; }
 

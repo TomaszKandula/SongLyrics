@@ -48,6 +48,7 @@ namespace BackEnd.Controllers.v1
                 }
 
                 LResponse.Albums = LResult;
+                LResponse.IsSucceeded = true;
                 return StatusCode(200, LResponse);
 
             }
@@ -86,6 +87,7 @@ namespace BackEnd.Controllers.v1
                 }
 
                 LResponse.Albums = LResult;
+                LResponse.IsSucceeded = true;
                 return StatusCode(200, LResponse);
 
             }

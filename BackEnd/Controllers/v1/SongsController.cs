@@ -49,6 +49,7 @@ namespace BackEnd.Controllers.v1
                 }
 
                 LResponse.Songs = LResult;
+                LResponse.IsSucceeded = true;
                 return StatusCode(200, LResponse);
 
             }
@@ -86,6 +87,7 @@ namespace BackEnd.Controllers.v1
                 }
 
                 LResponse.Songs = LResult;
+                LResponse.IsSucceeded = true;
                 return StatusCode(200, LResponse);
 
             }

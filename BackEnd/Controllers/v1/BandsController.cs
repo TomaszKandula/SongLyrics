@@ -49,6 +49,7 @@ namespace BackEnd.Controllers.v1
                 }
 
                 LResponse.Bands = LResult;
+                LResponse.IsSucceeded = true;
                 return StatusCode(200, LResponse);
 
             }
@@ -86,6 +87,7 @@ namespace BackEnd.Controllers.v1
                 }
 
                 LResponse.Members = LResult;
+                LResponse.IsSucceeded = true;
                 return StatusCode(200, LResponse);
             
             }
@@ -120,6 +122,7 @@ namespace BackEnd.Controllers.v1
                 LResponse.Genere      = LBandDetails.Genere;
                 LResponse.Members     = LBandDetails.Members;
 
+                LResponse.IsSucceeded = true;
                 return StatusCode(200, LResponse);
 
             }

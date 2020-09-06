@@ -17,7 +17,7 @@ BEGIN TRY
         WITH
         (
             FIRSTROW = 2,
-            FIELDTERMINATOR = ';',  
+            FIELDTERMINATOR = '|',  
             ROWTERMINATOR = '\n',   
             TABLOCK
         )
@@ -29,7 +29,7 @@ BEGIN TRY
         WITH
         (
             FIRSTROW = 2,
-            FIELDTERMINATOR = ';',  
+            FIELDTERMINATOR = '|',  
             ROWTERMINATOR = '\n',   
             TABLOCK
         )
@@ -41,7 +41,7 @@ BEGIN TRY
         WITH
         (
             FIRSTROW = 2,
-            FIELDTERMINATOR = ';',  
+            FIELDTERMINATOR = '|',  
             ROWTERMINATOR = '\n',   
             TABLOCK
         )
@@ -53,7 +53,7 @@ BEGIN TRY
         WITH
         (
             FIRSTROW = 2,
-            FIELDTERMINATOR = ';',  
+            FIELDTERMINATOR = '|',  
             ROWTERMINATOR = '\n',   
             TABLOCK
         )
@@ -65,7 +65,7 @@ BEGIN TRY
         WITH
         (
             FIRSTROW = 2,
-            FIELDTERMINATOR = ';',  
+            FIELDTERMINATOR = '|',  
             ROWTERMINATOR = '\n',   
             TABLOCK
         )
@@ -77,7 +77,7 @@ BEGIN TRY
         WITH
         (
             FIRSTROW = 2,
-            FIELDTERMINATOR = ';',  
+            FIELDTERMINATOR = '|',  
             ROWTERMINATOR = '\n',   
             TABLOCK
         )

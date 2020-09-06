@@ -1,5 +1,5 @@
-﻿Id;BandId;FirstName;LastName;IsPresent
-1;1;Brian;May;1
-2;1;Roger;Taylor;1
-3;1;John;Deacon;0
-4;1;Freddie;Mercury;0
+﻿Id|BandId|FirstName|LastName|IsPresent
+1|1|Brian|May|1
+2|1|Roger|Taylor|1
+3|1|John|Deacon|0
+4|1|Freddie|Mercury|0

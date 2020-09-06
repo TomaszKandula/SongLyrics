@@ -1,9 +1,10 @@
 {
   "dependencies": {
     "mssql1": {
-      "type": "mssql",
-      "suggestion": "true",
-      "ignored": "true"
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/songlyrics-srv/databases/SongLyricsDb",
+      "type": "mssql.azure",
+      "connectionId": "DbConnect",
+      "secretStore": "AzureAppSettings"
     }
   }
 }

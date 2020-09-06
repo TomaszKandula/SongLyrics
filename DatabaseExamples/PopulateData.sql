@@ -1,3 +1,6 @@
+
+/* Note: Use this script only for SQL Server running on local machine (for test purposes) */
+
 SET QUOTED_IDENTIFIER ON
 SET ARITHABORT ON
 SET XACT_ABORT ON

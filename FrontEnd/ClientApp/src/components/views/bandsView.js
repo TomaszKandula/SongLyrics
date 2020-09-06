@@ -1,4 +1,5 @@
 ﻿import React, { Component } from "react";
+import * as mockPayLoads from "../../tempMocks/mockPayLoads"; 
 
 export class BandsView extends Component
 {
@@ -52,7 +53,8 @@ export class BandsView extends Component
 
     mockData()
     {
-        let jsonResponse = '{"Bands":[{"Id":1,"Name":"Queen"}],"Error":{"ErrorDesc":"n/a","ErrorCode":"no_errors_found"}}';
+        let jsonResponse = mockPayLoads.bandsPayLoad;
+        console.log(jsonResponse);
         let parsedJson = JSON.parse(jsonResponse);
         let objBands = parsedJson.Bands;
         this.setState(

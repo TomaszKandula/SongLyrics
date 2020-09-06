@@ -54,7 +54,6 @@ export class BandsView extends Component
     mockData()
     {
         let jsonResponse = mockPayLoads.bandsPayLoad;
-        console.log(jsonResponse);
         let parsedJson = JSON.parse(jsonResponse);
         let objBands = parsedJson.Bands;
         this.setState(

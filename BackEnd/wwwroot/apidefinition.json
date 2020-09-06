@@ -1,0 +1,201 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "SongLyrics",
+    "description": "SongLyrics",
+    "contact": {}
+  },
+  "host": "https://songlyrics-api.azurewebsites.net",
+  "basePath": "/api/v1",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/bands": {
+      "get": {
+        "description": "/api/v1/bands/",
+        "summary": "/api/v1/bands/",
+        "tags": [
+          "BandsController"
+        ],
+        "operationId": "/api/v1/bands/",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/bands/{id}/members": {
+      "get": {
+        "description": "/api/v1/bands/{id}/members/",
+        "summary": "/api/v1/bands/{id}/members/",
+        "tags": [
+          "BandsController"
+        ],
+        "operationId": "/api/v1/bands/{id}/members/",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/bands/{id}/details": {
+      "get": {
+        "description": "/api/v1/bands/{id}/details/",
+        "summary": "/api/v1/bands/{id}/details/",
+        "tags": [
+          "BandsController"
+        ],
+        "operationId": "/api/v1/bands/{id}/details/",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/albums/{id}": {
+      "get": {
+        "description": "/api/v1/albums/{id}/",
+        "summary": "/api/v1/albums/{id}/",
+        "tags": [
+          "AlbumsController"
+        ],
+        "operationId": "/api/v1/albums/{id}/",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/albums": {
+      "get": {
+        "description": "/api/v1/albums/?BandId={id}",
+        "summary": "/api/v1/albums/?BandId={id}",
+        "tags": [
+          "AlbumsController"
+        ],
+        "operationId": "/api/v1/albums/?BandId={id}",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "bandid",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/songs/{id}": {
+      "get": {
+        "description": "/api/v1/songs/{Id}/",
+        "summary": "/api/v1/songs/{Id}/",
+        "tags": [
+          "SongsController"
+        ],
+        "operationId": "/api/v1/songs/{Id}/",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/songs": {
+      "get": {
+        "description": "/api/v1/songs/?AlbumId={id}",
+        "summary": "/api/v1/songs/?AlbumId={id}",
+        "tags": [
+          "SongsController"
+        ],
+        "operationId": "/api/v1/songs/?AlbumId={id}",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "albumid",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "BandsController",
+      "description": "BandsController"
+    },
+    {
+      "name": "AlbumsController",
+      "description": "AlbumsController"
+    },
+    {
+      "name": "SongsController",
+      "description": "SongsController"
+    }
+  ]
+}

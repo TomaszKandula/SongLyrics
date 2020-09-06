@@ -1,4 +1,5 @@
 ﻿import React, { Component } from "react";
+import { Route } from "react-router";
 import { BandsView } from "./views/bandsView";
 import { DetailsView } from "./views/detailsView";
 
@@ -11,9 +12,12 @@ export class Layout extends Component
     {
 
         return (
+
             <div className="container">
-                <DetailsView/>
+                <Route exact path='/' component={BandsView} />
+                <Route path='/details/' component={DetailsView} />
             </div>
+
         );
 
     }

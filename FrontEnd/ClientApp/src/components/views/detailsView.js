@@ -21,23 +21,17 @@ export class DetailsView extends Component
                     <div className="col s10">
 
                         <div className="row">
-
                             <div className="col s8">
                                 <BandDetails />
                             </div>
-
                         </div>
 
                         <div className="row margin-t-15"></div>
 
                         <div className="row">
-
                             <div className="col s8">
-
-                                <SongsTable/>
-
+                                <AlbumsTable />
                             </div>
-
                         </div>
 
                     </div>

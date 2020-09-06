@@ -6,16 +6,6 @@ import { Footer } from "./components/layouts/footer";
 export default class App extends Component
 {
 
-    bindDom()
-    {
-
-    }
-
-    addEvents()
-    {
-
-    }
-
     render()
     {
         return (

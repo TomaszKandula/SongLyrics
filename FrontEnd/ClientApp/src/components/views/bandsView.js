@@ -32,6 +32,12 @@ export class BandsView extends Component
             });
     }
 
+    rowClickEvent(bandId)
+    {
+        // go to DetailsView with "bandId"
+        console.log(bandId);
+    }
+
     renderTable(data)
     {
 
@@ -45,8 +51,8 @@ export class BandsView extends Component
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map(bands =>  
-                        <tr key={bands.Id}>
+                    {data.map(bands =>
+                        <tr key={bands.Id} onClick={() => this.rowClickEvent(bands.Id)}>
                             <td className="bandsTableCol1">{bands.Id}</td>
                             <td className="bandsTableCol2">{bands.Name}</td>
                         </tr>                       

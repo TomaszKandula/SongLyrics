@@ -50,6 +50,12 @@ export class AlbumsTable extends Component
         
     }
 
+    rowClickEvent(albumId)
+    {
+        // render songsTable with "albumId"
+        console.log(albumId);
+    }
+
     renderTable(data)
     {
 
@@ -65,7 +71,7 @@ export class AlbumsTable extends Component
                 </thead>
                 <tbody>
                     {data.map(albums =>
-                        <tr key={albums.Id}>
+                        <tr key={albums.Id} onClick={() => this.rowClickEvent(albums.Id)}>
                             <td className="albumsTableCol1">{albums.Id}</td>
                             <td className="albumsTableCol2">{albums.AlbumName}</td>
                             <td className="albumsTableCol3">{this.returnFullYear(albums.Issued)}</td>

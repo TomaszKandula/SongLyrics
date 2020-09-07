@@ -35,6 +35,12 @@ export class SongsTable extends Component
 
     }
 
+    rowClickEvent(songId)
+    {
+        // display lyrics for "songId" in modal window
+        console.log(songId);
+    }
+
     renderTable(data)
     {
 
@@ -49,7 +55,7 @@ export class SongsTable extends Component
                 </thead>
                 <tbody>
                     {data.map(songs =>
-                        <tr key={songs.Id}>
+                        <tr key={songs.Id} onClick={() => this.rowClickEvent(songs.Id)}>
                             <td className="songsTableCol1">{songs.Id}</td>
                             <td className="songsTableCol2">{songs.Name}</td>
                         </tr>

@@ -1,4 +1,6 @@
 ﻿import React, { Component } from "react";
+import { connect } from 'react-redux';
+import { selectBand } from "../../redux/actions/selectBand";
 import * as mockPayLoads from "../../tempMocks/mockPayLoads"; 
 
 export class BandsView extends Component
@@ -117,3 +119,5 @@ export class BandsView extends Component
     }
 
 }
+
+export default connect(null, { selectBand })(BandsView);

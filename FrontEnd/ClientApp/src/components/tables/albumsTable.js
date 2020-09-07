@@ -1,5 +1,7 @@
 ﻿import React, { Component } from "react";
-import * as mockPayLoads from "../../tempMocks/mockPayLoads"; 
+import { connect } from 'react-redux';
+import { selectAlbum } from "../../redux/actions/selectAlbum";
+import * as mockPayLoads from "../../tempMocks/mockPayLoads";
 
 export class AlbumsTable extends Component
 {
@@ -98,3 +100,5 @@ export class AlbumsTable extends Component
     }
 
 }
+
+export default connect(null, { selectAlbum })(AlbumsTable);

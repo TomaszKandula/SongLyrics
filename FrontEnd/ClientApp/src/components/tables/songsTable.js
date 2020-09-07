@@ -1,5 +1,7 @@
 ﻿import React, { Component } from "react";
-import * as mockPayLoads from "../../tempMocks/mockPayLoads"; 
+import { connect } from 'react-redux';
+import { selectSong } from "../../redux/actions/selectSong";
+import * as mockPayLoads from "../../tempMocks/mockPayLoads";
 
 export class SongsTable extends Component
 {
@@ -81,3 +83,5 @@ export class SongsTable extends Component
     }
 
 }
+
+export default connect(null, { selectSong })(SongsTable);

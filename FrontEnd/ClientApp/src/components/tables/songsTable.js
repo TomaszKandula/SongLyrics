@@ -73,7 +73,7 @@ export class SongsTable extends Component
         let populatedTable = this.state.loading ? <p><em>Loading..., please wait.</em></p> : this.renderTable(this.state.songs);
 
         return (
-            <div className="">
+            <div className="invisible">
                 {populatedTable}
             </div>
         );

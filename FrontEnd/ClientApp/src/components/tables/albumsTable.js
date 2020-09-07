@@ -35,6 +35,21 @@ export class AlbumsTable extends Component
 
     }
 
+    returnFullYear(date)
+    {
+
+        let getDate = new Date(date);
+        let fullYear = null;
+
+        if (date != null)
+        {
+            fullYear = getDate.getFullYear();
+        }
+
+        return fullYear;
+        
+    }
+
     renderTable(data)
     {
 
@@ -53,7 +68,7 @@ export class AlbumsTable extends Component
                         <tr key={albums.Id}>
                             <td className="albumsTableCol1">{albums.Id}</td>
                             <td className="albumsTableCol2">{albums.AlbumName}</td>
-                            <td className="albumsTableCol3">{albums.Issued}</td>
+                            <td className="albumsTableCol3">{this.returnFullYear(albums.Issued)}</td>
                         </tr>
                     )}
                 </tbody>

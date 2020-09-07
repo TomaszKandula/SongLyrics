@@ -80,7 +80,7 @@ export class BandDetails extends Component
                 <tbody>
                     <tr>
                         <td colSpan="2">
-                            <h3><b>{data.Name}</b></h3>
+                            <h3><b>{data.name}</b></h3>
                         </td>
                     </tr>
                     <tr>

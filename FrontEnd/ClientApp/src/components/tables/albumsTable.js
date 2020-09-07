@@ -52,7 +52,7 @@ export class AlbumsTable extends Component
 
     rowClickEvent(albumId)
     {
-        // render songsTable with "albumId"
+        // re-render songsTable with "albumId"
         console.log(albumId);
     }
 

@@ -17,7 +17,7 @@ export class SongsTable extends Component
     componentDidMount()
     {
         //this.getSongs();
-        this.mockData();
+        //this.mockData();
     }
 
     mockData()
@@ -73,7 +73,7 @@ export class SongsTable extends Component
         let populatedTable = this.state.loading ? <p><em>Loading..., please wait.</em></p> : this.renderTable(this.state.songs);
 
         return (
-            <div>
+            <div className="">
                 {populatedTable}
             </div>
         );

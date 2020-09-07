@@ -1,26 +1,22 @@
-using Moq;
+﻿using Moq;
 using Xunit;
 using System.Linq;
 using FluentAssertions;
 using MockQueryable.Moq;
-using BackEnd.Logic.Bands;
 using BackEnd.Logic.Songs;
-using BackEnd.Logic.Albums;
 using BackEnd.UnitTests.Mocks;
 
-namespace SongLyricsBackEnd.UnitTests
+namespace BackEnd.UnitTests
 {
 
-    public class UnitTests
+    public class SongsTests
     {
 
         private readonly Mock<MainDbContext> FMockDbContext;
 
-        private readonly IBands  FBands;
-        private readonly IAlbums FAlbums;
-        private readonly ISongs  FSongs;
+        private readonly ISongs FSongs;
 
-        public UnitTests() 
+        public SongsTests() 
         {
 
             // Create instances to mocked all dependencies           
@@ -43,75 +39,7 @@ namespace SongLyricsBackEnd.UnitTests
             FMockDbContext.Setup(R => R.Songs).Returns(SongsDbSet.Object);
 
             // Create test instance with mocked depenencies
-            FBands  = new Bands(FMockDbContext.Object);
-            FAlbums = new Albums(FMockDbContext.Object);
-            FSongs  = new Songs(FMockDbContext.Object);
-
-        }
-
-        [Fact]
-        public async void GetBands()
-        {
-
-            var LResult1 = await FBands.GetBands(null);
-            var LResult2 = await FBands.GetBands(1);
-            var LResult3 = await FBands.GetBands(100);
-
-            LResult1.Should().NotBeEmpty();
-            LResult2.Should().NotBeEmpty();
-            LResult3.Should().BeEmpty();
-
-        }
-
-        [Fact]
-        public async void GetMembers() 
-        {
-
-            var LResult1 = await FBands.GetMembers(2);
-            var LResult2 = await FBands.GetMembers(45);
-
-            LResult1.Should().NotBeEmpty();
-            LResult2.Should().BeEmpty();
-        
-        }
-
-        [Fact]
-        public async void GetBandDetails() 
-        {
-
-            var LResult = await FBands.GetBandDetails(1);
-
-            LResult.Name.Should().Be("Queen");
-            LResult.Genere.Should().Be("Rock");
-            LResult.Members.Should().HaveCount(4);
-
-        }
-
-        [Fact]
-        public async void GetAlbums() 
-        {
-
-            var LResult1 = await FAlbums.GetAlbums(null);
-            var LResult2 = await FAlbums.GetAlbums(1);
-            var LResult3 = await FAlbums.GetAlbums(45);
-
-            LResult1.Should().HaveCount(4);
-            LResult2.Should().HaveCount(2);
-            LResult3.Should().BeEmpty();
-
-        }
-
-        [Fact]
-        public async void GetAlbum() 
-        {
-
-            var LResult1 = await FAlbums.GetAlbum(1);
-            var LResult2 = await FAlbums.GetAlbum(2);
-            var LResult3 = await FAlbums.GetAlbum(99);
-
-            LResult1.Select(R => R.AlbumName).First().Should().Be("Queen");
-            LResult2.Select(R => R.AlbumName).First().Should().Be("Queen II");
-            LResult3.Should().BeEmpty();
+            FSongs = new Songs(FMockDbContext.Object);
 
         }
 
@@ -129,7 +57,7 @@ namespace SongLyricsBackEnd.UnitTests
         }
 
         [Fact]
-        public async void GetSong() 
+        public async void GetSong()
         {
 
             var LResult2 = await FSongs.GetSong(7);

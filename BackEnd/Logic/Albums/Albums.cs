@@ -37,6 +37,7 @@ namespace BackEnd.Logic.Albums
                     {
                         Id        = R.Id,
                         AlbumName = R.AlbumName,
+                        Issued    = R.Issued,
                         BandName  = R.Band.BandName
                     })
                     .ToListAsync();
@@ -52,6 +53,7 @@ namespace BackEnd.Logic.Albums
                     {
                         Id        = R.Id,
                         AlbumName = R.AlbumName,
+                        Issued    = R.Issued,
                         BandName  = R.Band.BandName
                     })
                     .ToListAsync();
@@ -76,6 +78,7 @@ namespace BackEnd.Logic.Albums
                {
                    Id        = R.Id,
                    AlbumName = R.AlbumName,
+                   Issued    = R.Issued,
                    BandName  = R.Band.BandName
                })
                .ToListAsync();

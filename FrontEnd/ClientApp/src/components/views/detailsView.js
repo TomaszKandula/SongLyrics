@@ -30,7 +30,7 @@ export class DetailsView extends Component
 
                         <div className="row">
                             <div className="col s8">
-                                <AlbumsTable />
+                                <SongsTable />
                             </div>
                         </div>
 

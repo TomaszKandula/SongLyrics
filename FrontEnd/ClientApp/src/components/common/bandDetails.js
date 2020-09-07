@@ -20,7 +20,7 @@ export class BandDetails extends Component
 
     componentDidMount()
     {
-        //this.getBands();
+        //this.getDetails();
         this.mockData();
     }
 

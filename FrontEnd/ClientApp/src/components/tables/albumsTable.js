@@ -16,7 +16,7 @@ export class AlbumsTable extends Component
 
     componentDidMount()
     {
-        //this.getBands();
+        //this.getAlbums();
         this.mockData();
     }
 
@@ -25,11 +25,11 @@ export class AlbumsTable extends Component
 
         let jsonResponse = mockPayLoads.albums;
         let parsedJson = JSON.parse(jsonResponse);
-        let objAblums = parsedJson.Albums;
+        let objAlbums = parsedJson.Albums;
 
         this.setState(
             {
-                albums: objAblums,
+                albums: objAlbums,
                 loading: false
             });
 

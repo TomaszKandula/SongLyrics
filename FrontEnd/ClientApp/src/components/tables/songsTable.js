@@ -1,37 +1,74 @@
 ﻿import React, { Component } from "react";
+import * as mockPayLoads from "../../tempMocks/mockPayLoads"; 
 
 export class SongsTable extends Component
 {
 
-    render()
+    constructor(props)
+    {
+        super(props);
+        this.state =
+        {
+            songs: [],
+            loading: true
+        };
+    }
+
+    componentDidMount()
+    {
+        //this.getSongs();
+        this.mockData();
+    }
+
+    mockData()
+    {
+
+        let jsonResponse = mockPayLoads.songs;
+        let parsedJson = JSON.parse(jsonResponse);
+        let objSongs = parsedJson.Songs;
+
+        this.setState(
+            {
+                songs: objSongs,
+                loading: false
+            });
+
+    }
+
+    renderTable(data)
     {
 
         return (
+            
+            <table className="songsTable">
+                <thead>
+                    <tr>
+                        <th className="songsTableCol1">Lp</th>
+                        <th className="songsTableCol2">Song Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {data.map(songs =>
+                        <tr key={songs.Id}>
+                            <td className="songsTableCol1">{songs.Id}</td>
+                            <td className="songsTableCol2">{songs.Name}</td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
+            
+        );
+
+    }
+
+    render()
+    {
+
+        let populatedTable = this.state.loading ? <p><em>Loading..., please wait.</em></p> : this.renderTable(this.state.songs);
+
+        return (
             <div>
-
-                <table className="songsTable">
-                    <thead>
-                        <tr>
-                            <th className="songsTableCol1">Lp</th>
-                            <th className="songsTableCol2">Song Name</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td className="songsTableCol1">1</td>
-                            <td className="songsTableCol2">Keep Yourself Alive</td>
-                        </tr>
-                        <tr>
-                            <td className="songsTableCol1">2</td>
-                            <td className="songsTableCol2">Doing All Right</td>
-                        </tr>
-                        <tr>
-                            <td className="songsTableCol1">3</td>
-                            <td className="songsTableCol2">Great King Rat</td>
-                        </tr>
-                    </tbody>
-                </table>
-
+                {populatedTable}
             </div>
         );
 

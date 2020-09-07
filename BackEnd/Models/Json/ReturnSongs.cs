@@ -7,6 +7,9 @@ namespace BackEnd.Models.Json
     public class Song 
     {
 
+        [JsonPropertyName("Id")]
+        public int Id { get; set; }
+
         [JsonPropertyName("Name")]
         public string Name { get; set; }
 

@@ -36,6 +36,7 @@ namespace BackEnd.Logic.Songs
                     .Where(R => R.AlbumId == AlbumId)
                     .Select(R => new Song
                     {
+                        Id        = R.Id,
                         Name      = R.SongName,
                         Lyrics    = R.SongLyrics,
                         Url       = R.SongUrl,
@@ -54,6 +55,7 @@ namespace BackEnd.Logic.Songs
                     .Include(R => R.Band)
                     .Select(R => new Song
                     {
+                        Id        = R.Id,
                         Name      = R.SongName,
                         Lyrics    = R.SongLyrics,
                         Url       = R.SongUrl,
@@ -81,6 +83,7 @@ namespace BackEnd.Logic.Songs
                 .Where(R => R.Id == SongId)
                 .Select(R => new Song
                 {
+                    Id        = R.Id,
                     Name      = R.SongName,
                     Lyrics    = R.SongLyrics,
                     Url       = R.SongUrl,

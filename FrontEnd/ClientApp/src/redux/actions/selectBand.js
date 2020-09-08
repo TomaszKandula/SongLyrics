@@ -1,4 +1,4 @@
-﻿export const SELECT_BAND = "SELECT_BAND";
+﻿import { SELECT_BAND } from "../actionTypes";
 
 export const selectBand =
 {

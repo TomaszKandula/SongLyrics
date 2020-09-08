@@ -1,4 +1,4 @@
-﻿export const SELECT_ALBUM = "SELECT_ALBUM";
+﻿import { SELECT_ALBUM } from "../actionTypes";
 
 export const selectAlbum =
 {

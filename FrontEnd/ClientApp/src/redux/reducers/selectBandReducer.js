@@ -1,4 +1,4 @@
-﻿import { SELECT_BAND } from "../actions/selectBand";
+﻿import { SELECT_BAND } from "../actionTypes";
 
 const selectBandReducer = (state = {}, { type, payload }) =>
 {

@@ -1,4 +1,4 @@
-﻿import { SELECT_ALBUM } from "../actions/selectAlbum";
+﻿import { SELECT_ALBUM } from "../actionTypes";
 
 const selectAlbumReducer = (state = {}, { type, payload }) =>
 {

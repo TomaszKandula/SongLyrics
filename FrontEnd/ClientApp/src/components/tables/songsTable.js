@@ -1,5 +1,7 @@
 ﻿import React, { Component } from "react";
 import { connect } from 'react-redux';
+import store from "../../redux/store";
+import { SELECT_SONG } from "../../redux/actionTypes";
 import { selectSong } from "../../redux/actions/selectSong";
 import * as mockPayLoads from "../../tempMocks/mockPayLoads";
 
@@ -40,7 +42,7 @@ export class SongsTable extends Component
     rowClickEvent(songId)
     {
         // display lyrics for "songId" in modal window
-        console.log(songId);
+        store.dispatch({ type: SELECT_SONG, payload: songId });
     }
 
     renderTable(data)

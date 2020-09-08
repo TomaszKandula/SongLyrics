@@ -1,5 +1,7 @@
 ﻿import React, { Component } from "react";
 import { connect } from 'react-redux';
+import store from "../../redux/store";
+import { SELECT_BAND } from "../../redux/actionTypes";
 import { selectBand } from "../../redux/actions/selectBand";
 import * as mockPayLoads from "../../tempMocks/mockPayLoads"; 
 
@@ -37,7 +39,7 @@ export class BandsView extends Component
     rowClickEvent(bandId)
     {
         // go to DetailsView with "bandId"
-        console.log(bandId);
+        store.dispatch({ type: SELECT_BAND, payload: bandId });
     }
 
     renderTable(data)

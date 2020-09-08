@@ -1,5 +1,7 @@
 ﻿import React, { Component } from "react";
 import { connect } from 'react-redux';
+import store from "../../redux/store";
+import { SELECT_ALBUM } from "../../redux/actionTypes";
 import { selectAlbum } from "../../redux/actions/selectAlbum";
 import * as mockPayLoads from "../../tempMocks/mockPayLoads";
 
@@ -55,7 +57,7 @@ export class AlbumsTable extends Component
     rowClickEvent(albumId)
     {
         // re-render songsTable with "albumId"
-        console.log(albumId);
+        store.dispatch({ type: SELECT_ALBUM, payload: albumId });
     }
 
     renderTable(data)

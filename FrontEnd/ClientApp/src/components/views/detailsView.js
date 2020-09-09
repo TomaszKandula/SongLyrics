@@ -7,6 +7,23 @@ import SongsTable from "../tables/songsTable";
 class DetailsView extends Component
 {
 
+    constructor(props)
+    {
+        super(props);
+        this.BandDetails = this.renderOnCreate();
+    }
+
+    renderOnCreate()
+    {
+
+        return (
+            <div>
+                <BandDetails />
+            </div>
+        );
+
+    }
+
     render()
     {
 
@@ -23,7 +40,7 @@ class DetailsView extends Component
 
                         <div className="row">
                             <div className="col s8">
-                                <BandDetails />
+                                { this.BandDetails }
                             </div>
                         </div>
 

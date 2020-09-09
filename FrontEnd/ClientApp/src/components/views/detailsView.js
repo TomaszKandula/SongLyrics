@@ -1,10 +1,31 @@
 ﻿import React, { Component } from "react";
+import { connect } from "react-redux";
 import { BandDetails } from "../common/bandDetails";
-import { AlbumsTable } from "../tables/albumsTable";
-import { SongsTable } from "../tables/songsTable";
+import AlbumsTable from "../tables/albumsTable";
+import SongsTable from "../tables/songsTable";
 
-export class DetailsView extends Component
+class DetailsView extends Component
 {
+
+    constructor(props)
+    {
+        super(props);
+        this.state =
+        {
+            isAlbumSelected: false,
+            isSongSelected: false
+        }
+    }
+
+    componentDidMount()
+    {
+
+    }
+
+    componentDidUpdate()
+    {
+
+    }
 
     render()
     {
@@ -30,8 +51,7 @@ export class DetailsView extends Component
 
                         <div className="row">
                             <div className="col s8">
-                                <AlbumsTable />
-                                <SongsTable />
+                                { this.state.isAlbumSelected ? <SongsTable /> : <AlbumsTable /> }
                             </div>
                         </div>
 
@@ -51,3 +71,10 @@ export class DetailsView extends Component
     }
 
 }
+
+const mapStateToProps = (state) =>
+{
+    return { state }
+}
+
+export default connect(mapStateToProps)(DetailsView)

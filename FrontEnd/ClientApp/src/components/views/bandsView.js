@@ -1,11 +1,9 @@
 ﻿import React, { Component } from "react";
-import { connect } from 'react-redux';
-import store from "../../redux/store";
+import { connect } from "react-redux";
 import { SELECT_BAND } from "../../redux/actionTypes";
-import { selectBand } from "../../redux/actions/selectBand";
 import * as mockPayLoads from "../../tempMocks/mockPayLoads"; 
 
-export class BandsView extends Component
+class BandsView extends Component
 {
 
     constructor(props)
@@ -20,7 +18,6 @@ export class BandsView extends Component
 
     componentDidMount()
     {
-        //this.getBands();
         this.mockData();
     }
 
@@ -38,8 +35,7 @@ export class BandsView extends Component
 
     rowClickEvent(bandId)
     {
-        // go to DetailsView with "bandId"
-        store.dispatch({ type: SELECT_BAND, payload: bandId });
+        this.props.dispatch({ type: SELECT_BAND, payload: bandId });
     }
 
     renderTable(data)
@@ -122,4 +118,4 @@ export class BandsView extends Component
 
 }
 
-export default connect(null, { selectBand })(BandsView);
+export default connect()(BandsView)

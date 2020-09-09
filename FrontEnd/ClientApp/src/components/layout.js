@@ -1,11 +1,11 @@
 ﻿import React, { Component } from "react";
-import { Route } from "react-router";
-import { BandsView } from "./views/bandsView";
-import { DetailsView } from "./views/detailsView";
+import { connect } from 'react-redux';
+import BandsView from "./views/bandsView";
+import DetailsView from "./views/detailsView";
 
 import "../styles/main.scss";
 
-export class Layout extends Component
+class Layout extends Component
 {
 
     render()
@@ -14,8 +14,7 @@ export class Layout extends Component
         return (
 
             <div className="container">
-                <Route exact path='/' component={BandsView} />
-                <Route path='/details/' component={DetailsView} />
+                {this.props.isBandSelected ? <DetailsView /> : <BandsView /> }
             </div>
 
         );
@@ -23,3 +22,19 @@ export class Layout extends Component
     }
 
 }
+
+const mapStateToProps = (state) =>
+{
+
+    let isBandSelected = false;
+
+    if (state.band.id !== 0)
+    {
+        isBandSelected = true;
+    }
+
+    return { isBandSelected }
+
+}
+
+export default connect(mapStateToProps)(Layout);

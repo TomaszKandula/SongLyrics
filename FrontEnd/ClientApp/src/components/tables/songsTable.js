@@ -1,11 +1,9 @@
 ﻿import React, { Component } from "react";
-import { connect } from 'react-redux';
-import store from "../../redux/store";
+import { connect } from "react-redux";
 import { SELECT_SONG } from "../../redux/actionTypes";
-import { selectSong } from "../../redux/actions/selectSong";
 import * as mockPayLoads from "../../tempMocks/mockPayLoads";
 
-export class SongsTable extends Component
+class SongsTable extends Component
 {
 
     constructor(props)
@@ -20,8 +18,7 @@ export class SongsTable extends Component
 
     componentDidMount()
     {
-        //this.getSongs();
-        //this.mockData();
+        this.mockData();
     }
 
     mockData()
@@ -41,8 +38,7 @@ export class SongsTable extends Component
 
     rowClickEvent(songId)
     {
-        // display lyrics for "songId" in modal window
-        store.dispatch({ type: SELECT_SONG, payload: songId });
+        this.props.dispatch({ type: SELECT_SONG, payload: songId });
     }
 
     renderTable(data)
@@ -77,7 +73,7 @@ export class SongsTable extends Component
         let populatedTable = this.state.loading ? <p><em>Loading..., please wait.</em></p> : this.renderTable(this.state.songs);
 
         return (
-            <div className="invisible">
+            <div>
                 {populatedTable}
             </div>
         );
@@ -86,4 +82,4 @@ export class SongsTable extends Component
 
 }
 
-export default connect(null, { selectSong })(SongsTable);
+export default connect()(SongsTable)

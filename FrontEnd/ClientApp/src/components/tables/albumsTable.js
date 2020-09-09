@@ -1,11 +1,9 @@
 ﻿import React, { Component } from "react";
-import { connect } from 'react-redux';
-import store from "../../redux/store";
+import { connect } from "react-redux";
 import { SELECT_ALBUM } from "../../redux/actionTypes";
-import { selectAlbum } from "../../redux/actions/selectAlbum";
 import * as mockPayLoads from "../../tempMocks/mockPayLoads";
 
-export class AlbumsTable extends Component
+class AlbumsTable extends Component
 {
 
     constructor(props)
@@ -20,7 +18,6 @@ export class AlbumsTable extends Component
 
     componentDidMount()
     {
-        //this.getAlbums();
         this.mockData();
     }
 
@@ -56,8 +53,7 @@ export class AlbumsTable extends Component
 
     rowClickEvent(albumId)
     {
-        // re-render songsTable with "albumId"
-        store.dispatch({ type: SELECT_ALBUM, payload: albumId });
+        this.props.dispatch({ type: SELECT_ALBUM, payload: albumId });
     }
 
     renderTable(data)
@@ -103,4 +99,4 @@ export class AlbumsTable extends Component
 
 }
 
-export default connect(null, { selectAlbum })(AlbumsTable);
+export default connect()(AlbumsTable)

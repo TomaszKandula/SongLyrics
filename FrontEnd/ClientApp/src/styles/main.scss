@@ -6,15 +6,7 @@
 @import "./components/table-albums.scss";
 @import "./components/table-songs.scss";
 @import "./components/table-details.scss";
-
-
-/* Customized Materialize */
-
-
-.modal
-{
-    display: block !important;
-}
+@import "./components/custom-modal.scss";
 
 
 /* Miscelánea */

@@ -39,14 +39,16 @@ class MessageBox extends Component
 
             <div>
 
-                <div className="modal">
-                    <div className="modal-content">
+                <div className="custom-modal">
+
+                    <div className="custom-modal-content">
                         <h4>{messageHeader}</h4>
                         <p>{this.props.message.lastText}</p>
+                        <div className="custom-modal-footer">
+                            <div className="waves-effect waves-light btn">OK</div>
+                        </div>
                     </div>
-                    <div className="modal-footer">
-                        <div className="modal-close waves-effect waves-green btn-flat" onClick={() => this.closeModal}>OK</div>
-                    </div>
+
                 </div>
 
             </div>

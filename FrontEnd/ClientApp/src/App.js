@@ -11,8 +11,8 @@ export default class App extends Component
     {
         return (
             <div>
-                <MessageBox />
                 <Header />
+                <MessageBox />
                 <Layout />
                 <Footer />
             </div>

@@ -45,7 +45,7 @@ class MessageBox extends Component
                         <h4>{messageHeader}</h4>
                         <p>{this.props.message.lastText}</p>
                         <div className="custom-modal-footer">
-                            <div className="waves-effect waves-light btn">OK</div>
+                            <div className="waves-effect waves-light btn" onClick={this.closeModal.bind(this)}>OK</div>
                         </div>
                     </div>
 

@@ -7,26 +7,6 @@ import SongsTable from "../tables/songsTable";
 class DetailsView extends Component
 {
 
-    constructor(props)
-    {
-        super(props);
-        this.state =
-        {
-            isAlbumSelected: false,
-            isSongSelected: false
-        }
-    }
-
-    componentDidMount()
-    {
-
-    }
-
-    componentDidUpdate()
-    {
-
-    }
-
     render()
     {
 
@@ -51,7 +31,7 @@ class DetailsView extends Component
 
                         <div className="row">
                             <div className="col s8">
-                                { this.state.isAlbumSelected ? <SongsTable /> : <AlbumsTable /> }
+                                { this.props.isAlbumSelected ? <SongsTable /> : <AlbumsTable /> }
                             </div>
                         </div>
 
@@ -74,7 +54,16 @@ class DetailsView extends Component
 
 const mapStateToProps = (state) =>
 {
-    return { state }
+
+    let isAlbumSelected = false;
+
+    if (state.album.id !== 0)
+    {
+        isAlbumSelected = true;
+    }
+
+    return { isAlbumSelected }
+
 }
 
 export default connect(mapStateToProps)(DetailsView)

@@ -1,8 +1,14 @@
 ﻿import React, { Component } from "react";
 import { connect } from "react-redux";
+import { SHOW_MESSAGE } from "../../redux/actionTypes";
 
 class MessageBox extends Component
 {
+
+    closeModal()
+    {
+        this.props.dispatch({ type: SHOW_MESSAGE, payload: { messageType: "", lastText: "" } });
+    }
 
     renderMessageBox()
     {
@@ -32,13 +38,13 @@ class MessageBox extends Component
 
             <div>
 
-                <div class="modal">
-                    <div class="modal-content">
+                <div className="modal">
+                    <div className="modal-content">
                         <h4>{messageHeader}</h4>
-                        <p>{ this.props.message.lastText }</p>
+                        <p>{this.props.message.lastText}</p>
                     </div>
-                    <div class="modal-footer">
-                        <div class="modal-close waves-effect waves-green btn-flat">OK</div>
+                    <div className="modal-footer">
+                        <div className="modal-close waves-effect waves-green btn-flat" onClick={() => this.closeModal}>OK</div>
                     </div>
                 </div>
 
@@ -51,10 +57,12 @@ class MessageBox extends Component
     render()
     {
 
+        let rendered = this.props.isShown ? this.renderMessageBox() : null;
+
         return (
 
             <div>
-                { this.props.isShown ? this.renderMessageBox : null }
+                {rendered}
             </div>
 
         );

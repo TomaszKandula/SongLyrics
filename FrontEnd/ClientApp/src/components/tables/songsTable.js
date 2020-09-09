@@ -1,6 +1,6 @@
 ﻿import React, { Component } from "react";
 import { connect } from "react-redux";
-import { SELECT_SONG } from "../../redux/actionTypes";
+import * as ActionTypes from "../../redux/actionTypes";
 import * as mockPayLoads from "../../tempMocks/mockPayLoads";
 
 class SongsTable extends Component
@@ -38,7 +38,7 @@ class SongsTable extends Component
 
     rowClickEvent(songId)
     {
-        this.props.dispatch({ type: SELECT_SONG, payload: songId });
+        this.props.dispatch({ type: ActionTypes.SELECT_SONG, payload: songId });
     }
 
     renderTable(data)

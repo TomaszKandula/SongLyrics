@@ -1,6 +1,6 @@
 ﻿import React, { Component } from "react";
 import { connect } from "react-redux";
-import { SELECT_BAND } from "../../redux/actionTypes";
+import * as ActionTypes from "../../redux/actionTypes";
 import * as mockPayLoads from "../../tempMocks/mockPayLoads"; 
 
 class BandsView extends Component
@@ -35,7 +35,7 @@ class BandsView extends Component
 
     rowClickEvent(bandId)
     {
-        this.props.dispatch({ type: SELECT_BAND, payload: bandId });
+        this.props.dispatch({ type: ActionTypes.SELECT_BAND, payload: bandId });
     }
 
     renderTable(data)

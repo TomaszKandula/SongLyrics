@@ -1,13 +1,14 @@
 ﻿import React, { Component } from "react";
 import { connect } from "react-redux";
-import { SHOW_MESSAGE } from "../../redux/actionTypes";
+import * as ActionTypes from "../../redux/actionTypes";
+import * as MessageTypes from "../common/messageTypes"; 
 
 class MessageBox extends Component
 {
 
     closeModal()
     {
-        this.props.dispatch({ type: SHOW_MESSAGE, payload: { messageType: "", lastText: "" } });
+        this.props.dispatch({ type: ActionTypes.SHOW_MESSAGE, payload: { messageType: "", lastText: "" } });
     }
 
     renderMessageBox()
@@ -17,15 +18,15 @@ class MessageBox extends Component
         switch (this.props.message.messageType)
         {
 
-            case "MESSAGE_INFO":
+            case MessageTypes.MESSAGE_INFO:
                 messageHeader = "Information";
                 break;
 
-            case "MESSAGE_WARN":
+            case MessageTypes.MESSAGE_WARN:
                 messageHeader = "Warning";
                 break;
 
-            case "MESSAGE_ERROR":
+            case MessageTypes.MESSAGE_ERROR:
                 messageHeader = "Error";
                 break;
 

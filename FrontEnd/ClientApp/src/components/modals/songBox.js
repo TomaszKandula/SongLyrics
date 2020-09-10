@@ -2,15 +2,61 @@
 import { connect } from "react-redux";
 import * as ActionTypes from "../../redux/actionTypes";
 import * as Posed from "../common/posedComponents";
+import * as mockPayLoads from "../../tempMocks/mockPayLoads";
 
 class SongBox extends Component
 {
 
+    mockData()
+    {
+        let jsonResponse = mockPayLoads.song;
+        let parsedJson = JSON.parse(jsonResponse);
+        let objSong = parsedJson.Song;
+        return objSong;
+    }
 
+    onClickEvent()
+    {
+        this.props.dispatch({ type: ActionTypes.SELECT_SONG, payload: 0 });
+    }
 
+    renderSongBox()
+    {
 
+        let data = this.mockData();
 
+        return (
+            
+            <Posed.FadeDiv initialPose="exit" pose="enter">
 
+                <div className="custom-modal">
+
+                    <div className="custom-modal-content">
+                        {data.Lyrics}
+                    </div>
+
+                </div>
+
+            </Posed.FadeDiv>
+            
+        );
+
+    }
+
+    render()
+    {
+
+        let content = this.props.isShown ? this.renderSongBox() : null;
+
+        return (
+
+            <div>
+                {content}
+            </div>
+
+        );
+
+    }
 
 }
 

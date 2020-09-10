@@ -19,12 +19,14 @@ class SongBox extends Component
     onClickEvent()
     {
         this.props.dispatch({ type: ActionTypes.SELECT_SONG, payload: 0 });
+        document.body.classList.remove("modal-open");
     }
 
     renderSongBox()
     {
 
         let data = this.mockData();
+        document.body.classList.add("modal-open");
 
         return (
             

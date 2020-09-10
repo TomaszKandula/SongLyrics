@@ -66,9 +66,9 @@ namespace BackEnd.IntegrationTests
 
             // Deserialize response and check results            
             var LStringResponse = await LResponse.Content.ReadAsStringAsync();
-            var LReturnSongs = JsonConvert.DeserializeObject<ReturnSongs>(LStringResponse);
+            var LReturnSongs = JsonConvert.DeserializeObject<ReturnSong>(LStringResponse);
 
-            LReturnSongs.Songs.Select(R => R.Name).ToList().Single().Should().Be("The Night Comes Down");
+            LReturnSongs.Song.Name.Should().Be("The Night Comes Down");
 
         }
 

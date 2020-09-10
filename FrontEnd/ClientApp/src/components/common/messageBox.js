@@ -1,7 +1,8 @@
 ﻿import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as ActionTypes from "../../redux/actionTypes";
-import * as MessageTypes from "../common/messageTypes"; 
+import * as MessageTypes from "../common/messageTypes";
+import * as Posed from "../common/posedComponents";
 
 class MessageBox extends Component
 {
@@ -37,7 +38,7 @@ class MessageBox extends Component
 
         return (
 
-            <div>
+            <Posed.PosedFadeDiv initialPose="exit" pose="enter">
 
                 <div className="custom-modal">
 
@@ -51,7 +52,7 @@ class MessageBox extends Component
 
                 </div>
 
-            </div>
+            </Posed.PosedFadeDiv>
             
         );
 

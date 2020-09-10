@@ -20,7 +20,7 @@ namespace BackEnd.Logic.Songs
         /// </summary>
         /// <param name="SongId"></param>
         /// <returns></returns>
-        Task<List<Song>> GetSong(int SongId);
+        Task<SingleSong> GetSong(int SongId);
 
     }
 

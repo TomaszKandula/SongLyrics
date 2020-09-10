@@ -1,17 +1,19 @@
-﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace BackEnd.Models.Json
 {
 
-    public class Song 
+    public class SingleSong 
     {
-
-        [JsonPropertyName("Id")]
-        public int Id { get; set; }
 
         [JsonPropertyName("Name")]
         public string Name { get; set; }
+
+        [JsonPropertyName("Url")]
+        public string Url { get; set; }
+
+        [JsonPropertyName("Lyrics")]
+        public string Lyrics { get; set; }
 
         [JsonPropertyName("BandName")]
         public string BandName { get; set; }
@@ -21,11 +23,11 @@ namespace BackEnd.Models.Json
 
     }
 
-    public class ReturnSongs
+    public class ReturnSong
     {
 
-        [JsonPropertyName("Songs")]
-        public List<Song> Songs { get; set; }
+        [JsonPropertyName("Song")]
+        public SingleSong Song { get; set; }
 
         [JsonPropertyName("IsSucceeded")]
         public bool IsSucceeded { get; set; }
@@ -33,7 +35,7 @@ namespace BackEnd.Models.Json
         [JsonPropertyName("Error")]
         public ErrorHandler Error { get; set; }
 
-        public ReturnSongs()
+        public ReturnSong()
         {
             Error = new ErrorHandler();
         }

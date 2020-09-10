@@ -72,13 +72,13 @@ namespace BackEnd.Controllers.v1
         public async Task<IActionResult> GetSong(int Id)
         {
 
-            var LResponse = new ReturnSongs();
+            var LResponse = new ReturnSong();
             try
             {
 
                 var LResult = await FLogicContext.Songs.GetSong(Id);
 
-                if (!LResult.Any())
+                if (LResult == null)
                 {
                     LResponse.Error.ErrorCode = Constants.Errors.EmptySongList.ErrorCode;
                     LResponse.Error.ErrorDesc = Constants.Errors.EmptySongList.ErrorDesc;
@@ -86,7 +86,7 @@ namespace BackEnd.Controllers.v1
                     return StatusCode(200, LResponse);
                 }
 
-                LResponse.Songs = LResult;
+                LResponse.Song = LResult;
                 LResponse.IsSucceeded = true;
                 return StatusCode(200, LResponse);
 

@@ -38,8 +38,6 @@ namespace BackEnd.Logic.Songs
                     {
                         Id        = R.Id,
                         Name      = R.SongName,
-                        Lyrics    = R.SongLyrics,
-                        Url       = R.SongUrl,
                         AlbumName = R.Album.AlbumName,
                         BandName  = R.Band.BandName
                     })
@@ -57,8 +55,6 @@ namespace BackEnd.Logic.Songs
                     {
                         Id        = R.Id,
                         Name      = R.SongName,
-                        Lyrics    = R.SongLyrics,
-                        Url       = R.SongUrl,
                         AlbumName = R.Album.AlbumName,
                         BandName  = R.Band.BandName
                     })
@@ -73,7 +69,7 @@ namespace BackEnd.Logic.Songs
         /// </summary>
         /// <param name="SongId"></param>
         /// <returns></returns>
-        public async Task<List<Song>> GetSong(int SongId)
+        public async Task<SingleSong> GetSong(int SongId)
         {
 
             return await FMainDbContext.Songs
@@ -81,16 +77,15 @@ namespace BackEnd.Logic.Songs
                 .Include(R => R.Album)
                 .Include(R => R.Band)
                 .Where(R => R.Id == SongId)
-                .Select(R => new Song
+                .Select(R => new SingleSong
                 {
-                    Id        = R.Id,
                     Name      = R.SongName,
                     Lyrics    = R.SongLyrics,
                     Url       = R.SongUrl,
                     AlbumName = R.Album.AlbumName,
                     BandName  = R.Band.BandName
                 })
-                .ToListAsync();
+                .SingleOrDefaultAsync();
 
         }
 

@@ -1,4 +1,4 @@
-﻿.custom-modal
+﻿.message-modal
 {
     display: block; 
     position: fixed; 
@@ -13,7 +13,7 @@
 }
 
 
-.custom-modal-content
+.message-modal-content
 {
     background-color: #fafafa;
     margin: 15% auto; 
@@ -27,7 +27,7 @@
 }
 
 
-.custom-modal-footer 
+.message-modal-footer 
 {
     border-radius: 0 0 2px 2px;
     background-color: #fafafa;

@@ -30,10 +30,13 @@ class SongBox extends Component
             
             <Posed.FadeDiv initialPose="exit" pose="enter">
 
-                <div className="custom-modal">
+                <div className="song-modal">
 
-                    <div className="custom-modal-content">
+                    <div className="song-modal-content">
                         {ReactHtmlParser(data.Lyrics)}
+                        <div className="song-modal-footer">
+                            ...
+                        </div>
                     </div>
 
                 </div>

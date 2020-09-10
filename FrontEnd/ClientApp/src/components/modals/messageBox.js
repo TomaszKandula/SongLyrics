@@ -40,12 +40,12 @@ class MessageBox extends Component
 
             <Posed.FadeDiv initialPose="exit" pose="enter">
 
-                <div className="custom-modal">
+                <div className="message-modal">
 
-                    <div className="custom-modal-content">
+                    <div className="message-modal-content">
                         <h4>{messageHeader}</h4>
                         <p>{this.props.message.lastText}</p>
-                        <div className="custom-modal-footer">
+                        <div className="message-modal-footer">
                             <div className="waves-effect waves-light btn" onClick={this.closeModal.bind(this)}>OK</div>
                         </div>
                     </div>

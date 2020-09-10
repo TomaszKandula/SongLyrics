@@ -1,5 +1,6 @@
 ﻿import React, { Component } from "react";
 import { connect } from "react-redux";
+import ReactHtmlParser from 'react-html-parser';
 import * as ActionTypes from "../../redux/actionTypes";
 import * as Posed from "../common/posedComponents";
 import * as mockPayLoads from "../../tempMocks/mockPayLoads";
@@ -32,7 +33,7 @@ class SongBox extends Component
                 <div className="custom-modal">
 
                     <div className="custom-modal-content">
-                        {data.Lyrics}
+                        {ReactHtmlParser(data.Lyrics)}
                     </div>
 
                 </div>

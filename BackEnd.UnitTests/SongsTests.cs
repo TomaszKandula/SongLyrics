@@ -63,8 +63,8 @@ namespace BackEnd.UnitTests
             var LResult2 = await FSongs.GetSong(7);
             var LResult3 = await FSongs.GetSong(100);
 
-            LResult2.Select(R => R.Name).First().Should().Be("Whole Lotta Love");
-            LResult3.Should().BeEmpty();
+            LResult2.Name.Should().Be("Whole Lotta Love");
+            LResult3.Should().BeNull();
 
         }
 

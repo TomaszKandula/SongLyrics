@@ -38,7 +38,7 @@ class MessageBox extends Component
 
         return (
 
-            <Posed.PosedFadeDiv initialPose="exit" pose="enter">
+            <Posed.FadeDiv initialPose="exit" pose="enter">
 
                 <div className="custom-modal">
 
@@ -52,7 +52,7 @@ class MessageBox extends Component
 
                 </div>
 
-            </Posed.PosedFadeDiv>
+            </Posed.FadeDiv>
             
         );
 

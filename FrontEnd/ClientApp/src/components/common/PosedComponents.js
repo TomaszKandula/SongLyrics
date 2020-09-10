@@ -30,9 +30,9 @@ export const scaledFadeAnimation =
     }
 };
 
-export const MainContainer = posed.div(fadeAnimation);
-export const PosedTitle = posed.h1(scaledFadeAnimation);
-export const PosedDiv = posed.div(scaledFadeAnimation);
-export const PosedP = posed.p(scaledFadeAnimation);
-export const PosedLink = posed.a(scaledFadeAnimation);
-export const PosedFadeDiv = posed.div(fadeAnimation);
+export const Container = posed.div(fadeAnimation);
+export const Title = posed.h1(scaledFadeAnimation);
+export const Div = posed.div(scaledFadeAnimation);
+export const Paragraph = posed.p(scaledFadeAnimation);
+export const Link = posed.a(scaledFadeAnimation);
+export const FadeDiv = posed.div(fadeAnimation);

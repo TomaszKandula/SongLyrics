@@ -1,10 +1,14 @@
 ﻿import posed from "react-pose";
 
-// common opacity animation
-export const fadeAnimation =
+export const fadeInAnimation =
 {
-    exit: { opacity: 0 },
-    enter: {
+    hidden:
+    {
+        applyAtStart: { display: 'block' },
+        opacity: 0
+    },
+    visible:
+    {
         opacity: 1,
         delay: 100,
         beforeChildren: true,
@@ -17,22 +21,45 @@ export const fadeAnimation =
     }
 };
 
-// common scale + opacity animation
+export const fadeOutAnimation =
+{
+    visible:
+    {
+        opacity: 1
+    },
+    hidden:
+    {
+        applyAtEnd: { display: "none" },
+        opacity: 0,
+        delay: 100,
+        beforeChildren: true,
+        delayChildren: 200,
+        staggerChildren: 50,
+        transition: {
+            type: "tween",
+            duration: 500
+        }
+    }
+};
+
 export const scaledFadeAnimation =
 {
-    enter: {
+    enter:
+    {
         scale: 1,
         opacity: 1
     },
-    exit: {
+    exit:
+    {
         scale: 1.2,
         opacity: 0
     }
 };
 
-export const Main    = posed.div(fadeAnimation);
-export const Title   = posed.h1(scaledFadeAnimation);
-export const Para    = posed.p(scaledFadeAnimation);
-export const Link    = posed.a(scaledFadeAnimation);
-export const Div     = posed.div(scaledFadeAnimation);
-export const FadeDiv = posed.div(fadeAnimation);
+export const MainContainer = posed.div(fadeInAnimation);
+export const ScaleTitle    = posed.h1(scaledFadeAnimation);
+export const ScalePara     = posed.p(scaledFadeAnimation);
+export const ScaleLink     = posed.a(scaledFadeAnimation);
+export const ScaleDiv      = posed.div(scaledFadeAnimation);
+export const FadeInDiv     = posed.div(fadeInAnimation);
+export const FadeOutDiv    = posed.div(fadeOutAnimation);

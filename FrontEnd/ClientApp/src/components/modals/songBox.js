@@ -18,33 +18,65 @@ class SongBox extends Component
 
     onClickEvent()
     {
-        this.props.dispatch({ type: ActionTypes.SELECT_SONG, payload: 0 });
+        this.props.dispatch({ type: ActionTypes.SELECT_SONG, payload: -1 });
+    }
+
+    shouldRenderOut()
+    {
+        return document.body.classList.contains("modal-open");
+    }
+
+    renderIn(data)
+    {
+        document.body.classList.add("modal-open");
+        return (
+            <Posed.FadeInDiv initialPose="hidden" pose="visible">
+                {this.modalContent(data)}
+            </Posed.FadeInDiv>          
+        );
+    }
+
+    renderOut(data)
+    {
         document.body.classList.remove("modal-open");
+        return (
+            <Posed.FadeOutDiv initialPose="visible" pose="hidden">
+                {this.modalContent(data)}
+            </Posed.FadeOutDiv>
+        );
+    }
+
+    modalContent(data)
+    {
+        return (
+            <div className="song-modal">
+
+                <div className="song-modal-holder">
+                    <div className="song-modal-header">
+                        <h6>{data.Name}</h6>
+                        <div className="close-button" onClick={this.onClickEvent.bind(this)}></div>
+                    </div>
+                    <div className="song-modal-content">
+                        {ReactHtmlParser(data.Lyrics)}
+                    </div>
+                    <div className="song-modal-footer">
+                        ...
+                    </div>
+                </div>
+
+            </div>
+        );
     }
 
     renderSongBox()
     {
 
-        let data = this.mockData();
-        document.body.classList.add("modal-open");
+        let content = this.shouldRenderOut() ? this.renderOut(this.mockData()) : this.renderIn(this.mockData());
 
         return (
-            
-            <Posed.FadeDiv initialPose="exit" pose="enter">
-
-                <div className="song-modal">
-
-                    <div className="song-modal-content">
-                        {ReactHtmlParser(data.Lyrics)}
-                        <div className="song-modal-footer">
-                            ...
-                        </div>
-                    </div>
-
-                </div>
-
-            </Posed.FadeDiv>
-            
+            <div>
+                {content}
+            </div>         
         );
 
     }
@@ -55,11 +87,9 @@ class SongBox extends Component
         let content = this.props.isShown ? this.renderSongBox() : null;
 
         return (
-
             <div>
                 {content}
             </div>
-
         );
 
     }

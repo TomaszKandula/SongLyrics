@@ -25,8 +25,7 @@ class Layout extends Component
 
 const mapStateToProps = (state) =>
 {
-    let isBandSelected = false;
-    if (state.band.id !== 0) { isBandSelected = true; }
+    let isBandSelected = state.band.id !== 0 ? true : false;
     return { isBandSelected }
 }
 

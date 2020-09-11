@@ -99,8 +99,7 @@ class SongBox extends Component
 
 const mapStateToProps = (state) =>
 {
-    let isVisible = false;
-    if (state.song.id > 0) { isVisible = true; }
+    let isVisible = state.song.id > 0 ? true : false;
     return { isShown: isVisible, songId: state.song.id }
 }
 

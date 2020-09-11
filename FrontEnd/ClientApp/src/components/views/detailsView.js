@@ -71,8 +71,7 @@ class DetailsView extends Component
 
 const mapStateToProps = (state) =>
 {
-    let isAlbumSelected = false;
-    if (state.album.id !== 0) { isAlbumSelected = true; }
+    let isAlbumSelected = state.album.id !== 0 ? true : false;
     return { isAlbumSelected }
 }
 

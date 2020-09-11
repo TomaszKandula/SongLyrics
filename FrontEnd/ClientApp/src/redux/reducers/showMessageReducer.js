@@ -5,7 +5,7 @@ const showMessageReducer = (state = {}, { type, payload }) => {
     switch (type) {
 
         case SHOW_MESSAGE:
-            return Object.assign({}, state, { messageType: payload.messageType, lastText: payload.lastText })
+            return Object.assign({}, state, { messageType: payload.messageType, lastText: payload.lastText, isVisible: payload.isVisible })
 
         default:
             return state

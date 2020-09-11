@@ -33,7 +33,8 @@ const initialState =
     message:
     {
         messageType: "",
-        lastText: ""
+        lastText: "",
+        isVisible: false
     }
 
 };

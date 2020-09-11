@@ -7,7 +7,8 @@ export const showMessage =
     payload:
     {
         messageType: "",
-        lastText: ""
+        lastText: "",
+        isVisible: false
     }
 
 };

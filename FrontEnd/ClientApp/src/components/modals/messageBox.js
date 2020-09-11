@@ -9,14 +9,23 @@ class MessageBox extends Component
 
     closeModal()
     {
-        this.props.dispatch({ type: ActionTypes.SHOW_MESSAGE, payload: { messageType: "", lastText: "" } });
+        this.props.dispatch(
+        {
+            type: ActionTypes.SHOW_MESSAGE,
+            payload:
+            {
+                messageType: this.props.messageData.messageType,
+                lastText: this.props.messageData.lastText,
+                isVisible: false
+            }
+        });
     }
 
-    renderMessageBox()
+    modalContent()
     {
 
         let messageHeader = "";
-        switch (this.props.message.messageType)
+        switch (this.props.messageData.messageType)
         {
 
             case MessageTypes.MESSAGE_INFO:
@@ -38,30 +47,63 @@ class MessageBox extends Component
 
         return (
 
-            <Posed.FadeInDiv initialPose="exit" pose="enter">
+            <div className="message-modal">
 
-                <div className="message-modal">
-
-                    <div className="message-modal-content">
-                        <h4>{messageHeader}</h4>
-                        <p>{this.props.message.lastText}</p>
-                        <div className="message-modal-footer">
-                            <div className="waves-effect waves-light btn" onClick={this.closeModal.bind(this)}>OK</div>
-                        </div>
+                <div className="message-modal-content">
+                    <h4>{messageHeader}</h4>
+                    <p>{this.props.messageData.lastText}</p>
+                    <div className="message-modal-footer">
+                        <div className="waves-effect waves-light btn" onClick={this.closeModal.bind(this)}>OK</div>
                     </div>
-
                 </div>
 
-            </Posed.FadeInDiv>
+            </div>
             
         );
+
+    }
+
+    renderIn()
+    {
+
+        document.body.classList.add("messageBox-open");
+
+        return (
+            <Posed.FadeInDiv initialPose="hidden" pose="visible">
+                {this.modalContent()}
+            </Posed.FadeInDiv>           
+        );
+
+    }
+
+    renderOut()
+    {
+
+        let isModalOpened = document.body.classList.contains("messageBox-open");
+
+        if (isModalOpened)
+        {
+
+            document.body.classList.remove("messageBox-open");
+
+            return (
+                <Posed.FadeOutDiv initialPose="visible" pose="hidden">
+                    {this.modalContent()}
+                </Posed.FadeOutDiv>
+            );
+
+        }
+        else
+        {
+            return null;
+        }
 
     }
 
     render()
     {
 
-        let rendered = this.props.isShown ? this.renderMessageBox() : null;
+        let rendered = this.props.messageData.isVisible ? this.renderIn() : this.renderOut();
 
         return (
 
@@ -77,9 +119,7 @@ class MessageBox extends Component
 
 const mapStateToProps = (state) =>
 {
-    let isVisible = true;
-    if (state.message.lastText === "") { isVisible = false; }
-    return { isShown: isVisible, message: state.message }
+    return { messageData: state.message }
 }
 
 export default connect(mapStateToProps)(MessageBox)

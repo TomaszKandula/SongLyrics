@@ -38,12 +38,26 @@ class SongBox extends Component
 
     renderOut(data)
     {
-        document.body.classList.remove("modal-open");
-        return (
-            <Posed.FadeOutDiv initialPose="visible" pose="hidden">
-                {this.modalContent(data)}
-            </Posed.FadeOutDiv>
-        );
+
+        let isModalOpened = document.body.classList.contains("modal-open");
+
+        if (isModalOpened)
+        {
+
+            document.body.classList.remove("modal-open");
+
+            return (
+                <Posed.FadeOutDiv initialPose="visible" pose="hidden">
+                    {this.modalContent(data)}
+                </Posed.FadeOutDiv>
+            );
+
+        }
+        else
+        {
+            null;
+        }
+
     }
 
     modalContent(data)
@@ -68,23 +82,10 @@ class SongBox extends Component
         );
     }
 
-    renderSongBox()
-    {
-
-        let content = this.shouldRenderOut() ? this.renderOut(this.mockData()) : this.renderIn(this.mockData());
-
-        return (
-            <div>
-                {content}
-            </div>         
-        );
-
-    }
-
     render()
     {
 
-        let content = this.props.isShown ? this.renderSongBox() : null;
+        let content = this.props.isShown ? this.renderOut(this.mockData()) : this.renderIn(this.mockData());
 
         return (
             <div>

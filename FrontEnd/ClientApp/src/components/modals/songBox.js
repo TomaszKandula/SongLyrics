@@ -55,7 +55,7 @@ class SongBox extends Component
         }
         else
         {
-            null;
+            return null;
         }
 
     }
@@ -85,7 +85,7 @@ class SongBox extends Component
     render()
     {
 
-        let content = this.props.isShown ? this.renderOut(this.mockData()) : this.renderIn(this.mockData());
+        let content = this.props.isShown ? this.renderIn(this.mockData()) : this.renderOut(this.mockData());
 
         return (
             <div>
@@ -99,8 +99,8 @@ class SongBox extends Component
 
 const mapStateToProps = (state) =>
 {
-    let isVisible = true;
-    if (state.song.id === 0) { isVisible = false; }
+    let isVisible = false;
+    if (state.song.id > 0) { isVisible = true; }
     return { isShown: isVisible, songId: state.song.id }
 }
 

@@ -1,5 +1,6 @@
 ﻿import React, { Component } from "react";
 import { connect } from "react-redux";
+import * as Posed from "../common/posedComponents";
 import * as ActionTypes from "../../redux/actionTypes";
 import * as mockPayLoads from "../../tempMocks/mockPayLoads"; 
 
@@ -85,19 +86,19 @@ class BandsView extends Component
 
                         <div className="row">
                             <div className="col s8">
-                                <div className="row" id="topbarsearch">
+                                <Posed.FadeInDiv initialPose="hidden" pose="visible" className="row" id="topbarsearch">
                                     <div className="input-field col s6 s12 black-text">
                                         <i className="grey-text material-icons prefix">search</i>
                                         <input type="text" placeholder="Search for band" id="autocomplete-input" className="autocomplete black-text" />
                                     </div>
-                                </div>
+                                </Posed.FadeInDiv>
                             </div>
                         </div>
 
                         <div className="row">
-                            <div className="col s8">
+                            <Posed.FadeInDiv initialPose="hidden" pose="visible" className="col s8">
                                 {populatedTable}
-                            </div>
+                            </Posed.FadeInDiv>
                         </div>
 
                     </div>

@@ -1,5 +1,6 @@
 ﻿import React, { Component } from "react";
 import { connect } from "react-redux";
+import * as Posed from "../common/posedComponents";
 import * as ActionTypes from "../../redux/actionTypes";
 import * as mockPayLoads from "../../tempMocks/mockPayLoads";
 
@@ -19,21 +20,6 @@ class SongsTable extends Component
     componentDidMount()
     {
         this.mockData();
-    }
-
-    onClickBands()
-    {
-        this.props.dispatch({ type: ActionTypes.SELECT_BAND, payload: 0 });
-    }
-
-    onClickAlbums()
-    {
-        this.props.dispatch({ type: ActionTypes.SELECT_ALBUM, payload: 0 });
-    }
-
-    onClickSongs()
-    {
-        this.props.dispatch({ type: ActionTypes.SELECT_SONG, payload: 0 });
     }
 
     mockData()
@@ -88,19 +74,9 @@ class SongsTable extends Component
         let populatedTable = this.state.loading ? <p><em>Loading..., please wait.</em></p> : this.renderTable(this.state.songs);
 
         return (
-            <div className="margin-t-5">
-                <nav className="z-depth-0 nav-box grey lighten-5">
-                    <div className="grey lighten-5">
-                        <div className="col s12">
-                            <a href="#" className="breadcrumb grey-text darken-4" onClick={this.onClickBands.bind(this)}>Bands</a>
-                            <a href="#" className="breadcrumb grey-text darken-4" onClick={this.onClickAlbums.bind(this)}>Albums</a>
-                            <a href="#" className="breadcrumb grey-text darken-4" onClick={this.onClickSongs.bind(this)}>Songs</a>
-                        </div>
-                    </div>
-                </nav>
-                <div className="margin-b-30"></div>
+            <Posed.FadeInDiv initialPose="hidden" pose="visible">
                 {populatedTable}
-            </div>
+            </Posed.FadeInDiv>
         );
 
     }

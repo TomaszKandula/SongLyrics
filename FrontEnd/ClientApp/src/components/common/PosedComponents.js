@@ -44,15 +44,15 @@ export const fadeOutAnimation =
 
 export const scaledFadeAnimation =
 {
-    enter:
+    hidden:
+    {
+        scale: 0,
+        opacity: 1
+    },
+    visible:
     {
         scale: 1,
         opacity: 1
-    },
-    exit:
-    {
-        scale: 1.2,
-        opacity: 0
     }
 };
 

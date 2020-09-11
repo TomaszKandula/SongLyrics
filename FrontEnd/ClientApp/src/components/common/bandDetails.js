@@ -30,14 +30,14 @@ export class BandDetails extends Component
         let parsedJson = JSON.parse(jsonResponse);
 
         this.setState(
-            {
-                name:        parsedJson.Name,
-                established: parsedJson.Established,
-                activeUntil: parsedJson.ActiveUntil,
-                genere:      parsedJson.Genere,
-                members:     parsedJson.Members,
-                loading:     false
-            });
+        {
+            name:        parsedJson.Name,
+            established: parsedJson.Established,
+            activeUntil: parsedJson.ActiveUntil,
+            genere:      parsedJson.Genere,
+            members:     parsedJson.Members,
+            loading:     false
+        });
 
     }
 
@@ -67,11 +67,8 @@ export class BandDetails extends Component
         let getEstablished = new Date(data.established);
         let getActiveUntil = new Date(data.activeUntil);
 
-        let Established = null;
-        let ActiveUntil = null;
-
-        if (data.established != null) { Established = getEstablished.getFullYear(); }
-        if (data.activeUntil != null) { ActiveUntil = getActiveUntil.getFullYear(); }
+        let Established = data.established != null ? getEstablished.getFullYear() : null;
+        let ActiveUntil = data.activeUntil != null ? getActiveUntil.getFullYear() : null;
 
         return (
             

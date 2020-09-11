@@ -30,10 +30,10 @@ class SongsTable extends Component
         let objSongs = parsedJson.Songs;
 
         this.setState(
-            {
-                songs: objSongs,
-                loading: false
-            });
+        {
+            songs: objSongs,
+            loading: false
+        });
 
     }
 

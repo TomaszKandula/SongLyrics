@@ -117,9 +117,5 @@ class MessageBox extends Component
 
 }
 
-const mapStateToProps = (state) =>
-{
-    return { messageData: state.message }
-}
-
+const mapStateToProps = (state) => { return { messageData: state.message } }
 export default connect(mapStateToProps)(MessageBox)

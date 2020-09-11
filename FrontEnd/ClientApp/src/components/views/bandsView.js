@@ -28,10 +28,10 @@ class BandsView extends Component
         let parsedJson = JSON.parse(jsonResponse);
         let objBands = parsedJson.Bands;
         this.setState(
-            {
-                bands: objBands,
-                loading: false
-            });
+        {
+            bands: objBands,
+            loading: false
+        });
     }
 
     rowClickEvent(bandId)

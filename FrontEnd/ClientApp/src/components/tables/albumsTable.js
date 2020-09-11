@@ -30,26 +30,17 @@ class AlbumsTable extends Component
         let objAlbums = parsedJson.Albums;
 
         this.setState(
-            {
-                albums: objAlbums,
-                loading: false
-            });
+        {
+            albums: objAlbums,
+            loading: false
+        });
 
     }
 
     returnFullYear(date)
     {
-
         let getDate = new Date(date);
-        let fullYear = null;
-
-        if (date != null)
-        {
-            fullYear = getDate.getFullYear();
-        }
-
-        return fullYear;
-        
+        return date != null ? getDate.getFullYear() : null;       
     }
 
     rowClickEvent(albumId)

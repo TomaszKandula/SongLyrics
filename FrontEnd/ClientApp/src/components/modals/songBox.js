@@ -23,12 +23,12 @@ class SongBox extends Component
 
     shouldRenderOut()
     {
-        return document.body.classList.contains("modal-open");
+        return document.body.classList.contains("songBox-open");
     }
 
     renderIn(data)
     {
-        document.body.classList.add("modal-open");
+        document.body.classList.add("songBox-open");
         return (
             <Posed.FadeInDiv initialPose="hidden" pose="visible">
                 {this.modalContent(data)}
@@ -39,12 +39,12 @@ class SongBox extends Component
     renderOut(data)
     {
 
-        let isModalOpened = document.body.classList.contains("modal-open");
+        let isModalOpened = document.body.classList.contains("songBox-open");
 
         if (isModalOpened)
         {
 
-            document.body.classList.remove("modal-open");
+            document.body.classList.remove("songBox-open");
 
             return (
                 <Posed.FadeOutDiv initialPose="visible" pose="hidden">

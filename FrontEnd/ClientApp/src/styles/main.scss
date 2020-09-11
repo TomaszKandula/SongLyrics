@@ -16,6 +16,19 @@
 }
 
 
+.nav-box 
+{
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+
+.breadcrumb::before 
+{
+    color: #9e9e9e !important;
+}
+
+
 /* Custom top margins */
 
 

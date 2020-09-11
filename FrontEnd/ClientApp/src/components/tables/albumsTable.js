@@ -21,6 +21,16 @@ class AlbumsTable extends Component
         this.mockData();
     }
 
+    onClickBands()
+    {
+        this.props.dispatch({ type: ActionTypes.SELECT_BAND, payload: 0 });
+    }
+
+    onClickAlbums()
+    {
+        this.props.dispatch({ type: ActionTypes.SELECT_ALBUM, payload: 0 });
+    }
+
     mockData()
     {
 
@@ -90,7 +100,16 @@ class AlbumsTable extends Component
         let populatedTable = this.state.loading ? <p><em>Loading..., please wait.</em></p> : this.renderTable(this.state.albums);
 
         return (
-            <div>
+            <div className="margin-t-5">
+                <nav className="z-depth-0 nav-box grey lighten-5">
+                    <div className="grey lighten-5">
+                        <div className="col s12">
+                            <a href="#" className="breadcrumb grey-text darken-4" onClick={this.onClickBands.bind(this)}>Bands</a>
+                            <a href="#" className="breadcrumb grey-text darken-4" onClick={this.onClickAlbums.bind(this)}>Albums</a>
+                        </div>
+                    </div>
+                </nav>
+                <div className="margin-b-30"></div>
                 {populatedTable}
             </div>
         );

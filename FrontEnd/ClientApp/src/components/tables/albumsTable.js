@@ -2,6 +2,7 @@
 import { connect } from "react-redux";
 import * as Posed from "../common/posedComponents";
 import * as ActionTypes from "../../redux/actionTypes";
+import * as Loaders from "../common/preLoaders";
 import * as Api from "../../ajax/apiUrls";
 
 class AlbumsTable extends Component
@@ -69,7 +70,6 @@ class AlbumsTable extends Component
     {
 
         return (
-
             <table className="albumsTable">
                 <thead>
                     <tr>
@@ -87,30 +87,7 @@ class AlbumsTable extends Component
                         </tr>
                     )}
                 </tbody>
-            </table>
-            
-        );
-
-    }
-
-    renderLoading()
-    {
-
-        return (
-
-            <div className="preloader-wrapper small active">
-                <div className="spinner-layer spinner-green-only">
-                    <div className="circle-clipper left">
-                        <div className="circle"></div>
-                    </div>
-                    <div className="gap-patch">
-                        <div className="circle"></div>
-                    </div>
-                    <div className="circle-clipper right">
-                        <div className="circle"></div>
-                    </div>
-                </div>
-            </div>
+            </table>            
         );
 
     }
@@ -118,7 +95,7 @@ class AlbumsTable extends Component
     render()
     {
 
-        let populatedTable = this.state.loading ? this.renderLoading() : this.renderTable(this.state.albums);
+        let populatedTable = this.state.loading ? <Loaders.Circular /> : this.renderTable(this.state.albums);
 
         return (
             <Posed.FadeInDiv initialPose="hidden" pose="visible">

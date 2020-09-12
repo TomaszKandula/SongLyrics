@@ -12,11 +12,9 @@ class Layout extends Component
     {
 
         return (
-
             <div className="container">
                 {this.props.isBandSelected ? <DetailsView /> : <BandsView /> }
             </div>
-
         );
 
     }

@@ -2,6 +2,7 @@
 import { connect } from "react-redux";
 import * as Posed from "../common/posedComponents";
 import * as ActionTypes from "../../redux/actionTypes";
+import * as Loaders from "../common/preLoaders";
 import * as Api from "../../ajax/apiUrls";
 import AlbumsTable from "../tables/albumsTable";
 import SongsTable from "../tables/songsTable";
@@ -140,7 +141,6 @@ class DetailsView extends Component
         let ActiveUntil = data.activeUntil != null ? getActiveUntil.getFullYear() : null;
 
         return (
-            
             <table className="detailsTable">
                 <tbody>
                     <tr>
@@ -174,29 +174,6 @@ class DetailsView extends Component
 
                 </tbody>
             </table>
-            
-        );
-
-    }
-
-    renderLoading()
-    {
-
-        return (
-
-            <div className="preloader-wrapper small active">
-                <div className="spinner-layer spinner-green-only">
-                    <div className="circle-clipper left">
-                        <div className="circle"></div>
-                    </div>
-                    <div className="gap-patch">
-                        <div className="circle"></div>
-                    </div>
-                    <div className="circle-clipper right">
-                        <div className="circle"></div>
-                    </div>
-                </div>
-            </div>
         );
 
     }
@@ -204,7 +181,7 @@ class DetailsView extends Component
     render()
     {
 
-        let populatedDetails = this.state.loading ? this.renderLoading() : this.renderDetails(this.state.details);
+        let populatedDetails = this.state.loading ? <Loaders.Circular /> : this.renderDetails(this.state.details);
 
         return (
             <div>

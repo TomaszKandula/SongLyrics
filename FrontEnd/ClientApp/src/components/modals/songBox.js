@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import ReactHtmlParser from 'react-html-parser';
 import * as ActionTypes from "../../redux/actionTypes";
 import * as Posed from "../common/posedComponents";
+import * as Loaders from "../common/preLoaders";
 import * as Api from "../../ajax/apiUrls";
 
 class SongBox extends Component
@@ -96,6 +97,9 @@ class SongBox extends Component
 
     modalContent(data)
     {
+
+        let content = this.isLoaded ? ReactHtmlParser(data.Lyrics) : <Loaders.Circular />;
+
         return (
             <div className="song-modal">
 
@@ -105,10 +109,10 @@ class SongBox extends Component
                         <div className="close-button" onClick={this.onClickEvent.bind(this)}></div>
                     </div>
                     <div className="song-modal-content">
-                        {ReactHtmlParser(data.Lyrics)}
+                        {content}
                     </div>
                     <div className="song-modal-footer">
-                        ...
+                        Provided by Song Lyrics.
                     </div>
                 </div>
 

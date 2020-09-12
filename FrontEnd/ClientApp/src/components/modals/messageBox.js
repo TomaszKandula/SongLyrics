@@ -11,7 +11,7 @@ class MessageBox extends Component
     {
         this.props.dispatch(
         {
-            type: ActionTypes.SHOW_MESSAGE,
+            type: ActionTypes.TOGGLE_MESSAGE,
             payload:
             {
                 messageType: this.props.messageData.messageType,

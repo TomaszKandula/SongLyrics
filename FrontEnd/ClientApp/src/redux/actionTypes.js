@@ -4,4 +4,4 @@ export const SELECT_ALBUM = "SELECT_ALBUM";
 export const SELECT_SONG = "SELECT_SONG";
 
 // Messages
-export const SHOW_MESSAGE = "SHOW_MESSAGE";
+export const TOGGLE_MESSAGE = "TOGGLE_MESSAGE";

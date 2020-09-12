@@ -1,10 +1,10 @@
-﻿import { SHOW_MESSAGE } from "../actionTypes";
+﻿import { TOGGLE_MESSAGE } from "../actionTypes";
 
-const showMessageReducer = (state = {}, { type, payload }) => {
+const toggleMessageReducer = (state = {}, { type, payload }) => {
 
     switch (type) {
 
-        case SHOW_MESSAGE:
+        case TOGGLE_MESSAGE:
             return Object.assign({}, state, { messageType: payload.messageType, lastText: payload.lastText, isVisible: payload.isVisible })
 
         default:
@@ -14,4 +14,4 @@ const showMessageReducer = (state = {}, { type, payload }) => {
 
 };
 
-export default showMessageReducer;
+export default toggleMessageReducer;

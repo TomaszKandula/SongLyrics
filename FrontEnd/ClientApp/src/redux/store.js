@@ -2,14 +2,14 @@ import { createStore, combineReducers } from "redux";
 import selectBandReducer from "./reducers/selectBandReducer";
 import selectAlbumReducer from "./reducers/selectAlbumReducer";
 import selectSongReducer from "./reducers/selectSongReducer";
-import showMessageReducer from "./reducers/showMessageReducer";
+import toggleMessageReducer from "./reducers/toggleMessageReducer";
 
 const reducer = combineReducers(
 {
     band:  selectBandReducer,
     album: selectAlbumReducer,
     song:  selectSongReducer,
-    message: showMessageReducer
+    message: toggleMessageReducer
 });
 
 const initialState =

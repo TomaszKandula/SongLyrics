@@ -50,7 +50,7 @@ namespace SongLyrics
 
         }
 
-        public void Configure(IApplicationBuilder AApplication, IWebHostEnvironment AEnvironment)
+        public void Configure(IApplicationBuilder AApplication, IWebHostEnvironment AEnvironment) 
         {
 
             AApplication.UseResponseCompression();
@@ -63,7 +63,19 @@ namespace SongLyrics
             AApplication.UseDefaultFiles();
             AApplication.UseStaticFiles();
             AApplication.UseRouting();
-            AApplication.UseAuthorization();
+
+            AApplication.Use((LContext, LNext) => 
+            {
+
+                LContext.Response.Headers.Add("Access-Control-Allow-Origin", "http://localhost:59457");
+                LContext.Response.Headers.Add("Access-Control-Allow-Methods", "GET");
+                LContext.Response.Headers.Add("Access-Control-Allow-Credentials", "true");
+                LContext.Response.Headers.Add("Access-Control-Allow-Headers", "AccessToken, Content-Type");
+
+                return LNext();
+
+            });
+
             AApplication.UseEndpoints(Options =>
             {
                 Options.MapControllers();

@@ -2,7 +2,6 @@
 import { connect } from "react-redux";
 import * as Posed from "../common/posedComponents";
 import * as ActionTypes from "../../redux/actionTypes";
-import * as mockPayLoads from "../../tempMocks/mockPayLoads";
 
 class SongsTable extends Component
 {
@@ -19,21 +18,38 @@ class SongsTable extends Component
 
     componentDidMount()
     {
-        this.mockData();
+        if (this.props.state.album.id > 0)
+            this.getSongs(this.props.state.album.id);
     }
 
-    mockData()
+    async getSongs(albumId)
     {
 
-        let jsonResponse = mockPayLoads.songs;
-        let parsedJson = JSON.parse(jsonResponse);
-        let objSongs = parsedJson.Songs;
+        const response = await fetch(`http://localhost:59384/api/v1/songs/?albumid=${albumId}`, { mode: "cors" });
+        const parsedJson = await response.json();
 
-        this.setState(
+        try
         {
-            songs: objSongs,
-            loading: false
-        });
+
+            if (parsedJson.IsSucceeded)
+            {
+                this.setState(
+                {
+                    songs: parsedJson.Songs,
+                    loading: false
+                });
+
+            }
+            else
+            {
+                console.error(`An error has occured during the processing: ${parsedJson.Error.ErrorDesc}`);
+            }
+
+        }
+        catch (message)
+        {
+            console.error(`An error has occured during the processing: ${message}`);
+        }
 
     }
 
@@ -68,10 +84,32 @@ class SongsTable extends Component
 
     }
 
+    renderLoading()
+    {
+
+        return (
+
+            <div className="preloader-wrapper small active">
+                <div className="spinner-layer spinner-green-only">
+                    <div className="circle-clipper left">
+                        <div className="circle"></div>
+                    </div>
+                    <div className="gap-patch">
+                        <div className="circle"></div>
+                    </div>
+                    <div className="circle-clipper right">
+                        <div className="circle"></div>
+                    </div>
+                </div>
+            </div>
+        );
+
+    }
+
     render()
     {
 
-        let populatedTable = this.state.loading ? <p><em>Loading..., please wait.</em></p> : this.renderTable(this.state.songs);
+        let populatedTable = this.state.loading ? this.renderLoading() : this.renderTable(this.state.songs);
 
         return (
             <Posed.FadeInDiv initialPose="hidden" pose="visible">
@@ -83,4 +121,5 @@ class SongsTable extends Component
 
 }
 
-export default connect()(SongsTable)
+const mapStateToProps = (state) => { return { state } }
+export default connect(mapStateToProps)(SongsTable)

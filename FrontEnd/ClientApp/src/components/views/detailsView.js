@@ -2,6 +2,7 @@
 import { connect } from "react-redux";
 import * as Posed from "../common/posedComponents";
 import * as ActionTypes from "../../redux/actionTypes";
+import * as Api from "../../ajax/apiUrls";
 import AlbumsTable from "../tables/albumsTable";
 import SongsTable from "../tables/songsTable";
 
@@ -34,7 +35,7 @@ class DetailsView extends Component
     async getDetails(bandId)
     {
 
-        const response = await fetch(`http://localhost:59384/api/v1/bands/${bandId}/details/`, { mode: "cors" });
+        const response = await fetch(`${Api.Bands}/${bandId}/details/`, { mode: "cors" });
         const parsedJson = await response.json();
 
         try

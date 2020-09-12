@@ -2,6 +2,7 @@
 import { connect } from "react-redux";
 import * as Posed from "../common/posedComponents";
 import * as ActionTypes from "../../redux/actionTypes";
+import * as Api from "../../ajax/apiUrls";
 
 class BandsView extends Component
 {
@@ -24,7 +25,7 @@ class BandsView extends Component
     async getBands()
     {
 
-        const response = await fetch("http://localhost:59384/api/v1/bands/", { mode: "cors" });
+        const response = await fetch(`${Api.Bands}`, { mode: "cors" });
         const parsedJson = await response.json();
 
         try

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import ReactHtmlParser from 'react-html-parser';
 import * as ActionTypes from "../../redux/actionTypes";
 import * as Posed from "../common/posedComponents";
+import * as Api from "../../ajax/apiUrls";
 
 class SongBox extends Component
 {
@@ -14,11 +15,6 @@ class SongBox extends Component
         this.state = { song: { } };
     }
 
-    componentDidMount()
-    {
-
-    }
-
     componentDidUpdate()
     {
         if (this.props.songId > 0 && !this.isLoaded)
@@ -28,7 +24,7 @@ class SongBox extends Component
     async getSong(songId)
     {
 
-        const response = await fetch(`http://localhost:59384/api/v1/songs/${songId}/`, { mode: "cors" });
+        const response = await fetch(`${Api.Songs}/${songId}/`, { mode: "cors" });
         const parsedJson = await response.json();
 
         try

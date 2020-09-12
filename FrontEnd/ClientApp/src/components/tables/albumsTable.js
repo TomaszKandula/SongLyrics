@@ -2,6 +2,7 @@
 import { connect } from "react-redux";
 import * as Posed from "../common/posedComponents";
 import * as ActionTypes from "../../redux/actionTypes";
+import * as Api from "../../ajax/apiUrls";
 
 class AlbumsTable extends Component
 {
@@ -25,7 +26,7 @@ class AlbumsTable extends Component
     async getAlbums(bandId)
     {
 
-        const response = await fetch(`http://localhost:59384/api/v1/albums/?bandid=${bandId}`, { mode: "cors" });
+        const response = await fetch(`${Api.Albums}/?bandid=${bandId}`, { mode: "cors" });
         const parsedJson = await response.json();
 
         try

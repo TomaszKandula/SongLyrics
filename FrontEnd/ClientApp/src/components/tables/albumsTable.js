@@ -49,7 +49,7 @@ class AlbumsTable extends Component
                         isVisible: true
                     }
                 });
-                console.error(`An error has occured during the processing: ${parsedJson.Error.ErrorDesc}`);
+                console.error(`${parsedJson.Error.ErrorDesc}`);
             }
 
         }

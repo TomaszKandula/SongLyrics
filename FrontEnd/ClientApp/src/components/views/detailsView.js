@@ -60,7 +60,7 @@ class DetailsView extends Component
             }
             else
             {
-                console.error(`An error has occured during the processing: ${parsedJson.Error.ErrorDesc}`);
+                console.warn(`${parsedJson.Error.ErrorDesc}`);
             }
 
         }

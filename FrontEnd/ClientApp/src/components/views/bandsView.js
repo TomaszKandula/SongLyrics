@@ -49,7 +49,7 @@ class BandsView extends Component
                         isVisible: true
                     }, 
                 });
-                console.error(`${parsedJson.Error.ErrorDesc}`);
+                console.warn(`${parsedJson.Error.ErrorDesc}`);
             }
 
         }

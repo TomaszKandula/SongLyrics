@@ -1,7 +1,7 @@
 ﻿import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as ActionTypes from "../../redux/actionTypes";
-import * as MessageTypes from "../common/messageTypes";
+import * as MessageTypes from "../../constants/messageTypes";
 import * as Posed from "../common/posedComponents";
 
 class MessageBox extends Component

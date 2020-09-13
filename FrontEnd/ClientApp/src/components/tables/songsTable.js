@@ -56,6 +56,16 @@ class SongsTable extends Component
         }
         catch (message)
         {
+            this.props.dispatch(
+            {
+                type: ActionTypes.TOGGLE_MESSAGE,
+                payload:
+                {
+                    messageType: MessageTypes.MESSAGE_ERROR,
+                    lastText: parsedJson.Error.ErrorDesc,
+                    isVisible: true
+                }, 
+            });
             console.error(`An error has occured during the processing: ${message}`);
         }
 

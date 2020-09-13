@@ -13,6 +13,7 @@ class SongBox extends Component
     {
         super(props);
         this.isLoaded = false;
+        this.allowLoader = true;
         this.state = { song: { } };
     }
 
@@ -25,6 +26,7 @@ class SongBox extends Component
     async getSong(songId)
     {
 
+        this.allowLoader = true;
         const response = await fetch(`${Api.Songs}/${songId}/`, { mode: "cors" });
         const parsedJson = await response.json();
 
@@ -52,6 +54,7 @@ class SongBox extends Component
     onClickEvent()
     {
         this.isLoaded = false;
+        this.allowLoader = false;
         this.props.dispatch({ type: ActionTypes.SELECT_SONG, payload: -1 });
     }
 
@@ -95,10 +98,15 @@ class SongBox extends Component
 
     }
 
+    renderLoading(data)
+    {
+        return this.allowLoader ? <Loaders.Circular /> : ReactHtmlParser(data.Lyrics);
+    }
+
     modalContent(data)
     {
 
-        let content = this.isLoaded ? ReactHtmlParser(data.Lyrics) : <Loaders.Circular />;
+        let content = this.isLoaded ? ReactHtmlParser(data.Lyrics) : this.renderLoading(data);
 
         return (
             <div className="song-modal">

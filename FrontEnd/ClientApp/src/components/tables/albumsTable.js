@@ -1,6 +1,7 @@
 ﻿import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as Posed from "../common/posedComponents";
+import * as MessageTypes from "../../constants/messageTypes";
 import * as ActionTypes from "../../redux/actionTypes";
 import * as Loaders from "../common/preLoaders";
 import * as Api from "../../ajax/apiUrls";
@@ -11,11 +12,8 @@ class AlbumsTable extends Component
     constructor(props)
     {
         super(props);
-        this.state =
-        {
-            albums: [],
-            loading: true
-        };
+        this.allowLoader = true;
+        this.state = { albums: [], loading: true };
     }
 
     componentDidMount()
@@ -35,15 +33,22 @@ class AlbumsTable extends Component
 
             if (parsedJson.IsSucceeded)
             {
-                this.setState(
-                {
-                    albums:  parsedJson.Albums,
-                    loading: false
-                });
-
+                this.allowLoader = true;
+                this.setState( { albums:  parsedJson.Albums, loading: false });
             }
             else
             {
+                this.allowLoader = false;
+                this.setState({ albums: [], loading: false });
+                this.props.dispatch({
+                type: ActionTypes.TOGGLE_MESSAGE,
+                    payload:
+                    {
+                        messageType: MessageTypes.MESSAGE_WARN,
+                        lastText: parsedJson.Error.ErrorDesc,
+                        isVisible: true
+                    }
+                });
                 console.error(`An error has occured during the processing: ${parsedJson.Error.ErrorDesc}`);
             }
 
@@ -92,10 +97,15 @@ class AlbumsTable extends Component
 
     }
 
+    renderLoader()
+    {
+        return this.allowLoader ? <Loaders.Circular /> : null;
+    }
+
     render()
     {
 
-        let populatedTable = this.state.loading ? <Loaders.Circular /> : this.renderTable(this.state.albums);
+        let populatedTable = this.state.loading ? this.renderLoader() : this.renderTable(this.state.albums);
 
         return (
             <Posed.FadeInDiv initialPose="hidden" pose="visible">

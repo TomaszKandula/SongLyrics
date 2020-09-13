@@ -1,6 +1,7 @@
 ﻿import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as Posed from "../common/posedComponents";
+import * as MessageTypes from "../../constants/messageTypes";
 import * as ActionTypes from "../../redux/actionTypes";
 import * as Loaders from "../common/preLoaders";
 import * as Api from "../../ajax/apiUrls";
@@ -11,11 +12,8 @@ class SongsTable extends Component
     constructor(props)
     {
         super(props);
-        this.state =
-        {
-            songs: [],
-            loading: true
-        };
+        this.allowLoader = true;
+        this.state = { songs: [], loading: true };
     }
 
     componentDidMount()
@@ -35,16 +33,24 @@ class SongsTable extends Component
 
             if (parsedJson.IsSucceeded)
             {
-                this.setState(
-                {
-                    songs: parsedJson.Songs,
-                    loading: false
-                });
-
+                this.allowLoader = true;
+                this.setState( { songs: parsedJson.Songs, loading: false });
             }
             else
             {
-                console.error(`An error has occured during the processing: ${parsedJson.Error.ErrorDesc}`);
+                this.allowLoader = false;
+                this.setState( { songs: [], loading: true });
+                this.props.dispatch(
+                {
+                    type: ActionTypes.TOGGLE_MESSAGE,
+                    payload:
+                    {
+                        messageType: MessageTypes.MESSAGE_WARN,
+                        lastText: parsedJson.Error.ErrorDesc,
+                        isVisible: true
+                    }
+                });
+                console.error(`${parsedJson.Error.ErrorDesc}`);
             }
 
         }
@@ -84,10 +90,15 @@ class SongsTable extends Component
 
     }
 
+    renderLoader()
+    {
+        return this.allowLoader ? <Loaders.Circular /> : null;
+    }
+
     render()
     {
 
-        let populatedTable = this.state.loading ? <Loaders.Circular /> : this.renderTable(this.state.songs);
+        let populatedTable = this.state.loading ? this.renderLoader() : this.renderTable(this.state.songs);
 
         return (
             <Posed.FadeInDiv initialPose="hidden" pose="visible">

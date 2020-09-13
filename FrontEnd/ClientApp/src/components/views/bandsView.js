@@ -1,6 +1,7 @@
 ﻿import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as Posed from "../common/posedComponents";
+import * as MessageTypes from "../../constants/messageTypes";
 import * as ActionTypes from "../../redux/actionTypes";
 import * as Loaders from "../common/preLoaders";
 import * as Api from "../../ajax/apiUrls";
@@ -11,11 +12,8 @@ class BandsView extends Component
     constructor(props)
     {
         super(props);
-        this.state =
-        {
-            bands: [],
-            loading: true
-        };
+        this.allowLoader = true;
+        this.state = { bands: [], loading: true };
     }
 
     componentDidMount()
@@ -34,16 +32,23 @@ class BandsView extends Component
 
             if (parsedJson.IsSucceeded)
             {
-                let objBands = parsedJson.Bands;
-                this.setState(
-                {
-                    bands: objBands,
-                    loading: false
-                });
-
+                this.allowLoader = true;
+                this.setState({ bands: parsedJson.Bands, loading: false });
             }
             else
             {
+                this.allowLoader = false;
+                this.setState({ bands: [], loading: false });
+                this.props.dispatch(
+                {
+                    type: ActionTypes.TOGGLE_MESSAGE,
+                    payload:
+                    {
+                        messageType: MessageTypes.MESSAGE_WARN,
+                        lastText: parsedJson.Error.ErrorDesc,
+                        isVisible: true
+                    }, 
+                });
                 console.error(`An error has occured during the processing: ${parsedJson.Error.ErrorDesc}`);
             }
 
@@ -84,10 +89,15 @@ class BandsView extends Component
 
     }
 
+    renderLoader()
+    {
+        return this.allowLoader ? <Loaders.Circular /> : null;
+    }
+
     render()
     {
 
-        let populatedTable = this.state.loading ? <Loaders.Circular /> : this.renderTable(this.state.bands);
+        let populatedTable = this.state.loading ? this.renderLoader() : this.renderTable(this.state.bands);
 
         return (
             <div>

@@ -1,11 +1,11 @@
 ﻿import React, { Component } from "react";
 import { connect } from "react-redux";
+import AlbumsTable from "../tables/albumsTable";
+import SongsTable from "../tables/songsTable";
 import * as Posed from "../common/posedComponents";
 import * as ActionTypes from "../../redux/actionTypes";
 import * as Loaders from "../common/preLoaders";
 import * as Api from "../../ajax/apiUrls";
-import AlbumsTable from "../tables/albumsTable";
-import SongsTable from "../tables/songsTable";
 
 class DetailsView extends Component
 {

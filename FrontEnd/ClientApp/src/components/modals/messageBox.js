@@ -106,11 +106,9 @@ class MessageBox extends Component
         let rendered = this.props.messageData.isVisible ? this.renderIn() : this.renderOut();
 
         return (
-
             <div>
                 {rendered}
             </div>
-
         );
 
     }

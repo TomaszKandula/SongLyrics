@@ -47,7 +47,7 @@ namespace SongLyrics
             });
             
             AServices.AddScoped<ILogicContext, LogicContext>();
-            AServices.AddResponseCompression(Options => { Options.Providers.Add<GzipCompressionProvider>() });
+            AServices.AddResponseCompression(Options => { Options.Providers.Add<GzipCompressionProvider>(); });
 
         }
 

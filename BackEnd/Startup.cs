@@ -16,6 +16,9 @@ namespace SongLyrics
     public class Startup
     {
 
+        private readonly string FDevelopmentOrigin = "http://localhost:59457";
+        private readonly string FDeploymentOrigin  = "https://songlyrics.azurewebsites.net";
+
         public IConfiguration FConfiguration { get; }
 
         public Startup(IConfiguration AConfiguration)
@@ -67,7 +70,9 @@ namespace SongLyrics
             AApplication.Use((LContext, LNext) => 
             {
 
-                LContext.Response.Headers.Add("Access-Control-Allow-Origin", "https://songlyrics.azurewebsites.net");
+                if (LContext.Request.Headers["Origin"] == FDeploymentOrigin || LContext.Request.Headers["Origin"] == FDevelopmentOrigin) 
+                    LContext.Response.Headers.Add("Access-Control-Allow-Origin", LContext.Request.Headers["Origin"]);
+
                 LContext.Response.Headers.Add("Access-Control-Allow-Methods", "GET");
                 LContext.Response.Headers.Add("Access-Control-Allow-Credentials", "true");
                 LContext.Response.Headers.Add("Access-Control-Allow-Headers", "AccessToken, Content-Type");

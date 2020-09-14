@@ -14,7 +14,7 @@ class SongBox extends Component
         super(props);
         this.isLoaded = false;
         this.allowLoader = true;
-        this.state = { song: {} };
+        this.state = { song: {}, shortenLyrics: "", showShorten: true };
     }
 
     componentDidUpdate()
@@ -36,7 +36,7 @@ class SongBox extends Component
             if (parsedJson.IsSucceeded)
             {
                 this.isLoaded = true;
-                this.setState({ song: parsedJson.Song });
+                this.setState({ song: parsedJson.Song, shortenLyrics: parsedJson.Song.Lyrics.substring(0, 330) + "..." });
             }
             else
             {
@@ -61,24 +61,11 @@ class SongBox extends Component
     renderIn()
     {
 
-        let isModalOpened = document.body.classList.contains("songBox-open");
-
-        if (isModalOpened)
-        {
-
-            return (
-                <div initialPose="hidden" pose="visible">
-                    {this.modalContent(this.state.song)}
-                </div>
-            );
-
-        }
-
         document.body.classList.add("songBox-open");
 
         return (
             <Posed.FadeInDiv initialPose="hidden" pose="visible">
-                {this.modalContent(this.state.song)}
+                {this.modalContent()}
             </Posed.FadeInDiv>
         );
 
@@ -96,7 +83,7 @@ class SongBox extends Component
 
             return (
                 <Posed.FadeOutDiv initialPose="visible" pose="hidden">
-                    {this.modalContent(this.state.song)}
+                    {this.modalContent()}
                 </Posed.FadeOutDiv>
             );
 
@@ -108,19 +95,26 @@ class SongBox extends Component
 
     }
 
-    modalContent(data)
+    onClickEventShowMore()
+    {
+        return this.state.showShorten ? this.setState({ showShorten: false }) : this.setState({ showShorten: true });
+    }
+
+    modalContent()
     {
 
-        let frame = `<iframe src="${data.Url}" frameborder="0" allowfullscreen></iframe>`;
-        let content = this.isLoaded ? ReactHtmlParser(data.Lyrics) : this.allowLoader ? <Loaders.Circular /> : ReactHtmlParser(data.Lyrics);
+        let frame = `<iframe src="${this.state.song.Url}" frameborder="0" allowfullscreen></iframe>`;
         let video = this.allowLoader ? ReactHtmlParser(frame) : null;
+
+        let lyrics = this.state.showShorten ? this.state.shortenLyrics : this.state.song.Lyrics; 
+        let content = this.isLoaded ? ReactHtmlParser(lyrics) : this.allowLoader ? <Loaders.Circular /> : ReactHtmlParser(lyrics);
 
         return (
             <div className="song-modal">
 
                 <div className="song-modal-holder">
                     <div className="song-modal-header">
-                        <h6><strong>{data.Name}</strong></h6>
+                        <h6><strong>{this.state.song.Name}</strong></h6>
                         <div className="close-button" onClick={this.onClickEvent.bind(this)}></div>
                     </div>
                     <div className="song-modal-content">
@@ -140,7 +134,7 @@ class SongBox extends Component
                         <div className="content-box-footer">
 
                             <div className="center-align">
-                                <i className="material-icons more-horiz">more_horiz</i>
+                                <i className="material-icons more-horiz" onClick={this.onClickEventShowMore.bind(this)}>more_horiz</i>
                             </div>
 
                         </div>

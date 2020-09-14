@@ -14,7 +14,7 @@ class SongBox extends Component
         super(props);
         this.isLoaded = false;
         this.allowLoader = true;
-        this.state = { song: { } };
+        this.state = { song: {} };
     }
 
     componentDidUpdate()
@@ -58,20 +58,30 @@ class SongBox extends Component
         this.props.dispatch({ type: ActionTypes.SELECT_SONG, payload: -1 });
     }
 
-    shouldRenderOut()
-    {
-        return document.body.classList.contains("songBox-open");
-    }
-
     renderIn()
     {
 
+        let isModalOpened = document.body.classList.contains("songBox-open");
+
+        if (isModalOpened)
+        {
+
+            return (
+                <div initialPose="hidden" pose="visible">
+                    {this.modalContent(this.state.song)}
+                </div>
+            );
+
+        }
+
         document.body.classList.add("songBox-open");
+
         return (
             <Posed.FadeInDiv initialPose="hidden" pose="visible">
                 {this.modalContent(this.state.song)}
             </Posed.FadeInDiv>
         );
+
     }
 
     renderOut()
@@ -98,26 +108,43 @@ class SongBox extends Component
 
     }
 
-    renderLoading(data)
-    {
-        return this.allowLoader ? <Loaders.Circular /> : ReactHtmlParser(data.Lyrics);
-    }
-
     modalContent(data)
     {
 
-        let content = this.isLoaded ? ReactHtmlParser(data.Lyrics) : this.renderLoading(data);
+        let frame = `<iframe src="${data.Url}" frameborder="0" allowfullscreen></iframe>`;
+        let content = this.isLoaded ? ReactHtmlParser(data.Lyrics) : this.allowLoader ? <Loaders.Circular /> : ReactHtmlParser(data.Lyrics);
+        let video = this.allowLoader ? ReactHtmlParser(frame) : null;
 
         return (
             <div className="song-modal">
 
                 <div className="song-modal-holder">
                     <div className="song-modal-header">
-                        <h6>{data.Name}</h6>
+                        <h6><strong>{data.Name}</strong></h6>
                         <div className="close-button" onClick={this.onClickEvent.bind(this)}></div>
                     </div>
                     <div className="song-modal-content">
-                        {content}
+
+                        <div className="content-box-header">
+
+                            <div className="video-container">
+                                {video}
+                            </div>
+
+                        </div>
+
+                        <div className="content-box-content">
+                            {content}
+                        </div>
+
+                        <div className="content-box-footer">
+
+                            <div className="center-align">
+                                <i className="material-icons more-horiz">more_horiz</i>
+                            </div>
+
+                        </div>
+
                     </div>
                     <div className="song-modal-footer">
                         Provided by Song Lyrics.

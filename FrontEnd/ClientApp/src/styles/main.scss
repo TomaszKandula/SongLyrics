@@ -6,6 +6,7 @@
 @import "./components/song-modal.scss";
 @import "./components/close-button.scss";
 @import "./components/content-box.scss";
+@import "./components/row-margins.scss";
 
 
 /* Miscelánea */
@@ -35,71 +36,5 @@
     font-size: 32px;
     color: #9e9e9e !important;
     cursor: pointer;
-}
-
-
-/* Custom top margins */
-
-
-.margin-t-5 
-{
-    margin-top: 5px;
-}
-
-
-.margin-t-10 
-{
-    margin-top: 10px;
-}
-
-
-.margin-t-15 
-{
-    margin-top: 15px;
-}
-
-
-.margin-t-30 
-{
-    margin-top: 30px;
-}
-
-
-.margin-t-50
-{
-    margin-top: 50px;
-}
-
-
-/* Custom bottom margins */
-
-
-.margin-b-5
-{
-    margin-bottom: 5px;
-}
-
-
-.margin-b-10 
-{
-    margin-bottom: 10px;
-}
-
-
-.margin-b-15 
-{
-    margin-bottom: 15px;
-}
-
-
-.margin-b-30 
-{
-    margin-bottom: 30px;
-}
-
-
-.margin-b-50
-{
-    margin-bottom: 50px;
 }
 

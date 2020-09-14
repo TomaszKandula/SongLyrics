@@ -40,8 +40,9 @@ class AlbumsTable extends Component
             {
                 this.allowLoader = false;
                 this.setState({ albums: [], loading: false });
-                this.props.dispatch({
-                type: ActionTypes.TOGGLE_MESSAGE,
+                this.props.dispatch(
+                {
+                    type: ActionTypes.TOGGLE_MESSAGE,
                     payload:
                     {
                         messageType: MessageTypes.MESSAGE_WARN,

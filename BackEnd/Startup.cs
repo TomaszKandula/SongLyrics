@@ -29,7 +29,8 @@ namespace SongLyrics
         public void ConfigureServices(IServiceCollection AServices)
         {
 
-            AServices.AddMvc(Option => Option.CacheProfiles
+            AServices.AddMvc(LOption => LOption
+                .CacheProfiles
                 .Add("ResponseCache", new CacheProfile()
                 {
                     Duration = 5,
@@ -39,17 +40,14 @@ namespace SongLyrics
 
             AServices.AddControllers();
             AServices.AddSingleton<IAppLogger, AppLogger>();
-            AServices.AddDbContext<MainDbContext>(Options => 
+            AServices.AddDbContext<MainDbContext>(LOptions => 
             {
-                Options.UseSqlServer(FConfiguration.GetConnectionString("DbConnect"),
+                LOptions.UseSqlServer(FConfiguration.GetConnectionString("DbConnect"),
                 AddOptions => AddOptions.EnableRetryOnFailure());
             });
+            
             AServices.AddScoped<ILogicContext, LogicContext>();
-
-            AServices.AddResponseCompression(Options =>
-            {
-                Options.Providers.Add<GzipCompressionProvider>();
-            });
+            AServices.AddResponseCompression(Options => { Options.Providers.Add<GzipCompressionProvider>() });
 
         }
 
@@ -59,9 +57,7 @@ namespace SongLyrics
             AApplication.UseResponseCompression();
             
             if (AEnvironment.IsDevelopment())
-            {
                 AApplication.UseDeveloperExceptionPage();
-            }
 
             AApplication.UseDefaultFiles();
             AApplication.UseStaticFiles();
@@ -81,10 +77,7 @@ namespace SongLyrics
 
             });
 
-            AApplication.UseEndpoints(Options =>
-            {
-                Options.MapControllers();
-            });
+            AApplication.UseEndpoints(Options => { Options.MapControllers(); });
 
         }
 

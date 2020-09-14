@@ -67,7 +67,7 @@ namespace SongLyrics
             AApplication.Use((LContext, LNext) => 
             {
 
-                LContext.Response.Headers.Add("Access-Control-Allow-Origin", "http://localhost:59457");
+                LContext.Response.Headers.Add("Access-Control-Allow-Origin", "https://songlyrics.azurewebsites.net");
                 LContext.Response.Headers.Add("Access-Control-Allow-Methods", "GET");
                 LContext.Response.Headers.Add("Access-Control-Allow-Credentials", "true");
                 LContext.Response.Headers.Add("Access-Control-Allow-Headers", "AccessToken, Content-Type");

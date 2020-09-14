@@ -1,8 +1,10 @@
-# SongLyrics
+# Song Lyrics
 
 Song Lyrics project allow to traverse through different artists to find songs from albums for lyrics.
 
 In the future, this project may also allow to register an account, and the users will be able to add and modify artists data (albums, songs, lyrics, etc.). If decided, the project might be deployed on Azure cloud (then the domain is yet to be determined).
+
+Working demo is availabe here: [Song Lyrics](https://songlyrics.azurewebsites.net).
 
 ## Tech-stack
 

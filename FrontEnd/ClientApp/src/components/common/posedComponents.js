@@ -14,7 +14,8 @@ export const fadeInAnimation =
         beforeChildren: true,
         delayChildren: 200,
         staggerChildren: 50,
-        transition: {
+        transition:
+        {
             type: "tween",
             duration: 500
         }
@@ -35,14 +36,15 @@ export const fadeOutAnimation =
         beforeChildren: true,
         delayChildren: 200,
         staggerChildren: 50,
-        transition: {
+        transition:
+        {
             type: "tween",
             duration: 500
         }
     }
 };
 
-export const scaledFadeAnimation =
+export const scaledAnimation =
 {
     hidden:
     {
@@ -57,9 +59,9 @@ export const scaledFadeAnimation =
 };
 
 export const MainContainer = posed.div(fadeInAnimation);
-export const ScaleTitle    = posed.h1(scaledFadeAnimation);
-export const ScalePara     = posed.p(scaledFadeAnimation);
-export const ScaleLink     = posed.a(scaledFadeAnimation);
-export const ScaleDiv      = posed.div(scaledFadeAnimation);
+export const ScaleTitle    = posed.h1(scaledAnimation);
+export const ScalePara     = posed.p(scaledAnimation);
+export const ScaleLink     = posed.a(scaledAnimation);
+export const ScaleDiv      = posed.div(scaledAnimation);
 export const FadeInDiv     = posed.div(fadeInAnimation);
 export const FadeOutDiv    = posed.div(fadeOutAnimation);

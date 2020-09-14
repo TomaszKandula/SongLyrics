@@ -99,15 +99,10 @@ class BandsView extends Component
 
     }
 
-    renderLoader()
-    {
-        return this.allowLoader ? <Loaders.Circular /> : null;
-    }
-
     render()
     {
 
-        let populatedTable = this.state.loading ? this.renderLoader() : this.renderTable(this.state.bands);
+        let populatedTable = this.state.loading ? this.allowLoader ? <Loaders.Circular /> : null : this.renderTable(this.state.bands);
 
         return (
             <div>

@@ -111,22 +111,22 @@ class DetailsView extends Component
 
     }
 
-    renderDetails(data)
+    renderDetails()
     {
 
         let PastMembers    = "";
         let CurrentMembers = "";
 
-        for (let Index = 0; Index < data.members.length; ++Index)
+        for (let Index = 0; Index < this.state.details.members.length; ++Index)
         {
 
-            if (data.members[Index].Status === "Active")
+            if (this.state.details.members[Index].Status === "Active")
             {
-                CurrentMembers = CurrentMembers + ` ${data.members[Index].FirstName} ${data.members[Index].LastName},`;
+                CurrentMembers = CurrentMembers + ` ${this.state.details.members[Index].FirstName} ${this.state.details.members[Index].LastName},`;
             }
             else
             {
-                PastMembers = PastMembers + ` ${data.members[Index].FirstName} ${data.members[Index].LastName},`;
+                PastMembers = PastMembers + ` ${this.state.details.members[Index].FirstName} ${this.state.details.members[Index].LastName},`;
             }
 
         }
@@ -134,18 +134,18 @@ class DetailsView extends Component
         CurrentMembers = CurrentMembers.replace(/.$/, ".");
         PastMembers    = PastMembers.replace(/.$/, ".");
 
-        let getEstablished = new Date(data.established);
-        let getActiveUntil = new Date(data.activeUntil);
+        let getEstablished = new Date(this.state.details.established);
+        let getActiveUntil = new Date(this.state.details.activeUntil);
 
-        let Established = data.established != null ? getEstablished.getFullYear() : null;
-        let ActiveUntil = data.activeUntil != null ? getActiveUntil.getFullYear() : null;
+        let Established = this.state.details.established != null ? getEstablished.getFullYear() : null;
+        let ActiveUntil = this.state.details.activeUntil != null ? getActiveUntil.getFullYear() : null;
 
         return (
             <table className="detailsTable">
                 <tbody>
                     <tr>
                         <td colSpan="2">
-                            <h3><b>{data.name}</b></h3>
+                            <h3><b>{this.state.details.name}</b></h3>
                         </td>
                     </tr>
                     <tr>
@@ -158,7 +158,7 @@ class DetailsView extends Component
                     </tr>
                     <tr>
                         <td className="detailsTableCol1">Genere</td>
-                        <td className="detailsTableCol2">{data.genere}</td>
+                        <td className="detailsTableCol2">{this.state.details.genere}</td>
                     </tr>
                     <tr>
                         <td colSpan="2">Members</td>
@@ -181,7 +181,7 @@ class DetailsView extends Component
     render()
     {
 
-        let populatedDetails = this.state.loading ? <Loaders.Circular /> : this.renderDetails(this.state.details);
+        let populatedDetails = this.state.loading ? <Loaders.Circular /> : this.renderDetails();
 
         return (
             <div>

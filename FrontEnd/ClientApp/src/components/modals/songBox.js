@@ -58,43 +58,6 @@ class SongBox extends Component
         this.props.dispatch({ type: ActionTypes.SELECT_SONG, payload: -1 });
     }
 
-    renderIn()
-    {
-
-        document.body.classList.add("songBox-open");
-
-        return (
-            <Posed.FadeInDiv initialPose="hidden" pose="visible">
-                {this.modalContent()}
-            </Posed.FadeInDiv>
-        );
-
-    }
-
-    renderOut()
-    {
-
-        let isModalOpened = document.body.classList.contains("songBox-open");
-
-        if (isModalOpened)
-        {
-
-            document.body.classList.remove("songBox-open");
-
-            return (
-                <Posed.FadeOutDiv initialPose="visible" pose="hidden">
-                    {this.modalContent()}
-                </Posed.FadeOutDiv>
-            );
-
-        }
-        else
-        {
-            return null;
-        }
-
-    }
-
     onClickEventShowMore()
     {
         return this.state.showShorten ? this.setState({ showShorten: false }) : this.setState({ showShorten: true });
@@ -147,6 +110,43 @@ class SongBox extends Component
 
             </div>
         );
+    }
+
+    renderIn()
+    {
+
+        document.body.classList.add("songBox-open");
+
+        return (
+            <Posed.FadeInDiv initialPose="hidden" pose="visible">
+                {this.modalContent()}
+            </Posed.FadeInDiv>
+        );
+
+    }
+
+    renderOut()
+    {
+
+        let isModalOpened = document.body.classList.contains("songBox-open");
+
+        if (isModalOpened)
+        {
+
+            document.body.classList.remove("songBox-open");
+
+            return (
+                <Posed.FadeOutDiv initialPose="visible" pose="hidden">
+                    {this.modalContent()}
+                </Posed.FadeOutDiv>
+            );
+
+        }
+        else
+        {
+            return null;
+        }
+
     }
 
     render()

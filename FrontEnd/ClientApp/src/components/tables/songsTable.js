@@ -100,15 +100,10 @@ class SongsTable extends Component
 
     }
 
-    renderLoader()
-    {
-        return this.allowLoader ? <Loaders.Circular /> : null;
-    }
-
     render()
     {
 
-        let populatedTable = this.state.loading ? this.renderLoader() : this.renderTable(this.state.songs);
+        let populatedTable = this.state.loading ? this.allowLoader ? <Loaders.Circular /> : null : this.renderTable(this.state.songs);
 
         return (
             <Posed.FadeInDiv initialPose="hidden" pose="visible">

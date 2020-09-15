@@ -1,10 +1,10 @@
 ﻿import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as Posed from "../common/posedComponents";
-import * as MessageTypes from "../../constants/messageTypes";
 import * as ActionTypes from "../../redux/actionTypes";
 import * as Loaders from "../common/preLoaders";
 import * as Api from "../../ajax/apiUrls";
+import { GetData } from "../../ajax/simpleRest";
 
 class SongsTable extends Component
 {
@@ -12,6 +12,8 @@ class SongsTable extends Component
     constructor(props)
     {
         super(props);
+        this.dispatch = this.props.dispatch.bind(this);
+        this.update = this.updateData.bind(this);
         this.allowLoader = true;
         this.state = { songs: [], loading: true };
     }
@@ -19,58 +21,28 @@ class SongsTable extends Component
     componentDidMount()
     {
         if (this.props.state.album.id > 0)
-            this.getSongs(this.props.state.album.id);
+        {
+            this.allowLoader = true;
+            GetData(`${Api.Songs}/?albumid=${this.props.state.album.id}`, this.update, this.dispatch);
+        }
     }
 
-    async getSongs(albumId)
+    updateData(payload)
     {
 
-        const response = await fetch(`${Api.Songs}/?albumid=${albumId}`, { mode: "cors" });
-        const parsedJson = await response.json();
-
-        try
+        if (payload)
         {
-
-            if (parsedJson.IsSucceeded)
-            {
-                this.allowLoader = true;
-                this.setState( { songs: parsedJson.Songs, loading: false });
-            }
-            else
-            {
-                this.allowLoader = false;
-                this.setState( { songs: [], loading: true });
-                this.props.dispatch(
-                {
-                    type: ActionTypes.TOGGLE_MESSAGE,
-                    payload:
-                    {
-                        messageType: MessageTypes.MESSAGE_WARN,
-                        lastText: parsedJson.Error.ErrorDesc,
-                        isVisible: true
-                    }
-                });
-                console.warn(`${parsedJson.Error.ErrorDesc}`);
-            }
-
+            this.allowLoader = true;
+            this.setState({ songs: payload.Songs, loading: false });
         }
-        catch (message)
+        else
         {
-            this.props.dispatch(
-            {
-                type: ActionTypes.TOGGLE_MESSAGE,
-                payload:
-                {
-                    messageType: MessageTypes.MESSAGE_ERROR,
-                    lastText: parsedJson.Error.ErrorDesc,
-                    isVisible: true
-                }, 
-            });
-            console.error(`An error has occured during the processing: ${message}`);
+            this.allowLoader = false;
+            this.setState( { songs: [], loading: true });
         }
 
     }
-
+    
     clickRowSelect(songId)
     {
         this.props.dispatch({ type: ActionTypes.SELECT_SONG, payload: songId });

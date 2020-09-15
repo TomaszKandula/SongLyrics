@@ -6,6 +6,7 @@ import * as Posed from "../common/posedComponents";
 import * as Loaders from "../common/preLoaders";
 import AlbumsTable from "../tables/albumsTable";
 import SongsTable from "../tables/songsTable";
+import { GetData } from "../../ajax/simpleRest";
 
 class DetailsView extends Component
 {
@@ -13,6 +14,8 @@ class DetailsView extends Component
     constructor(props)
     {
         super(props);
+        this.dispatch = this.props.dispatch.bind(this);
+        this.update = this.updateData.bind(this);
         this.state =
         {
             details:
@@ -30,46 +33,30 @@ class DetailsView extends Component
     componentDidMount()
     {
         if (this.props.bandId > 0)
-            this.getDetails(this.props.bandId);
+            GetData(`${Api.Bands}/${this.props.bandId}/details/`, this.update, this.dispatch);
     }
 
-    async getDetails(bandId)
+    updateData(payload)
     {
 
-        const response = await fetch(`${Api.Bands}/${bandId}/details/`, { mode: "cors" });
-        const parsedJson = await response.json();
+        if (!payload) return false;
 
-        try
+        this.setState(
         {
-
-            if (parsedJson.IsSucceeded)
+            details:
             {
-                this.setState(
-                {
-                    details:
-                    {
-                        name:        parsedJson.Name,
-                        established: parsedJson.Established,
-                        activeUntil: parsedJson.ActiveUntil,
-                        genere:      parsedJson.Genere,
-                        members:     parsedJson.Members,
-                    },
-                    loading: false
-                });
+                name:        payload.Name,
+                established: payload.Established,
+                activeUntil: payload.ActiveUntil,
+                genere:      payload.Genere,
+                members:     payload.Members,
+            },
+            loading: false
+        });
 
-            }
-            else
-            {
-                console.warn(`${parsedJson.Error.ErrorDesc}`);
-            }
+        return true;
 
-        }
-        catch (message)
-        {
-            console.error(`An error has occured during the processing: ${message}`);
-        }
-
-    }
+    }      
 
     clickSelectBands()
     {

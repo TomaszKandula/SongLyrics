@@ -5,6 +5,7 @@ import * as ActionTypes from "../../redux/actionTypes";
 import * as Posed from "../common/posedComponents";
 import * as Loaders from "../common/preLoaders";
 import * as Api from "../../ajax/apiUrls";
+import { GetData } from "../../ajax/simpleRest";
 
 class SongBox extends Component
 {
@@ -12,6 +13,8 @@ class SongBox extends Component
     constructor(props)
     {
         super(props);
+        this.dispatch = this.props.dispatch.bind(this);
+        this.update = this.updateData.bind(this);
         this.isLoaded = false;
         this.allowLoader = true;
         this.state = { song: {}, shortenLyrics: "", showShorten: true };
@@ -19,36 +22,19 @@ class SongBox extends Component
 
     componentDidUpdate()
     {
+
         if (this.props.songId > 0 && !this.isLoaded)
-            this.getSong(this.props.songId);
+        {
+            this.allowLoader = true;
+            GetData(`${Api.Songs}/${this.props.songId}/`, this.update, this.dispatch);
+        }
+
     }
 
-    async getSong(songId)
+    updateData(payload)
     {
-
-        this.allowLoader = true;
-        const response = await fetch(`${Api.Songs}/${songId}/`, { mode: "cors" });
-        const parsedJson = await response.json();
-
-        try
-        {
-
-            if (parsedJson.IsSucceeded)
-            {
-                this.isLoaded = true;
-                this.setState({ song: parsedJson.Song, shortenLyrics: parsedJson.Song.Lyrics.substring(0, 330) + "..." });
-            }
-            else
-            {
-                console.warn(`${parsedJson.Error.ErrorDesc}`);
-            }
-
-        }
-        catch (message)
-        {
-            console.error(`An error has occured during the processing: ${message}`);
-        }
-
+        this.isLoaded = true;
+        this.setState({ song: payload.Song, shortenLyrics: payload.Song.Lyrics.substring(0, 330) + "..." });
     }
 
     clickCloseModal()

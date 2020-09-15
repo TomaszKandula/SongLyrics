@@ -16,8 +16,6 @@ Planned:
 1. Redux.js.
 1. Materialize via CDN.
 
-Under development.
-
 ### Back-end
 
 1. Web API (NET Core 3.1 / C# language).

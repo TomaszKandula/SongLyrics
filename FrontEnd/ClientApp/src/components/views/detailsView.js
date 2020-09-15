@@ -4,6 +4,7 @@ import * as Api from "../../ajax/apiUrls";
 import * as ActionTypes from "../../redux/actionTypes";
 import * as Posed from "../common/posedComponents";
 import * as Loaders from "../common/preLoaders";
+import BandDetails from "../common/bandDetails";
 import AlbumsTable from "../tables/albumsTable";
 import SongsTable from "../tables/songsTable";
 import { GetData } from "../../ajax/simpleRest";
@@ -14,6 +15,9 @@ class DetailsView extends Component
     constructor(props)
     {
         super(props);
+        this.SelectBands = this.clickSelectBands.bind(this);
+        this.SelectAlbums = this.clickSelectAlbums.bind(this);
+        this.SelectSongs = this.clickSelectSongs.bind(this);
         this.dispatch = this.props.dispatch.bind(this);
         this.update = this.updateData.bind(this);
         this.state =
@@ -58,20 +62,9 @@ class DetailsView extends Component
 
     }      
 
-    clickSelectBands()
-    {
-        this.props.dispatch({ type: ActionTypes.SELECT_BAND, payload: 0 });
-    }
-
-    clickSelectAlbums()
-    {
-        this.props.dispatch({ type: ActionTypes.SELECT_ALBUM, payload: 0 });
-    }
-
-    clickSelectSongs()
-    {
-        this.props.dispatch({ type: ActionTypes.SELECT_SONG, payload: 0 });
-    }
+    clickSelectBands()  { this.props.dispatch({ type: ActionTypes.SELECT_BAND, payload: 0 });  }
+    clickSelectAlbums() { this.props.dispatch({ type: ActionTypes.SELECT_ALBUM, payload: 0 }); }
+    clickSelectSongs()  { this.props.dispatch({ type: ActionTypes.SELECT_SONG, payload: 0 });  }
 
     renderLinks()
     {
@@ -80,8 +73,8 @@ class DetailsView extends Component
         {
             return (
                 <div className="col s12">
-                    <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.clickSelectBands.bind(this)}>Bands</a>
-                    <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.clickSelectAlbums.bind(this)}>Albums</a>
+                    <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.SelectBands}>Bands</a>
+                    <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.SelectAlbums}>Albums</a>
                 </div>
             );
         }
@@ -89,86 +82,19 @@ class DetailsView extends Component
         {
             return (
                 <div className="col s12">
-                    <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.clickSelectBands.bind(this)}>Bands</a>
-                    <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.clickSelectAlbums.bind(this)}>Albums</a>
-                    <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.clickSelectSongs.bind(this)}>Songs</a>
+                    <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.SelectBands}>Bands</a>
+                    <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.SelectAlbums}>Albums</a>
+                    <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.SelectSongs}>Songs</a>
                 </div>
             );
         }
 
     }
 
-    renderDetails()
-    {
-
-        let PastMembers    = "";
-        let CurrentMembers = "";
-
-        for (let Index = 0; Index < this.state.details.members.length; ++Index)
-        {
-
-            if (this.state.details.members[Index].Status === "Active")
-            {
-                CurrentMembers = CurrentMembers + ` ${this.state.details.members[Index].FirstName} ${this.state.details.members[Index].LastName},`;
-            }
-            else
-            {
-                PastMembers = PastMembers + ` ${this.state.details.members[Index].FirstName} ${this.state.details.members[Index].LastName},`;
-            }
-
-        }
-
-        CurrentMembers = CurrentMembers.replace(/.$/, ".");
-        PastMembers    = PastMembers.replace(/.$/, ".");
-
-        let getEstablished = new Date(this.state.details.established);
-        let getActiveUntil = new Date(this.state.details.activeUntil);
-
-        let Established = this.state.details.established != null ? getEstablished.getFullYear() : null;
-        let ActiveUntil = this.state.details.activeUntil != null ? getActiveUntil.getFullYear() : null;
-
-        return (
-            <table className="detailsTable">
-                <tbody>
-                    <tr>
-                        <td colSpan="2">
-                            <h3><b>{this.state.details.name}</b></h3>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="detailsTableCol1">Established</td>
-                        <td className="detailsTableCol2">{Established}</td>
-                    </tr>
-                    <tr>
-                        <td className="detailsTableCol1">Active until</td>
-                        <td className="detailsTableCol2">{ActiveUntil}</td>
-                    </tr>
-                    <tr>
-                        <td className="detailsTableCol1">Genere</td>
-                        <td className="detailsTableCol2">{this.state.details.genere}</td>
-                    </tr>
-                    <tr>
-                        <td colSpan="2">Members</td>
-                    </tr>
-                    <tr>
-                        <td className="detailsTableCol1">Current</td>
-                        <td className="detailsTableCol2">{CurrentMembers}</td>
-                    </tr>
-                    <tr>
-                        <td className="detailsTableCol1">Past</td>
-                        <td className="detailsTableCol2">{PastMembers}</td>
-                    </tr>
-
-                </tbody>
-            </table>
-        );
-
-    }
-
     render()
     {
 
-        let populatedDetails = this.state.loading ? <Loaders.Circular /> : this.renderDetails();
+        let populatedDetails = this.state.loading ? <Loaders.Circular /> : <BandDetails details={this.state.details} />
 
         return (
             <div>

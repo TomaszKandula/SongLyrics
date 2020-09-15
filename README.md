@@ -10,11 +10,10 @@ Working demo has been deployed on Azure Cloud: [Song Lyrics](https://songlyrics.
 
 ### Front-end
 
-Planned:
-
 1. React.js
 1. Redux.js.
-1. Materialize via CDN.
+1. Materialize CSS via CDN.
+1. React-Materialize.
 
 ### Back-end
 

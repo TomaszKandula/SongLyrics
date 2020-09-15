@@ -12,8 +12,8 @@ Working demo has been deployed on Azure Cloud: [Song Lyrics](https://songlyrics.
 
 1. React.js
 1. Redux.js.
-1. Materialize CSS via CDN.
 1. React-Materialize.
+1. Materialize CSS via CDN.
 
 ### Back-end
 

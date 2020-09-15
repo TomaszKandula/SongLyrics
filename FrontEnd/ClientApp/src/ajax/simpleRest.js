@@ -51,12 +51,7 @@ export const GetData = (endpoint, callback, dispatch) =>
 
     }
 
-    fetch(endpoint,
-        {
-            method: "GET",
-            mode: "cors",
-            headers: { "Content-Type": "application/json" }
-        })
+    fetch(endpoint)
         .then(response =>
         {
             if (!response.ok) throw new Error("Network response was non-ok.");

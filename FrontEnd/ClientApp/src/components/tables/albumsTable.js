@@ -77,12 +77,12 @@ class AlbumsTable extends Component
         return date != null ? getDate.getFullYear() : null;       
     }
 
-    rowClickEvent(albumId)
+    clickRowSelect(albumId)
     {
         this.props.dispatch({ type: ActionTypes.SELECT_ALBUM, payload: albumId });
     }
 
-    renderTable(data)
+    renderTable()
     {
 
         return (
@@ -95,8 +95,8 @@ class AlbumsTable extends Component
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map(albums =>
-                        <tr key={albums.Id} onClick={() => this.rowClickEvent(albums.Id)}>
+                    {this.state.albums.map(albums =>
+                        <tr key={albums.Id} onClick={() => this.clickRowSelect(albums.Id)}>
                             <td className="albumsTableCol1">{albums.Id}</td>
                             <td className="albumsTableCol2">{albums.AlbumName}</td>
                             <td className="albumsTableCol3">{this.returnFullYear(albums.Issued)}</td>
@@ -111,7 +111,7 @@ class AlbumsTable extends Component
     render()
     {
 
-        let populatedTable = this.state.loading ? this.allowLoader ? <Loaders.Circular /> : null : this.renderTable(this.state.albums);
+        let populatedTable = this.state.loading ? this.allowLoader ? <Loaders.Circular /> : null : this.renderTable();
 
         return (
             <Posed.FadeInDiv initialPose="hidden" pose="visible">

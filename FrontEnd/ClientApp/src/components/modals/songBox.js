@@ -51,14 +51,14 @@ class SongBox extends Component
 
     }
 
-    onClickEvent()
+    clickCloseModal()
     {
         this.isLoaded = false;
         this.allowLoader = false;
         this.props.dispatch({ type: ActionTypes.SELECT_SONG, payload: -1 });
     }
 
-    onClickEventShowMore()
+    clickShowMore()
     {
         return this.state.showShorten ? this.setState({ showShorten: false }) : this.setState({ showShorten: true });
     }
@@ -66,7 +66,7 @@ class SongBox extends Component
     modalContent()
     {
 
-        let frame = `<iframe src="${this.state.song.Url}" frameborder="0" allowfullscreen></iframe>`;
+        let frame = `<iframe src="${this.state.song.Url}" frameborder="0"></iframe>`;
         let video = this.allowLoader ? ReactHtmlParser(frame) : null;
 
         let lyrics = this.state.showShorten ? this.state.shortenLyrics : this.state.song.Lyrics; 
@@ -78,7 +78,7 @@ class SongBox extends Component
                 <div className="song-modal-holder">
                     <div className="song-modal-header">
                         <h6><strong>{this.state.song.Name}</strong></h6>
-                        <div className="close-button" onClick={this.onClickEvent.bind(this)}></div>
+                        <div className="close-button" onClick={this.clickCloseModal.bind(this)}></div>
                     </div>
                     <div className="song-modal-content">
 
@@ -97,7 +97,7 @@ class SongBox extends Component
                         <div className="content-box-footer">
 
                             <div className="center-align">
-                                <i className="material-icons more-horiz" onClick={this.onClickEventShowMore.bind(this)}>more_horiz</i>
+                                <i className="material-icons more-horiz" onClick={this.clickShowMore.bind(this)}>more_horiz</i>
                             </div>
 
                         </div>

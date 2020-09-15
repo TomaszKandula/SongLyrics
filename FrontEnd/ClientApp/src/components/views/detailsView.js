@@ -1,11 +1,11 @@
 ﻿import React, { Component } from "react";
 import { connect } from "react-redux";
+import * as Api from "../../ajax/apiUrls";
+import * as ActionTypes from "../../redux/actionTypes";
+import * as Posed from "../common/posedComponents";
+import * as Loaders from "../common/preLoaders";
 import AlbumsTable from "../tables/albumsTable";
 import SongsTable from "../tables/songsTable";
-import * as Posed from "../common/posedComponents";
-import * as ActionTypes from "../../redux/actionTypes";
-import * as Loaders from "../common/preLoaders";
-import * as Api from "../../ajax/apiUrls";
 
 class DetailsView extends Component
 {
@@ -71,17 +71,17 @@ class DetailsView extends Component
 
     }
 
-    onClickBands()
+    clickSelectBands()
     {
         this.props.dispatch({ type: ActionTypes.SELECT_BAND, payload: 0 });
     }
 
-    onClickAlbums()
+    clickSelectAlbums()
     {
         this.props.dispatch({ type: ActionTypes.SELECT_ALBUM, payload: 0 });
     }
 
-    onClickSongs()
+    clickSelectSongs()
     {
         this.props.dispatch({ type: ActionTypes.SELECT_SONG, payload: 0 });
     }
@@ -93,8 +93,8 @@ class DetailsView extends Component
         {
             return (
                 <div className="col s12">
-                    <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.onClickBands.bind(this)}>Bands</a>
-                    <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.onClickAlbums.bind(this)}>Albums</a>
+                    <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.clickSelectBands.bind(this)}>Bands</a>
+                    <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.clickSelectAlbums.bind(this)}>Albums</a>
                 </div>
             );
         }
@@ -102,9 +102,9 @@ class DetailsView extends Component
         {
             return (
                 <div className="col s12">
-                    <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.onClickBands.bind(this)}>Bands</a>
-                    <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.onClickAlbums.bind(this)}>Albums</a>
-                    <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.onClickSongs.bind(this)}>Songs</a>
+                    <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.clickSelectBands.bind(this)}>Bands</a>
+                    <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.clickSelectAlbums.bind(this)}>Albums</a>
+                    <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.clickSelectSongs.bind(this)}>Songs</a>
                 </div>
             );
         }

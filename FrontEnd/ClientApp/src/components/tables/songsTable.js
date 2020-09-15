@@ -71,12 +71,12 @@ class SongsTable extends Component
 
     }
 
-    rowClickEvent(songId)
+    clickRowSelect(songId)
     {
         this.props.dispatch({ type: ActionTypes.SELECT_SONG, payload: songId });
     }
 
-    renderTable(data)
+    renderTable()
     {
 
         return (            
@@ -88,8 +88,8 @@ class SongsTable extends Component
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map(songs =>
-                        <tr key={songs.Id} onClick={() => this.rowClickEvent(songs.Id)}>
+                    {this.state.songs.map(songs =>
+                        <tr key={songs.Id} onClick={() => this.clickRowSelect(songs.Id)}>
                             <td className="songsTableCol1">{songs.Id}</td>
                             <td className="songsTableCol2">{songs.Name}</td>
                         </tr>
@@ -103,7 +103,7 @@ class SongsTable extends Component
     render()
     {
 
-        let populatedTable = this.state.loading ? this.allowLoader ? <Loaders.Circular /> : null : this.renderTable(this.state.songs);
+        let populatedTable = this.state.loading ? this.allowLoader ? <Loaders.Circular /> : null : this.renderTable();
 
         return (
             <Posed.FadeInDiv initialPose="hidden" pose="visible">

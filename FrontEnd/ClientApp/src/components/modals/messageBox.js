@@ -7,7 +7,7 @@ import * as Posed from "../common/posedComponents";
 class MessageBox extends Component
 {
 
-    closeModal()
+    clickCloseModal()
     {
         this.props.dispatch(
         {
@@ -53,7 +53,7 @@ class MessageBox extends Component
                     <h4>{messageHeader}</h4>
                     <p>{this.props.messageData.lastText}</p>
                     <div className="message-modal-footer">
-                        <div className="waves-effect waves-light btn" onClick={this.closeModal.bind(this)}>OK</div>
+                        <div className="waves-effect waves-light btn" onClick={this.clickCloseModal.bind(this)}>OK</div>
                     </div>
                 </div>
 

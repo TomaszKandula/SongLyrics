@@ -70,12 +70,12 @@ class BandsView extends Component
 
     }
 
-    rowClickEvent(bandId)
+    clickRowSelect(bandId)
     {
         this.props.dispatch({ type: ActionTypes.SELECT_BAND, payload: bandId });
     }
 
-    renderTable(data)
+    renderTable()
     {
 
         return (
@@ -87,8 +87,8 @@ class BandsView extends Component
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map(bands =>
-                        <tr key={bands.Id} onClick={() => this.rowClickEvent(bands.Id)}>
+                    {this.state.bands.map(bands =>
+                        <tr key={bands.Id} onClick={() => this.clickRowSelect(bands.Id)}>
                             <td className="bandsTableCol1">{bands.Id}</td>
                             <td className="bandsTableCol2">{bands.Name}</td>
                         </tr>                       
@@ -102,7 +102,7 @@ class BandsView extends Component
     render()
     {
 
-        let populatedTable = this.state.loading ? this.allowLoader ? <Loaders.Circular /> : null : this.renderTable(this.state.bands);
+        let populatedTable = this.state.loading ? this.allowLoader ? <Loaders.Circular /> : null : this.renderTable();
 
         return (
             <div>

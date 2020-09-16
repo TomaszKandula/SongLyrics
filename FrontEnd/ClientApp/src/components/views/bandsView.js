@@ -68,20 +68,27 @@ class BandsView extends Component
 
                 <div className="row">
 
-                    <div className="col s1">
+                    <div className="col s2">
                         &nbsp;
                     </div>
 
-                    <div className="col s10">
+                    <div className="col s8">
 
                         <div className="row">
-                            <div className="col s8">
+                            <div className="col s12">
 
-                                <Posed.FadeInDiv initialPose="hidden" pose="visible" className="row" id="topbarsearch">
-                                    <div className="input-field col s8 s12 black-text">
-                                        <i className="grey-text material-icons prefix">search</i>
-                                        <input type="text" placeholder="Search for band" id="autocomplete-input" className="autocomplete black-text" />
-                                    </div>
+                                <Posed.FadeInDiv initialPose="hidden" pose="visible">
+                                    <nav className="hoverable">
+                                        <div className="nav-wrapper white">
+                                            <div className="input-field">
+                                                <input id="search" type="search" placeholder="Search for artist" className="autocomplete black-text" />
+                                                <label className="label-icon" for="search">
+                                                    <i className="material-icons grey-text darken-4">search</i>
+                                                </label>
+                                                <i className="material-icons">close</i>
+                                            </div>
+                                        </div>
+                                    </nav>
                                 </Posed.FadeInDiv>
 
                             </div>
@@ -89,7 +96,7 @@ class BandsView extends Component
 
                         <div className="row">
 
-                            <Posed.FadeInDiv initialPose="hidden" pose="visible" className="col s8">
+                            <Posed.FadeInDiv initialPose="hidden" pose="visible" className="col s12">
 
                                 <div className="card-panel white hoverable">
                                     {renderedTable}
@@ -101,7 +108,7 @@ class BandsView extends Component
 
                     </div>
 
-                    <div className="col s1">
+                    <div className="col s2">
                         &nbsp;
                     </div>
 

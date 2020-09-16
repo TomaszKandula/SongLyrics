@@ -44,20 +44,20 @@ class DetailsView extends Component
 
                 <div className="row">
 
-                    <div className="col s1">
+                    <div className="col s2">
                         &nbsp;
                     </div>
 
-                    <div className="col s10">
+                    <div className="col s8">
 
                         <div className="row">
-                            <div className="col s8">
+                            <div className="col s12">
                                 {header}
                             </div>
                         </div>
 
                         <div className="row">
-                            <div className="col s8">
+                            <div className="col s12">
 
                                 <nav className="nav-box white hoverable">
                                     <div className="grey lighten-5">
@@ -74,7 +74,7 @@ class DetailsView extends Component
 
                     </div>
 
-                    <div className="col s1">
+                    <div className="col s2">
                         &nbsp;
                     </div>
 

@@ -1,6 +1,5 @@
 ﻿import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as Posed from "../common/posedComponents";
 import * as ActionTypes from "../../redux/actionTypes";
 import * as Loaders from "../common/preLoaders";
 import * as Api from "../../ajax/apiUrls";
@@ -14,33 +13,18 @@ class AlbumsTable extends Component
         super(props);
         this.dispatch = this.props.dispatch.bind(this);
         this.update = this.updateData.bind(this);
-        this.allowLoader = true;
         this.state = { albums: [], loading: true };
     }
 
     componentDidMount()
     {
         if (this.props.state.band.id > 0)
-        {
-            this.allowLoader = true;
             GetData(`${Api.Albums}/?bandid=${this.props.state.band.id}`, this.update, this.dispatch);
-        }
     }
 
     updateData(payload)
     {
-
-        if (payload)
-        {
-            this.allowLoader = true;
-            this.setState({ albums: payload.Albums, loading: false });
-        }
-        else
-        {
-            this.allowLoader = false;
-            this.setState({ songs: [], loading: true });
-        }
-
+        return payload ? this.setState({ albums: payload.Albums, loading: false }) : this.setState({ songs: [], loading: true });
     }      
 
     returnFullYear(date)
@@ -83,12 +67,12 @@ class AlbumsTable extends Component
     render()
     {
 
-        let populatedTable = this.state.loading ? this.allowLoader ? <Loaders.Circular /> : null : this.renderTable();
+        let renderedTable = this.state.loading ? <Loaders.Circular /> : this.renderTable();
 
         return (
-            <Posed.FadeInDiv initialPose="hidden" pose="visible">
-                {populatedTable}
-            </Posed.FadeInDiv>
+            <div>
+                {renderedTable}
+            </div>
         );
 
     }

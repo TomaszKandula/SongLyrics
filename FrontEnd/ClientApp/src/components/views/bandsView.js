@@ -14,7 +14,6 @@ class BandsView extends Component
         super(props);
         this.dispatch = this.props.dispatch.bind(this);
         this.update = this.updateData.bind(this);
-        this.allowLoader = true;
         this.state = { bands: [], loading: true };
     }
 
@@ -25,18 +24,7 @@ class BandsView extends Component
 
     updateData(payload)
     {
-
-        if (payload)
-        {
-            this.allowLoader = true;
-            this.setState({ bands: payload.Bands, loading: false });
-        }
-        else
-        {
-            this.allowLoader = false;
-            this.setState({ bands: [], loading: false });
-        }
-
+        return payload ? this.setState({ bands: payload.Bands, loading: false }) : this.setState({ bands: [], loading: false });
     }      
 
     clickRowSelect(bandId)
@@ -71,7 +59,7 @@ class BandsView extends Component
     render()
     {
 
-        let populatedTable = this.state.loading ? this.allowLoader ? <Loaders.Circular /> : null : this.renderTable();
+        let populatedTable = this.state.loading ? <Loaders.Circular /> : this.renderTable();
 
         return (
             <div>

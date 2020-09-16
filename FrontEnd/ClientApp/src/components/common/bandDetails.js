@@ -1,12 +1,63 @@
 ﻿import React, { Component } from "react";
+import { connect } from "react-redux";
+import { GetData } from "../../ajax/simpleRest";
+import * as Api from "../../ajax/apiUrls";
+import * as Loaders from "../common/preLoaders";
 
-export default class BandDetails extends Component
+class BandDetails extends Component
 {
 
-    render()
+    constructor(props)
+    {
+        super(props);
+        this.dispatch = this.props.dispatch.bind(this);
+        this.bandData = this.updateDetails.bind(this);
+        this.state =
+        {
+            details:
+            {
+                name:        "",
+                established: "",
+                activeUntil: "",
+                genere:      "",
+                members:     []
+            },
+            loading: true
+        };
+    }
+
+    componentDidMount()
+    {
+        if (this.props.state.band.id > 0)
+            GetData(`${Api.Bands}/${this.props.state.band.id}/details/`, this.bandData, this.dispatch);
+    }
+
+    updateDetails(payload)
     {
 
-        let details = this.props.details;
+        if (!payload) return false;
+
+        this.setState(
+        {
+            details:
+            {
+                name:        payload.Name,
+                established: payload.Established,
+                activeUntil: payload.ActiveUntil,
+                genere:      payload.Genere,
+                members:     payload.Members,
+            },
+            loading: false        
+        });
+
+        return true;
+
+    }      
+
+    renderTable()
+    {
+
+        let details = this.state.details;
         let pastMembers = "";
         let currMembers = "";
 
@@ -71,4 +122,20 @@ export default class BandDetails extends Component
 
     }
 
+    render()
+    {
+
+        let renderedTable = this.state.loading ? <Loaders.Circular /> : this.renderTable();
+
+        return (
+            <div>
+                {renderedTable}
+            </div>
+        );
+
+    }
+
 }
+
+const mapStateToProps = (state) => { return { state } }
+export default connect(mapStateToProps)(BandDetails)

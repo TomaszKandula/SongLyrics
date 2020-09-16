@@ -1,7 +1,6 @@
 ﻿import React, { Component } from "react";
 import ReactHtmlParser from 'react-html-parser';
 import { connect } from "react-redux";
-import * as Posed from "../common/posedComponents";
 import { GetData } from "../../ajax/simpleRest";
 import * as Api from "../../ajax/apiUrls";
 
@@ -45,9 +44,9 @@ class SongLyric extends Component
     {
 
         return (
-            <Posed.FadeInDiv initialPose="hidden" pose="visible">
+            <div>
                 {ReactHtmlParser(this.state.song.Lyrics)}
-            </Posed.FadeInDiv>
+            </div>
         );
 
     }

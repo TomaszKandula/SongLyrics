@@ -2,6 +2,7 @@
 import { connect } from "react-redux";
 import * as ActionTypes from "../../redux/actionTypes";
 import * as Loaders from "../common/preLoaders";
+import * as Posed from "../common/posedComponents";
 import * as Api from "../../ajax/apiUrls";
 import { GetData } from "../../ajax/simpleRest";
 
@@ -62,9 +63,15 @@ class SongsTable extends Component
         let renderedTable = this.state.loading ? <Loaders.Circular /> : this.renderTable();
 
         return (
-            <div>
-                {renderedTable}
-            </div>
+            <Posed.FadeInDiv initialPose="hidden" pose="visible">
+
+                <div className="row margin-t-10"></div>
+
+                <div className="card-panel white hoverable">
+                    {renderedTable}
+                </div>
+
+            </Posed.FadeInDiv>
         );
 
     }

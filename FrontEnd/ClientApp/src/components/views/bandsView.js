@@ -59,7 +59,7 @@ class BandsView extends Component
     render()
     {
 
-        let populatedTable = this.state.loading ? <Loaders.Circular /> : this.renderTable();
+        let renderedTable = this.state.loading ? <Loaders.Circular /> : this.renderTable();
 
         return (
             <div>
@@ -76,19 +76,27 @@ class BandsView extends Component
 
                         <div className="row">
                             <div className="col s8">
+
                                 <Posed.FadeInDiv initialPose="hidden" pose="visible" className="row" id="topbarsearch">
-                                    <div className="input-field col s6 s12 black-text">
+                                    <div className="input-field col s8 s12 black-text">
                                         <i className="grey-text material-icons prefix">search</i>
                                         <input type="text" placeholder="Search for band" id="autocomplete-input" className="autocomplete black-text" />
                                     </div>
                                 </Posed.FadeInDiv>
+
                             </div>
                         </div>
 
                         <div className="row">
+
                             <Posed.FadeInDiv initialPose="hidden" pose="visible" className="col s8">
-                                {populatedTable}
+
+                                <div className="card-panel white hoverable">
+                                    {renderedTable}
+                                </div>
+
                             </Posed.FadeInDiv>
+
                         </div>
 
                     </div>

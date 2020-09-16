@@ -1,6 +1,5 @@
 ﻿import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as Posed from "../common/posedComponents";
 import * as Links from "../../constants/linkTypes";
 import SongLyric from "../common/songLyric";
 import SongVideo from "../common/songVideo";
@@ -21,22 +20,22 @@ class DetailsView extends Component
 
         if (this.props.state.band.id > 0 && this.props.state.album.id === 0)
         {
-            content  = <AlbumsTable />;
             header   = <BandDetails /> 
+            content  = <AlbumsTable />;
             navlinks = <NavigationLinks selection={Links.ALBUMS_LIST} />;
         }
 
         if (this.props.state.album.id > 0 && this.props.state.song.id === 0)
         {
-            content  = <SongsTable />;
             header   = <BandDetails /> 
+            content  = <SongsTable />;
             navlinks = <NavigationLinks selection={Links.SONGS_LIST} />;
         }
 
         if (this.props.state.song.id > 0 && this.props.state.album.id !== 0)
         {
-            content  = <SongLyric />;
             header   = <SongVideo />;
+            content  = <SongLyric />;
             navlinks = <NavigationLinks selection={Links.SONG_LYRIC} />;
         }
 
@@ -52,17 +51,15 @@ class DetailsView extends Component
                     <div className="col s10">
 
                         <div className="row">
-                            <Posed.ScaleDiv initialPose="hidden" pose="visible" className="col s8">
+                            <div className="col s8">
                                 {header}
-                            </Posed.ScaleDiv>
+                            </div>
                         </div>
 
                         <div className="row">
                             <div className="col s8">
 
-                                <div className="row margin-t-15"></div>
-
-                                <nav className="z-depth-0 nav-box grey lighten-5">
+                                <nav className="nav-box white hoverable">
                                     <div className="grey lighten-5">
                                         <div className="col s12">
                                             {navlinks}
@@ -70,11 +67,7 @@ class DetailsView extends Component
                                     </div>
                                 </nav>
 
-                                <div className="row margin-t-15"></div>
-
-                                <Posed.FadeInDiv initialPose="hidden" pose="visible">
-                                    {content}
-                                </Posed.FadeInDiv>
+                                {content}
 
                             </div>
                         </div>

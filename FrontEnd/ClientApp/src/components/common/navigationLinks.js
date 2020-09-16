@@ -65,5 +65,4 @@ class NavigationLinks extends Component
 
 }
 
-const mapStateToProps = (state) => { return { state } }
-export default connect(mapStateToProps)(NavigationLinks)
+export default connect()(NavigationLinks)

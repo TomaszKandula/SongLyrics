@@ -3,6 +3,7 @@ import ReactHtmlParser from 'react-html-parser';
 import { connect } from "react-redux";
 import { GetData } from "../../ajax/simpleRest";
 import * as Api from "../../ajax/apiUrls";
+import * as Posed from "../common/posedComponents";
 
 class SongLyric extends Component
 {
@@ -44,9 +45,21 @@ class SongLyric extends Component
     {
 
         return (
-            <div>
-                {ReactHtmlParser(this.state.song.Lyrics)}
-            </div>
+            <Posed.FadeInDiv initialPose="hidden" pose="visible">
+
+                <div className="row margin-t-10"></div>
+
+                <div class="card hoverable">
+
+                    <div class="card-content gray-text darken-4">
+                        <span class="card-title">{this.state.song.Name} from album {this.state.song.AlbumName}</span>
+                        <div className="row margin-t-10"></div>
+                        {ReactHtmlParser(this.state.song.Lyrics)}
+                    </div>
+
+                </div>
+
+            </Posed.FadeInDiv>
         );
 
     }

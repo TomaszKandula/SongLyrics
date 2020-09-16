@@ -2,6 +2,7 @@
 import { connect } from "react-redux";
 import { GetData } from "../../ajax/simpleRest";
 import * as Api from "../../ajax/apiUrls";
+import * as Posed from "../common/posedComponents";
 import * as Loaders from "../common/preLoaders";
 
 class BandDetails extends Component
@@ -102,11 +103,6 @@ class BandDetails extends Component
             <table className="detailsTable">
                 <tbody>
                     <tr>
-                        <td colSpan="2">
-                            <h3><b>{this.state.details.name}</b></h3>
-                        </td>
-                    </tr>
-                    <tr>
                         <td className="detailsTableCol1">Established</td>
                         <td className="detailsTableCol2">{processed.established}</td>
                     </tr>
@@ -125,7 +121,7 @@ class BandDetails extends Component
                         <td className="detailsTableCol1">Current</td>
                         <td className="detailsTableCol2">{processed.currMembers}</td>
                     </tr>
-                    <tr>
+                    <tr class="lastTableRow">
                         <td className="detailsTableCol1">Past</td>
                         <td className="detailsTableCol2">{processed.pastMembers}</td>
                     </tr>
@@ -140,10 +136,29 @@ class BandDetails extends Component
     {
 
         let renderedTable = this.state.loading ? <Loaders.Circular /> : this.renderTable(this.processData());
+        let bandName = this.state.loading ? null : this.state.details.name;
 
         return (
             <div>
-                {renderedTable}
+
+                <div className="row margin-t-15"></div>
+
+                <Posed.FadeInDiv initialPose="hidden" pose="visible">
+                    <h3>
+                        <b>{bandName}</b>
+                    </h3>
+                </Posed.FadeInDiv>
+
+                <div className="row margin-t-15"></div>
+
+                <Posed.ScaleDiv initialPose="hidden" pose="visible">
+
+                    <div className="card-panel white hoverable">
+                        {renderedTable}
+                    </div>
+
+                </Posed.ScaleDiv>
+
             </div>
         );
 

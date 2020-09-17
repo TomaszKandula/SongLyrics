@@ -17,8 +17,8 @@ namespace BackEnd.Models.Json
         [JsonPropertyName("Issued")]
         public DateTime Issued { get; set; }
 
-        [JsonPropertyName("BandName")]
-        public string BandName { get; set; }
+        [JsonPropertyName("ArtistName")]
+        public string ArtistName { get; set; }
 
     }
 

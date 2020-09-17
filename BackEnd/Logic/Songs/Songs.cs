@@ -39,7 +39,7 @@ namespace BackEnd.Logic.Songs
                         Id        = R.Id,
                         Name      = R.SongName,
                         AlbumName = R.Album.AlbumName,
-                        BandName  = R.Artist.ArtistName
+                        ArtistName  = R.Artist.ArtistName
                     })
                     .ToListAsync();
 
@@ -56,7 +56,7 @@ namespace BackEnd.Logic.Songs
                         Id        = R.Id,
                         Name      = R.SongName,
                         AlbumName = R.Album.AlbumName,
-                        BandName  = R.Artist.ArtistName
+                        ArtistName  = R.Artist.ArtistName
                     })
                     .ToListAsync();
 
@@ -83,7 +83,7 @@ namespace BackEnd.Logic.Songs
                     Lyrics    = R.SongLyrics,
                     Url       = R.SongUrl,
                     AlbumName = R.Album.AlbumName,
-                    BandName  = R.Artist.ArtistName
+                    ArtistName  = R.Artist.ArtistName
                 })
                 .SingleOrDefaultAsync();
 

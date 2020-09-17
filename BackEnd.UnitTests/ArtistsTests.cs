@@ -79,7 +79,7 @@ namespace BackEnd.UnitTests
             LResult1.Name.Should().Be("Queen");
             LResult1.Genere.Should().Be("Rock");
             LResult1.Members.Should().HaveCount(4);
-            LResult2.Name.Should().BeNullOrEmpty();
+            LResult2.Name.Should().Be("n/a");
 
         }
 

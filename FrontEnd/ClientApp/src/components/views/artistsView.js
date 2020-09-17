@@ -82,7 +82,7 @@ class ArtistsView extends Component
                                         <div className="nav-wrapper white">
                                             <div className="input-field">
                                                 <input id="search" type="search" placeholder="Search for artist" className="autocomplete black-text" />
-                                                <label className="label-icon" for="search">
+                                                <label className="label-icon" htmlFor="search">
                                                     <i className="material-icons grey-text darken-4">search</i>
                                                 </label>
                                                 <i className="material-icons">close</i>

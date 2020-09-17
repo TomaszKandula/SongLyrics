@@ -58,13 +58,13 @@ Currently, all controllers are public.
 
 ### Artists controller
 
-#### Return bands
+#### Return artists
 
 ```
 GET /api/v1/artists/
 ```
 
-When succeed returns **200** status code and returns list of bands from the entire collection.
+When succeed returns **200** status code and returns list of artists from the entire collection.
 
 #### Return band members
 

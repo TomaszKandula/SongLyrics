@@ -3,27 +3,27 @@ using Xunit;
 using System.Linq;
 using FluentAssertions;
 using MockQueryable.Moq;
-using BackEnd.Logic.Bands;
+using BackEnd.Logic.Artists;
 using BackEnd.UnitTests.Mocks;
 
 namespace BackEnd.UnitTests
 {
 
-    public class BandsTests
+    public class ArtistsTests
     {
 
         private readonly Mock<MainDbContext> FMockDbContext;
 
-        private readonly IArtists FBands;
+        private readonly IArtists FArtists;
 
-        public BandsTests() 
+        public ArtistsTests() 
         {
 
             // Create instances to mocked all dependencies           
             FMockDbContext = new Mock<MainDbContext>();
 
             // Upload pre-fixed dummy data
-            var BandsDbSet        = DummyData.ReturnDummyBands().AsQueryable().BuildMockDbSet();
+            var ArtistsDbSet      = DummyData.ReturnDummyArtists().AsQueryable().BuildMockDbSet();
             var AlbumsDbSet       = DummyData.ReturnDummyAlbums().AsQueryable().BuildMockDbSet();
             var GeneresDbSet      = DummyData.ReturnDummyGeneres().AsQueryable().BuildMockDbSet();
             var BandsGeneresDbSet = DummyData.ReturnDummyBandsGeneres().AsQueryable().BuildMockDbSet();
@@ -31,7 +31,7 @@ namespace BackEnd.UnitTests
             var SongsDbSet        = DummyData.ReturnDummySongs().AsQueryable().BuildMockDbSet();
 
             // Populate database tables with dummy data
-            FMockDbContext.Setup(R => R.Bands).Returns(BandsDbSet.Object);
+            FMockDbContext.Setup(R => R.Bands).Returns(ArtistsDbSet.Object);
             FMockDbContext.Setup(R => R.Albums).Returns(AlbumsDbSet.Object);
             FMockDbContext.Setup(R => R.Generes).Returns(GeneresDbSet.Object);
             FMockDbContext.Setup(R => R.BandsGeneres).Returns(BandsGeneresDbSet.Object);
@@ -39,17 +39,17 @@ namespace BackEnd.UnitTests
             FMockDbContext.Setup(R => R.Songs).Returns(SongsDbSet.Object);
 
             // Create test instance with mocked depenencies
-            FBands = new Artists(FMockDbContext.Object);
+            FArtists = new Artists(FMockDbContext.Object);
 
         }
 
         [Fact]
-        public async void GetBands()
+        public async void GetArtists()
         {
 
-            var LResult1 = await FBands.GetArtists(null);
-            var LResult2 = await FBands.GetArtists(1);
-            var LResult3 = await FBands.GetArtists(100);
+            var LResult1 = await FArtists.GetArtists(null);
+            var LResult2 = await FArtists.GetArtists(1);
+            var LResult3 = await FArtists.GetArtists(100);
 
             LResult1.Should().NotBeEmpty();
             LResult2.Should().NotBeEmpty();
@@ -61,8 +61,8 @@ namespace BackEnd.UnitTests
         public async void GetMembers()
         {
 
-            var LResult1 = await FBands.GetMembers(2);
-            var LResult2 = await FBands.GetMembers(45);
+            var LResult1 = await FArtists.GetMembers(2);
+            var LResult2 = await FArtists.GetMembers(45);
 
             LResult1.Should().NotBeEmpty();
             LResult2.Should().BeEmpty();
@@ -70,10 +70,10 @@ namespace BackEnd.UnitTests
         }
 
         [Fact]
-        public async void GetBandDetails()
+        public async void GetArtistDetails()
         {
 
-            var LResult = await FBands.GetBandDetails(1);
+            var LResult = await FArtists.GetBandDetails(1);
 
             LResult.Name.Should().Be("Queen");
             LResult.Genere.Should().Be("Rock");

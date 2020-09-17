@@ -23,7 +23,7 @@ namespace BackEnd.UnitTests
             FMockDbContext = new Mock<MainDbContext>();
 
             // Upload pre-fixed dummy data
-            var BandsDbSet        = DummyData.ReturnDummyBands().AsQueryable().BuildMockDbSet();
+            var BandsDbSet        = DummyData.ReturnDummyArtists().AsQueryable().BuildMockDbSet();
             var AlbumsDbSet       = DummyData.ReturnDummyAlbums().AsQueryable().BuildMockDbSet();
             var GeneresDbSet      = DummyData.ReturnDummyGeneres().AsQueryable().BuildMockDbSet();
             var BandsGeneresDbSet = DummyData.ReturnDummyBandsGeneres().AsQueryable().BuildMockDbSet();

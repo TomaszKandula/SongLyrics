@@ -8,7 +8,7 @@ namespace BackEnd.UnitTests.Mocks
     public static class DummyData
     {
 
-        public static List<Bands> ReturnDummyBands() 
+        public static List<Bands> ReturnDummyArtists() 
         {
 
             return new List<Bands>()

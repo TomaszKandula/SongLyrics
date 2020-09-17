@@ -73,11 +73,13 @@ namespace BackEnd.UnitTests
         public async void GetArtistDetails()
         {
 
-            var LResult = await FArtists.GetBandDetails(1);
+            var LResult1 = await FArtists.GetArtistDetails(1);
+            var LResult2 = await FArtists.GetArtistDetails(100);
 
-            LResult.Name.Should().Be("Queen");
-            LResult.Genere.Should().Be("Rock");
-            LResult.Members.Should().HaveCount(4);
+            LResult1.Name.Should().Be("Queen");
+            LResult1.Genere.Should().Be("Rock");
+            LResult1.Members.Should().HaveCount(4);
+            LResult2.Name.Should().BeNullOrEmpty();
 
         }
 

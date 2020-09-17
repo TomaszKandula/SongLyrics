@@ -114,7 +114,7 @@ namespace BackEnd.Controllers.v1
             try
             {
 
-                var LBandDetails = await FLogicContext.Artists.GetBandDetails(Id);
+                var LBandDetails = await FLogicContext.Artists.GetArtistDetails(Id);
 
                 LResponse.Name        = LBandDetails.Name;
                 LResponse.Established = LBandDetails.Established;

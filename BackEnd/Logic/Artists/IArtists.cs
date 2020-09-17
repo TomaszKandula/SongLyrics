@@ -27,7 +27,7 @@ namespace BackEnd.Logic.Artists
         /// </summary>
         /// <param name="ArtistId"></param>
         /// <returns></returns>
-        Task<ReturnArtistDetails> GetBandDetails(int ArtistId);
+        Task<ReturnArtistDetails> GetArtistDetails(int ArtistId);
 
     }
 

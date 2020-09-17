@@ -83,26 +83,27 @@ namespace BackEnd.Logic.Artists
         /// </summary>
         /// <param name="ArtistId"></param>
         /// <returns></returns>
-        public async Task<ReturnArtistDetails> GetBandDetails(int ArtistId) 
+        public async Task<ReturnArtistDetails> GetArtistDetails(int ArtistId) 
         {
 
             var Members = await GetMembers(ArtistId);
 
-            return (await FMainDbContext.ArtistsGeneres
+            var Results = await FMainDbContext.ArtistsGeneres
                 .Include(R => R.Artist)
                 .Include(R => R.Genere)
                 .AsNoTracking()
                 .Where(R => R.ArtistId == ArtistId)
-                .Select(R => new ReturnArtistDetails 
+                .Select(R => new ReturnArtistDetails
                 {
-                    Name        = R.Artist.ArtistName,
+                    Name = R.Artist.ArtistName,
                     Established = R.Artist.Established,
                     ActiveUntil = R.Artist.ActiveUntil,
-                    Genere      = R.Genere.Genere,
-                    Members     = Members
+                    Genere = R.Genere.Genere,
+                    Members = Members
                 })
-                .ToListAsync())
-                .Single();
+                .ToListAsync();
+
+            return Results.Any() ? Results.Single() : new ReturnArtistDetails();
 
         }
 

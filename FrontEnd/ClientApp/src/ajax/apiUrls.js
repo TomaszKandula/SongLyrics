@@ -5,6 +5,6 @@ const BASE_URI = "https://songlyrics-api.azurewebsites.net";
 const apiVersion = "v1";
 
 // Exposed endpoints
-export const Bands  = `${BASE_URI}/api/${apiVersion}/bands`;
-export const Albums = `${BASE_URI}/api/${apiVersion}/albums`;
-export const Songs  = `${BASE_URI}/api/${apiVersion}/songs`;
+export const Artists = `${BASE_URI}/api/${apiVersion}/artists`;
+export const Albums  = `${BASE_URI}/api/${apiVersion}/albums`;
+export const Songs   = `${BASE_URI}/api/${apiVersion}/songs`;

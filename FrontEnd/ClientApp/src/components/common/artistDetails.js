@@ -30,7 +30,7 @@ class ArtistDetails extends Component
     componentDidMount()
     {
         if (this.props.state.artist.id > 0)
-            GetData(`${Api.Bands}/${this.props.state.artist.id}/details/`, this.artistData, this.dispatch);
+            GetData(`${Api.Artists}/${this.props.state.artist.id}/details/`, this.artistData, this.dispatch);
     }
 
     updateDetails(payload)

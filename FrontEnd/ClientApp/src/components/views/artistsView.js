@@ -19,7 +19,7 @@ class ArtistsView extends Component
 
     componentDidMount()
     {
-        GetData(`${Api.Bands}`, this.update, this.dispatch);
+        GetData(`${Api.Artists}`, this.update, this.dispatch);
     }
 
     updateData(payload)

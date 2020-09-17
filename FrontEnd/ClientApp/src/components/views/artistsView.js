@@ -24,7 +24,7 @@ class ArtistsView extends Component
 
     updateData(payload)
     {
-        return payload ? this.setState({ artists: payload.Bands, loading: false }) : this.setState({ artists: [], loading: false });
+        return payload ? this.setState({ artists: payload.Artists, loading: false }) : this.setState({ artists: [], loading: false });
     }      
 
     clickRowSelect(bandId)
@@ -44,10 +44,10 @@ class ArtistsView extends Component
                     </tr>
                 </thead>
                 <tbody>
-                    {this.state.artists.map(bands =>
-                        <tr key={bands.Id} onClick={() => this.clickRowSelect(bands.Id)}>
-                            <td className="bandsTableCol1">{bands.Id}</td>
-                            <td className="bandsTableCol2">{bands.Name}</td>
+                    {this.state.artists.map(artists =>
+                        <tr key={artists.Id} onClick={() => this.clickRowSelect(artists.Id)}>
+                            <td className="bandsTableCol1">{artists.Id}</td>
+                            <td className="bandsTableCol2">{artists.Name}</td>
                         </tr>                       
                     )}
                 </tbody>

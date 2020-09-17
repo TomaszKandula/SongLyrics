@@ -72,7 +72,7 @@ When succeed returns **200** status code and returns list of artists from the en
 GET /api/v1/artists/{id}/members/
 ```
 
-When succeed returns **200** status code and returns list of all band members.
+When succeed returns **200** status code and returns list of all artist members (if applicable).
 
 #### Returns band detail
 
@@ -90,13 +90,13 @@ When succeed returns **200** status code and returns:
 
 ### Albums controller
 
-##### Return all albums (or given band album)
+##### Return all albums (or given artist album)
 
 ```
-GET /api/v1/albums/?BandId={id}
+GET /api/v1/albums/?ArtistId={id}
 ```
 
-When succeed returns **200** status code and returns albums or abum recorded by selected band id.
+When succeed returns **200** status code and returns albums or album recorded by selected band id.
 
 ##### Return specific album
 

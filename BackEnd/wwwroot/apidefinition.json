@@ -18,14 +18,14 @@
     "application/json"
   ],
   "paths": {
-    "/bands": {
+    "/artists": {
       "get": {
-        "description": "/api/v1/bands/",
-        "summary": "/api/v1/bands/",
+        "description": "/api/v1/artists/",
+        "summary": "/api/v1/artists/",
         "tags": [
-          "BandsController"
+          "ArtistsController"
         ],
-        "operationId": "/api/v1/bands/",
+        "operationId": "/api/v1/artists/",
         "deprecated": false,
         "produces": [
           "application/json"
@@ -39,14 +39,14 @@
         }
       }
     },
-    "/bands/{id}/members": {
+    "/artists/{id}/members": {
       "get": {
-        "description": "/api/v1/bands/{id}/members/",
-        "summary": "/api/v1/bands/{id}/members/",
+        "description": "/api/v1/artists/{id}/members/",
+        "summary": "/api/v1/artists/{id}/members/",
         "tags": [
-          "BandsController"
+          "ArtistsController"
         ],
-        "operationId": "/api/v1/bands/{id}/members/",
+        "operationId": "/api/v1/artists/{id}/members/",
         "deprecated": false,
         "produces": [
           "application/json"
@@ -62,12 +62,12 @@
     },
     "/bands/{id}/details": {
       "get": {
-        "description": "/api/v1/bands/{id}/details/",
-        "summary": "/api/v1/bands/{id}/details/",
+        "description": "/api/v1/artists/{id}/details/",
+        "summary": "/api/v1/artists/{id}/details/",
         "tags": [
-          "BandsController"
+          "ArtistsController"
         ],
-        "operationId": "/api/v1/bands/{id}/details/",
+        "operationId": "/api/v1/artists/{id}/details/",
         "deprecated": false,
         "produces": [
           "application/json"
@@ -104,19 +104,19 @@
     },
     "/albums": {
       "get": {
-        "description": "/api/v1/albums/?BandId={id}",
-        "summary": "/api/v1/albums/?BandId={id}",
+        "description": "/api/v1/albums/?ArtistId={id}",
+        "summary": "/api/v1/albums/?ArtistId={id}",
         "tags": [
           "AlbumsController"
         ],
-        "operationId": "/api/v1/albums/?BandId={id}",
+        "operationId": "/api/v1/albums/?ArtistId={id}",
         "deprecated": false,
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "bandid",
+            "name": "artistid",
             "in": "query",
             "required": true,
             "type": "integer",

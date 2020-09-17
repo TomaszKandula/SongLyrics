@@ -14,7 +14,7 @@ namespace BackEnd.UnitTests
 
         private readonly Mock<MainDbContext> FMockDbContext;
 
-        private readonly IBands FBands;
+        private readonly IArtists FBands;
 
         public BandsTests() 
         {
@@ -39,7 +39,7 @@ namespace BackEnd.UnitTests
             FMockDbContext.Setup(R => R.Songs).Returns(SongsDbSet.Object);
 
             // Create test instance with mocked depenencies
-            FBands = new Bands(FMockDbContext.Object);
+            FBands = new Artists(FMockDbContext.Object);
 
         }
 
@@ -47,9 +47,9 @@ namespace BackEnd.UnitTests
         public async void GetBands()
         {
 
-            var LResult1 = await FBands.GetBands(null);
-            var LResult2 = await FBands.GetBands(1);
-            var LResult3 = await FBands.GetBands(100);
+            var LResult1 = await FBands.GetArtists(null);
+            var LResult2 = await FBands.GetArtists(1);
+            var LResult3 = await FBands.GetArtists(100);
 
             LResult1.Should().NotBeEmpty();
             LResult2.Should().NotBeEmpty();

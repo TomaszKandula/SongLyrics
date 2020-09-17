@@ -10,22 +10,22 @@ using BackEnd.IntegrationTests.Configuration;
 namespace BackEnd.IntegrationTests
 {
 
-    public class BandsControllerTest : IClassFixture<TestFixture<SongLyrics.Startup>>
+    public class ArtistsControllerTest : IClassFixture<TestFixture<SongLyrics.Startup>>
     {
 
         private readonly HttpClient FClient;
 
-        public BandsControllerTest(TestFixture<SongLyrics.Startup> ACustomFixture)
+        public ArtistsControllerTest(TestFixture<SongLyrics.Startup> ACustomFixture)
         {
             FClient = ACustomFixture.FClient;
         }
 
         [Fact]
-        public async Task GetBands()
+        public async Task GetArtists()
         {
 
             // Arrange
-            var LRequest = "/api/v1/bands/";
+            var LRequest = "/api/v1/artists/";
 
             // Act
             var LResponse = await FClient.GetAsync(LRequest);
@@ -35,9 +35,9 @@ namespace BackEnd.IntegrationTests
 
             // Deserialize response and check results            
             var LStringResponse = await LResponse.Content.ReadAsStringAsync();
-            var LReturnBands = JsonConvert.DeserializeObject<ReturnBands>(LStringResponse);
+            var LReturnBands = JsonConvert.DeserializeObject<ReturnArtists>(LStringResponse);
 
-            LReturnBands.Bands.Select(R => R.Name).ToList()[0].Should().Be("Queen");
+            LReturnBands.Artists.Select(R => R.Name).ToList()[0].Should().Be("Queen");
 
         }
 
@@ -47,7 +47,7 @@ namespace BackEnd.IntegrationTests
         {
 
             // Arrange
-            var LRequest = $"/api/v1/bands/{Id}/members/";
+            var LRequest = $"/api/v1/artists/{Id}/members/";
 
             // Act
             var LResponse = await FClient.GetAsync(LRequest);
@@ -65,11 +65,11 @@ namespace BackEnd.IntegrationTests
 
         [Theory]
         [InlineData(1)]
-        public async Task GetBandDetails(int Id)
+        public async Task GetArtistDetails(int Id)
         {
 
             // Arrange
-            var LRequest = $"/api/v1/bands/{Id}/details/";
+            var LRequest = $"/api/v1/artists/{Id}/details/";
 
             // Act
             var LResponse = await FClient.GetAsync(LRequest);
@@ -79,7 +79,7 @@ namespace BackEnd.IntegrationTests
 
             // Deserialize response and check results            
             var LStringResponse = await LResponse.Content.ReadAsStringAsync();
-            var LReturnBandDetails = JsonConvert.DeserializeObject<ReturnBandDetails>(LStringResponse);
+            var LReturnBandDetails = JsonConvert.DeserializeObject<ReturnArtistDetails>(LStringResponse);
 
             LReturnBandDetails.Genere.Should().Be("Rock");
             LReturnBandDetails.Name.Should().Be("Queen");

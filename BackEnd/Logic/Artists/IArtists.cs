@@ -2,32 +2,32 @@
 using System.Collections.Generic;
 using BackEnd.Models.Json;
 
-namespace BackEnd.Logic.Bands
+namespace BackEnd.Logic.Artists
 {
 
-    public interface IBands
+    public interface IArtists
     {
 
         /// <summary>
         /// Return list of bands from the entire collection.
         /// </summary>
-        /// <param name="BandId"></param>
+        /// <param name="ArtistId"></param>
         /// <returns></returns>
-        Task<List<Band>> GetBands(int? BandId);
+        Task<List<Artist>> GetArtists(int? ArtistId);
 
         /// <summary>
         /// Return bands members for given Band Id.
         /// </summary>
-        /// <param name="BandId"></param>
+        /// <param name="ArtistId"></param>
         /// <returns></returns>
-        Task<List<Member>> GetMembers(int BandId);
+        Task<List<Member>> GetMembers(int ArtistId);
 
         /// <summary>
         /// Return band details for given Band Id.
         /// </summary>
-        /// <param name="BandId"></param>
+        /// <param name="ArtistId"></param>
         /// <returns></returns>
-        Task<ReturnBandDetails> GetBandDetails(int BandId);
+        Task<ReturnArtistDetails> GetBandDetails(int ArtistId);
 
     }
 

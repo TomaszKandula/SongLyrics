@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 namespace BackEnd.Models.Json
 {
 
-    public class ReturnBandDetails
+    public class ReturnArtistDetails
     {
 
         [JsonPropertyName("Name")]
@@ -29,7 +29,7 @@ namespace BackEnd.Models.Json
         [JsonPropertyName("Error")]
         public ErrorHandler Error { get; set; }
 
-        public ReturnBandDetails()
+        public ReturnArtistDetails()
         {
             Error = new ErrorHandler();
         }

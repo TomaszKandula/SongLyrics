@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 namespace BackEnd.Models.Json
 {
 
-    public class Band 
+    public class Artist 
     {
 
         [JsonPropertyName("Id")]
@@ -15,11 +15,11 @@ namespace BackEnd.Models.Json
 
     }
 
-    public class ReturnBands
+    public class ReturnArtists
     {
 
-        [JsonPropertyName("Bands")]
-        public List<Band> Bands { get; set; }
+        [JsonPropertyName("Artists")]
+        public List<Artist> Artists { get; set; }
 
         [JsonPropertyName("IsSucceeded")]
         public bool IsSucceeded { get; set; }
@@ -27,7 +27,7 @@ namespace BackEnd.Models.Json
         [JsonPropertyName("Error")]
         public ErrorHandler Error { get; set; }
 
-        public ReturnBands()
+        public ReturnArtists()
         {
             Error = new ErrorHandler();
         }

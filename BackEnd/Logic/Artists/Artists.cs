@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore;
 using BackEnd.Models.Json;
 using BackEnd.Models.Database;
 
-namespace BackEnd.Logic.Bands
+namespace BackEnd.Logic.Artists
 {
 
-    public class Bands : IBands
+    public class Artists : IArtists
     {
 
         private readonly MainDbContext FMainDbContext;
 
-        public Bands(MainDbContext AMainDbContext) 
+        public Artists(MainDbContext AMainDbContext) 
         {
             FMainDbContext = AMainDbContext;
         }
@@ -21,18 +21,18 @@ namespace BackEnd.Logic.Bands
         /// <summary>
         /// Return list of bands/or band from the entire collection.
         /// </summary>
-        /// <param name="BandId"></param>
+        /// <param name="ArtistId"></param>
         /// <returns></returns>
-        public async Task<List<Band>> GetBands(int? BandId) 
+        public async Task<List<Artist>> GetArtists(int? ArtistId) 
         {
 
-            if (BandId != null) 
+            if (ArtistId != null) 
             {
                 
                 return await FMainDbContext.Bands
                     .AsNoTracking()
-                    .Where(R => R.Id == BandId)
-                    .Select(R => new Band 
+                    .Where(R => R.Id == ArtistId)
+                    .Select(R => new Artist 
                     { 
                         Id   = R.Id,
                         Name = R.BandName
@@ -45,7 +45,7 @@ namespace BackEnd.Logic.Bands
 
                 return await FMainDbContext.Bands
                     .AsNoTracking()
-                    .Select(R => new Band
+                    .Select(R => new Artist
                     {
                         Id   = R.Id,
                         Name = R.BandName
@@ -59,20 +59,20 @@ namespace BackEnd.Logic.Bands
         /// <summary>
         /// Return bands members for given Band Id.
         /// </summary>
-        /// <param name="BandId"></param>
+        /// <param name="ArtistId"></param>
         /// <returns></returns>
-        public async Task<List<Member>> GetMembers(int BandId) 
+        public async Task<List<Member>> GetMembers(int ArtistId) 
         {
 
             return await FMainDbContext.Members
                 .AsNoTracking()
-                .Where(R => R.BandId == BandId)
+                .Where(R => R.BandId == ArtistId)
                 .Select(R => new Member 
                 { 
                     Id        = R.Id,
                     FirstName = R.FirstName,
                     LastName  = R.LastName,
-                    Status    = R.IsPresent ? "Active" : "Past member"
+                    Status    = R.IsPresent ? "Active" : "Past"
                 })
                 .ToListAsync();
 
@@ -81,19 +81,19 @@ namespace BackEnd.Logic.Bands
         /// <summary>
         /// Return band details for given Band Id.
         /// </summary>
-        /// <param name="BandId"></param>
+        /// <param name="ArtistId"></param>
         /// <returns></returns>
-        public async Task<ReturnBandDetails> GetBandDetails(int BandId) 
+        public async Task<ReturnArtistDetails> GetBandDetails(int ArtistId) 
         {
 
-            var Members = await GetMembers(BandId);
+            var Members = await GetMembers(ArtistId);
 
             return (await FMainDbContext.BandsGeneres
                 .Include(R => R.Band)
                 .Include(R => R.Genere)
                 .AsNoTracking()
-                .Where(R => R.BandId == BandId)
-                .Select(R => new ReturnBandDetails 
+                .Where(R => R.BandId == ArtistId)
+                .Select(R => new ReturnArtistDetails 
                 {
                     Name        = R.Band.BandName,
                     Established = R.Band.Established,

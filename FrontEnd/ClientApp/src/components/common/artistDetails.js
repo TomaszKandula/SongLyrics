@@ -58,6 +58,20 @@ class ArtistDetails extends Component
     processData()
     {
 
+        if (!this.state.details.members)
+        {
+
+            let processed =
+            {
+                established: "n/a",
+                activeUntil: "n/a",
+                currMembers: "n/a",
+                pastMembers: "n/a"
+            };
+
+            return processed;
+        }
+
         let pastMembers = "";
         let currMembers = "";
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using BackEnd.Models.Json;
 using BackEnd.Models.Database;
+using System;
 
 namespace BackEnd.Logic.Artists
 {
@@ -103,7 +104,14 @@ namespace BackEnd.Logic.Artists
                 })
                 .ToListAsync();
 
-            return Results.Any() ? Results.Single() : new ReturnArtistDetails();
+            return Results.Any() ? Results.Single() : new ReturnArtistDetails()
+            {
+                Name        = "n/a",
+                Genere      = "n/a",
+                Established = DateTime.Now,
+                ActiveUntil = DateTime.Now,
+                Members     = null
+            };
 
         }
 

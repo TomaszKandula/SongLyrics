@@ -56,20 +56,20 @@ Covers all the logic used in the controllers (please note that the endpoints doe
 
 Currently, all controllers are public.
 
-### Bands controller
+### Artists controller
 
-#### Return bands
+#### Return artists
 
 ```
-GET /api/v1/bands/
+GET /api/v1/artists/
 ```
 
-When succeed returns **200** status code and returns list of bands from the entire collection.
+When succeed returns **200** status code and returns list of artists from the entire collection.
 
 #### Return band members
 
 ```
-GET /api/v1/bands/{id}/members/
+GET /api/v1/artists/{id}/members/
 ```
 
 When succeed returns **200** status code and returns list of all band members.
@@ -77,12 +77,12 @@ When succeed returns **200** status code and returns list of all band members.
 #### Returns band detail
 
 ```
-GET /api/v1/bands/{id}/details/
+GET /api/v1/artists/{id}/details/
 ```
 
 When succeed returns **200** status code and returns:
 
-1. Band name.
+1. Artist name.
 1. When started.
 1. When ended.
 1. Music genere.

@@ -76,7 +76,7 @@ class SongVideo extends Component
                         </Posed.FadeInDiv>
 
                         <div className="card-reveal">
-                            <span class="card-title grey-text text-darken-4">{this.state.song.BandName}<i className="material-icons right">close</i></span>
+                            <span className="card-title grey-text text-darken-4">{this.state.song.BandName}<i className="material-icons right">close</i></span>
                             <p>TEXT HERE</p>
                         </div>
 

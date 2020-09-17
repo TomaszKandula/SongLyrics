@@ -8,24 +8,24 @@ namespace BackEnd.UnitTests.Mocks
     public static class DummyData
     {
 
-        public static List<Bands> ReturnDummyArtists() 
+        public static List<Artists> ReturnDummyArtists() 
         {
 
-            return new List<Bands>()
+            return new List<Artists>()
             {
 
-                new Bands
+                new Artists
                 {
                     Id          = 1,
-                    BandName    = "Queen",
+                    ArtistName    = "Queen",
                     Established = DateTime.Parse("1970-01-01"),
                     ActiveUntil = null
                 },
 
-                new Bands
+                new Artists
                 { 
                     Id          = 2,
-                    BandName    = "Led Zeppelin",
+                    ArtistName    = "Led Zeppelin",
                     Established = DateTime.Parse("1968-01-01"),
                     ActiveUntil = DateTime.Parse("1980-01-01")
                 }           
@@ -43,12 +43,12 @@ namespace BackEnd.UnitTests.Mocks
                 new Albums
                 { 
                     Id        = 1,
-                    BandId    = 1,
+                    ArtistId    = 1,
                     AlbumName = "Queen",
                     Issued    = DateTime.Parse("1973-01-01"),
-                    Band = new Bands
+                    Artist = new Artists
                     {
-                        BandName    = "Queen",
+                        ArtistName    = "Queen",
                         Established = DateTime.Parse("1970-01-01"),
                         ActiveUntil = null
                     },
@@ -57,12 +57,12 @@ namespace BackEnd.UnitTests.Mocks
                 new Albums
                 {
                     Id        = 2,
-                    BandId    = 1,
+                    ArtistId    = 1,
                     AlbumName = "Queen II",
                     Issued    = DateTime.Parse("1974-01-01"),
-                    Band = new Bands
+                    Artist = new Artists
                     {
-                        BandName    = "Queen",
+                        ArtistName    = "Queen",
                         Established = DateTime.Parse("1970-01-01"),
                         ActiveUntil = null
                     },
@@ -71,12 +71,12 @@ namespace BackEnd.UnitTests.Mocks
                 new Albums
                 {
                     Id        = 3,
-                    BandId    = 2,
+                    ArtistId    = 2,
                     AlbumName = "Led Zeppelin",
                     Issued    = DateTime.Parse("1969-01-01"),
-                    Band = new Bands
+                    Artist = new Artists
                     {
-                        BandName    = "Led Zeppelin",
+                        ArtistName    = "Led Zeppelin",
                         Established = DateTime.Parse("1968-01-01"),
                         ActiveUntil = DateTime.Parse("1980-01-01")
                     }
@@ -85,12 +85,12 @@ namespace BackEnd.UnitTests.Mocks
                 new Albums
                 {
                     Id        = 4,
-                    BandId    = 2,
+                    ArtistId    = 2,
                     AlbumName = "Led Zeppelin II",
                     Issued    = DateTime.Parse("1969-01-01"),
-                    Band = new Bands
+                    Artist = new Artists
                     {
-                        BandName    = "Led Zeppelin",
+                        ArtistName    = "Led Zeppelin",
                         Established = DateTime.Parse("1968-01-01"),
                         ActiveUntil = DateTime.Parse("1980-01-01")
                     }
@@ -128,20 +128,20 @@ namespace BackEnd.UnitTests.Mocks
 
         }
 
-        public static List<BandsGeneres> ReturnDummyBandsGeneres()
+        public static List<ArtistsGeneres> ReturnDummyBandsGeneres()
         {
 
-            return new List<BandsGeneres>()
+            return new List<ArtistsGeneres>()
             {
 
-                new BandsGeneres
+                new ArtistsGeneres
                 { 
                     Id       = 1,
-                    BandId   = 1,
+                    ArtistId   = 1,
                     GenereId = 1,
-                    Band = new Bands 
+                    Artist = new Artists 
                     {
-                        BandName    = "Queen",
+                        ArtistName    = "Queen",
                         Established = DateTime.Parse("1970-01-01"),
                         ActiveUntil = null
                     },
@@ -153,14 +153,14 @@ namespace BackEnd.UnitTests.Mocks
 
                 },
                 
-                new BandsGeneres
+                new ArtistsGeneres
                 {
                     Id       = 2,
-                    BandId   = 2,
+                    ArtistId   = 2,
                     GenereId = 1,
-                    Band = new Bands
+                    Artist = new Artists
                     {
-                        BandName    = "Led Zeppelin",
+                        ArtistName    = "Led Zeppelin",
                         Established = DateTime.Parse("1968-01-01"),
                         ActiveUntil = DateTime.Parse("1980-01-01")
                     },
@@ -184,13 +184,13 @@ namespace BackEnd.UnitTests.Mocks
                 new Members
                 { 
                     Id        = 1,
-                    BandId    = 1,
+                    ArtistId    = 1,
                     FirstName = "Brian",
                     LastName  = "May",
                     IsPresent = true,
-                    Band = new Bands
+                    Artist = new Artists
                     {
-                        BandName    = "Queen",
+                        ArtistName    = "Queen",
                         Established = DateTime.Parse("1970-01-01"),
                         ActiveUntil = null
                     }
@@ -199,13 +199,13 @@ namespace BackEnd.UnitTests.Mocks
                 new Members
                 {
                     Id        = 2,
-                    BandId    = 1,
+                    ArtistId    = 1,
                     FirstName = "Roger",
                     LastName  = "Taylor",
                     IsPresent = true,
-                    Band = new Bands
+                    Artist = new Artists
                     {
-                        BandName    = "Queen",
+                        ArtistName    = "Queen",
                         Established = DateTime.Parse("1970-01-01"),
                         ActiveUntil = null
                     }                
@@ -214,13 +214,13 @@ namespace BackEnd.UnitTests.Mocks
                 new Members
                 {
                     Id        = 3,
-                    BandId    = 1,
+                    ArtistId    = 1,
                     FirstName = "John",
                     LastName  = "Deacon",
                     IsPresent = false,
-                    Band = new Bands
+                    Artist = new Artists
                     {
-                        BandName    = "Queen",
+                        ArtistName    = "Queen",
                         Established = DateTime.Parse("1970-01-01"),
                         ActiveUntil = null
                     }
@@ -229,13 +229,13 @@ namespace BackEnd.UnitTests.Mocks
                 new Members
                 {
                     Id        = 4,
-                    BandId    = 1,
+                    ArtistId    = 1,
                     FirstName = "Freddie",
                     LastName  = "Mercury",
                     IsPresent = false,
-                    Band = new Bands
+                    Artist = new Artists
                     {
-                        BandName    = "Queen",
+                        ArtistName    = "Queen",
                         Established = DateTime.Parse("1970-01-01"),
                         ActiveUntil = null
                     }
@@ -244,13 +244,13 @@ namespace BackEnd.UnitTests.Mocks
                 new Members
                 {
                     Id        = 5,
-                    BandId    = 2,
+                    ArtistId    = 2,
                     FirstName = "Robert",
                     LastName  = "Plant",
                     IsPresent = false,
-                    Band = new Bands
+                    Artist = new Artists
                     {
-                        BandName    = "Led Zeppelin",
+                        ArtistName    = "Led Zeppelin",
                         Established = DateTime.Parse("1968-01-01"),
                         ActiveUntil = DateTime.Parse("1980-01-01")
                     },
@@ -259,13 +259,13 @@ namespace BackEnd.UnitTests.Mocks
                 new Members
                 {
                     Id        = 6,
-                    BandId    = 2,
+                    ArtistId    = 2,
                     FirstName = "Jimmy",
                     LastName  = "Page",
                     IsPresent = false,
-                    Band = new Bands
+                    Artist = new Artists
                     {
-                        BandName    = "Led Zeppelin",
+                        ArtistName    = "Led Zeppelin",
                         Established = DateTime.Parse("1968-01-01"),
                         ActiveUntil = DateTime.Parse("1980-01-01")
                     },
@@ -274,13 +274,13 @@ namespace BackEnd.UnitTests.Mocks
                 new Members
                 {
                     Id        = 7,
-                    BandId    = 2,
+                    ArtistId    = 2,
                     FirstName = "John",
                     LastName  = "Jones",
                     IsPresent = false,
-                    Band = new Bands
+                    Artist = new Artists
                     {
-                        BandName    = "Led Zeppelin",
+                        ArtistName    = "Led Zeppelin",
                         Established = DateTime.Parse("1968-01-01"),
                         ActiveUntil = DateTime.Parse("1980-01-01")
                     },
@@ -289,13 +289,13 @@ namespace BackEnd.UnitTests.Mocks
                 new Members
                 {
                     Id        = 8,
-                    BandId    = 2,
+                    ArtistId    = 2,
                     FirstName = "John",
                     LastName  = "Bonham",
                     IsPresent = false,
-                    Band = new Bands
+                    Artist = new Artists
                     {
-                        BandName    = "Led Zeppelin",
+                        ArtistName    = "Led Zeppelin",
                         Established = DateTime.Parse("1968-01-01"),
                         ActiveUntil = DateTime.Parse("1980-01-01")
                     },
@@ -315,20 +315,20 @@ namespace BackEnd.UnitTests.Mocks
                 { 
                     Id         = 1,
                     AlbumId    = 1,
-                    BandId     = 1,
+                    ArtistId     = 1,
                     SongName   = "Keep Yourself Alive",
                     SongLyrics = "aaa aaa aaa",
                     SongUrl    = "youtube.com/aaa",
-                    Band = new Bands
+                    Artist = new Artists
                     {
-                        BandName    = "Queen",
+                        ArtistName    = "Queen",
                         Established = DateTime.Parse("1970-01-01"),
                         ActiveUntil = null
                     },
                     Album = new Albums
                     {
                         Id        = 1,
-                        BandId    = 1,
+                        ArtistId    = 1,
                         AlbumName = "Queen",
                         Issued    = DateTime.Parse("1973-01-01")
                     }
@@ -338,20 +338,20 @@ namespace BackEnd.UnitTests.Mocks
                 {
                     Id         = 2,
                     AlbumId    = 1,
-                    BandId     = 1,
+                    ArtistId     = 1,
                     SongName   = "Liar",
                     SongLyrics = "bbb bbb bbb",
                     SongUrl    = "youtube.com/bbb",
-                    Band = new Bands
+                    Artist = new Artists
                     {
-                        BandName    = "Queen",
+                        ArtistName    = "Queen",
                         Established = DateTime.Parse("1970-01-01"),
                         ActiveUntil = null
                     },
                     Album = new Albums
                     {
                         Id        = 1,
-                        BandId    = 1,
+                        ArtistId    = 1,
                         AlbumName = "Queen",
                         Issued    = DateTime.Parse("1973-01-01")
                     }
@@ -361,20 +361,20 @@ namespace BackEnd.UnitTests.Mocks
                 {
                     Id         = 3,
                     AlbumId    = 2,
-                    BandId     = 1,
+                    ArtistId     = 1,
                     SongName   = "Seven Seas of Rhye",
                     SongLyrics = "ccc ccc ccc",
                     SongUrl    = "youtube.com/ccc",
-                    Band = new Bands
+                    Artist = new Artists
                     {
-                        BandName    = "Queen",
+                        ArtistName    = "Queen",
                         Established = DateTime.Parse("1970-01-01"),
                         ActiveUntil = null
                     },
                     Album = new Albums
                     {
                         Id        = 2,
-                        BandId    = 1,
+                        ArtistId    = 1,
                         AlbumName = "Queen II",
                         Issued    = DateTime.Parse("1974-01-01")
                     }
@@ -384,20 +384,20 @@ namespace BackEnd.UnitTests.Mocks
                 {
                     Id         = 4,
                     AlbumId    = 2,
-                    BandId     = 1,
+                    ArtistId     = 1,
                     SongName   = "White Queen",
                     SongLyrics = "ddd ddd ddd",
                     SongUrl    = "youtube.com/ddd",
-                    Band = new Bands
+                    Artist = new Artists
                     {
-                        BandName    = "Queen",
+                        ArtistName    = "Queen",
                         Established = DateTime.Parse("1970-01-01"),
                         ActiveUntil = null
                     },
                     Album = new Albums
                     {
                         Id        = 2,
-                        BandId    = 1,
+                        ArtistId    = 1,
                         AlbumName = "Queen II",
                         Issued    = DateTime.Parse("1974-01-01")
                     }
@@ -407,20 +407,20 @@ namespace BackEnd.UnitTests.Mocks
                 {
                     Id         = 5,
                     AlbumId    = 3,
-                    BandId     = 2,
+                    ArtistId     = 2,
                     SongName   = "Good Times Bad Times",
                     SongLyrics = "eee eee eee",
                     SongUrl    = "youtube.com/eee",
-                    Band = new Bands
+                    Artist = new Artists
                     {
-                        BandName    = "Led Zeppelin",
+                        ArtistName    = "Led Zeppelin",
                         Established = DateTime.Parse("1968-01-01"),
                         ActiveUntil = DateTime.Parse("1980-01-01")
                     },
                     Album = new Albums
                     {
                         Id        = 3,
-                        BandId    = 2,
+                        ArtistId    = 2,
                         AlbumName = "Led Zeppelin",
                         Issued    = DateTime.Parse("1969-01-01")
                     }
@@ -430,20 +430,20 @@ namespace BackEnd.UnitTests.Mocks
                 {
                     Id         = 6,
                     AlbumId    = 3,
-                    BandId     = 2,
+                    ArtistId     = 2,
                     SongName   = "You Shook Me",
                     SongLyrics = "fff fff fff",
                     SongUrl    = "youtube.com/fff",
-                    Band = new Bands
+                    Artist = new Artists
                     {
-                        BandName    = "Led Zeppelin",
+                        ArtistName    = "Led Zeppelin",
                         Established = DateTime.Parse("1968-01-01"),
                         ActiveUntil = DateTime.Parse("1980-01-01")
                     },
                     Album = new Albums
                     {
                         Id        = 3,
-                        BandId    = 2,
+                        ArtistId    = 2,
                         AlbumName = "Led Zeppelin",
                         Issued    = DateTime.Parse("1969-01-01")
                     }
@@ -453,20 +453,20 @@ namespace BackEnd.UnitTests.Mocks
                 {
                     Id         = 7,
                     AlbumId    = 4,
-                    BandId     = 2,
+                    ArtistId     = 2,
                     SongName   = "Whole Lotta Love",
                     SongLyrics = "ggg ggg ggg",
                     SongUrl    = "youtube.com/ggg",
-                    Band = new Bands
+                    Artist = new Artists
                     {
-                        BandName    = "Led Zeppelin",
+                        ArtistName    = "Led Zeppelin",
                         Established = DateTime.Parse("1968-01-01"),
                         ActiveUntil = DateTime.Parse("1980-01-01")
                     },
                     Album = new Albums
                     {
                         Id        = 4,
-                        BandId    = 2,
+                        ArtistId    = 2,
                         AlbumName = "Led Zeppelin II",
                         Issued    = DateTime.Parse("1969-01-01")
                     }
@@ -476,20 +476,20 @@ namespace BackEnd.UnitTests.Mocks
                 {
                     Id         = 8,
                     AlbumId    = 4,
-                    BandId     = 2,
+                    ArtistId     = 2,
                     SongName   = "Moby Dick",
                     SongLyrics = "hhh hhh hhh",
                     SongUrl    = "youtube.com/hhh",
-                    Band = new Bands
+                    Artist = new Artists
                     {
-                        BandName    = "Led Zeppelin",
+                        ArtistName    = "Led Zeppelin",
                         Established = DateTime.Parse("1968-01-01"),
                         ActiveUntil = DateTime.Parse("1980-01-01")
                     },
                     Album = new Albums
                     {
                         Id        = 4,
-                        BandId    = 2,
+                        ArtistId    = 2,
                         AlbumName = "Led Zeppelin II",
                         Issued    = DateTime.Parse("1969-01-01")
                     }

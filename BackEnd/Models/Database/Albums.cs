@@ -11,11 +11,11 @@ namespace BackEnd.Models.Database
         }
 
         public int Id { get; set; }
-        public int BandId { get; set; }
+        public int ArtistId { get; set; }
         public string AlbumName { get; set; }
         public DateTime Issued { get; set; }
 
-        public virtual Bands Band { get; set; }
+        public virtual Artists Artist { get; set; }
         public virtual ICollection<Songs> Songs { get; set; }
     }
 }

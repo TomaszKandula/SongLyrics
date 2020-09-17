@@ -7,12 +7,12 @@ namespace BackEnd.Models.Database
     {
         public Generes()
         {
-            BandsGeneres = new HashSet<BandsGeneres>();
+            ArtistsGeneres = new HashSet<ArtistsGeneres>();
         }
 
         public int Id { get; set; }
         public string Genere { get; set; }
 
-        public virtual ICollection<BandsGeneres> BandsGeneres { get; set; }
+        public virtual ICollection<ArtistsGeneres> ArtistsGeneres { get; set; }
     }
 }

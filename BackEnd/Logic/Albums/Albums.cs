@@ -31,14 +31,14 @@ namespace BackEnd.Logic.Albums
 
                 return await FMainDbContext.Albums
                     .AsNoTracking()
-                    .Include(R => R.Band)
-                    .Where(R => R.BandId == BandId)
+                    .Include(R => R.Artist)
+                    .Where(R => R.ArtistId == BandId)
                     .Select(R => new Album
                     {
                         Id        = R.Id,
                         AlbumName = R.AlbumName,
                         Issued    = R.Issued,
-                        BandName  = R.Band.BandName
+                        BandName  = R.Artist.ArtistName
                     })
                     .ToListAsync();
 
@@ -48,13 +48,13 @@ namespace BackEnd.Logic.Albums
 
                 return await FMainDbContext.Albums
                     .AsNoTracking()
-                    .Include(R => R.Band)
+                    .Include(R => R.Artist)
                     .Select(R => new Album
                     {
                         Id        = R.Id,
                         AlbumName = R.AlbumName,
                         Issued    = R.Issued,
-                        BandName  = R.Band.BandName
+                        BandName  = R.Artist.ArtistName
                     })
                     .ToListAsync();
 
@@ -72,14 +72,14 @@ namespace BackEnd.Logic.Albums
 
             return await FMainDbContext.Albums
                .AsNoTracking()
-               .Include(R => R.Band)
+               .Include(R => R.Artist)
                .Where(R => R.Id == AlbumId)
                .Select(R => new Album
                {
                    Id        = R.Id,
                    AlbumName = R.AlbumName,
                    Issued    = R.Issued,
-                   BandName  = R.Band.BandName
+                   BandName  = R.Artist.ArtistName
                })
                .ToListAsync();
 

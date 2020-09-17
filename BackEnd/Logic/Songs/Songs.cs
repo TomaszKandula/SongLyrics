@@ -32,14 +32,14 @@ namespace BackEnd.Logic.Songs
                 return await FMainDbContext.Songs
                     .AsNoTracking()
                     .Include(R => R.Album)
-                    .Include(R => R.Band)
+                    .Include(R => R.Artist)
                     .Where(R => R.AlbumId == AlbumId)
                     .Select(R => new Song
                     {
                         Id        = R.Id,
                         Name      = R.SongName,
                         AlbumName = R.Album.AlbumName,
-                        BandName  = R.Band.BandName
+                        BandName  = R.Artist.ArtistName
                     })
                     .ToListAsync();
 
@@ -50,13 +50,13 @@ namespace BackEnd.Logic.Songs
                 return await FMainDbContext.Songs
                     .AsNoTracking()
                     .Include(R => R.Album)
-                    .Include(R => R.Band)
+                    .Include(R => R.Artist)
                     .Select(R => new Song
                     {
                         Id        = R.Id,
                         Name      = R.SongName,
                         AlbumName = R.Album.AlbumName,
-                        BandName  = R.Band.BandName
+                        BandName  = R.Artist.ArtistName
                     })
                     .ToListAsync();
 
@@ -75,7 +75,7 @@ namespace BackEnd.Logic.Songs
             return await FMainDbContext.Songs
                 .AsNoTracking()
                 .Include(R => R.Album)
-                .Include(R => R.Band)
+                .Include(R => R.Artist)
                 .Where(R => R.Id == SongId)
                 .Select(R => new SingleSong
                 {
@@ -83,7 +83,7 @@ namespace BackEnd.Logic.Songs
                     Lyrics    = R.SongLyrics,
                     Url       = R.SongUrl,
                     AlbumName = R.Album.AlbumName,
-                    BandName  = R.Band.BandName
+                    BandName  = R.Artist.ArtistName
                 })
                 .SingleOrDefaultAsync();
 

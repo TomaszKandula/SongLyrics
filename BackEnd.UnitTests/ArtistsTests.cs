@@ -31,10 +31,10 @@ namespace BackEnd.UnitTests
             var SongsDbSet        = DummyData.ReturnDummySongs().AsQueryable().BuildMockDbSet();
 
             // Populate database tables with dummy data
-            FMockDbContext.Setup(R => R.Bands).Returns(ArtistsDbSet.Object);
+            FMockDbContext.Setup(R => R.Artists).Returns(ArtistsDbSet.Object);
             FMockDbContext.Setup(R => R.Albums).Returns(AlbumsDbSet.Object);
             FMockDbContext.Setup(R => R.Generes).Returns(GeneresDbSet.Object);
-            FMockDbContext.Setup(R => R.BandsGeneres).Returns(BandsGeneresDbSet.Object);
+            FMockDbContext.Setup(R => R.ArtistsGeneres).Returns(BandsGeneresDbSet.Object);
             FMockDbContext.Setup(R => R.Members).Returns(MembersDbSet.Object);
             FMockDbContext.Setup(R => R.Songs).Returns(SongsDbSet.Object);
 

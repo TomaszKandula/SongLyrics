@@ -29,13 +29,13 @@ namespace BackEnd.Logic.Artists
             if (ArtistId != null) 
             {
                 
-                return await FMainDbContext.Bands
+                return await FMainDbContext.Artists
                     .AsNoTracking()
                     .Where(R => R.Id == ArtistId)
                     .Select(R => new Artist 
                     { 
                         Id   = R.Id,
-                        Name = R.BandName
+                        Name = R.ArtistName
                     })
                     .ToListAsync();
             
@@ -43,12 +43,12 @@ namespace BackEnd.Logic.Artists
             else            
             {
 
-                return await FMainDbContext.Bands
+                return await FMainDbContext.Artists
                     .AsNoTracking()
                     .Select(R => new Artist
                     {
                         Id   = R.Id,
-                        Name = R.BandName
+                        Name = R.ArtistName
                     })
                     .ToListAsync();
 
@@ -66,7 +66,7 @@ namespace BackEnd.Logic.Artists
 
             return await FMainDbContext.Members
                 .AsNoTracking()
-                .Where(R => R.BandId == ArtistId)
+                .Where(R => R.ArtistId == ArtistId)
                 .Select(R => new Member 
                 { 
                     Id        = R.Id,
@@ -88,16 +88,16 @@ namespace BackEnd.Logic.Artists
 
             var Members = await GetMembers(ArtistId);
 
-            return (await FMainDbContext.BandsGeneres
-                .Include(R => R.Band)
+            return (await FMainDbContext.ArtistsGeneres
+                .Include(R => R.Artist)
                 .Include(R => R.Genere)
                 .AsNoTracking()
-                .Where(R => R.BandId == ArtistId)
+                .Where(R => R.ArtistId == ArtistId)
                 .Select(R => new ReturnArtistDetails 
                 {
-                    Name        = R.Band.BandName,
-                    Established = R.Band.Established,
-                    ActiveUntil = R.Band.ActiveUntil,
+                    Name        = R.Artist.ArtistName,
+                    Established = R.Artist.Established,
+                    ActiveUntil = R.Artist.ActiveUntil,
                     Genere      = R.Genere.Genere,
                     Members     = Members
                 })

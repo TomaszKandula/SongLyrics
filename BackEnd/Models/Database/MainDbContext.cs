@@ -15,8 +15,8 @@ namespace BackEnd.Models.Database
         }
 
         public virtual DbSet<Albums> Albums { get; set; }
-        public virtual DbSet<Bands> Bands { get; set; }
-        public virtual DbSet<BandsGeneres> BandsGeneres { get; set; }
+        public virtual DbSet<Artists> Artists { get; set; }
+        public virtual DbSet<ArtistsGeneres> ArtistsGeneres { get; set; }
         public virtual DbSet<Generes> Generes { get; set; }
         public virtual DbSet<Members> Members { get; set; }
         public virtual DbSet<Songs> Songs { get; set; }
@@ -31,34 +31,34 @@ namespace BackEnd.Models.Database
 
                 entity.Property(e => e.Issued).HasColumnType("date");
 
-                entity.HasOne(d => d.Band)
+                entity.HasOne(d => d.Artist)
                     .WithMany(p => p.Albums)
-                    .HasForeignKey(d => d.BandId)
+                    .HasForeignKey(d => d.ArtistId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__BandId__AlbumsBands");
+                    .HasConstraintName("FK__ArtistId__AlbumsArtists");
             });
 
-            modelBuilder.Entity<Bands>(entity =>
+            modelBuilder.Entity<Artists>(entity =>
             {
                 entity.Property(e => e.ActiveUntil).HasColumnType("date");
 
-                entity.Property(e => e.BandName)
+                entity.Property(e => e.ArtistName)
                     .IsRequired()
                     .HasMaxLength(255);
 
                 entity.Property(e => e.Established).HasColumnType("date");
             });
 
-            modelBuilder.Entity<BandsGeneres>(entity =>
+            modelBuilder.Entity<ArtistsGeneres>(entity =>
             {
-                entity.HasOne(d => d.Band)
-                    .WithMany(p => p.BandsGeneres)
-                    .HasForeignKey(d => d.BandId)
+                entity.HasOne(d => d.Artist)
+                    .WithMany(p => p.ArtistsGeneres)
+                    .HasForeignKey(d => d.ArtistId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__BandId__BandsGeneres");
+                    .HasConstraintName("FK__ArtistId__ArtistsGeneres");
 
                 entity.HasOne(d => d.Genere)
-                    .WithMany(p => p.BandsGeneres)
+                    .WithMany(p => p.ArtistsGeneres)
                     .HasForeignKey(d => d.GenereId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__GenereId__Generes");
@@ -82,11 +82,11 @@ namespace BackEnd.Models.Database
                     .IsRequired()
                     .HasMaxLength(255);
 
-                entity.HasOne(d => d.Band)
+                entity.HasOne(d => d.Artist)
                     .WithMany(p => p.Members)
-                    .HasForeignKey(d => d.BandId)
+                    .HasForeignKey(d => d.ArtistId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__BandId__MembersBands");
+                    .HasConstraintName("FK__ArtistId__MembersArtists");
             });
 
             modelBuilder.Entity<Songs>(entity =>
@@ -109,11 +109,11 @@ namespace BackEnd.Models.Database
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__AlbumId__Albums");
 
-                entity.HasOne(d => d.Band)
+                entity.HasOne(d => d.Artist)
                     .WithMany(p => p.Songs)
-                    .HasForeignKey(d => d.BandId)
+                    .HasForeignKey(d => d.ArtistId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__BandId__Bands");
+                    .HasConstraintName("FK__ArtistId__Artists");
 
             });
 

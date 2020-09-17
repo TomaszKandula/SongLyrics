@@ -4,7 +4,7 @@ Song Lyrics project allow to traverse through different artists to find songs fr
 
 In the future, this project may also allow to register an account, and the users will be able to add and modify artists data (albums, songs, lyrics, etc.).
 
-Working demo has been deployed on Azure Cloud: [Song Lyrics](https://songlyrics.azurewebsites.net).
+Working demo (presenting work in progress) has been deployed on Azure Cloud: [Song Lyrics](https://songlyrics.azurewebsites.net).
 
 ## Tech-stack
 

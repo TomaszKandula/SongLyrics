@@ -7,7 +7,7 @@ export class Footer extends Component
     {
 
         return (
-            <footer className="page-footer grey lighten-5">
+            <footer className="page-footer grey lighten-4">
                 <div className="container">
 
                     <div className="row">
@@ -31,7 +31,7 @@ export class Footer extends Component
 
                 </div>
 
-                <div className="footer-copyright grey lighten-4">
+                <div className="footer-copyright grey lighten-3">
                     <div className="container">
                         <span className="grey-text darken-4">The source code is available at <a href="https://github.com/TomaszKandula/SongLyrics" target="_blank" rel="noopener noreferrer">GitHub</a>.</span>
                     </div>

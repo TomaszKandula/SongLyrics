@@ -10,7 +10,7 @@ export default class App extends Component
     render()
     {
         return (
-            <div>
+            <div className="grey lighten-5">
                 <Header />
                 <div>
                     <MessageBox />

@@ -44,11 +44,11 @@ class DetailsView extends Component
 
                 <div className="row">
 
-                    <div className="col s2">
+                    <div className="col s1">
                         &nbsp;
                     </div>
 
-                    <div className="col s8">
+                    <div className="col s10">
 
                         <div className="row">
                             <div className="col s12">
@@ -74,7 +74,7 @@ class DetailsView extends Component
 
                     </div>
 
-                    <div className="col s2">
+                    <div className="col s1">
                         &nbsp;
                     </div>
 

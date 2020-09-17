@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ArtistsView from "./views/artistsView";
 import DetailsView from "./views/detailsView";
 
-import "../styles/main.scss";
+import "../../styles/main.scss";
 
 class Layout extends Component
 {

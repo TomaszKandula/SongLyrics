@@ -49,6 +49,7 @@ class AlbumsTable extends Component
                         <th className="albumsTableCol1">Lp</th>
                         <th className="albumsTableCol2">Album Name</th>
                         <th className="albumsTableCol3">Issued</th>
+                        <th className="albumsTableCol4">Album cover</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,6 +58,7 @@ class AlbumsTable extends Component
                             <td className="albumsTableCol1">{albums.Id}</td>
                             <td className="albumsTableCol2">{albums.AlbumName}</td>
                             <td className="albumsTableCol3">{this.returnFullYear(albums.Issued)}</td>
+                            <td className="albumsTableCol4"></td>
                         </tr>
                     )}
                 </tbody>

@@ -50,7 +50,7 @@ class SongVideo extends Component
 
                 <Posed.FadeInDiv initialPose="hidden" pose="visible">
                     <h3>
-                        <b>{this.state.song.BandName}</b>
+                        <b>{this.state.song.ArtistName}</b>
                     </h3>
                 </Posed.FadeInDiv>
 

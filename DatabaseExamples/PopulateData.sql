@@ -25,7 +25,7 @@ BEGIN TRY
         BULK INSERT 
             Bands
         FROM 
-            'I:\Projects\Software Projects\Microsoft NET\SongLyrics\DatabaseExamples\CSV\Bands.csv'
+            'I:\Projects\Software Projects\Microsoft NET\SongLyrics\DatabaseExamples\CSV\Artists.csv'
         WITH
         (
             FIRSTROW = 2,
@@ -37,7 +37,7 @@ BEGIN TRY
         BULK INSERT 
             BandsGeneres
         FROM 
-            'I:\Projects\Software Projects\Microsoft NET\SongLyrics\DatabaseExamples\CSV\BandsGeneres.csv'
+            'I:\Projects\Software Projects\Microsoft NET\SongLyrics\DatabaseExamples\CSV\ArtistsGeneres.csv'
         WITH
         (
             FIRSTROW = 2,

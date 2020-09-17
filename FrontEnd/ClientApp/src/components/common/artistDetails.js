@@ -121,7 +121,7 @@ class ArtistDetails extends Component
                         <td className="detailsTableCol1">Current</td>
                         <td className="detailsTableCol2">{processed.currMembers}</td>
                     </tr>
-                    <tr class="lastTableRow">
+                    <tr className="lastTableRow">
                         <td className="detailsTableCol1">Past</td>
                         <td className="detailsTableCol2">{processed.pastMembers}</td>
                     </tr>

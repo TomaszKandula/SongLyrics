@@ -1,12 +1,12 @@
 import { createStore, combineReducers } from "redux";
-import selectBandReducer from "./reducers/selectBandReducer";
+import selectArtistReducer from "./reducers/selectArtistReducer";
 import selectAlbumReducer from "./reducers/selectAlbumReducer";
 import selectSongReducer from "./reducers/selectSongReducer";
 import toggleMessageReducer from "./reducers/toggleMessageReducer";
 
 const reducer = combineReducers(
 {
-    band:  selectBandReducer,
+    artist:  selectArtistReducer,
     album: selectAlbumReducer,
     song:  selectSongReducer,
     message: toggleMessageReducer
@@ -15,7 +15,7 @@ const reducer = combineReducers(
 const initialState =
 {
 
-    band:
+    artist:
     {
         id: 0
     },
@@ -40,5 +40,4 @@ const initialState =
 };
 
 const store = createStore(reducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-
 export default store;

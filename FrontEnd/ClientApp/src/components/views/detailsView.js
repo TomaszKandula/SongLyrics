@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import * as Links from "../../constants/linkTypes";
 import SongLyric from "../common/songLyric";
 import SongVideo from "../common/songVideo";
-import BandDetails from "../common/bandDetails";
+import ArtistDetails from "../common/artistDetails";
 import AlbumsTable from "../tables/albumsTable";
 import SongsTable from "../tables/songsTable";
 import NavigationLinks from "../common/navigationLinks";
@@ -18,16 +18,16 @@ class DetailsView extends Component
         let header   = null;
         let navlinks = null;
 
-        if (this.props.state.band.id > 0 && this.props.state.album.id === 0)
+        if (this.props.state.artist.id > 0 && this.props.state.album.id === 0)
         {
-            header   = <BandDetails /> 
+            header   = <ArtistDetails /> 
             content  = <AlbumsTable />;
             navlinks = <NavigationLinks selection={Links.ALBUMS_LIST} />;
         }
 
         if (this.props.state.album.id > 0 && this.props.state.song.id === 0)
         {
-            header   = <BandDetails /> 
+            header   = <ArtistDetails /> 
             content  = <SongsTable />;
             navlinks = <NavigationLinks selection={Links.SONGS_LIST} />;
         }

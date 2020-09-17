@@ -2,17 +2,17 @@
 import { connect } from "react-redux";
 import { GetData } from "../../ajax/simpleRest";
 import * as Api from "../../ajax/apiUrls";
-import * as Posed from "../common/posedComponents";
-import * as Loaders from "../common/preLoaders";
+import * as Posed from "./posedComponents";
+import * as Loaders from "./preLoaders";
 
-class BandDetails extends Component
+class ArtistDetails extends Component
 {
 
     constructor(props)
     {
         super(props);
-        this.dispatch = this.props.dispatch.bind(this);
-        this.bandData = this.updateDetails.bind(this);
+        this.dispatch   = this.props.dispatch.bind(this);
+        this.artistData = this.updateDetails.bind(this);
         this.state =
         {
             details:
@@ -29,8 +29,8 @@ class BandDetails extends Component
 
     componentDidMount()
     {
-        if (this.props.state.band.id > 0)
-            GetData(`${Api.Bands}/${this.props.state.band.id}/details/`, this.bandData, this.dispatch);
+        if (this.props.state.artist.id > 0)
+            GetData(`${Api.Bands}/${this.props.state.artist.id}/details/`, this.artistData, this.dispatch);
     }
 
     updateDetails(payload)
@@ -167,4 +167,4 @@ class BandDetails extends Component
 }
 
 const mapStateToProps = (state) => { return { state } }
-export default connect(mapStateToProps)(BandDetails)
+export default connect(mapStateToProps)(ArtistDetails)

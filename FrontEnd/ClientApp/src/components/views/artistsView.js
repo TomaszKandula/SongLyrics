@@ -6,7 +6,7 @@ import * as Loaders from "../common/preLoaders";
 import * as Api from "../../ajax/apiUrls";
 import { GetData } from "../../ajax/simpleRest";
 
-class BandsView extends Component
+class ArtistsView extends Component
 {
 
     constructor(props)
@@ -14,7 +14,7 @@ class BandsView extends Component
         super(props);
         this.dispatch = this.props.dispatch.bind(this);
         this.update = this.updateData.bind(this);
-        this.state = { bands: [], loading: true };
+        this.state = { artists: [], loading: true };
     }
 
     componentDidMount()
@@ -24,12 +24,12 @@ class BandsView extends Component
 
     updateData(payload)
     {
-        return payload ? this.setState({ bands: payload.Bands, loading: false }) : this.setState({ bands: [], loading: false });
+        return payload ? this.setState({ artists: payload.Bands, loading: false }) : this.setState({ artists: [], loading: false });
     }      
 
     clickRowSelect(bandId)
     {
-        this.props.dispatch({ type: ActionTypes.SELECT_BAND, payload: bandId });
+        this.props.dispatch({ type: ActionTypes.SELECT_ARTIST, payload: bandId });
     }
 
     renderTable()
@@ -40,11 +40,11 @@ class BandsView extends Component
                 <thead>
                     <tr>
                         <th className="bandsTableCol1">Lp</th>
-                        <th className="bandsTableCol2">Band Name</th>
+                        <th className="bandsTableCol2">Artist Name</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {this.state.bands.map(bands =>
+                    {this.state.artists.map(bands =>
                         <tr key={bands.Id} onClick={() => this.clickRowSelect(bands.Id)}>
                             <td className="bandsTableCol1">{bands.Id}</td>
                             <td className="bandsTableCol2">{bands.Name}</td>
@@ -123,4 +123,4 @@ class BandsView extends Component
 
 }
 
-export default connect()(BandsView)
+export default connect()(ArtistsView)

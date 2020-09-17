@@ -9,14 +9,14 @@ class NavigationLinks extends Component
     constructor(props)
     {
         super(props);
-        this.SelectBands  = this.clickSelectBands.bind(this);
-        this.SelectAlbums = this.clickSelectAlbums.bind(this);
-        this.SelectSongs  = this.clickSelectSongs.bind(this);
+        this.SelectArtists = this.clickSelectArtists.bind(this);
+        this.SelectAlbums  = this.clickSelectAlbums.bind(this);
+        this.SelectSongs   = this.clickSelectSongs.bind(this);
     }
 
-    clickSelectBands()  { this.props.dispatch({ type: ActionTypes.SELECT_BAND,  payload: 0 }); }
-    clickSelectAlbums() { this.props.dispatch({ type: ActionTypes.SELECT_ALBUM, payload: 0 }); }
-    clickSelectSongs()  { this.props.dispatch({ type: ActionTypes.SELECT_SONG,  payload: 0 }); }
+    clickSelectArtists() { this.props.dispatch({ type: ActionTypes.SELECT_ARTIST,payload: 0 }); }
+    clickSelectAlbums()  { this.props.dispatch({ type: ActionTypes.SELECT_ALBUM, payload: 0 }); }
+    clickSelectSongs()   { this.props.dispatch({ type: ActionTypes.SELECT_SONG,  payload: 0 }); }
 
     render()
     {
@@ -27,7 +27,7 @@ class NavigationLinks extends Component
             case Links.ALBUMS_LIST:
                 return (
                     <div className="col s12">
-                        <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.SelectBands}>Bands</a>
+                        <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.SelectArtists}>Artists</a>
                         <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.SelectAlbums}>Albums</a>
                     </div>
                 );
@@ -35,7 +35,7 @@ class NavigationLinks extends Component
             case Links.SONGS_LIST:
                 return (
                     <div className="col s12">
-                        <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.SelectBands}>Bands</a>
+                        <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.SelectArtists}>Artists</a>
                         <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.SelectAlbums}>Albums</a>
                         <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.SelectSongs}>Songs</a>
                     </div>
@@ -44,7 +44,7 @@ class NavigationLinks extends Component
             case Links.SONG_LYRIC:
                 return (
                     <div className="col s12">
-                        <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.SelectBands}>Bands</a>
+                        <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.SelectArtists}>Artists</a>
                         <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.SelectAlbums}>Albums</a>
                         <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.SelectSongs}>Songs</a>
                         <a href="#!" className="breadcrumb grey-text darken-4">Song</a>
@@ -54,7 +54,7 @@ class NavigationLinks extends Component
             default:
                 return (
                     <div className="col s12">
-                        <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.SelectBands}>Bands</a>
+                        <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.SelectArtists}>Artists</a>
                         <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.SelectAlbums}>Albums</a>
                     </div>
                 );

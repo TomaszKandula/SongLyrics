@@ -52,7 +52,7 @@ class SongLyric extends Component
                 <div class="card hoverable">
 
                     <div class="card-content gray-text darken-4">
-                        <span class="card-title">{this.state.song.Name} from album {this.state.song.AlbumName}</span>
+                        <span class="card-title">{this.state.song.Name} from album "{this.state.song.AlbumName}"</span>
                         <div className="row margin-t-10"></div>
                         {ReactHtmlParser(this.state.song.Lyrics)}
                     </div>

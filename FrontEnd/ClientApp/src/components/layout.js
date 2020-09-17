@@ -1,6 +1,6 @@
 ﻿import React, { Component } from "react";
 import { connect } from 'react-redux';
-import BandsView from "./views/bandsView";
+import ArtistsView from "./views/artistsView";
 import DetailsView from "./views/detailsView";
 
 import "../styles/main.scss";
@@ -13,7 +13,7 @@ class Layout extends Component
 
         return (
             <div className="container">
-                {this.props.isBandSelected ? <DetailsView /> : <BandsView /> }
+                {this.props.isArtistSelected ? <DetailsView /> : <ArtistsView /> }
             </div>
         );
 
@@ -23,8 +23,8 @@ class Layout extends Component
 
 const mapStateToProps = (state) =>
 {
-    let isBandSelected = state.band.id !== 0 ? true : false;
-    return { isBandSelected }
+    let isArtistSelected = state.artist.id !== 0 ? true : false;
+    return { isArtistSelected }
 }
 
 export default connect(mapStateToProps)(Layout);

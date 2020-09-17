@@ -10,11 +10,9 @@ export default class App extends Component
     render()
     {
         return (
-            <div className="grey lighten-5">
-                <Header />
-                <div>
-                    <MessageBox />
-                </div>
+            <div>
+                <MessageBox />
+                <Header/>
                 <Layout />
                 <Footer />
             </div>

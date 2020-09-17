@@ -153,9 +153,7 @@ class ArtistDetails extends Component
         let bandName = this.state.loading ? null : this.state.details.name;
 
         return (
-            <div>
-
-                <div className="row margin-t-15"></div>
+            <div className="margin-t-30">
 
                 <Posed.FadeInDiv initialPose="hidden" pose="visible">
                     <h3>
@@ -163,14 +161,10 @@ class ArtistDetails extends Component
                     </h3>
                 </Posed.FadeInDiv>
 
-                <div className="row margin-t-15"></div>
-
                 <Posed.ScaleDiv initialPose="hidden" pose="visible">
-
-                    <div className="card-panel white hoverable">
+                    <div className="card-panel margin-t-30 white hoverable">
                         {renderedTable}
                     </div>
-
                 </Posed.ScaleDiv>
 
             </div>

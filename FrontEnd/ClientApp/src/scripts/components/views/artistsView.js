@@ -62,61 +62,47 @@ class ArtistsView extends Component
         let renderedTable = this.state.loading ? <Loaders.Circular /> : this.renderTable();
 
         return (
-            <div>
+            <div className="row margin-t-30 margin-b-50">
 
-                <div className="row margin-t-30"></div>
+                <div className="col s1"></div>
 
-                <div className="row">
+                <div className="col s10">
 
-                    <div className="col s1">
-                        &nbsp;
-                    </div>
+                    <div className="row">
+                        <div className="col s12">
 
-                    <div className="col s10">
-
-                        <div className="row">
-                            <div className="col s12">
-
-                                <Posed.FadeInDiv initialPose="hidden" pose="visible">
-                                    <nav className="hoverable">
-                                        <div className="nav-wrapper white">
-                                            <div className="input-field">
-                                                <input id="search" type="search" placeholder="Search for artist" className="autocomplete black-text" />
-                                                <label className="label-icon" htmlFor="search">
-                                                    <i className="material-icons grey-text darken-4">search</i>
-                                                </label>
-                                                <i className="material-icons">close</i>
-                                            </div>
+                            <Posed.FadeInDiv initialPose="hidden" pose="visible">
+                                <nav className="hoverable">
+                                    <div className="nav-wrapper white">
+                                        <div className="input-field">
+                                            <input id="search" type="search" placeholder="Search for artist" className="autocomplete black-text" />
+                                            <label className="label-icon" htmlFor="search">
+                                                <i className="material-icons grey-text darken-4">search</i>
+                                            </label>
+                                            <i className="material-icons">close</i>
                                         </div>
-                                    </nav>
-                                </Posed.FadeInDiv>
-
-                            </div>
-                        </div>
-
-                        <div className="row">
-
-                            <Posed.FadeInDiv initialPose="hidden" pose="visible" className="col s12">
-
-                                <div className="card-panel white hoverable">
-                                    {renderedTable}
-                                </div>
-
+                                    </div>
+                                </nav>
                             </Posed.FadeInDiv>
 
                         </div>
-
                     </div>
 
-                    <div className="col s1">
-                        &nbsp;
+                    <div className="row">
+
+                        <Posed.FadeInDiv initialPose="hidden" pose="visible" className="col s12">
+                            <div className="card-panel white hoverable">
+                                {renderedTable}
+                            </div>
+                        </Posed.FadeInDiv>
+
                     </div>
 
                 </div>
 
-                <div className="row margin-t-50"></div>
+                <div className="col s1"></div>
 
-             </div>
+            </div>
         );
 
     }

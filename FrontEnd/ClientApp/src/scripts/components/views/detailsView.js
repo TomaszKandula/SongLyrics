@@ -40,47 +40,37 @@ class DetailsView extends Component
         }
 
         return (
-            <div>
+            <div className="row margin-t-5 margin-b-50">
 
-                <div className="row">
+                <div className="col s1"></div>
 
-                    <div className="col s1">
-                        &nbsp;
+                <div className="col s10">
+
+                    <div className="row">
+                        <div className="col s12">
+                            {header}
+                        </div>
                     </div>
 
-                    <div className="col s10">
+                    <div className="row">
+                        <div className="col s12">
 
-                        <div className="row">
-                            <div className="col s12">
-                                {header}
-                            </div>
-                        </div>
-
-                        <div className="row">
-                            <div className="col s12">
-
-                                <nav className="nav-box white hoverable">
-                                    <div className="grey lighten-5">
-                                        <div className="col s12">
-                                            {navlinks}
-                                        </div>
+                            <nav className="nav-box white hoverable">
+                                <div className="grey lighten-5">
+                                    <div className="col s12">
+                                        {navlinks}
                                     </div>
-                                </nav>
+                                </div>
+                            </nav>
 
-                                {content}
+                            {content}
 
-                            </div>
                         </div>
-
-                    </div>
-
-                    <div className="col s1">
-                        &nbsp;
                     </div>
 
                 </div>
 
-                <div className="row margin-t-50"></div>
+                <div className="col s1"></div>
 
             </div>
         );

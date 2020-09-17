@@ -45,8 +45,7 @@ class SongVideo extends Component
     {
 
         return (
-            <div>
-                <div className="row margin-t-15"></div>
+            <div className="margin-t-30 margin-b-5">
 
                 <Posed.FadeInDiv initialPose="hidden" pose="visible">
                     <h3>
@@ -54,9 +53,7 @@ class SongVideo extends Component
                     </h3>
                 </Posed.FadeInDiv>
 
-                <div className="row margin-t-15"></div>
-
-                <div className="card hoverable">
+                <div className="card margin-t-30 hoverable">
 
                     <div className="card-image">
                         <div className="video-container">
@@ -83,6 +80,7 @@ class SongVideo extends Component
                     </div>
 
                 </div>
+
             </div>
         );
 

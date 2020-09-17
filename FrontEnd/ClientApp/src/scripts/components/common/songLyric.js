@@ -47,14 +47,13 @@ class SongLyric extends Component
         return (
             <Posed.FadeInDiv initialPose="hidden" pose="visible">
 
-                <div className="row margin-t-10"></div>
-
-                <div className="card hoverable">
+                <div className="card margin-t-30 hoverable">
 
                     <div className="card-content gray-text darken-4">
                         <span className="card-title">{this.state.song.Name} from album "{this.state.song.AlbumName}"</span>
-                        <div className="row margin-t-10"></div>
-                        {ReactHtmlParser(this.state.song.Lyrics)}
+                        <div className="margin-t-30 margin-b-30">
+                            {ReactHtmlParser(this.state.song.Lyrics)}
+                        </div>
                     </div>
 
                 </div>

@@ -64,13 +64,9 @@ class SongsTable extends Component
 
         return (
             <Posed.FadeInDiv initialPose="hidden" pose="visible">
-
-                <div className="row margin-t-10"></div>
-
-                <div className="card-panel white hoverable">
+                <div className="card-panel margin-t-30 white hoverable">
                     {renderedTable}
                 </div>
-
             </Posed.FadeInDiv>
         );
 

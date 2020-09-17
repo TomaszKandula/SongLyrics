@@ -7,16 +7,16 @@ export class Header extends Component
     {
 
         return (
-            <nav className="nav-extended grey lighten-5">
+            <nav className="nav-extended deep-purple lighten-1">
 
                 <div className="container">
 
-                    <div className="nav-wrapper grey lighten-5">
+                    <div className="nav-wrapper deep-purple lighten-1">
 
-                        <a href="../" className="brand-logo right grey-text darken-4">Song Lyrics</a>
+                        <a href="../" className="brand-logo right deep-purple-text text-lighten-5">Song Lyrics</a>
 
-                        <ul class="left hide-on-med-and-down">
-                            <li><a href="#!"><i class="material-icons grey-text">menu</i></a></li>
+                        <ul className="left hide-on-med-and-down">
+                            <li><a href="#!"><i className="material-icons">menu</i></a></li>
                         </ul>
 
                     </div>

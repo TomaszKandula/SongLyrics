@@ -54,8 +54,12 @@ export const GetData = (endpoint, callback, dispatch) =>
     fetch(endpoint)
         .then(response =>
         {
-            if (!response.ok) throw new Error("Network response was non-ok.");
+
+            if (!response.ok)
+                throw new Error("Error occured during processing the request.");
+
             return response.json();
+
         })
         .then(data => onSuccess(data))
         .catch((error) => onError(error));

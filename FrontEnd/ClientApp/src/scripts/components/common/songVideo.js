@@ -45,33 +45,21 @@ class SongVideo extends Component
                         </h3>
                     </Posed.FadeInDiv>
 
-                    <div className="card margin-t-30 hoverable">
+                    <Posed.FadeInDiv initialPose="hidden" pose="visible" className="card margin-t-30 hoverable">
 
                         <div className="card-image">
                             <div className="video-container">
-                                <Posed.ScaleDiv initialPose="hidden" pose="visible">
-                                    {ReactHtmlParser(`<iframe src="${this.state.song.Url}" frameborder="0"></iframe>`)}
-                                </Posed.ScaleDiv>
+                                <div>{ReactHtmlParser(`<iframe src="${this.state.song.Url}" frameborder="0"></iframe>`)}</div>
                             </div>
                         </div>
 
                         <div className="card-content">
-
-                            <Posed.FadeInDiv initialPose="hidden" pose="visible">
-                                <span>
-                                    {this.state.song.Name}
-                                    <i className="material-icons right">more_vert</i>
-                                </span>
-                            </Posed.FadeInDiv>
-
-                            <div className="card-reveal">
-                                <span className="card-title grey-text text-darken-4">{this.state.song.BandName}<i className="material-icons right">close</i></span>
-                                <p>TEXT HERE</p>
+                            <div initialPose="hidden" pose="visible">
+                                <span>{this.state.song.Name}</span>
                             </div>
-
                         </div>
 
-                    </div>
+                    </Posed.FadeInDiv>
 
                 </div>
             </>

@@ -26,8 +26,14 @@ class Modal extends Component
 
         if (this.props.isOpened)
         {
-            let instance = M.Modal.getInstance(this.Modal);
-            instance.open();
+
+            // Render modal window with time lag to improve UX
+            setTimeout(() =>
+            {
+                let instance = M.Modal.getInstance(this.Modal);
+                instance.open();
+            }, 350)
+
         }
 
     }

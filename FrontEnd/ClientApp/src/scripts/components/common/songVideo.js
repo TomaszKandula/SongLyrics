@@ -54,7 +54,7 @@ class SongVideo extends Component
                         </div>
 
                         <div className="card-content">
-                            <div initialPose="hidden" pose="visible">
+                            <div>
                                 <span>{this.state.song.Name}</span>
                             </div>
                         </div>

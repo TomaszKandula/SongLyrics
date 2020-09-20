@@ -32,7 +32,7 @@ class Modal extends Component
             {
                 let instance = M.Modal.getInstance(this.Modal);
                 instance.open();
-            }, 350)
+            }, 500)
 
         }
 

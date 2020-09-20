@@ -14,6 +14,8 @@ Working demo (presenting work in progress) has been deployed on Azure Cloud: [So
 1. Redux.js.
 1. React-Materialize.
 1. Materialize CSS via CDN.
+1. React HTML Parser.
+1. React Pose.
 
 ### Back-end
 

@@ -25,7 +25,8 @@ class SongVideo extends Component
 
     updateSong(payload, error)
     {
-        return !error ? this.setState({ song: payload.Song, loading: false, fetchError: null })
+        return !error
+            ? this.setState({ song: payload.Song, loading: false, fetchError: null })
             : this.setState({ song: {}, loading: true, fetchError: error });
     }
 

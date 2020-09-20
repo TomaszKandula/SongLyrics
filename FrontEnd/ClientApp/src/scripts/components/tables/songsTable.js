@@ -26,7 +26,8 @@ class SongsTable extends Component
 
     updateData(payload, error)
     {
-        return !error ? this.setState({ songs: payload.Songs, loading: false, fetchError: null })
+        return !error
+            ? this.setState({ songs: payload.Songs, loading: false, fetchError: null })
             : this.setState({ songs: [], loading: true, fetchError: error });
     }
     

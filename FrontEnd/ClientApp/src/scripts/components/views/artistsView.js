@@ -25,7 +25,8 @@ class ArtistsView extends Component
 
     updateData(payload, error)
     {
-        return !error ? this.setState({ artists: payload.Artists, loading: false, fetchError: null })
+        return !error
+            ? this.setState({ artists: payload.Artists, loading: false, fetchError: null })
             : this.setState({ artists: [], loading: true, fetchError: error });
     }      
 

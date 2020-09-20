@@ -4,6 +4,8 @@ import { GetData } from "../../ajax/simpleRest";
 import * as Api from "../../ajax/apiUrls";
 import * as Posed from "./posedComponents";
 import * as Loaders from "./preLoaders";
+import * as MessageTypes from "../../constants/messageTypes";
+import Modal from "../modals/defaultModal";
 
 class ArtistDetails extends Component
 {
@@ -11,7 +13,6 @@ class ArtistDetails extends Component
     constructor(props)
     {
         super(props);
-        this.dispatch   = this.props.dispatch.bind(this);
         this.artistData = this.updateDetails.bind(this);
         this.state =
         {
@@ -23,36 +24,30 @@ class ArtistDetails extends Component
                 genere:      "",
                 members:     []
             },
-            loading: true
+            loading: true,
+            fetchError: null
         };
     }
 
     componentDidMount()
     {
         if (this.props.state.artist.id > 0)
-            GetData(`${Api.Artists}/${this.props.state.artist.id}/details/`, this.artistData, this.dispatch);
+            GetData(`${Api.Artists}/${this.props.state.artist.id}/details/`, this.artistData);
     }
 
-    updateDetails(payload)
+    updateDetails(payload, error)
     {
-
-        if (!payload) return false;
-
-        this.setState(
-        {
-            details:
-            {
-                name:        payload.Name,
-                established: payload.Established,
-                activeUntil: payload.ActiveUntil,
-                genere:      payload.Genere,
-                members:     payload.Members,
-            },
-            loading: false        
-        });
-
-        return true;
-
+        return !error
+            ? this.setState({
+                details: { name: payload.Name, established: payload.Established, activeUntil: payload.ActiveUntil, genere: payload.Genere, members: payload.Members, },
+                loading: false,
+                fetchError: null
+            })
+            : this.setState({
+                details: { name: "", established: "", activeUntil: "", genere: "", members: "", },
+                loading: true,
+                fetchError: error
+            });
     }      
 
     processData()
@@ -80,11 +75,13 @@ class ArtistDetails extends Component
 
             if (this.state.details.members[Index].Status === "Active")
             {
-                currMembers = currMembers + ` ${this.state.details.members[Index].FirstName} ${this.state.details.members[Index].LastName},`;
+                currMembers = currMembers
+                    + ` ${this.state.details.members[Index].FirstName} ${this.state.details.members[Index].LastName},`;
             }
             else
             {
-                pastMembers = pastMembers + ` ${this.state.details.members[Index].FirstName} ${this.state.details.members[Index].LastName},`;
+                pastMembers = pastMembers
+                    + ` ${this.state.details.members[Index].FirstName} ${this.state.details.members[Index].LastName},`;
             }
 
         }
@@ -149,25 +146,29 @@ class ArtistDetails extends Component
     render()
     {
 
+        let showError = this.state.fetchError ? <Modal messageText={this.state.fetchError} messageType={MessageTypes.MESSAGE_ERROR} isOpened={true} /> : null;
         let renderedTable = this.state.loading ? <Loaders.Circular /> : this.renderTable(this.processData());
         let bandName = this.state.loading ? null : this.state.details.name;
 
         return (
-            <div className="margin-t-30">
+            <>
+                {showError}
+                <div className="margin-t-30">
 
-                <Posed.FadeInDiv initialPose="hidden" pose="visible">
-                    <h3>
-                        <b>{bandName}</b>
-                    </h3>
-                </Posed.FadeInDiv>
+                    <Posed.FadeInDiv initialPose="hidden" pose="visible">
+                        <h3>
+                            <b>{bandName}</b>
+                        </h3>
+                    </Posed.FadeInDiv>
 
-                <Posed.ScaleDiv initialPose="hidden" pose="visible">
-                    <div className="card-panel margin-t-30 white hoverable">
-                        {renderedTable}
-                    </div>
-                </Posed.ScaleDiv>
+                    <Posed.ScaleDiv initialPose="hidden" pose="visible">
+                        <div className="card-panel margin-t-30 white hoverable">
+                            {renderedTable}
+                        </div>
+                    </Posed.ScaleDiv>
 
-            </div>
+                </div>
+            </>
         );
 
     }

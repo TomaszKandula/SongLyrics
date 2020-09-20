@@ -1,10 +1,12 @@
 ﻿import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as Posed from "../common/posedComponents";
 import * as ActionTypes from "../../redux/actionTypes";
+import * as MessageTypes from "../../constants/messageTypes";
+import * as Posed from "../common/posedComponents";
 import * as Loaders from "../common/preLoaders";
 import * as Api from "../../ajax/apiUrls";
 import { GetData } from "../../ajax/simpleRest";
+import Modal from "../modals/defaultModal";
 
 class ArtistsView extends Component
 {
@@ -12,19 +14,19 @@ class ArtistsView extends Component
     constructor(props)
     {
         super(props);
-        this.dispatch = this.props.dispatch.bind(this);
         this.update = this.updateData.bind(this);
-        this.state = { artists: [], loading: true };
+        this.state = { artists: [], loading: true, fetchError: null };
     }
 
     componentDidMount()
     {
-        GetData(`${Api.Artists}`, this.update, this.dispatch);
+        GetData(`${Api.Artists}`, this.update);
     }
 
-    updateData(payload)
+    updateData(payload, error)
     {
-        return payload ? this.setState({ artists: payload.Artists, loading: false }) : this.setState({ artists: [], loading: false });
+        return !error ? this.setState({ artists: payload.Artists, loading: false, fetchError: null })
+            : this.setState({ artists: [], loading: true, fetchError: error });
     }      
 
     clickRowSelect(bandId)
@@ -59,50 +61,54 @@ class ArtistsView extends Component
     render()
     {
 
+        let showError = this.state.fetchError ? <Modal messageText={this.state.fetchError} messageType={MessageTypes.MESSAGE_ERROR} isOpened={true} /> : null;
         let renderedTable = this.state.loading ? <Loaders.Circular /> : this.renderTable();
 
         return (
-            <div className="row margin-t-30 margin-b-50">
+            <>
+                {showError}
+                <div className="row margin-t-30 margin-b-50">
 
-                <div className="col s1"></div>
+                    <div className="col s1"></div>
 
-                <div className="col s10">
+                    <div className="col s10">
 
-                    <div className="row">
-                        <div className="col s12">
+                        <div className="row">
+                            <div className="col s12">
 
-                            <Posed.FadeInDiv initialPose="hidden" pose="visible">
-                                <nav className="hoverable">
-                                    <div className="nav-wrapper white">
-                                        <div className="input-field">
-                                            <input id="search" type="search" placeholder="Search for artist" className="autocomplete black-text" />
-                                            <label className="label-icon" htmlFor="search">
-                                                <i className="material-icons grey-text darken-4">search</i>
-                                            </label>
-                                            <i className="material-icons">close</i>
+                                <Posed.FadeInDiv initialPose="hidden" pose="visible">
+                                    <nav className="hoverable">
+                                        <div className="nav-wrapper white">
+                                            <div className="input-field">
+                                                <input id="search" type="search" placeholder="Search for artist" className="autocomplete black-text" />
+                                                <label className="label-icon" htmlFor="search">
+                                                    <i className="material-icons grey-text darken-4">search</i>
+                                                </label>
+                                                <i className="material-icons">close</i>
+                                            </div>
                                         </div>
-                                    </div>
-                                </nav>
+                                    </nav>
+                                </Posed.FadeInDiv>
+
+                            </div>
+                        </div>
+
+                        <div className="row">
+
+                            <Posed.FadeInDiv initialPose="hidden" pose="visible" className="col s12">
+                                <div className="card-panel white hoverable">
+                                    {renderedTable}
+                                </div>
                             </Posed.FadeInDiv>
 
                         </div>
-                    </div>
-
-                    <div className="row">
-
-                        <Posed.FadeInDiv initialPose="hidden" pose="visible" className="col s12">
-                            <div className="card-panel white hoverable">
-                                {renderedTable}
-                            </div>
-                        </Posed.FadeInDiv>
 
                     </div>
+
+                    <div className="col s1"></div>
 
                 </div>
-
-                <div className="col s1"></div>
-
-            </div>
+            </>
         );
 
     }

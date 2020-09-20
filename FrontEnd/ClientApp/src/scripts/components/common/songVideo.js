@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { GetData } from "../../ajax/simpleRest";
 import * as Api from "../../ajax/apiUrls";
 import * as Posed from "../common/posedComponents";
+import * as MessageTypes from "../../constants/messageTypes";
+import Modal from "../modals/defaultModal";
 
 class SongVideo extends Component
 {
@@ -11,77 +13,68 @@ class SongVideo extends Component
     constructor(props)
     {
         super(props);
-        this.dispatch = this.props.dispatch.bind(this);
         this.songData = this.updateSong.bind(this);
-        this.state =
-        {
-            song: { },
-            loading: true
-        };
+        this.state = { song: {}, loading: true, fetchError: null };
     }
 
     componentDidMount()
     {
         if (this.props.state.song.id > 0)
-            GetData(`${Api.Songs}/${this.props.state.song.id}/`, this.songData, this.dispatch);
+            GetData(`${Api.Songs}/${this.props.state.song.id}/`, this.songData);
     }
 
-    updateSong(payload)
+    updateSong(payload, error)
     {
-
-        if (!payload) return false;
-
-        this.setState(
-        {
-            song: payload.Song,
-            loading: false
-        });
-
-        return true;
-
+        return !error ? this.setState({ song: payload.Song, loading: false, fetchError: null })
+            : this.setState({ song: {}, loading: true, fetchError: error });
     }
 
     render()
     {
 
+        let showError = this.state.fetchError ? <Modal messageText={this.state.fetchError} messageType={MessageTypes.MESSAGE_ERROR} isOpened={true} /> : null;
+
         return (
-            <div className="margin-t-30 margin-b-5">
+            <>
+                {showError}
+                <div className="margin-t-30 margin-b-5">
 
-                <Posed.FadeInDiv initialPose="hidden" pose="visible">
-                    <h3>
-                        <b>{this.state.song.ArtistName}</b>
-                    </h3>
-                </Posed.FadeInDiv>
+                    <Posed.FadeInDiv initialPose="hidden" pose="visible">
+                        <h3>
+                            <b>{this.state.song.ArtistName}</b>
+                        </h3>
+                    </Posed.FadeInDiv>
 
-                <div className="card margin-t-30 hoverable">
+                    <div className="card margin-t-30 hoverable">
 
-                    <div className="card-image">
-                        <div className="video-container">
-                            <Posed.ScaleDiv initialPose="hidden" pose="visible">
-                                {ReactHtmlParser(`<iframe src="${this.state.song.Url}" frameborder="0"></iframe>`)}
-                            </Posed.ScaleDiv>
+                        <div className="card-image">
+                            <div className="video-container">
+                                <Posed.ScaleDiv initialPose="hidden" pose="visible">
+                                    {ReactHtmlParser(`<iframe src="${this.state.song.Url}" frameborder="0"></iframe>`)}
+                                </Posed.ScaleDiv>
+                            </div>
                         </div>
-                    </div>
 
-                    <div className="card-content">
+                        <div className="card-content">
 
-                        <Posed.FadeInDiv initialPose="hidden" pose="visible">
-                            <span>
-                                {this.state.song.Name}
-                                <i className="material-icons right">more_vert</i>
-                            </span>
-                        </Posed.FadeInDiv>
+                            <Posed.FadeInDiv initialPose="hidden" pose="visible">
+                                <span>
+                                    {this.state.song.Name}
+                                    <i className="material-icons right">more_vert</i>
+                                </span>
+                            </Posed.FadeInDiv>
 
-                        <div className="card-reveal">
-                            <span className="card-title grey-text text-darken-4">{this.state.song.BandName}<i className="material-icons right">close</i></span>
-                            <p>TEXT HERE</p>
+                            <div className="card-reveal">
+                                <span className="card-title grey-text text-darken-4">{this.state.song.BandName}<i className="material-icons right">close</i></span>
+                                <p>TEXT HERE</p>
+                            </div>
+
                         </div>
 
                     </div>
 
                 </div>
-
-            </div>
+            </>
         );
 
     }

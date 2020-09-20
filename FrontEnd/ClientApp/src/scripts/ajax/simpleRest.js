@@ -1,7 +1,4 @@
-﻿import * as MessageTypes from "../constants/messageTypes";
-import * as ActionTypes from "../redux/actionTypes";
-
-export const GetData = (endpoint, callback, dispatch) =>
+﻿export const GetData = (endpoint, callback) =>
 {
 
     const onSuccess = (data) =>
@@ -9,46 +6,20 @@ export const GetData = (endpoint, callback, dispatch) =>
 
         if (data.IsSucceeded)
         {
-            callback(data);
+            callback(data, null);
         }
         else
         {
-
-            callback(null);
-
-            dispatch(
-            {
-                type: ActionTypes.TOGGLE_MESSAGE,
-                payload:
-                {
-                    messageType: MessageTypes.MESSAGE_WARN,
-                    lastText: data.Error.ErrorDesc,
-                    isVisible: true
-                }
-            });
-
+            callback(null, data.Error.ErrorDesc);
             console.warn(`${data.Error.ErrorDesc}`);
-
         }
 
     }
 
     const onError = (error) =>
     {
-
-        dispatch(
-        {
-            type: ActionTypes.TOGGLE_MESSAGE,
-            payload:
-            {
-                messageType: MessageTypes.MESSAGE_WARN,
-                lastText: error,
-                isVisible: true
-            }
-        });
-
+        callback(null, error);
         console.error(`${error}`);
-
     }
 
     fetch(endpoint)

@@ -1,10 +1,12 @@
 ﻿import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as ActionTypes from "../../redux/actionTypes";
+import * as MessageTypes from "../../constants/messageTypes";
 import * as Loaders from "../common/preLoaders";
 import * as Posed from "../common/posedComponents";
 import * as Api from "../../ajax/apiUrls";
 import { GetData } from "../../ajax/simpleRest";
+import Modal from "../modals/defaultModal";
 
 class AlbumsTable extends Component
 {
@@ -12,20 +14,20 @@ class AlbumsTable extends Component
     constructor(props)
     {
         super(props);
-        this.dispatch = this.props.dispatch.bind(this);
         this.update = this.updateData.bind(this);
-        this.state = { albums: [], loading: true };
+        this.state = { albums: [], loading: true, fetchError: null };
     }
 
     componentDidMount()
     {
         if (this.props.state.artist.id > 0)
-            GetData(`${Api.Albums}/?bandid=${this.props.state.artist.id}`, this.update, this.dispatch);
+            GetData(`${Api.Albums}/?bandid=${this.props.state.artist.id}`, this.update);
     }
 
-    updateData(payload)
+    updateData(payload, error)
     {
-        return payload ? this.setState({ albums: payload.Albums, loading: false }) : this.setState({ songs: [], loading: true });
+        return !error ? this.setState({ albums: payload.Albums, loading: false, fetchError: null })
+            : this.setState({ songs: [], loading: true, fetchError: error });
     }      
 
     returnFullYear(date)
@@ -70,14 +72,18 @@ class AlbumsTable extends Component
     render()
     {
 
+        let showError = this.state.fetchError ? <Modal messageText={this.state.fetchError} messageType={MessageTypes.MESSAGE_ERROR} isOpened={true} /> : null;
         let renderedTable = this.state.loading ? <Loaders.Circular /> : this.renderTable();
 
         return (
-            <Posed.FadeInDiv initialPose="hidden" pose="visible">
-                <div className="card-panel margin-t-30 white hoverable">
-                    {renderedTable}
-                </div>
-            </Posed.FadeInDiv>
+            <>
+                {showError}
+                <Posed.FadeInDiv initialPose="hidden" pose="visible">
+                    <div className="card-panel margin-t-30 white hoverable">
+                        {renderedTable}
+                    </div>
+                </Posed.FadeInDiv>
+            </>
         );
 
     }

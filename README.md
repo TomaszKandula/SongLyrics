@@ -4,6 +4,8 @@ Song Lyrics (Demo project) allow to traverse through different artists to find s
 
 Working demo (presenting work in progress) has been deployed on Azure Cloud: [Song Lyrics](https://songlyrics.azurewebsites.net).
 
+Project status can be seen here: [Project Board](https://github.com/users/TomaszKandula/projects/6).
+
 ## Tech-stack
 
 ### Front-end

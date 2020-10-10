@@ -44,7 +44,7 @@ namespace BackEnd.Controllers.Albums
                     LResponse.Error.ErrorCode = Constants.Errors.EmptyAlbumList.ErrorCode;
                     LResponse.Error.ErrorDesc = Constants.Errors.EmptyAlbumList.ErrorDesc;
                     FAppLogger.LogWarn($"GET api/v1/albums/. {LResponse.Error.ErrorDesc}.");
-                    return StatusCode(204, LResponse);
+                    return StatusCode(200, LResponse);
                 }
 
                 LResponse.Albums = LResult;
@@ -83,7 +83,7 @@ namespace BackEnd.Controllers.Albums
                     LResponse.Error.ErrorCode = Constants.Errors.NoAlbumFound.ErrorCode;
                     LResponse.Error.ErrorDesc = Constants.Errors.NoAlbumFound.ErrorDesc;
                     FAppLogger.LogWarn($"GET api/v1/albums/{AId}. {LResponse.Error.ErrorDesc}.");
-                    return StatusCode(204, LResponse);
+                    return StatusCode(200, LResponse);
                 }
 
                 LResponse.Albums = LResult;

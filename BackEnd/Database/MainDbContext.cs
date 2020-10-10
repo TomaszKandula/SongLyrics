@@ -6,7 +6,7 @@ namespace BackEnd.Database
     public class MainDbContext : DbContext
     {
 
-        public MainDbContext(DbContextOptions<MainDbContext> options) : base(options)
+        public MainDbContext(DbContextOptions<MainDbContext> AOptions) : base(AOptions)
         {
         }
 
@@ -21,97 +21,97 @@ namespace BackEnd.Database
         public virtual DbSet<Members> Members { get; set; }
         public virtual DbSet<Songs> Songs { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder AModelBuilder)
         {
-            modelBuilder.Entity<Albums>(entity =>
+            AModelBuilder.Entity<Albums>(AEntity =>
             {
-                entity.Property(e => e.AlbumName)
+                AEntity.Property(AAlbums => AAlbums.AlbumName)
                     .IsRequired()
                     .HasMaxLength(255);
 
-                entity.Property(e => e.Issued).HasColumnType("date");
+                AEntity.Property(AAlbums => AAlbums.Issued).HasColumnType("date");
 
-                entity.HasOne(d => d.Artist)
-                    .WithMany(p => p.Albums)
-                    .HasForeignKey(d => d.ArtistId)
+                AEntity.HasOne(AAlbums => AAlbums.Artist)
+                    .WithMany(AArtists => AArtists.Albums)
+                    .HasForeignKey(AAlbums => AAlbums.ArtistId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__ArtistId__AlbumsArtists");
             });
 
-            modelBuilder.Entity<Artists>(entity =>
+            AModelBuilder.Entity<Artists>(AEntity =>
             {
-                entity.Property(e => e.ActiveUntil).HasColumnType("date");
+                AEntity.Property(AArtists => AArtists.ActiveUntil).HasColumnType("date");
 
-                entity.Property(e => e.ArtistName)
+                AEntity.Property(AArtists => AArtists.ArtistName)
                     .IsRequired()
                     .HasMaxLength(255);
 
-                entity.Property(e => e.Established).HasColumnType("date");
+                AEntity.Property(AArtists => AArtists.Established).HasColumnType("date");
             });
 
-            modelBuilder.Entity<ArtistsGeneres>(entity =>
+            AModelBuilder.Entity<ArtistsGeneres>(AEntity =>
             {
-                entity.HasOne(d => d.Artist)
-                    .WithMany(p => p.ArtistsGeneres)
-                    .HasForeignKey(d => d.ArtistId)
+                AEntity.HasOne(AArtistsGeneres => AArtistsGeneres.Artist)
+                    .WithMany(AArtists => AArtists.ArtistsGeneres)
+                    .HasForeignKey(AArtistsGeneres => AArtistsGeneres.ArtistId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__ArtistId__ArtistsGeneres");
 
-                entity.HasOne(d => d.Genere)
-                    .WithMany(p => p.ArtistsGeneres)
-                    .HasForeignKey(d => d.GenereId)
+                AEntity.HasOne(AArtistsGeneres => AArtistsGeneres.Genere)
+                    .WithMany(AGeneres => AGeneres.ArtistsGeneres)
+                    .HasForeignKey(AArtistsGeneres => AArtistsGeneres.GenereId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__GenereId__Generes");
             });
 
-            modelBuilder.Entity<Generes>(entity =>
+            AModelBuilder.Entity<Generes>(AEntity =>
             {
-                entity.Property(e => e.Genere)
+                AEntity.Property(AGeneres => AGeneres.Genere)
                     .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<Members>(entity =>
+            AModelBuilder.Entity<Members>(AEntity =>
             {
-                entity.Property(e => e.FirstName)
+                AEntity.Property(AMembers => AMembers.FirstName)
                     .IsRequired()
                     .HasMaxLength(255);
 
-                entity.Property(e => e.LastName)
+                AEntity.Property(AMembers => AMembers.LastName)
                     .IsRequired()
                     .HasMaxLength(255);
 
-                entity.HasOne(d => d.Artist)
-                    .WithMany(p => p.Members)
-                    .HasForeignKey(d => d.ArtistId)
+                AEntity.HasOne(AMembers => AMembers.Artist)
+                    .WithMany(AArtists => AArtists.Members)
+                    .HasForeignKey(AMembers => AMembers.ArtistId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__ArtistId__MembersArtists");
             });
 
-            modelBuilder.Entity<Songs>(entity =>
+            AModelBuilder.Entity<Songs>(AEntity =>
             {
-                entity.Property(e => e.SongLyrics)
+                AEntity.Property(ASongs => ASongs.SongLyrics)
                     .IsRequired()
                     .IsUnicode(false);
 
-                entity.Property(e => e.SongName)
+                AEntity.Property(ASongs => ASongs.SongName)
                     .IsRequired()
                     .HasMaxLength(255);
 
-                entity.Property(e => e.SongUrl)
+                AEntity.Property(ASongs => ASongs.SongUrl)
                     .HasMaxLength(2048)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Album)
-                    .WithMany(p => p.Songs)
-                    .HasForeignKey(d => d.AlbumId)
+                AEntity.HasOne(ASongs => ASongs.Album)
+                    .WithMany(AAlbums => AAlbums.Songs)
+                    .HasForeignKey(ASongs => ASongs.AlbumId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__AlbumId__Albums");
 
-                entity.HasOne(d => d.Artist)
-                    .WithMany(p => p.Songs)
-                    .HasForeignKey(d => d.ArtistId)
+                AEntity.HasOne(ASongs => ASongs.Artist)
+                    .WithMany(AArtists => AArtists.Songs)
+                    .HasForeignKey(ASongs => ASongs.ArtistId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__ArtistId__Artists");
 

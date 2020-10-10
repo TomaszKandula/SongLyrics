@@ -1,12 +1,11 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using BackEnd.Logic;
+using BackEnd.Helpers;
 using BackEnd.AppLogger;
 using BackEnd.Controllers.Artists.Models;
-using BackEnd.Helpers;
-using BackEnd.Logic;
-using BackEnd.Models.Json;
-using Microsoft.AspNetCore.Mvc;
 
 namespace BackEnd.Controllers.Artists
 {

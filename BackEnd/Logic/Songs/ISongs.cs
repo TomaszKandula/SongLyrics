@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Collections.Generic;
 using BackEnd.Controllers.Songs.Models;
-using BackEnd.Models.Json;
 
 namespace BackEnd.Logic.Songs
 {

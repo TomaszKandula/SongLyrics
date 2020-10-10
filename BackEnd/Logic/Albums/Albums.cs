@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using BackEnd.Controllers.Albums.Models;
 using BackEnd.Database;
 using Microsoft.EntityFrameworkCore;
-using BackEnd.Models.Json;
 
 namespace BackEnd.Logic.Albums
 {

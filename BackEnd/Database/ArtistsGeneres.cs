@@ -1,6 +1,6 @@
 ﻿namespace BackEnd.Database
 {
-    public partial class ArtistsGeneres
+    public class ArtistsGeneres
     {
         public int Id { get; set; }
         public int GenereId { get; set; }

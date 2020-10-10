@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using BackEnd.Common;
-using BackEnd.Models.Json;
 
 namespace BackEnd.Controllers.Albums.Models
 {

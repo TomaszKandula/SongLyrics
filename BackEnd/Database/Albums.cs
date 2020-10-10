@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BackEnd.Database
 {
-    public partial class Albums
+    public class Albums
     {
         public Albums()
         {
@@ -15,7 +15,7 @@ namespace BackEnd.Database
         public string AlbumName { get; set; }
         public DateTime Issued { get; set; }
 
-        public virtual Artists Artist { get; set; }
-        public virtual ICollection<Songs> Songs { get; set; }
+        public Artists Artist { get; set; }
+        public ICollection<Songs> Songs { get; set; } 
     }
 }

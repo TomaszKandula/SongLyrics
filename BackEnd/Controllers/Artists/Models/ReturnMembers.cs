@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using BackEnd.Common;
 
-namespace BackEnd.Models.Json
+namespace BackEnd.Controllers.Artists.Models
 {
 
     public class Member 

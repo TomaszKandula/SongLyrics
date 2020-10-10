@@ -11,16 +11,16 @@ namespace BackEnd.Logic.Songs
         /// <summary>
         /// Return specific song (or songs) from given band's album.
         /// </summary>
-        /// <param name="AlbumId"></param>
+        /// <param name="AAlbumId"></param>
         /// <returns></returns>
-        Task<List<Song>> GetAlbumSongs(int? AlbumId);
+        Task<List<Song>> GetAlbumSongs(int? AAlbumId);
 
         /// <summary>
         /// Return given song from the entire collection.
         /// </summary>
-        /// <param name="SongId"></param>
+        /// <param name="ASongId"></param>
         /// <returns></returns>
-        Task<SingleSong> GetSong(int SongId);
+        Task<SingleSong> GetSong(int ASongId);
 
     }
 

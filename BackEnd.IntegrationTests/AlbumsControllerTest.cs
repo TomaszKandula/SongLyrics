@@ -3,8 +3,8 @@ using FluentAssertions;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using BackEnd.Controllers.Albums.Models;
 using Newtonsoft.Json;
+using BackEnd.Controllers.Albums.Models;
 using BackEnd.IntegrationTests.Configuration;
 
 namespace BackEnd.IntegrationTests

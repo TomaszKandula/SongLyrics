@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using BackEnd.Controllers.Songs.Models;
-using BackEnd.Database;
 using Microsoft.EntityFrameworkCore;
+using BackEnd.Database;
+using BackEnd.Controllers.Songs.Models;
 
 namespace BackEnd.Logic.Songs
 {
@@ -21,69 +21,65 @@ namespace BackEnd.Logic.Songs
         /// <summary>
         /// Return specific song (or songs) from given band's album.
         /// </summary>
-        /// <param name="AlbumId"></param>
+        /// <param name="AAlbumId"></param>
         /// <returns></returns>
-        public async Task<List<Song>> GetAlbumSongs(int? AlbumId)
+        public async Task<List<Song>> GetAlbumSongs(int? AAlbumId)
         {
 
-            if (AlbumId != null)
+            if (AAlbumId != null)
             {
 
                 return await FMainDbContext.Songs
                     .AsNoTracking()
-                    .Include(R => R.Album)
-                    .Include(R => R.Artist)
-                    .Where(R => R.AlbumId == AlbumId)
-                    .Select(R => new Song
+                    .Include(ASongs => ASongs.Album)
+                    .Include(ASongs => ASongs.Artist)
+                    .Where(ASongs => ASongs.AlbumId == AAlbumId)
+                    .Select(ASongs => new Song
                     {
-                        Id        = R.Id,
-                        Name      = R.SongName,
-                        AlbumName = R.Album.AlbumName,
-                        ArtistName  = R.Artist.ArtistName
+                        Id = ASongs.Id,
+                        Name = ASongs.SongName,
+                        AlbumName = ASongs.Album.AlbumName,
+                        ArtistName = ASongs.Artist.ArtistName
                     })
                     .ToListAsync();
 
             }
-            else
-            {
 
-                return await FMainDbContext.Songs
-                    .AsNoTracking()
-                    .Include(R => R.Album)
-                    .Include(R => R.Artist)
-                    .Select(R => new Song
-                    {
-                        Id        = R.Id,
-                        Name      = R.SongName,
-                        AlbumName = R.Album.AlbumName,
-                        ArtistName  = R.Artist.ArtistName
-                    })
-                    .ToListAsync();
-
-            }
+            return await FMainDbContext.Songs
+                .AsNoTracking()
+                .Include(ASongs => ASongs.Album)
+                .Include(ASongs => ASongs.Artist)
+                .Select(ASongs => new Song
+                {
+                    Id = ASongs.Id,
+                    Name = ASongs.SongName,
+                    AlbumName = ASongs.Album.AlbumName,
+                    ArtistName = ASongs.Artist.ArtistName
+                })
+                .ToListAsync();
 
         }
 
         /// <summary>
         /// Return given song from the entire collection.
         /// </summary>
-        /// <param name="SongId"></param>
+        /// <param name="ASongId"></param>
         /// <returns></returns>
-        public async Task<SingleSong> GetSong(int SongId)
+        public async Task<SingleSong> GetSong(int ASongId)
         {
 
             return await FMainDbContext.Songs
                 .AsNoTracking()
-                .Include(R => R.Album)
-                .Include(R => R.Artist)
-                .Where(R => R.Id == SongId)
-                .Select(R => new SingleSong
+                .Include(ASongs => ASongs.Album)
+                .Include(ASongs => ASongs.Artist)
+                .Where(ASongs => ASongs.Id == ASongId)
+                .Select(ASongs => new SingleSong
                 {
-                    Name      = R.SongName,
-                    Lyrics    = R.SongLyrics,
-                    Url       = R.SongUrl,
-                    AlbumName = R.Album.AlbumName,
-                    ArtistName  = R.Artist.ArtistName
+                    Name = ASongs.SongName,
+                    Lyrics = ASongs.SongLyrics,
+                    Url = ASongs.SongUrl,
+                    AlbumName = ASongs.Album.AlbumName,
+                    ArtistName = ASongs.Artist.ArtistName
                 })
                 .SingleOrDefaultAsync();
 

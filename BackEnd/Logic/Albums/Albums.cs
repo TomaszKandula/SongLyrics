@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using BackEnd.Controllers.Albums.Models;
-using BackEnd.Database;
 using Microsoft.EntityFrameworkCore;
+using BackEnd.Database;
+using BackEnd.Controllers.Albums.Models;
 
 namespace BackEnd.Logic.Albums
 {
@@ -21,65 +21,61 @@ namespace BackEnd.Logic.Albums
         /// <summary>
         /// Return all albums/given album (by BandId) from the entire collection.
         /// </summary>
-        /// <param name="BandId"></param>
+        /// <param name="ABandId"></param>
         /// <returns></returns>
-        public async Task<List<Album>> GetAlbums(int? BandId)
+        public async Task<List<Album>> GetAlbums(int? ABandId)
         {
 
-            if (BandId != null)
+            if (ABandId != null)
             {
 
                 return await FMainDbContext.Albums
                     .AsNoTracking()
-                    .Include(R => R.Artist)
-                    .Where(R => R.ArtistId == BandId)
-                    .Select(R => new Album
+                    .Include(AAlbums => AAlbums.Artist)
+                    .Where(AAlbums => AAlbums.ArtistId == ABandId)
+                    .Select(AAlbums => new Album
                     {
-                        Id        = R.Id,
-                        AlbumName = R.AlbumName,
-                        Issued    = R.Issued,
-                        ArtistName  = R.Artist.ArtistName
+                        Id = AAlbums.Id,
+                        AlbumName = AAlbums.AlbumName,
+                        Issued = AAlbums.Issued,
+                        ArtistName = AAlbums.Artist.ArtistName
                     })
                     .ToListAsync();
 
             }
-            else
-            {
 
-                return await FMainDbContext.Albums
-                    .AsNoTracking()
-                    .Include(R => R.Artist)
-                    .Select(R => new Album
-                    {
-                        Id        = R.Id,
-                        AlbumName = R.AlbumName,
-                        Issued    = R.Issued,
-                        ArtistName  = R.Artist.ArtistName
-                    })
-                    .ToListAsync();
-
-            }
+            return await FMainDbContext.Albums
+                .AsNoTracking()
+                .Include(AAlbums => AAlbums.Artist)
+                .Select(AAlbums => new Album
+                {
+                    Id = AAlbums.Id,
+                    AlbumName = AAlbums.AlbumName,
+                    Issued = AAlbums.Issued,
+                    ArtistName = AAlbums.Artist.ArtistName
+                })
+                .ToListAsync();
 
         }
 
         /// <summary>
         /// Return specific album for given Band Id.
         /// </summary>
-        /// <param name="AlbumId"></param>
+        /// <param name="AAlbumId"></param>
         /// <returns></returns>
-        public async Task<List<Album>> GetAlbum(int AlbumId)
+        public async Task<List<Album>> GetAlbum(int AAlbumId)
         {
 
             return await FMainDbContext.Albums
                .AsNoTracking()
-               .Include(R => R.Artist)
-               .Where(R => R.Id == AlbumId)
-               .Select(R => new Album
+               .Include(AAlbums => AAlbums.Artist)
+               .Where(AAlbums => AAlbums.Id == AAlbumId)
+               .Select(AAlbums => new Album
                {
-                   Id        = R.Id,
-                   AlbumName = R.AlbumName,
-                   Issued    = R.Issued,
-                   ArtistName  = R.Artist.ArtistName
+                   Id = AAlbums.Id,
+                   AlbumName = AAlbums.AlbumName,
+                   Issued = AAlbums.Issued,
+                   ArtistName = AAlbums.Artist.ArtistName
                })
                .ToListAsync();
 

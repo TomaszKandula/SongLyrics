@@ -1,10 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using System;
-using BackEnd.Controllers.Artists.Models;
 using BackEnd.Database;
+using BackEnd.Controllers.Artists.Models;
 
 namespace BackEnd.Logic.Artists
 {
@@ -22,58 +22,54 @@ namespace BackEnd.Logic.Artists
         /// <summary>
         /// Return list of bands/or band from the entire collection.
         /// </summary>
-        /// <param name="ArtistId"></param>
+        /// <param name="AArtistId"></param>
         /// <returns></returns>
-        public async Task<List<Artist>> GetArtists(int? ArtistId) 
+        public async Task<List<Artist>> GetArtists(int? AArtistId)
         {
 
-            if (ArtistId != null) 
+            if (AArtistId != null) 
             {
                 
                 return await FMainDbContext.Artists
                     .AsNoTracking()
-                    .Where(R => R.Id == ArtistId)
-                    .Select(R => new Artist 
+                    .Where(AArtists => AArtists.Id == AArtistId)
+                    .Select(AArtists => new Artist 
                     { 
-                        Id   = R.Id,
-                        Name = R.ArtistName
+                        Id = AArtists.Id,
+                        Name = AArtists.ArtistName
                     })
                     .ToListAsync();
             
             }
-            else            
-            {
 
-                return await FMainDbContext.Artists
-                    .AsNoTracking()
-                    .Select(R => new Artist
-                    {
-                        Id   = R.Id,
-                        Name = R.ArtistName
-                    })
-                    .ToListAsync();
-
-            }
+            return await FMainDbContext.Artists
+                .AsNoTracking()
+                .Select(AArtists => new Artist
+                {
+                    Id = AArtists.Id,
+                    Name = AArtists.ArtistName
+                })
+                .ToListAsync();
 
         }
 
         /// <summary>
         /// Return bands members for given Band Id.
         /// </summary>
-        /// <param name="ArtistId"></param>
+        /// <param name="AArtistId"></param>
         /// <returns></returns>
-        public async Task<List<Member>> GetMembers(int ArtistId) 
+        public async Task<List<Member>> GetMembers(int AArtistId) 
         {
 
             return await FMainDbContext.Members
                 .AsNoTracking()
-                .Where(R => R.ArtistId == ArtistId)
-                .Select(R => new Member 
+                .Where(AMembers => AMembers.ArtistId == AArtistId)
+                .Select(AMembers => new Member 
                 { 
-                    Id        = R.Id,
-                    FirstName = R.FirstName,
-                    LastName  = R.LastName,
-                    Status    = R.IsPresent ? "Active" : "Past"
+                    Id = AMembers.Id,
+                    FirstName = AMembers.FirstName,
+                    LastName = AMembers.LastName,
+                    Status = AMembers.IsPresent ? "Active" : "Past"
                 })
                 .ToListAsync();
 
@@ -82,29 +78,29 @@ namespace BackEnd.Logic.Artists
         /// <summary>
         /// Return band details for given Band Id.
         /// </summary>
-        /// <param name="ArtistId"></param>
+        /// <param name="AArtistId"></param>
         /// <returns></returns>
-        public async Task<ReturnArtistDetails> GetArtistDetails(int ArtistId) 
+        public async Task<ReturnArtistDetails> GetArtistDetails(int AArtistId) 
         {
 
-            var Members = await GetMembers(ArtistId);
+            var LMembers = await GetMembers(AArtistId);
 
-            var Results = await FMainDbContext.ArtistsGeneres
-                .Include(R => R.Artist)
-                .Include(R => R.Genere)
+            var LResults = await FMainDbContext.ArtistsGeneres
+                .Include(AArtistsGeneres => AArtistsGeneres.Artist)
+                .Include(AArtistsGeneres => AArtistsGeneres.Genere)
                 .AsNoTracking()
-                .Where(R => R.ArtistId == ArtistId)
-                .Select(R => new ReturnArtistDetails
+                .Where(AArtistsGeneres => AArtistsGeneres.ArtistId == AArtistId)
+                .Select(AArtistsGeneres => new ReturnArtistDetails
                 {
-                    Name = R.Artist.ArtistName,
-                    Established = R.Artist.Established,
-                    ActiveUntil = R.Artist.ActiveUntil,
-                    Genere = R.Genere.Genere,
-                    Members = Members
+                    Name = AArtistsGeneres.Artist.ArtistName,
+                    Established = AArtistsGeneres.Artist.Established,
+                    ActiveUntil = AArtistsGeneres.Artist.ActiveUntil,
+                    Genere = AArtistsGeneres.Genere.Genere,
+                    Members = LMembers
                 })
                 .ToListAsync();
 
-            return Results.Any() ? Results.Single() : new ReturnArtistDetails()
+            return LResults.Any() ? LResults.Single() : new ReturnArtistDetails()
             {
                 Name        = "n/a",
                 Genere      = "n/a",

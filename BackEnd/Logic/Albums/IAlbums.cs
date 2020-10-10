@@ -11,16 +11,16 @@ namespace BackEnd.Logic.Albums
         /// <summary>
         /// Return all albums/given album (by BandId) from the entire collection.
         /// </summary>
-        /// <param name="BandId"></param>
+        /// <param name="ABandId"></param>
         /// <returns></returns>
-        Task<List<Album>> GetAlbums(int? BandId);
+        Task<List<Album>> GetAlbums(int? ABandId);
 
         /// <summary>
         /// Return specific album for given Album Id.
         /// </summary>
-        /// <param name="AlbumId"></param>
+        /// <param name="AAlbumId"></param>
         /// <returns></returns>
-        Task<List<Album>> GetAlbum(int AlbumId);
+        Task<List<Album>> GetAlbum(int AAlbumId);
 
     }
 

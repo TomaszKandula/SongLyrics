@@ -19,17 +19,17 @@ namespace BackEnd
         private const string DevelopmentOrigin = "http://localhost:59457";
         private const string DeploymentOrigin = "https://songlyrics.azurewebsites.net";
 
-        public IConfiguration FConfiguration { get; }
+        public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration AConfiguration)
         {
-            FConfiguration = AConfiguration;
+            Configuration = AConfiguration;
         }
 
         public void ConfigureServices(IServiceCollection AServices)
         {
 
-            AServices.AddMvc(LOption => LOption
+            AServices.AddMvc(AOption => AOption
                 .CacheProfiles
                 .Add("ResponseCache", new CacheProfile()
                 {
@@ -40,14 +40,14 @@ namespace BackEnd
 
             AServices.AddControllers();
             AServices.AddSingleton<IAppLogger, AppLogger>();
-            AServices.AddDbContext<MainDbContext>(LOptions => 
+            AServices.AddDbContext<MainDbContext>(AOptions => 
             {
-                LOptions.UseSqlServer(FConfiguration.GetConnectionString("DbConnect"),
-                AddOptions => AddOptions.EnableRetryOnFailure());
+                AOptions.UseSqlServer(Configuration.GetConnectionString("DbConnect"),
+                AAddOptions => AAddOptions.EnableRetryOnFailure());
             });
             
             AServices.AddScoped<ILogicContext, LogicContext>();
-            AServices.AddResponseCompression(Options => { Options.Providers.Add<GzipCompressionProvider>(); });
+            AServices.AddResponseCompression(AOptions => { AOptions.Providers.Add<GzipCompressionProvider>(); });
 
         }
 
@@ -63,21 +63,21 @@ namespace BackEnd
             AApplication.UseStaticFiles();
             AApplication.UseRouting();
 
-            AApplication.Use((LContext, LNext) => 
+            AApplication.Use((AContext, ANext) => 
             {
 
-                if (LContext.Request.Headers["Origin"] == DeploymentOrigin || LContext.Request.Headers["Origin"] == DevelopmentOrigin) 
-                    LContext.Response.Headers.Add("Access-Control-Allow-Origin", LContext.Request.Headers["Origin"]);
+                if (AContext.Request.Headers["Origin"] == DeploymentOrigin || AContext.Request.Headers["Origin"] == DevelopmentOrigin) 
+                    AContext.Response.Headers.Add("Access-Control-Allow-Origin", AContext.Request.Headers["Origin"]);
 
-                LContext.Response.Headers.Add("Access-Control-Allow-Methods", "GET");
-                LContext.Response.Headers.Add("Access-Control-Allow-Credentials", "true");
-                LContext.Response.Headers.Add("Access-Control-Allow-Headers", "AccessToken, Content-Type");
+                AContext.Response.Headers.Add("Access-Control-Allow-Methods", "GET");
+                AContext.Response.Headers.Add("Access-Control-Allow-Credentials", "true");
+                AContext.Response.Headers.Add("Access-Control-Allow-Headers", "AccessToken, Content-Type");
 
-                return LNext();
+                return ANext();
 
             });
 
-            AApplication.UseEndpoints(Options => { Options.MapControllers(); });
+            AApplication.UseEndpoints(AOptions => { AOptions.MapControllers(); });
 
         }
 

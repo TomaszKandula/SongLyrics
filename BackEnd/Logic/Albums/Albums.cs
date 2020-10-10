@@ -1,8 +1,9 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using BackEnd.Controllers.Albums.Models;
+using BackEnd.Database;
 using Microsoft.EntityFrameworkCore;
-using BackEnd.Models.Database;
 using BackEnd.Models.Json;
 
 namespace BackEnd.Logic.Albums

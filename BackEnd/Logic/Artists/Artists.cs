@@ -3,8 +3,9 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using BackEnd.Models.Json;
-using BackEnd.Models.Database;
 using System;
+using BackEnd.Controllers.Artists.Models;
+using BackEnd.Database;
 
 namespace BackEnd.Logic.Artists
 {

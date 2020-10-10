@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using BackEnd.Common;
+using BackEnd.Models.Json;
 
-namespace BackEnd.Models.Json
+namespace BackEnd.Controllers.Artists.Models
 {
 
     public class ReturnArtistDetails

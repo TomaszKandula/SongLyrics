@@ -1,6 +1,6 @@
 using BackEnd.AppLogger;
+using BackEnd.Database;
 using BackEnd.Logic;
-using BackEnd.Models.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;

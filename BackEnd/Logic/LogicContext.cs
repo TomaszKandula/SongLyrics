@@ -1,7 +1,7 @@
-﻿using BackEnd.Logic.Songs;
+﻿using BackEnd.Database;
+using BackEnd.Logic.Songs;
 using BackEnd.Logic.Albums;
 using BackEnd.Logic.Artists;
-using BackEnd.Models.Database;
 
 namespace BackEnd.Logic
 {

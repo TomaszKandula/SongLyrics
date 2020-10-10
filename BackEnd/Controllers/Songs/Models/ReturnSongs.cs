@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using BackEnd.Common;
+using BackEnd.Models.Json;
 
-namespace BackEnd.Models.Json
+namespace BackEnd.Controllers.Songs.Models
 {
 
-    public class Artist 
+    public class Song 
     {
 
         [JsonPropertyName("Id")]
@@ -13,13 +15,19 @@ namespace BackEnd.Models.Json
         [JsonPropertyName("Name")]
         public string Name { get; set; }
 
+        [JsonPropertyName("ArtistName")]
+        public string ArtistName { get; set; }
+
+        [JsonPropertyName("AlbumName")]
+        public string AlbumName { get; set; }
+
     }
 
-    public class ReturnArtists
+    public class ReturnSongs
     {
 
-        [JsonPropertyName("Artists")]
-        public List<Artist> Artists { get; set; }
+        [JsonPropertyName("Songs")]
+        public List<Song> Songs { get; set; }
 
         [JsonPropertyName("IsSucceeded")]
         public bool IsSucceeded { get; set; }
@@ -27,7 +35,7 @@ namespace BackEnd.Models.Json
         [JsonPropertyName("Error")]
         public ErrorHandler Error { get; set; }
 
-        public ReturnArtists()
+        public ReturnSongs()
         {
             Error = new ErrorHandler();
         }

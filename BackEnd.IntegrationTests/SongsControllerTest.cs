@@ -2,6 +2,7 @@
 using FluentAssertions;
 using System.Net.Http;
 using System.Threading.Tasks;
+using BackEnd.Controllers.Songs.Models;
 using Newtonsoft.Json;
 using BackEnd.Models.Json;
 using BackEnd.IntegrationTests.Configuration;

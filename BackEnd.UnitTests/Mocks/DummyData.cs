@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using BackEnd.Models.Database;
+using BackEnd.Database;
 
 namespace BackEnd.UnitTests.Mocks
 {

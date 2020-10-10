@@ -1,9 +1,10 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using BackEnd.Controllers.Songs.Models;
+using BackEnd.Database;
 using Microsoft.EntityFrameworkCore;
 using BackEnd.Models.Json;
-using BackEnd.Models.Database;
 
 namespace BackEnd.Logic.Songs
 {

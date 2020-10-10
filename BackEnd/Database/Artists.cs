@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BackEnd.Models.Database
+namespace BackEnd.Database
 {
     public partial class Artists
     {

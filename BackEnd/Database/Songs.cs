@@ -1,4 +1,4 @@
-﻿namespace BackEnd.Models.Database
+﻿namespace BackEnd.Database
 {
     public partial class Songs
     {

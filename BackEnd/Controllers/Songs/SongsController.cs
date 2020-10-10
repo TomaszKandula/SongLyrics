@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using BackEnd.AppLogger;
+using BackEnd.Controllers.Songs.Models;
 using BackEnd.Helpers;
 using BackEnd.Logic;
 using BackEnd.Models.Json;

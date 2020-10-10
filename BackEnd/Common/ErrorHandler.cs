@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace BackEnd.Models.Json
+namespace BackEnd.Common
 {
 
     public class ErrorHandler

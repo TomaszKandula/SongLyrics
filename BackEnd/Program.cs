@@ -5,7 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
 
-namespace SongLyrics
+namespace BackEnd
 {
 
     public class Program

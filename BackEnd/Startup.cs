@@ -1,23 +1,23 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.ResponseCompression;
 using BackEnd.Logic;
 using BackEnd.Models.Database;
 using BackEnd.Utilities.AppLogger;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
-namespace SongLyrics
+namespace BackEnd
 {
 
     public class Startup
     {
 
-        private readonly string FDevelopmentOrigin = "http://localhost:59457";
-        private readonly string FDeploymentOrigin  = "https://songlyrics.azurewebsites.net";
+        private const string DevelopmentOrigin = "http://localhost:59457";
+        private const string DeploymentOrigin = "https://songlyrics.azurewebsites.net";
 
         public IConfiguration FConfiguration { get; }
 
@@ -66,7 +66,7 @@ namespace SongLyrics
             AApplication.Use((LContext, LNext) => 
             {
 
-                if (LContext.Request.Headers["Origin"] == FDeploymentOrigin || LContext.Request.Headers["Origin"] == FDevelopmentOrigin) 
+                if (LContext.Request.Headers["Origin"] == DeploymentOrigin || LContext.Request.Headers["Origin"] == DevelopmentOrigin) 
                     LContext.Response.Headers.Add("Access-Control-Allow-Origin", LContext.Request.Headers["Origin"]);
 
                 LContext.Response.Headers.Add("Access-Control-Allow-Methods", "GET");

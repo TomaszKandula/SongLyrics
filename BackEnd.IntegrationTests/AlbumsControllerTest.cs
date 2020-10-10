@@ -10,12 +10,12 @@ using BackEnd.IntegrationTests.Configuration;
 namespace BackEnd.IntegrationTests
 {
 
-    public class AlbumsControllerTest : IClassFixture<TestFixture<SongLyrics.Startup>>
+    public class AlbumsControllerTest : IClassFixture<TestFixture<Startup>>
     {
 
         private readonly HttpClient FClient;
 
-        public AlbumsControllerTest(TestFixture<SongLyrics.Startup> ACustomFixture)
+        public AlbumsControllerTest(TestFixture<Startup> ACustomFixture)
         {
             FClient = ACustomFixture.FClient;
         }

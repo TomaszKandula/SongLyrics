@@ -37,17 +37,17 @@ namespace BackEnd.IntegrationTests
             var LStringResponse = await LResponse.Content.ReadAsStringAsync();
             var LReturnBands = JsonConvert.DeserializeObject<ReturnArtists>(LStringResponse);
 
-            LReturnBands.Artists.Select(R => R.Name).ToList()[0].Should().Be("Queen");
+            LReturnBands.Artists.Select(AArtist => AArtist.Name).ToList()[0].Should().Be("Queen");
 
         }
 
         [Theory]
         [InlineData(1)]
-        public async Task GetMembers(int Id)
+        public async Task GetMembers(int AId)
         {
 
             // Arrange
-            var LRequest = $"/api/v1/artists/{Id}/members/";
+            var LRequest = $"/api/v1/artists/{AId}/members/";
 
             // Act
             var LResponse = await FClient.GetAsync(LRequest);
@@ -65,11 +65,11 @@ namespace BackEnd.IntegrationTests
 
         [Theory]
         [InlineData(1)]
-        public async Task GetArtistDetails(int Id)
+        public async Task GetArtistDetails(int AId)
         {
 
             // Arrange
-            var LRequest = $"/api/v1/artists/{Id}/details/";
+            var LRequest = $"/api/v1/artists/{AId}/details/";
 
             // Act
             var LResponse = await FClient.GetAsync(LRequest);

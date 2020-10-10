@@ -45,7 +45,7 @@ namespace BackEnd.Controllers.v1
                     LResponse.Error.ErrorCode = Constants.Errors.EmptyBandList.ErrorCode;
                     LResponse.Error.ErrorDesc = Constants.Errors.EmptyBandList.ErrorDesc;
                     FAppLogger.LogWarn($"GET api/v1/artists/. {LResponse.Error.ErrorDesc}.");
-                    return StatusCode(200, LResponse);
+                    return StatusCode(204, LResponse);
                 }
 
                 LResponse.Artists = LResult;
@@ -83,7 +83,7 @@ namespace BackEnd.Controllers.v1
                     LResponse.Error.ErrorCode = Constants.Errors.EmptyMembersList.ErrorCode;
                     LResponse.Error.ErrorDesc = Constants.Errors.EmptyMembersList.ErrorDesc;
                     FAppLogger.LogWarn($"GET api/v1/artists/{AId}/members/. {LResponse.Error.ErrorDesc}.");
-                    return StatusCode(200, LResponse);
+                    return StatusCode(204, LResponse);
                 }
 
                 LResponse.Members = LResult;

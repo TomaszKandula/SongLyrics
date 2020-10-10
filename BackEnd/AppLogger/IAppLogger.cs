@@ -8,7 +8,7 @@
     {
 
         /// <summary>
-        /// Write debug infomration to log storage with current datetime stamp.
+        /// Write debug information to log storage with current datetime stamp.
         /// </summary>
         /// <param name="AMessage"></param>
         void LogDebug(string AMessage);
@@ -32,7 +32,7 @@
         void LogWarn(string AMessage);
 
         /// <summary>
-        /// Write fatal error infomration to log storage with current datetime stamp.
+        /// Write fatal error information to log storage with current datetime stamp.
         /// </summary>
         /// <param name="AMessage"></param>
         void LogFatality(string AMessage);

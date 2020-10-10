@@ -11,35 +11,32 @@ namespace BackEnd.UnitTests
 
     public class ArtistsTests
     {
-
-        private readonly Mock<MainDbContext> FMockDbContext;
-
         private readonly IArtists FArtists;
 
         public ArtistsTests() 
         {
 
             // Create instances to mocked all dependencies           
-            FMockDbContext = new Mock<MainDbContext>();
+            var LMockDbContext = new Mock<MainDbContext>();
 
             // Upload pre-fixed dummy data
-            var ArtistsDbSet      = DummyData.ReturnDummyArtists().AsQueryable().BuildMockDbSet();
-            var AlbumsDbSet       = DummyData.ReturnDummyAlbums().AsQueryable().BuildMockDbSet();
-            var GeneresDbSet      = DummyData.ReturnDummyGeneres().AsQueryable().BuildMockDbSet();
-            var BandsGeneresDbSet = DummyData.ReturnDummyBandsGeneres().AsQueryable().BuildMockDbSet();
-            var MembersDbSet      = DummyData.ReturnDummyMembers().AsQueryable().BuildMockDbSet();
-            var SongsDbSet        = DummyData.ReturnDummySongs().AsQueryable().BuildMockDbSet();
+            var LArtistsDbSet      = DummyData.ReturnDummyArtists().AsQueryable().BuildMockDbSet();
+            var LAlbumsDbSet       = DummyData.ReturnDummyAlbums().AsQueryable().BuildMockDbSet();
+            var LGeneresDbSet      = DummyData.ReturnDummyGeneres().AsQueryable().BuildMockDbSet();
+            var LBandsGeneresDbSet = DummyData.ReturnDummyBandsGeneres().AsQueryable().BuildMockDbSet();
+            var LMembersDbSet      = DummyData.ReturnDummyMembers().AsQueryable().BuildMockDbSet();
+            var LSongsDbSet        = DummyData.ReturnDummySongs().AsQueryable().BuildMockDbSet();
 
             // Populate database tables with dummy data
-            FMockDbContext.Setup(R => R.Artists).Returns(ArtistsDbSet.Object);
-            FMockDbContext.Setup(R => R.Albums).Returns(AlbumsDbSet.Object);
-            FMockDbContext.Setup(R => R.Generes).Returns(GeneresDbSet.Object);
-            FMockDbContext.Setup(R => R.ArtistsGeneres).Returns(BandsGeneresDbSet.Object);
-            FMockDbContext.Setup(R => R.Members).Returns(MembersDbSet.Object);
-            FMockDbContext.Setup(R => R.Songs).Returns(SongsDbSet.Object);
+            LMockDbContext.Setup(AMainDbContext => AMainDbContext.Artists).Returns(LArtistsDbSet.Object);
+            LMockDbContext.Setup(AMainDbContext => AMainDbContext.Albums).Returns(LAlbumsDbSet.Object);
+            LMockDbContext.Setup(AMainDbContext => AMainDbContext.Generes).Returns(LGeneresDbSet.Object);
+            LMockDbContext.Setup(AMainDbContext => AMainDbContext.ArtistsGeneres).Returns(LBandsGeneresDbSet.Object);
+            LMockDbContext.Setup(AMainDbContext => AMainDbContext.Members).Returns(LMembersDbSet.Object);
+            LMockDbContext.Setup(AMainDbContext => AMainDbContext.Songs).Returns(LSongsDbSet.Object);
 
-            // Create test instance with mocked depenencies
-            FArtists = new Artists(FMockDbContext.Object);
+            // Create test instance with mocked dependencies
+            FArtists = new Artists(LMockDbContext.Object);
 
         }
 

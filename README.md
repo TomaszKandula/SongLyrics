@@ -95,7 +95,7 @@ When succeed returns **200** status code and returns:
 ##### Return all albums (or given artist album)
 
 ```
-GET /api/v1/albums/?ArtistId={id}
+GET /api/v1/albums/?AId={id}
 ```
 
 When succeed returns **200** status code and returns albums or album recorded by selected band id.
@@ -113,7 +113,7 @@ When succeed returns **200** status code and returns specific album.
 ##### Return songs
 
 ```
-GET /api/v1/songs/?AlbumId={id}
+GET /api/v1/songs/?AId={id}
 ```
 
 When succeed returns **200** status code and returns all songs from the entire collection or songs belonging to given album.

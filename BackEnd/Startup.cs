@@ -1,6 +1,6 @@
+using BackEnd.AppLogger;
 using BackEnd.Logic;
 using BackEnd.Models.Database;
-using BackEnd.Utilities.AppLogger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -39,7 +39,7 @@ namespace BackEnd
                 }));
 
             AServices.AddControllers();
-            AServices.AddSingleton<IAppLogger, AppLogger>();
+            AServices.AddSingleton<IAppLogger, AppLogger.AppLogger>();
             AServices.AddDbContext<MainDbContext>(AOptions => 
             {
                 AOptions.UseSqlServer(Configuration.GetConnectionString("DbConnect"),

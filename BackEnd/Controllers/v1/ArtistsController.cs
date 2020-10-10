@@ -1,11 +1,11 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using BackEnd.AppLogger;
 using Microsoft.AspNetCore.Mvc;
 using BackEnd.Logic;
 using BackEnd.Helpers;
 using BackEnd.Models.Json;
-using BackEnd.Utilities.AppLogger;
 
 namespace BackEnd.Controllers.v1
 {

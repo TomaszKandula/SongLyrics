@@ -1,4 +1,4 @@
-﻿namespace BackEnd.Utilities.AppLogger
+﻿namespace BackEnd.AppLogger
 {
 
     /// <summary>

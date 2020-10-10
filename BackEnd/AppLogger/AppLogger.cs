@@ -1,6 +1,6 @@
 ﻿using Serilog;
 
-namespace BackEnd.Utilities.AppLogger
+namespace BackEnd.AppLogger
 {
 
     public sealed class AppLogger : IAppLogger

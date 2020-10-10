@@ -2,12 +2,12 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using BackEnd.AppLogger;
-using Microsoft.AspNetCore.Mvc;
-using BackEnd.Logic;
 using BackEnd.Helpers;
+using BackEnd.Logic;
 using BackEnd.Models.Json;
+using Microsoft.AspNetCore.Mvc;
 
-namespace BackEnd.Controllers.v1
+namespace BackEnd.Controllers.Artists
 {
 
     [Route("api/v1/[controller]")]

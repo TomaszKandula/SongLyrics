@@ -23,11 +23,11 @@ namespace BackEnd.IntegrationTests
         [Theory]
         [InlineData(1)]
         [InlineData(null)]
-        public async Task GetAlbums(int? BandId)
+        public async Task GetAlbums(int? ABandId)
         {
 
             // Arrange
-            var LRequest = $"/api/v1/albums/?BandId={BandId}";
+            var LRequest = $"/api/v1/albums/?BandId={ABandId}";
 
             // Act
             var LResponse = await FClient.GetAsync(LRequest);
@@ -39,15 +39,15 @@ namespace BackEnd.IntegrationTests
             var LStringResponse = await LResponse.Content.ReadAsStringAsync();
             var LReturnAlbums = JsonConvert.DeserializeObject<ReturnAlbums>(LStringResponse);
 
-            if (BandId != null)
+            if (ABandId != null)
             {
                 LReturnAlbums.Albums.Should().HaveCount(15);
             }
             else
             {
-                LReturnAlbums.Albums.Select(R => R.AlbumName).ToList()[3].Should().Be("A Night at the Opera");
-                LReturnAlbums.Albums.Select(R => R.AlbumName).ToList()[5].Should().Be("News of the World");
-                LReturnAlbums.Albums.Select(R => R.AlbumName).ToList()[13].Should().Be("Innuendo");
+                LReturnAlbums.Albums.Select(AAlbum => AAlbum.AlbumName).ToList()[3].Should().Be("A Night at the Opera");
+                LReturnAlbums.Albums.Select(AAlbum => AAlbum.AlbumName).ToList()[5].Should().Be("News of the World");
+                LReturnAlbums.Albums.Select(AAlbum => AAlbum.AlbumName).ToList()[13].Should().Be("Innuendo");
             }
 
         }

@@ -11,21 +11,21 @@ namespace BackEnd
     public class Program
     {
 
-        public static IHostBuilder CreateWebHostBuilder(string[] Args) =>
-            Host.CreateDefaultBuilder(Args)
-                .ConfigureWebHostDefaults(WebBuilder =>
+        public static IHostBuilder CreateWebHostBuilder(string[] AArgs) =>
+            Host.CreateDefaultBuilder(AArgs)
+                .ConfigureWebHostDefaults(AWebBuilder =>
                 {
-                    WebBuilder.UseStartup<Startup>();
-                    WebBuilder.UseSerilog();
+                    AWebBuilder.UseStartup<Startup>();
+                    AWebBuilder.UseSerilog();
                 });
 
-        public static int Main(string[] Args)
+        public static int Main(string[] AArgs)
         {
 
-            var LogsPath = AppDomain.CurrentDomain.BaseDirectory + "\\logs";
-            if (!Directory.Exists(LogsPath))
+            var LOgsPath = AppDomain.CurrentDomain.BaseDirectory + "\\logs";
+            if (!Directory.Exists(LOgsPath))
             {
-                Directory.CreateDirectory(LogsPath);
+                Directory.CreateDirectory(LOgsPath);
             }
 
             Log.Logger = new LoggerConfiguration()
@@ -34,7 +34,7 @@ namespace BackEnd
                 .Enrich.FromLogContext()
                 .WriteTo.File
                 (
-                    LogsPath + "\\log-.txt",
+                    LOgsPath + "\\log-.txt",
                     outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}",
                     rollingInterval: RollingInterval.Day,
                     rollOnFileSizeLimit: true,
@@ -46,12 +46,12 @@ namespace BackEnd
             try
             {
                 Log.Information("Starting WebHost...");
-                CreateWebHostBuilder(Args).Build().Run();
+                CreateWebHostBuilder(AArgs).Build().Run();
                 return 0;
             }
-            catch (Exception E)
+            catch (Exception LException)
             {
-                Log.Fatal(E, "WebHost has been terminated unexpectedly.");
+                Log.Fatal(LException, "WebHost has been terminated unexpectedly.");
                 return 1;
             }
             finally

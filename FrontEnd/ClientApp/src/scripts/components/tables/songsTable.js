@@ -21,7 +21,7 @@ class SongsTable extends Component
     componentDidMount()
     {
         if (this.props.state.album.id > 0)
-            GetData(`${Api.Songs}/?albumid=${this.props.state.album.id}`, this.update);
+            GetData(`${Api.Songs}/?aid=${this.props.state.album.id}`, this.update);
     }
 
     updateData(payload, error)

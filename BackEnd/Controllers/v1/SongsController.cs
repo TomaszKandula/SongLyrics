@@ -29,16 +29,16 @@ namespace BackEnd.Controllers.v1
         /// Returns all songs from the entire collection or songs belonging to given album.
         /// </summary>
         /// <returns></returns>
-        // GET api/v1/songs/?AlbumId={id}
+        // GET api/v1/songs/?AId={id}
         [HttpGet]
-        public async Task<IActionResult> GetSongs([FromQuery] int? AlbumId)
+        public async Task<IActionResult> GetSongs([FromQuery] int? AId)
         {
 
             var LResponse = new ReturnSongs();
             try
             {
 
-                var LResult = await FLogicContext.Songs.GetAlbumSongs(AlbumId);
+                var LResult = await FLogicContext.Songs.GetAlbumSongs(AId);
 
                 if (!LResult.Any())
                 {
@@ -53,10 +53,10 @@ namespace BackEnd.Controllers.v1
                 return StatusCode(200, LResponse);
 
             }
-            catch (Exception E)
+            catch (Exception LException)
             {
-                LResponse.Error.ErrorCode = E.HResult.ToString();
-                LResponse.Error.ErrorDesc = string.IsNullOrEmpty(E.InnerException?.Message) ? E.Message : $"{E.Message} ({ E.InnerException.Message}).";
+                LResponse.Error.ErrorCode = LException.HResult.ToString();
+                LResponse.Error.ErrorDesc = string.IsNullOrEmpty(LException.InnerException?.Message) ? LException.Message : $"{LException.Message} ({LException.InnerException.Message}).";
                 FAppLogger.LogFatality($"GET api/v1/songs/ | Error has been raised while processing request. Message: {LResponse.Error.ErrorDesc}.");
                 return StatusCode(500, LResponse);
             }
@@ -67,22 +67,22 @@ namespace BackEnd.Controllers.v1
         /// Returns selected song from the entire collection.
         /// </summary>
         /// <returns></returns>
-        // GET api/v1/songs/{Id}/
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetSong(int Id)
+        // GET api/v1/songs/{AId}/
+        [HttpGet("{AId}")]
+        public async Task<IActionResult> GetSong([FromRoute] int AId)
         {
 
             var LResponse = new ReturnSong();
             try
             {
 
-                var LResult = await FLogicContext.Songs.GetSong(Id);
+                var LResult = await FLogicContext.Songs.GetSong(AId);
 
                 if (LResult == null)
                 {
                     LResponse.Error.ErrorCode = Constants.Errors.EmptySongList.ErrorCode;
                     LResponse.Error.ErrorDesc = Constants.Errors.EmptySongList.ErrorDesc;
-                    FAppLogger.LogWarn($"GET api/v1/songs/{Id}. {LResponse.Error.ErrorDesc}.");
+                    FAppLogger.LogWarn($"GET api/v1/songs/{AId}. {LResponse.Error.ErrorDesc}.");
                     return StatusCode(200, LResponse);
                 }
 
@@ -91,11 +91,11 @@ namespace BackEnd.Controllers.v1
                 return StatusCode(200, LResponse);
 
             }
-            catch (Exception E)
+            catch (Exception LException)
             {
-                LResponse.Error.ErrorCode = E.HResult.ToString();
-                LResponse.Error.ErrorDesc = string.IsNullOrEmpty(E.InnerException?.Message) ? E.Message : $"{E.Message} ({ E.InnerException.Message}).";
-                FAppLogger.LogFatality($"GET api/v1/songs/{Id} | Error has been raised while processing request. Message: {LResponse.Error.ErrorDesc}.");
+                LResponse.Error.ErrorCode = LException.HResult.ToString();
+                LResponse.Error.ErrorDesc = string.IsNullOrEmpty(LException.InnerException?.Message) ? LException.Message : $"{LException.Message} ({LException.InnerException.Message}).";
+                FAppLogger.LogFatality($"GET api/v1/songs/{AId} | Error has been raised while processing request. Message: {LResponse.Error.ErrorDesc}.");
                 return StatusCode(500, LResponse);
             }
 

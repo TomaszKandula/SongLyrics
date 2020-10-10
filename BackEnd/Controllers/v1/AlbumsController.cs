@@ -29,15 +29,15 @@ namespace BackEnd.Controllers.v1
         /// Returns all albums (or given band album) from the entire collection.
         /// </summary>
         /// <returns></returns>
-        // GET api/v1/albums/?BandId={id}
+        // GET api/v1/albums/?AId={id}
         [HttpGet]
-        public async Task<IActionResult> GetAlbums([FromQuery] int? BandId)
+        public async Task<IActionResult> GetAlbums([FromQuery] int? AId)
         {
 
             var LResponse = new ReturnAlbums();
             try
             {
-                var LResult = await FLogicContext.Albums.GetAlbums(BandId);
+                var LResult = await FLogicContext.Albums.GetAlbums(AId);
 
                 if (!LResult.Any())
                 {
@@ -52,10 +52,10 @@ namespace BackEnd.Controllers.v1
                 return StatusCode(200, LResponse);
 
             }
-            catch (Exception E)
+            catch (Exception LException)
             {
-                LResponse.Error.ErrorCode = E.HResult.ToString();
-                LResponse.Error.ErrorDesc = string.IsNullOrEmpty(E.InnerException?.Message) ? E.Message : $"{E.Message} ({ E.InnerException.Message}).";
+                LResponse.Error.ErrorCode = LException.HResult.ToString();
+                LResponse.Error.ErrorDesc = string.IsNullOrEmpty(LException.InnerException?.Message) ? LException.Message : $"{LException.Message} ({LException.InnerException.Message}).";
                 FAppLogger.LogFatality($"GET api/v1/albums/ | Error has been raised while processing request. Message: {LResponse.Error.ErrorDesc}.");
                 return StatusCode(500, LResponse);
             }
@@ -65,24 +65,24 @@ namespace BackEnd.Controllers.v1
         /// <summary>
         /// Returns specific album from the entire collection.
         /// </summary>
-        /// <param name="Id"></param>
+        /// <param name="AId"></param>
         /// <returns></returns>
-        // GET api/v1/albums/{id}/
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetAlbum(int Id)
+        // GET api/v1/albums/{AId}/
+        [HttpGet("{AId}")]
+        public async Task<IActionResult> GetAlbum([FromRoute] int AId)
         {
 
             var LResponse = new ReturnAlbums();
             try
             {
 
-                var LResult = await FLogicContext.Albums.GetAlbum(Id);
+                var LResult = await FLogicContext.Albums.GetAlbum(AId);
 
                 if (LResult.Count == 0)
                 {
                     LResponse.Error.ErrorCode = Constants.Errors.NoAlbumFound.ErrorCode;
                     LResponse.Error.ErrorDesc = Constants.Errors.NoAlbumFound.ErrorDesc;
-                    FAppLogger.LogWarn($"GET api/v1/albums/{Id}. {LResponse.Error.ErrorDesc}.");
+                    FAppLogger.LogWarn($"GET api/v1/albums/{AId}. {LResponse.Error.ErrorDesc}.");
                     return StatusCode(200, LResponse);
                 }
 
@@ -91,11 +91,11 @@ namespace BackEnd.Controllers.v1
                 return StatusCode(200, LResponse);
 
             }
-            catch (Exception E)
+            catch (Exception LException)
             {
-                LResponse.Error.ErrorCode = E.HResult.ToString();
-                LResponse.Error.ErrorDesc = string.IsNullOrEmpty(E.InnerException?.Message) ? E.Message : $"{E.Message} ({ E.InnerException.Message}).";
-                FAppLogger.LogFatality($"GET api/v1/albums/{Id} | Error has been raised while processing request. Message: {LResponse.Error.ErrorDesc}.");
+                LResponse.Error.ErrorCode = LException.HResult.ToString();
+                LResponse.Error.ErrorDesc = string.IsNullOrEmpty(LException.InnerException?.Message) ? LException.Message : $"{LException.Message} ({LException.InnerException.Message}).";
+                FAppLogger.LogFatality($"GET api/v1/albums/{AId} | Error has been raised while processing request. Message: {LResponse.Error.ErrorDesc}.");
                 return StatusCode(500, LResponse);
             }
 

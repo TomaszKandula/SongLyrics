@@ -53,10 +53,10 @@ namespace BackEnd.Controllers.v1
                 return StatusCode(200, LResponse);
 
             }
-            catch (Exception E)
+            catch (Exception LException)
             {
-                LResponse.Error.ErrorCode = E.HResult.ToString();
-                LResponse.Error.ErrorDesc = string.IsNullOrEmpty(E.InnerException?.Message) ? E.Message : $"{E.Message} ({ E.InnerException.Message}).";
+                LResponse.Error.ErrorCode = LException.HResult.ToString();
+                LResponse.Error.ErrorDesc = string.IsNullOrEmpty(LException.InnerException?.Message) ? LException.Message : $"{LException.Message} ({LException.InnerException.Message}).";
                 FAppLogger.LogFatality($"GET api/v1/artists/ | Error has been raised while processing request. Message: {LResponse.Error.ErrorDesc}.");
                 return StatusCode(500, LResponse);
             }
@@ -67,22 +67,22 @@ namespace BackEnd.Controllers.v1
         /// Returns list of all band members.
         /// </summary>
         /// <returns></returns>
-        // GET api/v1/artists/{id}/members/
-        [HttpGet("{id}/members/")]
-        public async Task<IActionResult> GetMembers(int Id)
+        // GET api/v1/artists/{AId}/members/
+        [HttpGet("{AId}/members/")]
+        public async Task<IActionResult> GetMembers([FromRoute] int AId)
         {
 
             var LResponse = new ReturnMembers();
             try
             {
                 
-                var LResult = await FLogicContext.Artists.GetMembers(Id);
+                var LResult = await FLogicContext.Artists.GetMembers(AId);
 
                 if (!LResult.Any())
                 {
                     LResponse.Error.ErrorCode = Constants.Errors.EmptyMembersList.ErrorCode;
                     LResponse.Error.ErrorDesc = Constants.Errors.EmptyMembersList.ErrorDesc;
-                    FAppLogger.LogWarn($"GET api/v1/artists/{Id}/members/. {LResponse.Error.ErrorDesc}.");
+                    FAppLogger.LogWarn($"GET api/v1/artists/{AId}/members/. {LResponse.Error.ErrorDesc}.");
                     return StatusCode(200, LResponse);
                 }
 
@@ -91,11 +91,11 @@ namespace BackEnd.Controllers.v1
                 return StatusCode(200, LResponse);
             
             }
-            catch (Exception E)
+            catch (Exception LException)
             {
-                LResponse.Error.ErrorCode = E.HResult.ToString();
-                LResponse.Error.ErrorDesc = string.IsNullOrEmpty(E.InnerException?.Message) ? E.Message : $"{E.Message} ({ E.InnerException.Message}).";
-                FAppLogger.LogFatality($"GET api/v1/artists/{Id}/members/ | Error has been raised while processing request. Message: {LResponse.Error.ErrorDesc}.");
+                LResponse.Error.ErrorCode = LException.HResult.ToString();
+                LResponse.Error.ErrorDesc = string.IsNullOrEmpty(LException.InnerException?.Message) ? LException.Message : $"{LException.Message} ({LException.InnerException.Message}).";
+                FAppLogger.LogFatality($"GET api/v1/artists/{AId}/members/ | Error has been raised while processing request. Message: {LResponse.Error.ErrorDesc}.");
                 return StatusCode(500, LResponse);
             }
 
@@ -105,16 +105,16 @@ namespace BackEnd.Controllers.v1
         /// Returns all band detail for given band (by its Id).
         /// </summary>
         /// <returns></returns>
-        // GET api/v1/artists/{id}/details/
-        [HttpGet("{id}/details/")]
-        public async Task<IActionResult> GetArtistDetails(int Id)
+        // GET api/v1/artists/{AId}/details/
+        [HttpGet("{AId}/details/")]
+        public async Task<IActionResult> GetArtistDetails([FromRoute] int AId)
         {
 
             var LResponse = new ReturnArtistDetails();
             try
             {
 
-                var LBandDetails = await FLogicContext.Artists.GetArtistDetails(Id);
+                var LBandDetails = await FLogicContext.Artists.GetArtistDetails(AId);
 
                 LResponse.Name        = LBandDetails.Name;
                 LResponse.Established = LBandDetails.Established;
@@ -126,11 +126,11 @@ namespace BackEnd.Controllers.v1
                 return StatusCode(200, LResponse);
 
             }
-            catch (Exception E)
+            catch (Exception LException)
             {
-                LResponse.Error.ErrorCode = E.HResult.ToString();
-                LResponse.Error.ErrorDesc = string.IsNullOrEmpty(E.InnerException?.Message) ? E.Message : $"{E.Message} ({ E.InnerException.Message}).";
-                FAppLogger.LogFatality($"GET api/v1/artists/{Id}/details/ | Error has been raised while processing request. Message: {LResponse.Error.ErrorDesc}.");
+                LResponse.Error.ErrorCode = LException.HResult.ToString();
+                LResponse.Error.ErrorDesc = string.IsNullOrEmpty(LException.InnerException?.Message) ? LException.Message : $"{LException.Message} ({LException.InnerException.Message}).";
+                FAppLogger.LogFatality($"GET api/v1/artists/{AId}/details/ | Error has been raised while processing request. Message: {LResponse.Error.ErrorDesc}.");
                 return StatusCode(500, LResponse);
             }
 

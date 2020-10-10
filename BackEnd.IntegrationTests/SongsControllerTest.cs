@@ -1,6 +1,5 @@
 ﻿using Xunit;
 using FluentAssertions;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -23,11 +22,11 @@ namespace BackEnd.IntegrationTests
         [Theory]
         [InlineData(1)]
         [InlineData(null)]
-        public async Task GetSongs(int? AlbumId)
+        public async Task GetSongs(int? AAlbumId)
         {
 
             // Arrange
-            var LRequest = $"/api/v1/songs/?AlbumId={AlbumId}";
+            var LRequest = $"/api/v1/songs/?AAlbumId={AAlbumId}";
 
             // Act
             var LResponse = await FClient.GetAsync(LRequest);
@@ -39,7 +38,7 @@ namespace BackEnd.IntegrationTests
             var LStringResponse = await LResponse.Content.ReadAsStringAsync();
             var LReturnSongs = JsonConvert.DeserializeObject<ReturnSongs>(LStringResponse);
 
-            if (AlbumId != null)
+            if (AAlbumId != null)
             {
                 LReturnSongs.Songs.Should().HaveCount(10);
             }
@@ -52,11 +51,11 @@ namespace BackEnd.IntegrationTests
 
         [Theory]
         [InlineData(6)]
-        public async Task GetSong(int Id)
+        public async Task GetSong(int AId)
         {
 
             // Arrange
-            var LRequest = $"/api/v1/songs/{Id}";
+            var LRequest = $"/api/v1/songs/{AId}";
 
             // Act
             var LResponse = await FClient.GetAsync(LRequest);

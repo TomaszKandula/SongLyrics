@@ -16,9 +16,6 @@ namespace BackEnd
     public class Startup
     {
 
-        private const string DevelopmentOrigin = "http://localhost:59457";
-        private const string DeploymentOrigin = "https://songlyrics.azurewebsites.net";
-
         public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration AConfiguration)
@@ -66,7 +63,8 @@ namespace BackEnd
             AApplication.Use((AContext, ANext) => 
             {
 
-                if (AContext.Request.Headers["Origin"] == DeploymentOrigin || AContext.Request.Headers["Origin"] == DevelopmentOrigin) 
+                if (AContext.Request.Headers["Origin"] == Configuration.GetSection("DevelopmentOrigin") 
+                    || AContext.Request.Headers["Origin"] == Configuration.GetSection("DeploymentOrigin")) 
                     AContext.Response.Headers.Add("Access-Control-Allow-Origin", AContext.Request.Headers["Origin"]);
 
                 AContext.Response.Headers.Add("Access-Control-Allow-Methods", "GET");

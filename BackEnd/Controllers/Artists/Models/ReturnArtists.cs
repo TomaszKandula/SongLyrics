@@ -5,17 +5,6 @@ using BackEnd.Common;
 namespace BackEnd.Controllers.Artists.Models
 {
 
-    public class Artist 
-    {
-
-        [JsonPropertyName("Id")]
-        public int Id { get; set; }
-
-        [JsonPropertyName("Name")]
-        public string Name { get; set; }
-
-    }
-
     public class ReturnArtists
     {
 

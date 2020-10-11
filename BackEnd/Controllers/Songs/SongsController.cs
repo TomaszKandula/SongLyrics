@@ -29,16 +29,17 @@ namespace BackEnd.Controllers.Songs
         /// Returns all songs from the entire collection or songs belonging to given album.
         /// </summary>
         /// <returns></returns>
-        // GET api/v1/songs/?AId={id}
+        // GET api/v1/songs/?AlbumId={id}
         [HttpGet]
-        public async Task<IActionResult> GetSongs([FromQuery] int? AId)
+        // ReSharper disable once InconsistentNaming for query string
+        public async Task<IActionResult> GetSongs([FromQuery] int? AlbumId)
         {
 
             var LResponse = new ReturnSongs();
             try
             {
 
-                var LResult = await FLogicContext.Songs.GetAlbumSongs(AId);
+                var LResult = await FLogicContext.Songs.GetAlbumSongs(AlbumId);
 
                 if (!LResult.Any())
                 {

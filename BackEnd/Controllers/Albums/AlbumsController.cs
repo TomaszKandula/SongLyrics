@@ -29,15 +29,16 @@ namespace BackEnd.Controllers.Albums
         /// Returns all albums (or given band album) from the entire collection.
         /// </summary>
         /// <returns></returns>
-        // GET api/v1/albums/?AId={id}
+        // GET api/v1/albums/?BandId={id}
         [HttpGet]
-        public async Task<IActionResult> GetAlbums([FromQuery] int? AId)
+        // ReSharper disable once InconsistentNaming for query string
+        public async Task<IActionResult> GetAlbums([FromQuery] int? BandId)
         {
 
             var LResponse = new ReturnAlbums();
             try
             {
-                var LResult = await FLogicContext.Albums.GetAlbums(AId);
+                var LResult = await FLogicContext.Albums.GetAlbums(BandId);
 
                 if (!LResult.Any())
                 {

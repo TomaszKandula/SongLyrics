@@ -21,7 +21,7 @@ class AlbumsTable extends Component
     componentDidMount()
     {
         if (this.props.state.artist.id > 0)
-            GetData(`${Api.Albums}/?aid=${this.props.state.artist.id}`, this.update);
+            GetData(`${Api.Albums}/?artistid=${this.props.state.artist.id}`, this.update);
     }
 
     updateData(payload, error)

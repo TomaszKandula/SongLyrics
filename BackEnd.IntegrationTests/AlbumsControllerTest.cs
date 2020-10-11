@@ -23,11 +23,11 @@ namespace BackEnd.IntegrationTests
         [Theory]
         [InlineData(1)]
         [InlineData(null)]
-        public async Task GetAlbums(int? AId)
+        public async Task GetAlbums(int? AArtistId)
         {
 
             // Arrange
-            var LRequest = $"/api/v1/albums/?AId={AId}";
+            var LRequest = $"/api/v1/albums/?ArtistId={AArtistId}";
 
             // Act
             var LResponse = await FClient.GetAsync(LRequest);
@@ -39,7 +39,7 @@ namespace BackEnd.IntegrationTests
             var LStringResponse = await LResponse.Content.ReadAsStringAsync();
             var LReturnAlbums = JsonConvert.DeserializeObject<ReturnAlbums>(LStringResponse);
 
-            if (AId != null)
+            if (AArtistId != null)
             {
                 LReturnAlbums.Albums.Should().HaveCount(15);
             }

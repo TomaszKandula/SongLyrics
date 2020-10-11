@@ -20,14 +20,14 @@ class DetailsView extends Component
 
         if (this.props.state.artist.id > 0 && this.props.state.album.id === 0)
         {
-            header   = <ArtistDetails /> 
+            header   = <ArtistDetails />;
             content  = <AlbumsTable />;
             navlinks = <NavigationLinks selection={Links.ALBUMS_LIST} />;
         }
 
         if (this.props.state.album.id > 0 && this.props.state.song.id === 0)
         {
-            header   = <ArtistDetails /> 
+            header   = <ArtistDetails />; 
             content  = <SongsTable />;
             navlinks = <NavigationLinks selection={Links.SONGS_LIST} />;
         }

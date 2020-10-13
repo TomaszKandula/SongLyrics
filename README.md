@@ -59,7 +59,7 @@ Covers all the logic used in the controllers (please note that the endpoints doe
 
 Currently, all controllers are public.
 
-Swagger-UI is added for easy API discover: [http://localhost:59384/swagger](http://localhost:59384/swagger). Swagger JSON is also available: [http://localhost:59384/swagger/v1/swagger.json](http://localhost:59384/swagger/v1/swagger.json).
+Swagger-UI is added for easy API discover: [http://localhost:{PORT}/swagger](http://localhost:{PORT}/swagger). Swagger JSON is also available: [http://localhost:{PORT}/swagger/v1/swagger.json](http://localhost:59384/swagger/v1/swagger.json).
 
 ### Artists controller
 

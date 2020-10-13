@@ -22,6 +22,7 @@ Project status can be seen here: [Project Board](https://github.com/users/Tomasz
 1. Web API (NET Core 3.1 / C# language).
 1. SQL Database, Entity Framework Core.
 1. SeriLog for structural logging*.
+1. Swagger-UI.
 
 Unit Tests and Integration Tests are provided using [XUnit](https://github.com/xunit/xunit) and [FluentAssertions](https://github.com/fluentassertions/fluentassertions).
 
@@ -57,6 +58,8 @@ Covers all the logic used in the controllers (please note that the endpoints doe
 ## REST API
 
 Currently, all controllers are public.
+
+Swagger-UI is added for easy API discover: [http://localhost:59384/swagger](http://localhost:59384/swagger). Swagger JSON is also available: [http://localhost:59384/swagger/v1/swagger.json](http://localhost:59384/swagger/v1/swagger.json).
 
 ### Artists controller
 

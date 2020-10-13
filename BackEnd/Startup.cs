@@ -1,3 +1,4 @@
+using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -46,6 +47,11 @@ namespace BackEnd
             AServices.AddScoped<ILogicContext, LogicContext>();
             AServices.AddResponseCompression(AOptions => { AOptions.Providers.Add<GzipCompressionProvider>(); });
 
+            AServices.AddSwaggerGen(AOption =>
+            {
+                AOption.SwaggerDoc("v1", new OpenApiInfo { Title = "Song Lyrics Api", Version = "v1" });
+            });
+
         }
 
         public void Configure(IApplicationBuilder AApplication, IWebHostEnvironment AEnvironment) 
@@ -55,6 +61,12 @@ namespace BackEnd
             
             if (AEnvironment.IsDevelopment())
                 AApplication.UseDeveloperExceptionPage();
+
+            AApplication.UseSwagger();
+            AApplication.UseSwaggerUI(AOption =>
+            {
+                AOption.SwaggerEndpoint("/swagger/v1/swagger.json", "Song Lyrics Api version 1");
+            });
 
             AApplication.UseDefaultFiles();
             AApplication.UseStaticFiles();

@@ -2,7 +2,7 @@
 
 Song Lyrics (Demo project) allow to traverse through different artists to find songs from albums for lyrics.
 
-Working demo (presenting work in progress) has been deployed on Azure Cloud: [Song Lyrics](https://songlyrics.azurewebsites.net).
+Working demo (presenting work in progress) has been deployed on Azure Cloud: [Song Lyrics](https://songlyrics.azurewebsites.net) (please note that the demo is placed on free tier - F1 shared infrastructure - and thus may be very slow).
 
 Project status can be seen here: [Project Board](https://github.com/users/TomaszKandula/projects/6).
 

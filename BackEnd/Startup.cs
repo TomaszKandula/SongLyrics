@@ -49,7 +49,7 @@ namespace BackEnd
 
             AServices.AddSwaggerGen(AOption =>
             {
-                AOption.SwaggerDoc("v1", new OpenApiInfo { Title = "Song Lyrics Api", Version = "v1" });
+                AOption.SwaggerDoc("v1", new OpenApiInfo { Title = "SongLyrics Api", Version = "v1" });
             });
 
         }
@@ -65,7 +65,7 @@ namespace BackEnd
             AApplication.UseSwagger();
             AApplication.UseSwaggerUI(AOption =>
             {
-                AOption.SwaggerEndpoint("/swagger/v1/swagger.json", "Song Lyrics Api version 1");
+                AOption.SwaggerEndpoint("/swagger/v1/swagger.json", "SongLyrics Api version 1");
             });
 
             AApplication.UseDefaultFiles();

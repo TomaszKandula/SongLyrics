@@ -23,8 +23,13 @@ class Layout extends Component
 
 const mapStateToProps = (state) =>
 {
-    let isArtistSelected = state.artist.id !== 0 ? true : false;
+
+    const isArtistSelected = state.artist.id !== 0
+        ? true
+        : false;
+
     return { isArtistSelected }
+
 }
 
 export default connect(mapStateToProps)(Layout);

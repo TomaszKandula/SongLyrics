@@ -39,12 +39,12 @@ class ArtistDetails extends Component
     {
         return !error
             ? this.setState({
-                details: { name: payload.Name, established: payload.Established, activeUntil: payload.ActiveUntil, genere: payload.Genere, members: payload.Members, },
+                details: { name: payload.Name, established: payload.Established, activeUntil: payload.ActiveUntil, genere: payload.Genere, members: payload.Members },
                 loading: false,
                 fetchError: null
             })
             : this.setState({
-                details: { name: "", established: "", activeUntil: "", genere: "", members: "", },
+                details: { name: "", established: "", activeUntil: "", genere: "", members: "" },
                 loading: true,
                 fetchError: error
             });
@@ -56,7 +56,7 @@ class ArtistDetails extends Component
         if (!this.state.details.members)
         {
 
-            let processed =
+            const processed =
             {
                 established: "n/a",
                 activeUntil: "n/a",
@@ -89,13 +89,18 @@ class ArtistDetails extends Component
         currMembers = currMembers.replace(/.$/, ".");
         pastMembers = pastMembers.replace(/.$/, ".");
 
-        let getEstablished = new Date(this.state.details.established);
-        let getActiveUntil = new Date(this.state.details.activeUntil);
+        const getEstablished = new Date(this.state.details.established);
+        const getActiveUntil = new Date(this.state.details.activeUntil);
 
-        let established = this.state.details.established != null ? getEstablished.getFullYear() : null;
-        let activeUntil = this.state.details.activeUntil != null ? getActiveUntil.getFullYear() : null;
+        const established = this.state.details.established != null
+            ? getEstablished.getFullYear()
+            : null;
 
-        let processed =
+        const activeUntil = this.state.details.activeUntil != null
+            ? getActiveUntil.getFullYear()
+            : null;
+
+        const processed =
         {
             established: established,
             activeUntil: activeUntil,
@@ -146,9 +151,17 @@ class ArtistDetails extends Component
     render()
     {
 
-        let showError = this.state.fetchError ? <Modal messageText={this.state.fetchError} messageType={MessageTypes.MESSAGE_ERROR} isOpened={true} /> : null;
-        let renderedTable = this.state.loading ? <Loaders.Circular /> : this.renderTable(this.processData());
-        let bandName = this.state.loading ? null : this.state.details.name;
+        const showError = this.state.fetchError
+            ? <Modal messageText={this.state.fetchError} messageType={MessageTypes.MESSAGE_ERROR} isOpened={true} />
+            : null;
+
+        const renderedTable = this.state.loading
+            ? <Loaders.Circular />
+            : this.renderTable(this.processData());
+
+        const bandName = this.state.loading
+            ? null
+            : this.state.details.name;
 
         return (
             <>

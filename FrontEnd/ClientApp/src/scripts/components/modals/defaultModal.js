@@ -30,9 +30,9 @@ class Modal extends Component
             // Render modal window with time lag to improve UX
             setTimeout(() =>
             {
-                let instance = M.Modal.getInstance(this.Modal);
+                const instance = M.Modal.getInstance(this.Modal);
                 instance.open();
-            }, 500)
+            }, 500);
 
         }
 

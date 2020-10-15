@@ -63,8 +63,13 @@ class SongsTable extends Component
     render()
     {
 
-        let showError = this.state.fetchError ? <Modal messageText={this.state.fetchError} messageType={MessageTypes.MESSAGE_ERROR} isOpened={true} /> : null;
-        let renderedTable = this.state.loading ? <Loaders.Circular /> : this.renderTable();
+        const showError = this.state.fetchError
+            ? <Modal messageText={this.state.fetchError} messageType={MessageTypes.MESSAGE_ERROR} isOpened={true} />
+            : null;
+
+        const renderedTable = this.state.loading
+            ? <Loaders.Circular />
+            : this.renderTable();
 
         return (
             <>

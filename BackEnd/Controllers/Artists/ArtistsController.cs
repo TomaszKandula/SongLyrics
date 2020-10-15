@@ -6,6 +6,7 @@ using BackEnd.Logic;
 using BackEnd.Helpers;
 using BackEnd.AppLogger;
 using BackEnd.Controllers.Artists.Models;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace BackEnd.Controllers.Artists
 {
@@ -29,6 +30,11 @@ namespace BackEnd.Controllers.Artists
         /// Returns all bands from the entire collection.
         /// </summary>
         /// <returns></returns>
+        [SwaggerResponse(
+            statusCode: 200,
+            description: "Returns all bands from the entire collection.",
+            type: typeof(ReturnArtists)
+        )]
         // GET api/v1/artists/
         [HttpGet]
         public async Task<IActionResult> GetArtists() 
@@ -67,6 +73,11 @@ namespace BackEnd.Controllers.Artists
         /// Returns list of all band members.
         /// </summary>
         /// <returns></returns>
+        [SwaggerResponse(
+            statusCode: 200,
+            description: "Returns list of all band members.",
+            type: typeof(ReturnMembers)
+        )]
         // GET api/v1/artists/{AId}/members/
         [HttpGet("{AId}/members/")]
         public async Task<IActionResult> GetMembers([FromRoute] int AId)
@@ -105,6 +116,11 @@ namespace BackEnd.Controllers.Artists
         /// Returns all band detail for given band (by its Id).
         /// </summary>
         /// <returns></returns>
+        [SwaggerResponse(
+            statusCode: 200,
+            description: "Returns all band detail for given band (by its Id).",
+            type: typeof(ReturnArtistDetails)
+        )]
         // GET api/v1/artists/{AId}/details/
         [HttpGet("{AId}/details/")]
         public async Task<IActionResult> GetArtistDetails([FromRoute] int AId)

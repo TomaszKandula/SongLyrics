@@ -6,6 +6,7 @@ using BackEnd.Logic;
 using BackEnd.Helpers;
 using BackEnd.AppLogger;
 using BackEnd.Controllers.Albums.Models;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace BackEnd.Controllers.Albums
 {
@@ -29,6 +30,11 @@ namespace BackEnd.Controllers.Albums
         /// Returns all albums (or given band album) from the entire collection.
         /// </summary>
         /// <returns></returns>
+        [SwaggerResponse(
+            statusCode: 200,
+            description: "Returns all albums (or given band album) from the entire collection.",
+            type: typeof(ReturnAlbums)
+        )]
         // GET api/v1/albums/?ArtistId={id}
         [HttpGet]
         // ReSharper disable once InconsistentNaming for query string
@@ -68,6 +74,11 @@ namespace BackEnd.Controllers.Albums
         /// </summary>
         /// <param name="AId"></param>
         /// <returns></returns>
+        [SwaggerResponse(
+            statusCode: 200,
+            description: "Returns specific album from the entire collection.",
+            type: typeof(ReturnAlbums)
+        )]
         // GET api/v1/albums/{AId}/
         [HttpGet("{AId}")]
         public async Task<IActionResult> GetAlbum([FromRoute] int AId)

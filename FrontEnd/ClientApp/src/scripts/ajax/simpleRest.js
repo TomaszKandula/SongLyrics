@@ -27,7 +27,7 @@
         {
 
             if (!response.ok)
-                throw new Error("Error occured during processing the request.");
+                throw new Error("Error occurred during processing the request.");
 
             return response.json();
 

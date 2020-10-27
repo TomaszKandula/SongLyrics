@@ -26,6 +26,8 @@ Project status can be seen here: [Project Board](https://github.com/users/Tomasz
 
 Unit Tests and Integration Tests are provided using [XUnit](https://github.com/xunit/xunit) and [FluentAssertions](https://github.com/fluentassertions/fluentassertions).
 
+Back-end project is relatively small and therefore is not split into sub-projects.
+
 *Kibana and ElasticSearch with Docker are planned to be used.
 
 ## Setting-up the database

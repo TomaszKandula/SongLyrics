@@ -1,4 +1,4 @@
-﻿namespace BackEnd.Helpers
+﻿namespace BackEnd.Shared
 {
 
     /// <summary>

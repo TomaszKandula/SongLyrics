@@ -1,4 +1,4 @@
-﻿import { SELECT_SONG } from "../actionTypes";
+import { SELECT_SONG } from "../actionTypes";
 
 const selectSongReducer = (state = {}, { type, payload }) =>
 {

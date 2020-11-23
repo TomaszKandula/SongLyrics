@@ -1,4 +1,4 @@
-﻿import React, { Component } from "react";
+import React, { Component } from "react";
 import { connect } from 'react-redux';
 import ArtistsView from "./views/artistsView";
 import DetailsView from "./views/detailsView";

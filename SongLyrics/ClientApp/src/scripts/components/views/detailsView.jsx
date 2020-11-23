@@ -1,4 +1,4 @@
-﻿import React, { Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as Links from "../../constants/linkTypes";
 import SongLyric from "../common/songLyric";

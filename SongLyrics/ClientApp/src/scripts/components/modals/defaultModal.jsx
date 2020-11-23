@@ -1,4 +1,4 @@
-﻿import React, { Component } from "react";
+import React, { Component } from "react";
 import M from "materialize-css";
 import * as MessageTypes from "../../constants/messageTypes";
 

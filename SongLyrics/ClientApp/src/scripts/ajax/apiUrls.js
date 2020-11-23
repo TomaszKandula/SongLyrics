@@ -1,5 +1,5 @@
-﻿// Base URI
-const BASE_URI = "https://songlyrics-api.azurewebsites.net";
+// Base URL
+const BASE_URI = "http://localhost:5000";
 
 // Current API version (we use only integer for versioning)
 const apiVersion = "v1";

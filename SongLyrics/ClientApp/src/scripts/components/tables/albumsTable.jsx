@@ -1,4 +1,4 @@
-﻿import React, { Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as ActionTypes from "../../redux/actionTypes";
 import * as MessageTypes from "../../constants/messageTypes";
@@ -8,54 +8,69 @@ import * as Api from "../../ajax/apiUrls";
 import { GetData } from "../../ajax/simpleRest";
 import Modal from "../modals/defaultModal";
 
-class SongsTable extends Component
+class AlbumsTable extends Component
 {
 
     constructor(props)
     {
         super(props);
         this.update = this.updateData.bind(this);
-        this.state = { songs: [], loading: true, fetchError: null };
+        this.state = { albums: [], loading: true, fetchError: null };
     }
 
     componentDidMount()
     {
-        if (this.props.state.album.id > 0)
-            GetData(`${Api.Songs}/?albumid=${this.props.state.album.id}`, this.update);
+        if (this.props.state.artist.id > 0)
+            GetData(`${Api.Albums}/?artistid=${this.props.state.artist.id}`, this.update);
     }
 
     updateData(payload, error)
     {
         return !error
-            ? this.setState({ songs: payload.Songs, loading: false, fetchError: null })
+            ? this.setState({ albums: payload.Albums, loading: false, fetchError: null })
             : this.setState({ songs: [], loading: true, fetchError: error });
-    }
-    
-    clickRowSelect(songId)
+    }      
+
+    returnFullYear(date)
     {
-        this.props.dispatch({ type: ActionTypes.SELECT_SONG, payload: songId });
+
+        const getDate = new Date(date);
+
+        return date != null
+            ? getDate.getFullYear()
+            : null;
+
+    }
+
+    clickRowSelect(albumId)
+    {
+        this.props.dispatch({ type: ActionTypes.SELECT_ALBUM, payload: albumId });
     }
 
     renderTable()
     {
 
-        return (            
-            <table className="songsTable">
+        return (
+            <table className="albumsTable">
                 <thead>
                     <tr>
-                        <th className="songsTableCol1">Lp</th>
-                        <th className="songsTableCol2">Song Name</th>
+                        <th className="albumsTableCol1">Lp</th>
+                        <th className="albumsTableCol2">Album Name</th>
+                        <th className="albumsTableCol3">Issued</th>
+                        <th className="albumsTableCol4">Album cover</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {this.state.songs.map(songs =>
-                        <tr key={songs.Id} onClick={() => this.clickRowSelect(songs.Id)}>
-                            <td className="songsTableCol1">{songs.Id}</td>
-                            <td className="songsTableCol2">{songs.Name}</td>
+                    {this.state.albums.map(albums =>
+                        <tr key={albums.Id} onClick={() => this.clickRowSelect(albums.Id)}>
+                            <td className="albumsTableCol1">{albums.Id}</td>
+                            <td className="albumsTableCol2">{albums.AlbumName}</td>
+                            <td className="albumsTableCol3">{this.returnFullYear(albums.Issued)}</td>
+                            <td className="albumsTableCol4"></td>
                         </tr>
                     )}
                 </tbody>
-            </table>
+            </table>            
         );
 
     }
@@ -87,4 +102,4 @@ class SongsTable extends Component
 }
 
 const mapStateToProps = (state) => { return { state } }
-export default connect(mapStateToProps)(SongsTable)
+export default connect(mapStateToProps)(AlbumsTable)

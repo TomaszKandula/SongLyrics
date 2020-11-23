@@ -37,12 +37,13 @@ namespace BackEnd
                 NoStore = false
             }));
 
+            AServices.AddControllers();
+
             AServices.AddSpaStaticFiles(LConfiguration =>
             {
                 LConfiguration.RootPath = "ClientApp/build";
             });
 
-            AServices.AddControllers();
             AServices.AddSingleton<IAppLogger, AppLogger.AppLogger>();
             AServices.AddDbContext<MainDbContext>(AOptions => 
             {
@@ -75,8 +76,8 @@ namespace BackEnd
                 AOption.SwaggerEndpoint("/swagger/v1/swagger.json", "SongLyrics Api version 1");
             });
 
-            AApplication.UseDefaultFiles();
             AApplication.UseStaticFiles();
+            AApplication.UseSpaStaticFiles();
             AApplication.UseRouting();
             AApplication.UseEndpoints(LEndpoints =>
             {

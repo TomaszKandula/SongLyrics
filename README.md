@@ -21,14 +21,12 @@ Project status can be seen here: [Project Board](https://github.com/users/Tomasz
 
 1. Web API (NET Core 3.1 / C# language).
 1. SQL Database, Entity Framework Core.
-1. SeriLog for structural logging*.
+1. SeriLog for structural logging (sink to file).
 1. Swagger-UI.
 
 Unit Tests and Integration Tests are provided using [XUnit](https://github.com/xunit/xunit) and [FluentAssertions](https://github.com/fluentassertions/fluentassertions).
 
 Back-end project is relatively small and therefore is not split into sub-projects.
-
-*Kibana and ElasticSearch with Docker are planned to be used.
 
 ## Setting-up the database
 

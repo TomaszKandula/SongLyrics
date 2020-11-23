@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30330.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackEnd", "BackEnd\BackEnd.csproj", "{8E181C4E-7D3C-417A-BDD4-BF088B2A7C1C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrontEnd", "FrontEnd\FrontEnd.csproj", "{D73E20BB-2035-48EC-87EC-E7771ECDFD8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SongLyrics", "BackEnd\SongLyrics.csproj", "{8E181C4E-7D3C-417A-BDD4-BF088B2A7C1C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackEnd.UnitTests", "BackEnd.UnitTests\BackEnd.UnitTests.csproj", "{D7EAB2AA-A54A-4543-8F44-00B45DAD5104}"
 EndProject
@@ -21,10 +19,6 @@ Global
 		{8E181C4E-7D3C-417A-BDD4-BF088B2A7C1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E181C4E-7D3C-417A-BDD4-BF088B2A7C1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E181C4E-7D3C-417A-BDD4-BF088B2A7C1C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D73E20BB-2035-48EC-87EC-E7771ECDFD8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D73E20BB-2035-48EC-87EC-E7771ECDFD8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D73E20BB-2035-48EC-87EC-E7771ECDFD8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D73E20BB-2035-48EC-87EC-E7771ECDFD8E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D7EAB2AA-A54A-4543-8F44-00B45DAD5104}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D7EAB2AA-A54A-4543-8F44-00B45DAD5104}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7EAB2AA-A54A-4543-8F44-00B45DAD5104}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as ActionTypes from "../../redux/actionTypes";
-import * as MessageTypes from "../../constants/messageTypes";
 import * as Posed from "../common/posedComponents";
 import * as Loaders from "../common/preLoaders";
-import * as Api from "../../ajax/apiUrls";
-import { GetData } from "../../ajax/simpleRest";
+import * as Const from "../../shared/constants";
+import { GetData } from "../../shared/simpleFetch";
 import Modal from "../modals/defaultModal";
 
 class ArtistsView extends Component
@@ -20,7 +19,7 @@ class ArtistsView extends Component
 
     componentDidMount()
     {
-        GetData(`${Api.Artists}`, this.update);
+        GetData(`${Const.Artists}`, this.update);
     }
 
     updateData(payload, error)
@@ -63,7 +62,7 @@ class ArtistsView extends Component
     {
 
         const showError = this.state.fetchError
-            ? <Modal messageText={this.state.fetchError} messageType={MessageTypes.MESSAGE_ERROR} isOpened={true} />
+            ? <Modal messageText={this.state.fetchError} messageType={Const.MESSAGE_ERROR} isOpened={true} />
             : null;
 
         const renderedTable = this.state.loading

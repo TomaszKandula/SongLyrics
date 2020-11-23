@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as ActionTypes from "../../redux/actionTypes";
-import * as MessageTypes from "../../constants/messageTypes";
 import * as Loaders from "../common/preLoaders";
 import * as Posed from "../common/posedComponents";
-import * as Api from "../../ajax/apiUrls";
-import { GetData } from "../../ajax/simpleRest";
+import * as Const from "../../shared/constants";
+import { GetData } from "../../shared/simpleFetch";
 import Modal from "../modals/defaultModal";
 
 class SongsTable extends Component
@@ -21,7 +20,7 @@ class SongsTable extends Component
     componentDidMount()
     {
         if (this.props.state.album.id > 0)
-            GetData(`${Api.Songs}/?albumid=${this.props.state.album.id}`, this.update);
+            GetData(`${Const.Songs}/?albumid=${this.props.state.album.id}`, this.update);
     }
 
     updateData(payload, error)
@@ -64,7 +63,7 @@ class SongsTable extends Component
     {
 
         const showError = this.state.fetchError
-            ? <Modal messageText={this.state.fetchError} messageType={MessageTypes.MESSAGE_ERROR} isOpened={true} />
+            ? <Modal messageText={this.state.fetchError} messageType={Const.MESSAGE_ERROR} isOpened={true} />
             : null;
 
         const renderedTable = this.state.loading

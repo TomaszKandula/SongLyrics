@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as Links from "../../constants/linkTypes";
+import { ALBUMS_LIST, SONGS_LIST, SONG_LYRIC } from "../../shared/constants";
 import SongLyric from "../common/songLyric";
 import SongVideo from "../common/songVideo";
 import ArtistDetails from "../common/artistDetails";
@@ -22,21 +22,21 @@ class DetailsView extends Component
         {
             header   = <ArtistDetails />;
             content  = <AlbumsTable />;
-            navlinks = <NavigationLinks selection={Links.ALBUMS_LIST} />;
+            navlinks = <NavigationLinks selection={ALBUMS_LIST} />;
         }
 
         if (this.props.state.album.id > 0 && this.props.state.song.id === 0)
         {
             header   = <ArtistDetails />; 
             content  = <SongsTable />;
-            navlinks = <NavigationLinks selection={Links.SONGS_LIST} />;
+            navlinks = <NavigationLinks selection={SONGS_LIST} />;
         }
 
         if (this.props.state.song.id > 0 && this.props.state.album.id !== 0)
         {
             header   = <SongVideo />;
             content  = <SongLyric />;
-            navlinks = <NavigationLinks selection={Links.SONG_LYRIC} />;
+            navlinks = <NavigationLinks selection={SONG_LYRIC} />;
         }
 
         return (

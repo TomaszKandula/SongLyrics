@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import M from "materialize-css";
-import * as MessageTypes from "../../constants/messageTypes";
+import { MESSAGE_INFO, MESSAGE_WARN, MESSAGE_ERROR } from "../../shared/constants";
 
 class Modal extends Component
 {
@@ -43,9 +43,9 @@ class Modal extends Component
 
         switch (selection)
         {
-            case MessageTypes.MESSAGE_INFO:  return "Information";
-            case MessageTypes.MESSAGE_WARN:  return "Warning";
-            case MessageTypes.MESSAGE_ERROR: return "Error";
+            case MESSAGE_INFO:  return "Information";
+            case MESSAGE_WARN:  return "Warning";
+            case MESSAGE_ERROR: return "Error";
             default: return "Information";
         }
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as ActionTypes from "../../redux/actionTypes";
-import * as Links from "../../constants/linkTypes";
+import { ALBUMS_LIST, SONGS_LIST, SONG_LYRIC } from "../../shared/constants";
 
 class NavigationLinks extends Component
 {
@@ -24,7 +24,7 @@ class NavigationLinks extends Component
         switch (this.props.selection)
         {
 
-            case Links.ALBUMS_LIST:
+            case ALBUMS_LIST:
                 return (
                     <div className="col s12">
                         <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.SelectArtists}>Artists</a>
@@ -32,7 +32,7 @@ class NavigationLinks extends Component
                     </div>
                 );
 
-            case Links.SONGS_LIST:
+            case SONGS_LIST:
                 return (
                     <div className="col s12">
                         <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.SelectArtists}>Artists</a>
@@ -41,7 +41,7 @@ class NavigationLinks extends Component
                     </div>
                 );
 
-            case Links.SONG_LYRIC:
+            case SONG_LYRIC:
                 return (
                     <div className="col s12">
                         <a href="#!" className="breadcrumb grey-text darken-4" onClick={this.SelectArtists}>Artists</a>

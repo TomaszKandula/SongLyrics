@@ -92,7 +92,7 @@ namespace BackEnd
 
                 if (AEnvironment.IsDevelopment())
                 {
-                    LSpa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
+                    LSpa.UseProxyToSpaDevelopmentServer(Configuration.GetSection("DevelopmentOrigin").Value);
                 }
 
             });

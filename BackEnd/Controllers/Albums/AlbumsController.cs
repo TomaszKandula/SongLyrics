@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BackEnd.Logic;
-using BackEnd.Helpers;
+using BackEnd.Shared;
 using BackEnd.AppLogger;
 using BackEnd.Controllers.Albums.Models;
 using Swashbuckle.AspNetCore.Annotations;

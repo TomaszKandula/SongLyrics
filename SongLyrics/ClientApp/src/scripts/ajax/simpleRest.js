@@ -1,4 +1,4 @@
-﻿export const GetData = (endpoint, callback) =>
+export const GetData = (endpoint, callback) =>
 {
 
     const onSuccess = (data) =>
@@ -27,12 +27,20 @@
         {
 
             if (!response.ok)
+            {
                 throw new Error("Error occurred during processing the request.");
-
+            }
+            
             return response.json();
 
         })
-        .then(data => onSuccess(data))
-        .catch((error) => onError(error));
+        .then(data => 
+        { 
+            onSuccess(data);
+        })
+        .catch((error) => 
+        {
+            onError(error) 
+        });
 
 }

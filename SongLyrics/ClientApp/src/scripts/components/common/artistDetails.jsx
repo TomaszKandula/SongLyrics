@@ -1,4 +1,4 @@
-﻿import React, { Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { GetData } from "../../ajax/simpleRest";
 import * as Api from "../../ajax/apiUrls";

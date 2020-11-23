@@ -1,4 +1,4 @@
-﻿import React, { Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as ActionTypes from "../../redux/actionTypes";
 import * as Links from "../../constants/linkTypes";

@@ -1,9 +1,9 @@
-﻿import React, { Component } from "react";
+import React, { Component } from "react";
 import ReactHtmlParser from 'react-html-parser';
 import { connect } from "react-redux";
 import { GetData } from "../../ajax/simpleRest";
 import * as Api from "../../ajax/apiUrls";
-import * as Posed from "../common/posedComponents";
+import * as Posed from "./posedComponents";
 import * as MessageTypes from "../../constants/messageTypes";
 import Modal from "../modals/defaultModal";
 

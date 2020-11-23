@@ -1,4 +1,4 @@
-﻿import { SELECT_SONG } from "../actionTypes";
+import { SELECT_SONG } from "../actionTypes";
 
 export const selectSong =
 {

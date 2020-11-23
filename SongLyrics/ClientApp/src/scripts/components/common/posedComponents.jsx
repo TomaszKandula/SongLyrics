@@ -1,4 +1,4 @@
-﻿import posed from "react-pose";
+import posed from "react-pose";
 
 export const fadeInAnimation =
 {

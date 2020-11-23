@@ -37,6 +37,11 @@ namespace BackEnd
                 NoStore = false
             }));
 
+            AServices.AddSpaStaticFiles(LConfiguration =>
+            {
+                LConfiguration.RootPath = "ClientApp/build";
+            });
+
             AServices.AddControllers();
             AServices.AddSingleton<IAppLogger, AppLogger.AppLogger>();
             AServices.AddDbContext<MainDbContext>(AOptions => 
@@ -73,7 +78,24 @@ namespace BackEnd
             AApplication.UseDefaultFiles();
             AApplication.UseStaticFiles();
             AApplication.UseRouting();
-            AApplication.UseEndpoints(AOptions => { AOptions.MapControllers(); });
+            AApplication.UseEndpoints(LEndpoints =>
+            {
+                LEndpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action=Index}/{id?}");
+            });
+
+            AApplication.UseSpa(LSpa =>
+            {
+
+                LSpa.Options.SourcePath = "ClientApp";
+
+                if (AEnvironment.IsDevelopment())
+                {
+                    LSpa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
+                }
+
+            });
 
         }
 

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BackEnd.Database
+namespace SongLyrics.Database
 {
     public class Generes
     {

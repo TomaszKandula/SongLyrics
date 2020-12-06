@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
-namespace BackEnd.Middleware
+namespace SongLyrics.Middleware
 {
 
     public class CustomCors

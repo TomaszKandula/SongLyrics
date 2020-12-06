@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using System.Collections.Generic;
-using BackEnd.Controllers.Songs.Models;
+using SongLyrics.Controllers.Songs.Models;
 
-namespace BackEnd.Logic.Songs
+namespace SongLyrics.Logic.Songs
 {
 
     public interface ISongs

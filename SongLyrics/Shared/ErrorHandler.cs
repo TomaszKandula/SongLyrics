@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace BackEnd.Shared
+namespace SongLyrics.Shared
 {
 
     public class ErrorHandler

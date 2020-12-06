@@ -1,4 +1,4 @@
-﻿namespace BackEnd.Shared
+﻿namespace SongLyrics.Shared
 {
 
     /// <summary>

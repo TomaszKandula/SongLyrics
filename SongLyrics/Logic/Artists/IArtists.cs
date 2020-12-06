@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using System.Collections.Generic;
-using BackEnd.Controllers.Artists.Models;
+using SongLyrics.Controllers.Artists.Models;
 
-namespace BackEnd.Logic.Artists
+namespace SongLyrics.Logic.Artists
 {
 
     public interface IArtists

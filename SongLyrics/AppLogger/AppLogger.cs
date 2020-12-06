@@ -1,6 +1,6 @@
 ﻿using Serilog;
 
-namespace BackEnd.AppLogger
+namespace SongLyrics.AppLogger
 {
 
     public sealed class AppLogger : IAppLogger

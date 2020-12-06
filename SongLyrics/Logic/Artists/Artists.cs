@@ -3,10 +3,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using BackEnd.Database;
-using BackEnd.Controllers.Artists.Models;
+using SongLyrics.Database;
+using SongLyrics.Controllers.Artists.Models;
 
-namespace BackEnd.Logic.Artists
+namespace SongLyrics.Logic.Artists
 {
 
     public class Artists : IArtists

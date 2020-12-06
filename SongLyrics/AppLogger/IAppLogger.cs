@@ -1,4 +1,4 @@
-﻿namespace BackEnd.AppLogger
+﻿namespace SongLyrics.AppLogger
 {
 
     /// <summary>

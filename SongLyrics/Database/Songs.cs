@@ -1,4 +1,4 @@
-﻿namespace BackEnd.Database
+﻿namespace SongLyrics.Database
 {
     public class Songs
     {

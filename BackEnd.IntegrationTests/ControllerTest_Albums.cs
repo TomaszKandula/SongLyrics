@@ -10,12 +10,12 @@ using BackEnd.IntegrationTests.Configuration;
 namespace BackEnd.IntegrationTests
 {
 
-    public class AlbumsControllerTest : IClassFixture<TestFixture<Startup>>
+    public class ControllerTest_Albums : IClassFixture<TestFixture<Startup>>
     {
 
         private readonly HttpClient FClient;
 
-        public AlbumsControllerTest(TestFixture<Startup> ACustomFixture)
+        public ControllerTest_Albums(TestFixture<Startup> ACustomFixture)
         {
             FClient = ACustomFixture.FClient;
         }
@@ -23,7 +23,7 @@ namespace BackEnd.IntegrationTests
         [Theory]
         [InlineData(1)]
         [InlineData(null)]
-        public async Task GetAlbums(int? AArtistId)
+        public async Task Should_GetAlbums(int? AArtistId)
         {
 
             // Arrange

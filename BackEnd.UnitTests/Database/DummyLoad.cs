@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using BackEnd.Database;
 
-namespace BackEnd.UnitTests.Mocks
+namespace BackEnd.UnitTests.Database
 {
 
-    public static class DummyData
+    public static class DummyLoad
     {
 
         public static List<Artists> ReturnDummyArtists() 

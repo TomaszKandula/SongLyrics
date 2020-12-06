@@ -4,28 +4,28 @@ using System.Linq;
 using FluentAssertions;
 using MockQueryable.Moq;
 using BackEnd.Logic.Albums;
-using BackEnd.UnitTests.Mocks;
+using BackEnd.UnitTests.Database;
 
 namespace BackEnd.UnitTests
 {
 
-    public class AlbumsTests
+    public class LogicTest_Albums
     {
         private readonly IAlbums FAlbums;
 
-        public AlbumsTests() 
+        public LogicTest_Albums() 
         {
 
             // Create instances to mocked all dependencies           
-            var LMockDbContext = new Mock<MainDbContext>();
+            var LMockDbContext = new Mock<BackEnd.Database.MainDbContext>();
 
             // Upload pre-fixed dummy data
-            var LBandsDbSet        = DummyData.ReturnDummyArtists().AsQueryable().BuildMockDbSet();
-            var LAlbumsDbSet       = DummyData.ReturnDummyAlbums().AsQueryable().BuildMockDbSet();
-            var LGeneresDbSet      = DummyData.ReturnDummyGeneres().AsQueryable().BuildMockDbSet();
-            var LBandsGeneresDbSet = DummyData.ReturnDummyBandsGeneres().AsQueryable().BuildMockDbSet();
-            var LMembersDbSet      = DummyData.ReturnDummyMembers().AsQueryable().BuildMockDbSet();
-            var LSongsDbSet        = DummyData.ReturnDummySongs().AsQueryable().BuildMockDbSet();
+            var LBandsDbSet        = DummyLoad.ReturnDummyArtists().AsQueryable().BuildMockDbSet();
+            var LAlbumsDbSet       = DummyLoad.ReturnDummyAlbums().AsQueryable().BuildMockDbSet();
+            var LGeneresDbSet      = DummyLoad.ReturnDummyGeneres().AsQueryable().BuildMockDbSet();
+            var LBandsGeneresDbSet = DummyLoad.ReturnDummyBandsGeneres().AsQueryable().BuildMockDbSet();
+            var LMembersDbSet      = DummyLoad.ReturnDummyMembers().AsQueryable().BuildMockDbSet();
+            var LSongsDbSet        = DummyLoad.ReturnDummySongs().AsQueryable().BuildMockDbSet();
 
             // Populate database tables with dummy data
             LMockDbContext.Setup(AMainDbContext => AMainDbContext.Artists).Returns(LBandsDbSet.Object);
@@ -41,7 +41,7 @@ namespace BackEnd.UnitTests
         }
 
         [Fact]
-        public async void GetAlbums()
+        public async void Should_GetAlbums()
         {
 
             var LResult1 = await FAlbums.GetAlbums(null);
@@ -55,7 +55,7 @@ namespace BackEnd.UnitTests
         }
 
         [Fact]
-        public async void GetAlbum()
+        public async void Should_GetAlbum()
         {
 
             var LResult1 = await FAlbums.GetAlbum(1);

@@ -10,18 +10,18 @@ using BackEnd.IntegrationTests.Configuration;
 namespace BackEnd.IntegrationTests
 {
 
-    public class ArtistsControllerTest : IClassFixture<TestFixture<Startup>>
+    public class ControllerTest_Artists : IClassFixture<TestFixture<Startup>>
     {
 
         private readonly HttpClient FClient;
 
-        public ArtistsControllerTest(TestFixture<Startup> ACustomFixture)
+        public ControllerTest_Artists(TestFixture<Startup> ACustomFixture)
         {
             FClient = ACustomFixture.FClient;
         }
 
         [Fact]
-        public async Task GetArtists()
+        public async Task Should_GetArtists()
         {
 
             // Arrange
@@ -43,7 +43,7 @@ namespace BackEnd.IntegrationTests
 
         [Theory]
         [InlineData(1)]
-        public async Task GetMembers(int AId)
+        public async Task Should_GetMembers(int AId)
         {
 
             // Arrange
@@ -65,7 +65,7 @@ namespace BackEnd.IntegrationTests
 
         [Theory]
         [InlineData(1)]
-        public async Task GetArtistDetails(int AId)
+        public async Task Should_GetArtistDetails(int AId)
         {
 
             // Arrange

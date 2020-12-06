@@ -9,12 +9,12 @@ using BackEnd.IntegrationTests.Configuration;
 namespace BackEnd.IntegrationTests
 {
 
-    public class SongsControllerTest : IClassFixture<TestFixture<Startup>>
+    public class ControllerTest_Songs : IClassFixture<TestFixture<Startup>>
     {
 
         private readonly HttpClient FClient;
 
-        public SongsControllerTest(TestFixture<Startup> ACustomFixture)
+        public ControllerTest_Songs(TestFixture<Startup> ACustomFixture)
         {
             FClient = ACustomFixture.FClient;
         }
@@ -22,7 +22,7 @@ namespace BackEnd.IntegrationTests
         [Theory]
         [InlineData(1)]
         [InlineData(null)]
-        public async Task GetSongs(int? AAlbumId)
+        public async Task Should_GetSongs(int? AAlbumId)
         {
 
             // Arrange
@@ -51,7 +51,7 @@ namespace BackEnd.IntegrationTests
 
         [Theory]
         [InlineData(6)]
-        public async Task GetSong(int AId)
+        public async Task Should_GetSong(int AId)
         {
 
             // Arrange

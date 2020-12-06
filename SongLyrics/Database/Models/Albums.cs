@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SongLyrics.Database
+namespace SongLyrics.Database.Models
 {
     public class Albums
     {

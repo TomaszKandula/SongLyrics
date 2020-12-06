@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SongLyrics.Database.Models;
 
 namespace SongLyrics.Database
 {

@@ -1,4 +1,4 @@
-﻿namespace SongLyrics.Database
+﻿namespace SongLyrics.Database.Models
 {
     public class ArtistsGeneres
     {

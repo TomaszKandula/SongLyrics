@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using SongLyrics.Database;
+using SongLyrics.Database.Models;
 
 namespace SongLyrics.UnitTests.Database
 {

@@ -1,8 +1,8 @@
-﻿using BackEnd.Logic.Songs;
-using BackEnd.Logic.Albums;
-using BackEnd.Logic.Artists;
+﻿using SongLyrics.Logic.Songs;
+using SongLyrics.Logic.Albums;
+using SongLyrics.Logic.Artists;
 
-namespace BackEnd.Logic
+namespace SongLyrics.Logic
 {
 
     public interface ILogicContext

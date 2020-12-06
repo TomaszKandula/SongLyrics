@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using BackEnd.Database;
+using SongLyrics.Database;
 
-namespace BackEnd.UnitTests.Database
+namespace SongLyrics.UnitTests.Database
 {
 
     public static class DummyLoad

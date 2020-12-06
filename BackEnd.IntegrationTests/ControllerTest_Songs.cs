@@ -3,10 +3,10 @@ using FluentAssertions;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using BackEnd.Controllers.Songs.Models;
-using BackEnd.IntegrationTests.Configuration;
+using SongLyrics.Controllers.Songs.Models;
+using SongLyrics.IntegrationTests.Configuration;
 
-namespace BackEnd.IntegrationTests
+namespace SongLyrics.IntegrationTests
 {
 
     public class ControllerTest_Songs : IClassFixture<TestFixture<Startup>>

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace BackEnd.Database
+namespace SongLyrics.Database
 {
 
     public class MainDbContext : DbContext

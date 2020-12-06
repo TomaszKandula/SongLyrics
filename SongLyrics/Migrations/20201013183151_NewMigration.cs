@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BackEnd.Migrations
+namespace SongLyrics.Migrations
 {
     public partial class NewMigration : Migration
     {

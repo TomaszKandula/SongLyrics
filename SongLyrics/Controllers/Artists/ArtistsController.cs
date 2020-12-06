@@ -2,13 +2,13 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using BackEnd.Logic;
-using BackEnd.Shared;
-using BackEnd.AppLogger;
-using BackEnd.Controllers.Artists.Models;
+using SongLyrics.Logic;
+using SongLyrics.Shared;
+using SongLyrics.AppLogger;
+using SongLyrics.Controllers.Artists.Models;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace BackEnd.Controllers.Artists
+namespace SongLyrics.Controllers.Artists
 {
 
     [Route("api/v1/[controller]")]

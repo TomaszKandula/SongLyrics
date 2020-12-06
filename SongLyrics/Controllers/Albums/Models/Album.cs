@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace BackEnd.Controllers.Albums.Models
+namespace SongLyrics.Controllers.Albums.Models
 {
 
     public class Album

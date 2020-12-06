@@ -7,12 +7,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using BackEnd.Logic;
-using BackEnd.Database;
-using BackEnd.AppLogger;
-using BackEnd.Middleware;
+using SongLyrics.Logic;
+using SongLyrics.Database;
+using SongLyrics.AppLogger;
+using SongLyrics.Middleware;
 
-namespace BackEnd
+namespace SongLyrics
 {
 
     public class Startup

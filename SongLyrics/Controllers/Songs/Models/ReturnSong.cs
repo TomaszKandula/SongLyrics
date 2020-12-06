@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
-using BackEnd.Shared;
+using SongLyrics.Shared;
 
-namespace BackEnd.Controllers.Songs.Models
+namespace SongLyrics.Controllers.Songs.Models
 {
 
     public class ReturnSong

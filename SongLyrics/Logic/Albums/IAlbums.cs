@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using System.Collections.Generic;
-using BackEnd.Controllers.Albums.Models;
+using SongLyrics.Controllers.Albums.Models;
 
-namespace BackEnd.Logic.Albums
+namespace SongLyrics.Logic.Albums
 {
 
     public interface IAlbums

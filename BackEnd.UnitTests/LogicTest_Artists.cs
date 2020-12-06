@@ -3,10 +3,10 @@ using Xunit;
 using System.Linq;
 using FluentAssertions;
 using MockQueryable.Moq;
-using BackEnd.Logic.Artists;
-using BackEnd.UnitTests.Database;
+using SongLyrics.Logic.Artists;
+using SongLyrics.UnitTests.Database;
 
-namespace BackEnd.UnitTests
+namespace SongLyrics.UnitTests
 {
 
     public class LogicTest_Artists
@@ -17,7 +17,7 @@ namespace BackEnd.UnitTests
         {
 
             // Create instances to mocked all dependencies           
-            var LMockDbContext = new Mock<BackEnd.Database.MainDbContext>();
+            var LMockDbContext = new Mock<SongLyrics.Database.MainDbContext>();
 
             // Upload pre-fixed dummy data
             var LArtistsDbSet      = DummyLoad.ReturnDummyArtists().AsQueryable().BuildMockDbSet();

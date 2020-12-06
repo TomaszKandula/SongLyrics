@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace BackEnd.Controllers.Songs.Models
+namespace SongLyrics.Controllers.Songs.Models
 {
 
     public class Song

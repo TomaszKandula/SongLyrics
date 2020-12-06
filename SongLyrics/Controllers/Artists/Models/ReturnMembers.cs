@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using BackEnd.Shared;
+using SongLyrics.Shared;
 
-namespace BackEnd.Controllers.Artists.Models
+namespace SongLyrics.Controllers.Artists.Models
 {
 
     public class ReturnMembers

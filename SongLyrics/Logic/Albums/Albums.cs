@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using BackEnd.Database;
-using BackEnd.Controllers.Albums.Models;
+using SongLyrics.Database;
+using SongLyrics.Controllers.Albums.Models;
 
-namespace BackEnd.Logic.Albums
+namespace SongLyrics.Logic.Albums
 {
 
     public class Albums : IAlbums

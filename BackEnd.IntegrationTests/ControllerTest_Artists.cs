@@ -35,7 +35,7 @@ namespace SongLyrics.IntegrationTests
 
             // Deserialize response and check results            
             var LStringResponse = await LResponse.Content.ReadAsStringAsync();
-            var LReturnBands = JsonConvert.DeserializeObject<ReturnArtists>(LStringResponse);
+            var LReturnBands = JsonConvert.DeserializeObject<ReturnArtistsDto>(LStringResponse);
 
             LReturnBands.Artists.Select(AArtist => AArtist.Name).ToList()[0].Should().Be("Queen");
 
@@ -57,7 +57,7 @@ namespace SongLyrics.IntegrationTests
 
             // Deserialize response and check results            
             var LStringResponse = await LResponse.Content.ReadAsStringAsync();
-            var LReturnMembers = JsonConvert.DeserializeObject<ReturnMembers>(LStringResponse);
+            var LReturnMembers = JsonConvert.DeserializeObject<ReturnMembersDto>(LStringResponse);
 
             LReturnMembers.Members.Should().HaveCount(4);
 
@@ -79,7 +79,7 @@ namespace SongLyrics.IntegrationTests
 
             // Deserialize response and check results            
             var LStringResponse = await LResponse.Content.ReadAsStringAsync();
-            var LReturnBandDetails = JsonConvert.DeserializeObject<ReturnArtistDetails>(LStringResponse);
+            var LReturnBandDetails = JsonConvert.DeserializeObject<ReturnArtistDetailsDto>(LStringResponse);
 
             LReturnBandDetails.Genere.Should().Be("Rock");
             LReturnBandDetails.Name.Should().Be("Queen");

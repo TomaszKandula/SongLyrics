@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Collections.Generic;
-using SongLyrics.Controllers.Songs.Models;
+using SongLyrics.Shared.Dto;
 
 namespace SongLyrics.Logic.Songs
 {
@@ -11,13 +11,13 @@ namespace SongLyrics.Logic.Songs
         /// </summary>
         /// <param name="AAlbumId"></param>
         /// <returns></returns>
-        Task<List<Song>> GetAlbumSongs(int? AAlbumId);
+        Task<List<SongDto>> GetAlbumSongs(int? AAlbumId);
 
         /// <summary>
         /// Return given song from the entire collection.
         /// </summary>
         /// <param name="ASongId"></param>
         /// <returns></returns>
-        Task<SingleSong> GetSong(int ASongId);
+        Task<SingleSongDto> GetSong(int ASongId);
     }
 }

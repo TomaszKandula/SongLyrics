@@ -36,7 +36,7 @@ namespace SongLyrics.IntegrationTests
 
             // Deserialize response and check results            
             var LStringResponse = await LResponse.Content.ReadAsStringAsync();
-            var LReturnSongs = JsonConvert.DeserializeObject<ReturnSongs>(LStringResponse);
+            var LReturnSongs = JsonConvert.DeserializeObject<ReturnSongsDto>(LStringResponse);
 
             if (AAlbumId != null)
             {
@@ -65,7 +65,7 @@ namespace SongLyrics.IntegrationTests
 
             // Deserialize response and check results            
             var LStringResponse = await LResponse.Content.ReadAsStringAsync();
-            var LReturnSongs = JsonConvert.DeserializeObject<ReturnSong>(LStringResponse);
+            var LReturnSongs = JsonConvert.DeserializeObject<ReturnSongDto>(LStringResponse);
 
             LReturnSongs.Song.Name.Should().Be("The Night Comes Down");
 

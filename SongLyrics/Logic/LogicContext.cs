@@ -1,7 +1,7 @@
-﻿using SongLyrics.Database;
-using SongLyrics.Logic.Songs;
+﻿using SongLyrics.Logic.Songs;
 using SongLyrics.Logic.Albums;
 using SongLyrics.Logic.Artists;
+using SongLyrics.Infrastructure.Database;
 
 namespace SongLyrics.Logic
 {
@@ -10,8 +10,8 @@ namespace SongLyrics.Logic
         private readonly MainDbContext FMainDbContext;
 
         private IArtists FArtists;
-        private IAlbums  FAlbums;
-        private ISongs   FSongs;
+        private IAlbums FAlbums;
+        private ISongs FSongs;
 
         public LogicContext(MainDbContext AMainDbContext) 
         {

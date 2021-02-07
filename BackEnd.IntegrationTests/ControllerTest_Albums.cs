@@ -37,7 +37,7 @@ namespace SongLyrics.IntegrationTests
 
             // Deserialize response and check results            
             var LStringResponse = await LResponse.Content.ReadAsStringAsync();
-            var LReturnAlbums = JsonConvert.DeserializeObject<ReturnAlbums>(LStringResponse);
+            var LReturnAlbums = JsonConvert.DeserializeObject<ReturnAlbumsDto>(LStringResponse);
 
             if (AArtistId != null)
             {

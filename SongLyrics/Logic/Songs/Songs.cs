@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +22,7 @@ namespace SongLyrics.Logic.Songs
         /// </summary>
         /// <param name="AAlbumId"></param>
         /// <returns></returns>
-        public async Task<List<SongDto>> GetAlbumSongs(int? AAlbumId)
+        public async Task<List<SongDto>> GetAlbumSongs(int? AAlbumId, CancellationToken ACancellationToken = default)
         {
             if (AAlbumId != null)
             {
@@ -37,7 +38,7 @@ namespace SongLyrics.Logic.Songs
                         AlbumName = ASongs.Album.AlbumName,
                         ArtistName = ASongs.Artist.ArtistName
                     })
-                    .ToListAsync();
+                    .ToListAsync(ACancellationToken);
             }
 
             return await FMainDbContext.Songs
@@ -51,7 +52,7 @@ namespace SongLyrics.Logic.Songs
                     AlbumName = ASongs.Album.AlbumName,
                     ArtistName = ASongs.Artist.ArtistName
                 })
-                .ToListAsync();
+                .ToListAsync(ACancellationToken);
         }
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace SongLyrics.Logic.Songs
         /// </summary>
         /// <param name="ASongId"></param>
         /// <returns></returns>
-        public async Task<SingleSongDto> GetSong(int ASongId)
+        public async Task<SingleSongDto> GetSong(int ASongId, CancellationToken ACancellationToken = default)
         {
             return await FMainDbContext.Songs
                 .AsNoTracking()
@@ -74,7 +75,7 @@ namespace SongLyrics.Logic.Songs
                     AlbumName = ASongs.Album.AlbumName,
                     ArtistName = ASongs.Artist.ArtistName
                 })
-                .SingleOrDefaultAsync();
+                .SingleOrDefaultAsync(ACancellationToken);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +23,7 @@ namespace SongLyrics.Logic.Artists
         /// </summary>
         /// <param name="AArtistId"></param>
         /// <returns></returns>
-        public async Task<List<ArtistDto>> GetArtists(int? AArtistId)
+        public async Task<List<ArtistDto>> GetArtists(int? AArtistId, CancellationToken ACancellationToken = default)
         {
             if (AArtistId != null) 
             {               
@@ -34,7 +35,7 @@ namespace SongLyrics.Logic.Artists
                         Id = AArtists.Id,
                         Name = AArtists.ArtistName
                     })
-                    .ToListAsync();           
+                    .ToListAsync(ACancellationToken);           
             }
 
             return await FMainDbContext.Artists
@@ -44,7 +45,7 @@ namespace SongLyrics.Logic.Artists
                     Id = AArtists.Id,
                     Name = AArtists.ArtistName
                 })
-                .ToListAsync();
+                .ToListAsync(ACancellationToken);
         }
 
         /// <summary>
@@ -52,7 +53,7 @@ namespace SongLyrics.Logic.Artists
         /// </summary>
         /// <param name="AArtistId"></param>
         /// <returns></returns>
-        public async Task<List<MemberDto>> GetMembers(int AArtistId) 
+        public async Task<List<MemberDto>> GetMembers(int AArtistId, CancellationToken ACancellationToken = default) 
         {
             return await FMainDbContext.Members
                 .AsNoTracking()
@@ -64,7 +65,7 @@ namespace SongLyrics.Logic.Artists
                     LastName = AMembers.LastName,
                     Status = AMembers.IsPresent ? "Active" : "Past"
                 })
-                .ToListAsync();
+                .ToListAsync(ACancellationToken);
         }
 
         /// <summary>
@@ -72,7 +73,7 @@ namespace SongLyrics.Logic.Artists
         /// </summary>
         /// <param name="AArtistId"></param>
         /// <returns></returns>
-        public async Task<ReturnArtistDetailsDto> GetArtistDetails(int AArtistId) 
+        public async Task<ReturnArtistDetailsDto> GetArtistDetails(int AArtistId, CancellationToken ACancellationToken = default) 
         {
             var LMembers = await GetMembers(AArtistId);
             var LResults = await FMainDbContext.ArtistsGeneres
@@ -88,7 +89,7 @@ namespace SongLyrics.Logic.Artists
                     Genere = AArtistsGeneres.Genere.Genere,
                     Members = LMembers
                 })
-                .ToListAsync();
+                .ToListAsync(ACancellationToken);
 
             return LResults.Any() ? LResults.Single() : new ReturnArtistDetailsDto()
             {

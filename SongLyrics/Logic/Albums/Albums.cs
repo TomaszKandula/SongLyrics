@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +22,7 @@ namespace SongLyrics.Logic.Albums
         /// </summary>
         /// <param name="ABandId"></param>
         /// <returns></returns>
-        public async Task<List<AlbumDto>> GetAlbums(int? ABandId)
+        public async Task<List<AlbumDto>> GetAlbums(int? ABandId, CancellationToken ACancellationToken = default)
         {
             if (ABandId != null)
             {
@@ -36,7 +37,7 @@ namespace SongLyrics.Logic.Albums
                         Issued = AAlbums.Issued,
                         ArtistName = AAlbums.Artist.ArtistName
                     })
-                    .ToListAsync();
+                    .ToListAsync(ACancellationToken);
             }
 
             return await FMainDbContext.Albums
@@ -49,7 +50,7 @@ namespace SongLyrics.Logic.Albums
                     Issued = AAlbums.Issued,
                     ArtistName = AAlbums.Artist.ArtistName
                 })
-                .ToListAsync();
+                .ToListAsync(ACancellationToken);
         }
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace SongLyrics.Logic.Albums
         /// </summary>
         /// <param name="AAlbumId"></param>
         /// <returns></returns>
-        public async Task<List<AlbumDto>> GetAlbum(int AAlbumId)
+        public async Task<List<AlbumDto>> GetAlbum(int AAlbumId, CancellationToken ACancellationToken = default)
         {
             return await FMainDbContext.Albums
                .AsNoTracking()
@@ -70,7 +71,7 @@ namespace SongLyrics.Logic.Albums
                    Issued = AAlbums.Issued,
                    ArtistName = AAlbums.Artist.ArtistName
                })
-               .ToListAsync();
+               .ToListAsync(ACancellationToken);
         }
     }
 }

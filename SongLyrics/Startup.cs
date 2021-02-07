@@ -8,9 +8,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SongLyrics.Logic;
-using SongLyrics.Database;
 using SongLyrics.Logger;
 using SongLyrics.Middleware;
+using SongLyrics.Infrastructure.Database;
 
 namespace SongLyrics
 {

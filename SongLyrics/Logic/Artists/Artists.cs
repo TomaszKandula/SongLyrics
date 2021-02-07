@@ -8,10 +8,8 @@ using SongLyrics.Controllers.Artists.Models;
 
 namespace SongLyrics.Logic.Artists
 {
-
     public class Artists : IArtists
     {
-
         private readonly MainDbContext FMainDbContext;
 
         public Artists(MainDbContext AMainDbContext) 
@@ -26,10 +24,8 @@ namespace SongLyrics.Logic.Artists
         /// <returns></returns>
         public async Task<List<Artist>> GetArtists(int? AArtistId)
         {
-
             if (AArtistId != null) 
-            {
-                
+            {               
                 return await FMainDbContext.Artists
                     .AsNoTracking()
                     .Where(AArtists => AArtists.Id == AArtistId)
@@ -38,8 +34,7 @@ namespace SongLyrics.Logic.Artists
                         Id = AArtists.Id,
                         Name = AArtists.ArtistName
                     })
-                    .ToListAsync();
-            
+                    .ToListAsync();           
             }
 
             return await FMainDbContext.Artists
@@ -50,7 +45,6 @@ namespace SongLyrics.Logic.Artists
                     Name = AArtists.ArtistName
                 })
                 .ToListAsync();
-
         }
 
         /// <summary>
@@ -60,7 +54,6 @@ namespace SongLyrics.Logic.Artists
         /// <returns></returns>
         public async Task<List<Member>> GetMembers(int AArtistId) 
         {
-
             return await FMainDbContext.Members
                 .AsNoTracking()
                 .Where(AMembers => AMembers.ArtistId == AArtistId)
@@ -72,7 +65,6 @@ namespace SongLyrics.Logic.Artists
                     Status = AMembers.IsPresent ? "Active" : "Past"
                 })
                 .ToListAsync();
-
         }
 
         /// <summary>
@@ -82,9 +74,7 @@ namespace SongLyrics.Logic.Artists
         /// <returns></returns>
         public async Task<ReturnArtistDetails> GetArtistDetails(int AArtistId) 
         {
-
             var LMembers = await GetMembers(AArtistId);
-
             var LResults = await FMainDbContext.ArtistsGeneres
                 .Include(AArtistsGeneres => AArtistsGeneres.Artist)
                 .Include(AArtistsGeneres => AArtistsGeneres.Genere)
@@ -108,9 +98,6 @@ namespace SongLyrics.Logic.Artists
                 ActiveUntil = DateTime.Now,
                 Members     = null
             };
-
         }
-
     }
-
 }

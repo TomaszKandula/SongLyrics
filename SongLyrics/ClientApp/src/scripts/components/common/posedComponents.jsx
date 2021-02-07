@@ -59,9 +59,9 @@ export const scaledAnimation =
 };
 
 export const MainContainer = posed.div(fadeInAnimation);
-export const ScaleTitle    = posed.h1(scaledAnimation);
-export const ScalePara     = posed.p(scaledAnimation);
-export const ScaleLink     = posed.a(scaledAnimation);
-export const ScaleDiv      = posed.div(scaledAnimation);
-export const FadeInDiv     = posed.div(fadeInAnimation);
-export const FadeOutDiv    = posed.div(fadeOutAnimation);
+export const ScaleTitle = posed.h1(scaledAnimation);
+export const ScalePara = posed.p(scaledAnimation);
+export const ScaleLink = posed.a(scaledAnimation);
+export const ScaleDiv = posed.div(scaledAnimation);
+export const FadeInDiv = posed.div(fadeInAnimation);
+export const FadeOutDiv = posed.div(fadeOutAnimation);

@@ -4,10 +4,8 @@ using SongLyrics.Controllers.Albums.Models;
 
 namespace SongLyrics.Logic.Albums
 {
-
     public interface IAlbums
     {
-
         /// <summary>
         /// Return all albums/given album (by BandId) from the entire collection.
         /// </summary>
@@ -21,7 +19,5 @@ namespace SongLyrics.Logic.Albums
         /// <param name="AAlbumId"></param>
         /// <returns></returns>
         Task<List<Album>> GetAlbum(int AAlbumId);
-
     }
-
 }

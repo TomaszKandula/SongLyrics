@@ -3,10 +3,8 @@ using SongLyrics.Database.Models;
 
 namespace SongLyrics.Database
 {
-
     public class MainDbContext : DbContext
     {
-
         public MainDbContext(DbContextOptions<MainDbContext> AOptions) : base(AOptions)
         {
         }
@@ -117,8 +115,6 @@ namespace SongLyrics.Database
                     .HasConstraintName("FK__ArtistId__Artists");
 
             });
-
         }
-
     }
 }

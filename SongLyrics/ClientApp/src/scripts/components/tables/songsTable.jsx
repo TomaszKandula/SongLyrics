@@ -9,12 +9,16 @@ import Modal from "../modals/defaultModal";
 
 class SongsTable extends Component
 {
-
     constructor(props)
     {
         super(props);
         this.update = this.updateData.bind(this);
-        this.state = { songs: [], loading: true, fetchError: null };
+        this.state = 
+        { 
+            songs: [], 
+            loading: true, 
+            fetchError: null 
+        };
     }
 
     componentDidMount()
@@ -37,7 +41,6 @@ class SongsTable extends Component
 
     renderTable()
     {
-
         return (            
             <table className="songsTable">
                 <thead>
@@ -56,12 +59,10 @@ class SongsTable extends Component
                 </tbody>
             </table>
         );
-
     }
 
     render()
     {
-
         const showError = this.state.fetchError
             ? <Modal messageText={this.state.fetchError} messageType={Const.MESSAGE_ERROR} isOpened={true} />
             : null;
@@ -80,9 +81,7 @@ class SongsTable extends Component
                 </Posed.FadeInDiv>
             </>
         );
-
     }
-
 }
 
 const mapStateToProps = (state) => { return { state } }

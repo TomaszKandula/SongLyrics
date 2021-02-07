@@ -5,7 +5,6 @@ import Layout from "./components/layout";
 
 export default class App extends Component
 {
-
     render()
     {
         return (
@@ -16,5 +15,4 @@ export default class App extends Component
             </div>
         );
     }
-
 }

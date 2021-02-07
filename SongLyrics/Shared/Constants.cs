@@ -1,6 +1,5 @@
 ﻿namespace SongLyrics.Shared
 {
-
     /// <summary>
     /// This class is responsible only for providing constants to all classes/methods etc. accross the application.
     /// It can be a partial class if necessary; and if so, then put the module in the root folder and additional 
@@ -8,10 +7,8 @@
     /// </summary>
     public class Constants
     {
-
         public static class Errors
-        { 
-            
+        {
             internal class EmptyBandList 
             {
                 public const string ErrorCode = "empty_band_list";
@@ -59,9 +56,6 @@
                 public const string ErrorCode = "empty_album_songs_list";
                 public const string ErrorDesc = "There are no songs listed for given Album Id.";
             }
-
         }
-
     }
-
 }

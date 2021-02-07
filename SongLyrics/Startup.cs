@@ -9,15 +9,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SongLyrics.Logic;
 using SongLyrics.Database;
-using SongLyrics.AppLogger;
+using SongLyrics.Logger;
 using SongLyrics.Middleware;
 
 namespace SongLyrics
 {
-
     public class Startup
     {
-
         public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration AConfiguration)
@@ -27,7 +25,6 @@ namespace SongLyrics
 
         public void ConfigureServices(IServiceCollection AServices)
         {
-
             AServices.AddMvc(AOption => AOption
             .CacheProfiles
             .Add("ResponseCache", new CacheProfile()
@@ -38,13 +35,12 @@ namespace SongLyrics
             }));
 
             AServices.AddControllers();
-
             AServices.AddSpaStaticFiles(LConfiguration =>
             {
                 LConfiguration.RootPath = "ClientApp/build";
             });
 
-            AServices.AddSingleton<IAppLogger, AppLogger.AppLogger>();
+            AServices.AddSingleton<IAppLogger, AppLogger>();
             AServices.AddDbContext<MainDbContext>(AOptions => 
             {
                 AOptions.UseSqlServer(Configuration.GetConnectionString("DbConnect"),
@@ -53,17 +49,14 @@ namespace SongLyrics
             
             AServices.AddScoped<ILogicContext, LogicContext>();
             AServices.AddResponseCompression(AOptions => { AOptions.Providers.Add<GzipCompressionProvider>(); });
-
             AServices.AddSwaggerGen(AOption =>
             {
                 AOption.SwaggerDoc("v1", new OpenApiInfo { Title = "SongLyrics Api", Version = "v1" });
             });
-
         }
 
         public void Configure(IApplicationBuilder AApplication, IWebHostEnvironment AEnvironment) 
         {
-
             AApplication.UseMiddleware<CustomCors>();
             AApplication.UseResponseCompression();
             
@@ -88,18 +81,12 @@ namespace SongLyrics
 
             AApplication.UseSpa(LSpa =>
             {
-
                 LSpa.Options.SourcePath = "ClientApp";
-
                 if (AEnvironment.IsDevelopment())
                 {
                     LSpa.UseProxyToSpaDevelopmentServer(Configuration.GetSection("DevelopmentOrigin").Value);
                 }
-
             });
-
         }
-
     }
-
 }

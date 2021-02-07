@@ -4,10 +4,8 @@ using SongLyrics.Shared;
 
 namespace SongLyrics.Controllers.Albums.Models
 {
-
     public class ReturnAlbums
     {
-
         [JsonPropertyName("Albums")]
         public List<Album> Albums { get; set; }
 
@@ -15,13 +13,6 @@ namespace SongLyrics.Controllers.Albums.Models
         public bool IsSucceeded { get; set; }
 
         [JsonPropertyName("Error")]
-        public ErrorHandler Error { get; set; }
-
-        public ReturnAlbums()
-        {
-            Error = new ErrorHandler();
-        }
-
+        public ErrorHandler Error { get; set; } = new ErrorHandler();
     }
-
 }

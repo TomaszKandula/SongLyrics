@@ -9,12 +9,16 @@ import Modal from "../modals/defaultModal";
 
 class AlbumsTable extends Component
 {
-
     constructor(props)
     {
         super(props);
         this.update = this.updateData.bind(this);
-        this.state = { albums: [], loading: true, fetchError: null };
+        this.state = 
+        { 
+            albums: [], 
+            loading: true, 
+            fetchError: null 
+        };
     }
 
     componentDidMount()
@@ -32,13 +36,10 @@ class AlbumsTable extends Component
 
     returnFullYear(date)
     {
-
         const getDate = new Date(date);
-
         return date != null
             ? getDate.getFullYear()
             : null;
-
     }
 
     clickRowSelect(albumId)
@@ -48,7 +49,6 @@ class AlbumsTable extends Component
 
     renderTable()
     {
-
         return (
             <table className="albumsTable">
                 <thead>
@@ -71,12 +71,10 @@ class AlbumsTable extends Component
                 </tbody>
             </table>            
         );
-
     }
 
     render()
     {
-
         const showError = this.state.fetchError
             ? <Modal messageText={this.state.fetchError} messageType={Const.MESSAGE_ERROR} isOpened={true} />
             : null;
@@ -95,9 +93,7 @@ class AlbumsTable extends Component
                 </Posed.FadeInDiv>
             </>
         );
-
     }
-
 }
 
 const mapStateToProps = (state) => { return { state } }

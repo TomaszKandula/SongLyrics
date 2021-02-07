@@ -2,10 +2,8 @@
 
 namespace SongLyrics.Controllers.Songs.Models
 {
-
     public class Song
     {
-
         [JsonPropertyName("Id")]
         public int Id { get; set; }
 
@@ -17,7 +15,5 @@ namespace SongLyrics.Controllers.Songs.Models
 
         [JsonPropertyName("AlbumName")]
         public string AlbumName { get; set; }
-
     }
-
 }

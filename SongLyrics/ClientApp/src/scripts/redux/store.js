@@ -12,22 +12,18 @@ const reducer = combineReducers(
 
 const initialState =
 {
-
     artist:
     {
         id: 0
     },
-
     album:
     {
         id: 0
     },
-
     song:
     {
         id: 0
     }
-
 };
 
 const store = createStore(reducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());

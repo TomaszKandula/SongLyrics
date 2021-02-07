@@ -7,10 +7,8 @@ using SongLyrics.Controllers.Songs.Models;
 
 namespace SongLyrics.Logic.Songs
 {
-
     public class Songs : ISongs
     {
-
         private readonly MainDbContext FMainDbContext;
 
         public Songs(MainDbContext AMainDbContext)
@@ -25,10 +23,8 @@ namespace SongLyrics.Logic.Songs
         /// <returns></returns>
         public async Task<List<Song>> GetAlbumSongs(int? AAlbumId)
         {
-
             if (AAlbumId != null)
             {
-
                 return await FMainDbContext.Songs
                     .AsNoTracking()
                     .Include(ASongs => ASongs.Album)
@@ -42,7 +38,6 @@ namespace SongLyrics.Logic.Songs
                         ArtistName = ASongs.Artist.ArtistName
                     })
                     .ToListAsync();
-
             }
 
             return await FMainDbContext.Songs
@@ -57,7 +52,6 @@ namespace SongLyrics.Logic.Songs
                     ArtistName = ASongs.Artist.ArtistName
                 })
                 .ToListAsync();
-
         }
 
         /// <summary>
@@ -67,7 +61,6 @@ namespace SongLyrics.Logic.Songs
         /// <returns></returns>
         public async Task<SingleSong> GetSong(int ASongId)
         {
-
             return await FMainDbContext.Songs
                 .AsNoTracking()
                 .Include(ASongs => ASongs.Album)
@@ -82,9 +75,6 @@ namespace SongLyrics.Logic.Songs
                     ArtistName = ASongs.Artist.ArtistName
                 })
                 .SingleOrDefaultAsync();
-
         }
-
     }
-
 }

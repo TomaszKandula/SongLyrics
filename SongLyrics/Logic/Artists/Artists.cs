@@ -3,8 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using SongLyrics.Database;
-using SongLyrics.Controllers.Artists.Models;
+using SongLyrics.Shared.Dto;
+using SongLyrics.Infrastructure.Database;
 
 namespace SongLyrics.Logic.Artists
 {
@@ -22,14 +22,14 @@ namespace SongLyrics.Logic.Artists
         /// </summary>
         /// <param name="AArtistId"></param>
         /// <returns></returns>
-        public async Task<List<Artist>> GetArtists(int? AArtistId)
+        public async Task<List<ArtistDto>> GetArtists(int? AArtistId)
         {
             if (AArtistId != null) 
             {               
                 return await FMainDbContext.Artists
                     .AsNoTracking()
                     .Where(AArtists => AArtists.Id == AArtistId)
-                    .Select(AArtists => new Artist 
+                    .Select(AArtists => new ArtistDto 
                     { 
                         Id = AArtists.Id,
                         Name = AArtists.ArtistName
@@ -39,7 +39,7 @@ namespace SongLyrics.Logic.Artists
 
             return await FMainDbContext.Artists
                 .AsNoTracking()
-                .Select(AArtists => new Artist
+                .Select(AArtists => new ArtistDto
                 {
                     Id = AArtists.Id,
                     Name = AArtists.ArtistName
@@ -52,12 +52,12 @@ namespace SongLyrics.Logic.Artists
         /// </summary>
         /// <param name="AArtistId"></param>
         /// <returns></returns>
-        public async Task<List<Member>> GetMembers(int AArtistId) 
+        public async Task<List<MemberDto>> GetMembers(int AArtistId) 
         {
             return await FMainDbContext.Members
                 .AsNoTracking()
                 .Where(AMembers => AMembers.ArtistId == AArtistId)
-                .Select(AMembers => new Member 
+                .Select(AMembers => new MemberDto 
                 { 
                     Id = AMembers.Id,
                     FirstName = AMembers.FirstName,
@@ -72,7 +72,7 @@ namespace SongLyrics.Logic.Artists
         /// </summary>
         /// <param name="AArtistId"></param>
         /// <returns></returns>
-        public async Task<ReturnArtistDetails> GetArtistDetails(int AArtistId) 
+        public async Task<ReturnArtistDetailsDto> GetArtistDetails(int AArtistId) 
         {
             var LMembers = await GetMembers(AArtistId);
             var LResults = await FMainDbContext.ArtistsGeneres
@@ -80,7 +80,7 @@ namespace SongLyrics.Logic.Artists
                 .Include(AArtistsGeneres => AArtistsGeneres.Genere)
                 .AsNoTracking()
                 .Where(AArtistsGeneres => AArtistsGeneres.ArtistId == AArtistId)
-                .Select(AArtistsGeneres => new ReturnArtistDetails
+                .Select(AArtistsGeneres => new ReturnArtistDetailsDto
                 {
                     Name = AArtistsGeneres.Artist.ArtistName,
                     Established = AArtistsGeneres.Artist.Established,
@@ -90,7 +90,7 @@ namespace SongLyrics.Logic.Artists
                 })
                 .ToListAsync();
 
-            return LResults.Any() ? LResults.Single() : new ReturnArtistDetails()
+            return LResults.Any() ? LResults.Single() : new ReturnArtistDetailsDto()
             {
                 Name        = "n/a",
                 Genere      = "n/a",

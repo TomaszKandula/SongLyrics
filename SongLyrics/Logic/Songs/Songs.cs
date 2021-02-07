@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using SongLyrics.Database;
-using SongLyrics.Controllers.Songs.Models;
+using SongLyrics.Shared.Dto;
+using SongLyrics.Infrastructure.Database;
 
 namespace SongLyrics.Logic.Songs
 {
@@ -21,7 +21,7 @@ namespace SongLyrics.Logic.Songs
         /// </summary>
         /// <param name="AAlbumId"></param>
         /// <returns></returns>
-        public async Task<List<Song>> GetAlbumSongs(int? AAlbumId)
+        public async Task<List<SongDto>> GetAlbumSongs(int? AAlbumId)
         {
             if (AAlbumId != null)
             {
@@ -30,7 +30,7 @@ namespace SongLyrics.Logic.Songs
                     .Include(ASongs => ASongs.Album)
                     .Include(ASongs => ASongs.Artist)
                     .Where(ASongs => ASongs.AlbumId == AAlbumId)
-                    .Select(ASongs => new Song
+                    .Select(ASongs => new SongDto
                     {
                         Id = ASongs.Id,
                         Name = ASongs.SongName,
@@ -44,7 +44,7 @@ namespace SongLyrics.Logic.Songs
                 .AsNoTracking()
                 .Include(ASongs => ASongs.Album)
                 .Include(ASongs => ASongs.Artist)
-                .Select(ASongs => new Song
+                .Select(ASongs => new SongDto
                 {
                     Id = ASongs.Id,
                     Name = ASongs.SongName,
@@ -59,14 +59,14 @@ namespace SongLyrics.Logic.Songs
         /// </summary>
         /// <param name="ASongId"></param>
         /// <returns></returns>
-        public async Task<SingleSong> GetSong(int ASongId)
+        public async Task<SingleSongDto> GetSong(int ASongId)
         {
             return await FMainDbContext.Songs
                 .AsNoTracking()
                 .Include(ASongs => ASongs.Album)
                 .Include(ASongs => ASongs.Artist)
                 .Where(ASongs => ASongs.Id == ASongId)
-                .Select(ASongs => new SingleSong
+                .Select(ASongs => new SingleSongDto
                 {
                     Name = ASongs.SongName,
                     Lyrics = ASongs.SongLyrics,

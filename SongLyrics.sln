@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackEnd.UnitTests", "BackEn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackEnd.IntegrationTests", "BackEnd.IntegrationTests\BackEnd.IntegrationTests.csproj", "{E80B9CCB-DDCA-417B-897E-4C37EF52A0B4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8F70C3AA-A4B3-4B8E-98F5-BB257E5CCE13}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D7EAB2AA-A54A-4543-8F44-00B45DAD5104} = {8F70C3AA-A4B3-4B8E-98F5-BB257E5CCE13}
+		{E80B9CCB-DDCA-417B-897E-4C37EF52A0B4} = {8F70C3AA-A4B3-4B8E-98F5-BB257E5CCE13}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A065442F-9D6A-419A-9AA9-1860C371925E}

@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using SongLyrics.Database;
-using SongLyrics.Controllers.Albums.Models;
+using SongLyrics.Shared.Dto;
+using SongLyrics.Infrastructure.Database;
 
 namespace SongLyrics.Logic.Albums
 {
@@ -21,7 +21,7 @@ namespace SongLyrics.Logic.Albums
         /// </summary>
         /// <param name="ABandId"></param>
         /// <returns></returns>
-        public async Task<List<Album>> GetAlbums(int? ABandId)
+        public async Task<List<AlbumDto>> GetAlbums(int? ABandId)
         {
             if (ABandId != null)
             {
@@ -29,7 +29,7 @@ namespace SongLyrics.Logic.Albums
                     .AsNoTracking()
                     .Include(AAlbums => AAlbums.Artist)
                     .Where(AAlbums => AAlbums.ArtistId == ABandId)
-                    .Select(AAlbums => new Album
+                    .Select(AAlbums => new AlbumDto
                     {
                         Id = AAlbums.Id,
                         AlbumName = AAlbums.AlbumName,
@@ -42,7 +42,7 @@ namespace SongLyrics.Logic.Albums
             return await FMainDbContext.Albums
                 .AsNoTracking()
                 .Include(AAlbums => AAlbums.Artist)
-                .Select(AAlbums => new Album
+                .Select(AAlbums => new AlbumDto
                 {
                     Id = AAlbums.Id,
                     AlbumName = AAlbums.AlbumName,
@@ -57,13 +57,13 @@ namespace SongLyrics.Logic.Albums
         /// </summary>
         /// <param name="AAlbumId"></param>
         /// <returns></returns>
-        public async Task<List<Album>> GetAlbum(int AAlbumId)
+        public async Task<List<AlbumDto>> GetAlbum(int AAlbumId)
         {
             return await FMainDbContext.Albums
                .AsNoTracking()
                .Include(AAlbums => AAlbums.Artist)
                .Where(AAlbums => AAlbums.Id == AAlbumId)
-               .Select(AAlbums => new Album
+               .Select(AAlbums => new AlbumDto
                {
                    Id = AAlbums.Id,
                    AlbumName = AAlbums.AlbumName,

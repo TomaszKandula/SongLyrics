@@ -26,7 +26,7 @@ Back-end project is relatively small and therefore is not split into sub-project
 
 ## Setting-up the database
 
-For testing, local SQL server/database is used, connection string have to be setup in __secrets.json__ (BackEnd project):
+Setup the connection string in the settings file:
 
 ```
 {

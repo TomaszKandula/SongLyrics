@@ -8,16 +8,14 @@ using SongLyrics.UnitTests.Database;
 
 namespace SongLyrics.UnitTests
 {
-
     public class LogicTest_Songs
     {
         private readonly ISongs FSongs;
 
         public LogicTest_Songs() 
         {
-
             // Create instances to mocked all dependencies           
-            var LMockDbContext = new Mock<SongLyrics.Database.MainDbContext>();
+            var LMockDbContext = new Mock<Infrastructure.Database.MainDbContext>();
 
             // Upload pre-fixed dummy data
             var LBandsDbSet        = DummyLoad.ReturnDummyArtists().AsQueryable().BuildMockDbSet();
@@ -37,34 +35,27 @@ namespace SongLyrics.UnitTests
 
             // Create test instance with mocked dependencies
             FSongs = new Songs(LMockDbContext.Object);
-
         }
 
         [Fact]
         public async void Should_GetAlbumSongs()
         {
-
             var LResult1 = await FSongs.GetAlbumSongs(1);
             var LResult2 = await FSongs.GetAlbumSongs(100);
 
             LResult1.Select(ASong => ASong.Name).ToList()[0].Should().Be("Keep Yourself Alive");
             LResult1.Select(ASong => ASong.Name).ToList()[1].Should().Be("Liar");
             LResult2.Should().BeEmpty();
-
         }
 
         [Fact]
         public async void Should_GetSong()
         {
-
             var LResult2 = await FSongs.GetSong(7);
             var LResult3 = await FSongs.GetSong(100);
 
             LResult2.Name.Should().Be("Whole Lotta Love");
             LResult3.Should().BeNull();
-
         }
-
     }
-
 }

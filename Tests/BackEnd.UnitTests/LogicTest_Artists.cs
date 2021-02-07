@@ -8,16 +8,14 @@ using SongLyrics.UnitTests.Database;
 
 namespace SongLyrics.UnitTests
 {
-
     public class LogicTest_Artists
     {
         private readonly IArtists FArtists;
 
         public LogicTest_Artists() 
         {
-
             // Create instances to mocked all dependencies           
-            var LMockDbContext = new Mock<SongLyrics.Database.MainDbContext>();
+            var LMockDbContext = new Mock<Infrastructure.Database.MainDbContext>();
 
             // Upload pre-fixed dummy data
             var LArtistsDbSet      = DummyLoad.ReturnDummyArtists().AsQueryable().BuildMockDbSet();
@@ -37,13 +35,11 @@ namespace SongLyrics.UnitTests
 
             // Create test instance with mocked dependencies
             FArtists = new Artists(LMockDbContext.Object);
-
         }
 
         [Fact]
         public async void Should_GetArtists()
         {
-
             var LResult1 = await FArtists.GetArtists(null);
             var LResult2 = await FArtists.GetArtists(1);
             var LResult3 = await FArtists.GetArtists(100);
@@ -51,25 +47,21 @@ namespace SongLyrics.UnitTests
             LResult1.Should().NotBeEmpty();
             LResult2.Should().NotBeEmpty();
             LResult3.Should().BeEmpty();
-
         }
 
         [Fact]
         public async void Should_GetMembers()
         {
-
             var LResult1 = await FArtists.GetMembers(2);
             var LResult2 = await FArtists.GetMembers(45);
 
             LResult1.Should().NotBeEmpty();
             LResult2.Should().BeEmpty();
-
         }
 
         [Fact]
         public async void Should_GetArtistDetails()
         {
-
             var LResult1 = await FArtists.GetArtistDetails(1);
             var LResult2 = await FArtists.GetArtistDetails(100);
 
@@ -77,9 +69,6 @@ namespace SongLyrics.UnitTests
             LResult1.Genere.Should().Be("Rock");
             LResult1.Members.Should().HaveCount(4);
             LResult2.Name.Should().Be("n/a");
-
         }
-
     }
-
 }

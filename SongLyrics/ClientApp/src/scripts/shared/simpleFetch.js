@@ -1,39 +1,25 @@
 export const GetData = (endpoint, callback) =>
 {
-    const onSuccess = (data) =>
-    {
-        if (data.IsSucceeded)
-        {
-            callback(data, null);
-        }
-        else
-        {
-            callback(null, data.Error.ErrorDesc);
-            console.warn(`${data.Error.ErrorDesc}`);
-        }
-    }
-
-    const onError = (error) =>
-    {
-        callback(null, error);
-        console.error(`${error}`);
-    }
-
     fetch(endpoint)
     .then(response =>
     {
-        if (!response.ok)
+        const responseData = response;
+        const jsonResponse = response.json();
+        jsonResponse
+        .then(data =>
         {
-            throw new Error("Error occurred during processing the request.");
-        }          
-        return response.json();
-    })
-    .then(data => 
-    { 
-        onSuccess(data);
-    })
-    .catch((error) => 
-    {
-        onError(error) 
+            if (responseData.status >= 200 && responseData.status < 400)
+            {
+                callback(data, null);
+            }
+            else if (responseData.status >= 400)
+            {
+                callback(null, data.ErrorDesc);
+            }
+        })
+        .catch(error => 
+        {
+            callback(null, `Error occurred during processing the request: ${error}.`);
+        });       
     });
 }

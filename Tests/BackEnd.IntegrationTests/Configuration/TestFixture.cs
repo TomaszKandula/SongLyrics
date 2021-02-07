@@ -13,10 +13,8 @@ using Microsoft.AspNetCore.Mvc.ApplicationParts;
 
 namespace SongLyrics.IntegrationTests.Configuration
 {
-
     public class TestFixture<TStartup> : IDisposable
     {
-
         public TestServer FServer { get; }
         public HttpClient FClient { get; }
 
@@ -28,58 +26,41 @@ namespace SongLyrics.IntegrationTests.Configuration
 
         private static string GetProjectPath(string AprojectRelativePath, Assembly AStartupAssembly)
         {
-
             var LProjectName = AStartupAssembly.GetName().Name;
             var LApplicationBasePath = AppContext.BaseDirectory;
             var LDirectoryInfo = new DirectoryInfo(LApplicationBasePath);
-
             do
             {
-
                 LDirectoryInfo = LDirectoryInfo.Parent;
-
                 var LProjectDirectoryInfo = new DirectoryInfo(Path.Combine(LDirectoryInfo.FullName, AprojectRelativePath));
-
                 if (LProjectDirectoryInfo.Exists)
                 {
-
                     if (new FileInfo(Path.Combine(LProjectDirectoryInfo.FullName, LProjectName, $"{LProjectName}.csproj")).Exists)
                     {
                         return Path.Combine(LProjectDirectoryInfo.FullName, LProjectName);
                     }
-
                 }
-
             }
             while (LDirectoryInfo.Parent != null);
-
             throw new Exception($"Project root could not be located using the application root {LApplicationBasePath}.");
-
         }
 
         protected virtual void InitializeServices(IServiceCollection AServices)
         {
-
             var LStartupAssembly = typeof(TStartup).GetTypeInfo().Assembly;
-
             var LManager = new ApplicationPartManager
             {
-
                 ApplicationParts =
                 {
                     new AssemblyPart(LStartupAssembly)
                 },
-
                 FeatureProviders =
                 {
                     new ControllerFeatureProvider(),
                     new ViewComponentFeatureProvider()
                 }
-
             };
-
             AServices.AddSingleton(LManager);
-
         }
 
         public TestFixture() : this(Path.Combine(""))
@@ -88,7 +69,6 @@ namespace SongLyrics.IntegrationTests.Configuration
 
         protected TestFixture(string ARelativeTargetProjectParentDir)
         {
-
             var LStartupAssembly = typeof(TStartup).GetTypeInfo().Assembly;
             var LContentRoot = GetProjectPath(ARelativeTargetProjectParentDir, LStartupAssembly);
 
@@ -111,9 +91,6 @@ namespace SongLyrics.IntegrationTests.Configuration
             FClient.BaseAddress = new Uri("http://localhost:5000");
             FClient.DefaultRequestHeaders.Accept.Clear();
             FClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
         }
-
     }
-
 }

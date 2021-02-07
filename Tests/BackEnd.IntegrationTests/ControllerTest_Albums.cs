@@ -4,15 +4,13 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using SongLyrics.Controllers.Albums.Models;
+using SongLyrics.Shared.Dto;
 using SongLyrics.IntegrationTests.Configuration;
 
 namespace SongLyrics.IntegrationTests
 {
-
     public class ControllerTest_Albums : IClassFixture<TestFixture<Startup>>
     {
-
         private readonly HttpClient FClient;
 
         public ControllerTest_Albums(TestFixture<Startup> ACustomFixture)
@@ -25,33 +23,30 @@ namespace SongLyrics.IntegrationTests
         [InlineData(null)]
         public async Task Should_GetAlbums(int? AArtistId)
         {
-
             // Arrange
             var LRequest = $"/api/v1/albums/?ArtistId={AArtistId}";
 
             // Act
             var LResponse = await FClient.GetAsync(LRequest);
 
-            // Require success status code
+            // Assert
             LResponse.EnsureSuccessStatusCode();
+            LResponse.Should().NotBeNull();
 
-            // Deserialize response and check results            
-            var LStringResponse = await LResponse.Content.ReadAsStringAsync();
-            var LReturnAlbums = JsonConvert.DeserializeObject<ReturnAlbumsDto>(LStringResponse);
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
 
+            var LDeserialized = JsonConvert.DeserializeObject<ReturnAlbumsDto>(LContent);
             if (AArtistId != null)
             {
-                LReturnAlbums.Albums.Should().HaveCount(15);
+                LDeserialized.Albums.Should().HaveCount(15);
             }
             else
             {
-                LReturnAlbums.Albums.Select(AAlbum => AAlbum.AlbumName).ToList()[3].Should().Be("A Night at the Opera");
-                LReturnAlbums.Albums.Select(AAlbum => AAlbum.AlbumName).ToList()[5].Should().Be("News of the World");
-                LReturnAlbums.Albums.Select(AAlbum => AAlbum.AlbumName).ToList()[13].Should().Be("Innuendo");
+                LDeserialized.Albums.Select(AAlbum => AAlbum.AlbumName).ToList()[3].Should().Be("A Night at the Opera");
+                LDeserialized.Albums.Select(AAlbum => AAlbum.AlbumName).ToList()[5].Should().Be("News of the World");
+                LDeserialized.Albums.Select(AAlbum => AAlbum.AlbumName).ToList()[13].Should().Be("Innuendo");
             }
-
         }
-
     }
-
 }

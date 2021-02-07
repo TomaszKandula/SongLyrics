@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using SongLyrics.Shared.Dto;
 
@@ -11,13 +12,13 @@ namespace SongLyrics.Logic.Albums
         /// </summary>
         /// <param name="ABandId"></param>
         /// <returns></returns>
-        Task<List<AlbumDto>> GetAlbums(int? ABandId);
+        Task<List<AlbumDto>> GetAlbums(int? ABandId, CancellationToken ACancellationToken = default);
 
         /// <summary>
         /// Return specific album for given Album Id.
         /// </summary>
         /// <param name="AAlbumId"></param>
         /// <returns></returns>
-        Task<List<AlbumDto>> GetAlbum(int AAlbumId);
+        Task<List<AlbumDto>> GetAlbum(int AAlbumId, CancellationToken ACancellationToken = default);
     }
 }

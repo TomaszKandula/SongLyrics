@@ -7,8 +7,5 @@ namespace SongLyrics.Shared.Dto
     {
         [JsonPropertyName("Artists")]
         public List<ArtistDto> Artists { get; set; }
-
-        [JsonPropertyName("IsSucceeded")]
-        public bool IsSucceeded { get; set; }
     }
 }

@@ -37,11 +37,11 @@ For testing, local SQL server/database is used, connection string have to be set
 }
 ```
 
-The database have six tables so far, because this project have already database setup ([database first approach](https://entityframeworkcore.com/approach-database-first)), one may use SQL scripts to create tables and populate database tables from CSV files, all provided here: [Database Examples](https://github.com/TomaszKandula/SongLyrics/tree/master/DatabaseExamples). However, instead of executing SQL, one may use __migrations__, in Package Manager Console type and execute command:
+Run following command in Package Manager Console:  
 
-`update-database`
+`Update-Database -StartupProject SongLyrics -Project SongLyrics -Context MainDbContext`
 
-And EF Core will create database with all necessary tables. Then, we may populate the tables with the script (on localhost).
+EF Core will create necessary tables and will seed test data. 
 
 ## Integration Tests
 

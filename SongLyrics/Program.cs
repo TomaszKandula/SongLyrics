@@ -7,10 +7,8 @@ using Microsoft.Extensions.Hosting;
 
 namespace SongLyrics
 {
-
     public class Program
     {
-
         public static IHostBuilder CreateWebHostBuilder(string[] AArgs) =>
             Host.CreateDefaultBuilder(AArgs)
                 .ConfigureWebHostDefaults(AWebBuilder =>
@@ -21,7 +19,6 @@ namespace SongLyrics
 
         public static int Main(string[] AArgs)
         {
-
             var LOgsPath = AppDomain.CurrentDomain.BaseDirectory + "\\logs";
             if (!Directory.Exists(LOgsPath))
             {
@@ -58,9 +55,6 @@ namespace SongLyrics
             {
                 Log.CloseAndFlush();
             }
-
         }
-
     }
-
 }

@@ -4,43 +4,36 @@ import { MESSAGE_INFO, MESSAGE_WARN, MESSAGE_ERROR } from "../../shared/constant
 
 class Modal extends Component
 {
-
     componentDidMount()
     {
-
         const options =
         {
-            onOpenStart:  null,
-            onOpenEnd:    null,
+            onOpenStart: null,
+            onOpenEnd: null,
             onCloseStart: null,
-            onCloseEnd:   null,
-            inDuration:   250,
-            outDuration:  250,
-            opacity:      0.5,
-            dismissible:  false,
-            startingTop:  "4%",
-            endingTop:    "10%"
+            onCloseEnd: null,
+            inDuration: 250,
+            outDuration: 250,
+            opacity: 0.5,
+            dismissible: false,
+            startingTop: "4%",
+            endingTop: "10%"
         };
 
         M.Modal.init(this.Modal, options);
-
         if (this.props.isOpened)
         {
-
             // Render modal window with time lag to improve UX
             setTimeout(() =>
             {
                 const instance = M.Modal.getInstance(this.Modal);
                 instance.open();
             }, 500);
-
         }
-
     }
 
     setHeader(selection)
     {
-
         switch (selection)
         {
             case MESSAGE_INFO:  return "Information";
@@ -48,7 +41,6 @@ class Modal extends Component
             case MESSAGE_ERROR: return "Error";
             default: return "Information";
         }
-
     }
 
     render()
@@ -69,7 +61,6 @@ class Modal extends Component
             </>
         );
     }
-
 }
 
 export default Modal;

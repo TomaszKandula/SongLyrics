@@ -4,20 +4,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SongLyrics.Logic;
 using SongLyrics.Shared;
-using SongLyrics.AppLogger;
+using SongLyrics.Logger;
 using SongLyrics.Controllers.Songs.Models;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace SongLyrics.Controllers.Songs
 {
-
     [Route("api/v1/[controller]")]
     [ApiController]
     [ResponseCache(CacheProfileName = "ResponseCache")]
     public class SongsController : ControllerBase
     {
-
-        private readonly IAppLogger    FAppLogger;
+        private readonly IAppLogger FAppLogger;
         private readonly ILogicContext FLogicContext;
 
         public SongsController(IAppLogger AAppLogger, ILogicContext ALogicContext)
@@ -40,13 +38,10 @@ namespace SongLyrics.Controllers.Songs
         // ReSharper disable once InconsistentNaming for query string
         public async Task<IActionResult> GetSongs([FromQuery] int? AlbumId)
         {
-
             var LResponse = new ReturnSongs();
             try
             {
-
                 var LResult = await FLogicContext.Songs.GetAlbumSongs(AlbumId);
-
                 if (!LResult.Any())
                 {
                     LResponse.Error.ErrorCode = Constants.Errors.EmptySongList.ErrorCode;
@@ -58,7 +53,6 @@ namespace SongLyrics.Controllers.Songs
                 LResponse.Songs = LResult;
                 LResponse.IsSucceeded = true;
                 return StatusCode(200, LResponse);
-
             }
             catch (Exception LException)
             {
@@ -67,7 +61,6 @@ namespace SongLyrics.Controllers.Songs
                 FAppLogger.LogFatality($"GET api/v1/songs/ | Error has been raised while processing request. Message: {LResponse.Error.ErrorDesc}.");
                 return StatusCode(500, LResponse);
             }
-
         }
 
         /// <summary>
@@ -83,13 +76,10 @@ namespace SongLyrics.Controllers.Songs
         [HttpGet("{AId}")]
         public async Task<IActionResult> GetSong([FromRoute] int AId)
         {
-
             var LResponse = new ReturnSong();
             try
             {
-
                 var LResult = await FLogicContext.Songs.GetSong(AId);
-
                 if (LResult == null)
                 {
                     LResponse.Error.ErrorCode = Constants.Errors.EmptySongList.ErrorCode;
@@ -101,7 +91,6 @@ namespace SongLyrics.Controllers.Songs
                 LResponse.Song = LResult;
                 LResponse.IsSucceeded = true;
                 return StatusCode(200, LResponse);
-
             }
             catch (Exception LException)
             {
@@ -110,9 +99,6 @@ namespace SongLyrics.Controllers.Songs
                 FAppLogger.LogFatality($"GET api/v1/songs/{AId} | Error has been raised while processing request. Message: {LResponse.Error.ErrorDesc}.");
                 return StatusCode(500, LResponse);
             }
-
         }
-
     }
-
 }

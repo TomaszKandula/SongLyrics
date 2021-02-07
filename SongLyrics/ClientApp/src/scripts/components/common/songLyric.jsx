@@ -8,12 +8,16 @@ import Modal from "../modals/defaultModal";
 
 class SongLyric extends Component
 {
-
     constructor(props)
     {
         super(props);
         this.songData = this.updateSong.bind(this);
-        this.state = { song: {}, loading: true, fetchError: null };
+        this.state = 
+        { 
+            song: { }, 
+            loading: true, 
+            fetchError: null 
+        };
     }
 
     componentDidMount()
@@ -26,14 +30,14 @@ class SongLyric extends Component
     {
         return !error
             ? this.setState({ song: payload.Song, loading: false, fetchError: null })
-            : this.setState({ song: {}, loading: true, fetchError: error });
+            : this.setState({ song: { }, loading: true, fetchError: error });
     }
 
     render()
     {
-
-        let showError = this.state.fetchError ? <Modal messageText={this.state.fetchError} messageType={Const.MESSAGE_ERROR} isOpened={true} /> : null;
-
+        let showError = this.state.fetchError 
+            ? <Modal messageText={this.state.fetchError} messageType={Const.MESSAGE_ERROR} isOpened={true} /> 
+            : null;
         return (
             <>
                 {showError}
@@ -49,9 +53,7 @@ class SongLyric extends Component
                 </Posed.FadeInDiv>
             </>
         );
-
     }
-
 }
 
 const mapStateToProps = (state) => { return { state } }

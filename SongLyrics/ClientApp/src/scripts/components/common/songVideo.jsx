@@ -8,12 +8,16 @@ import Modal from "../modals/defaultModal";
 
 class SongVideo extends Component
 {
-
     constructor(props)
     {
         super(props);
         this.songData = this.updateSong.bind(this);
-        this.state = { song: {}, loading: true, fetchError: null };
+        this.state = 
+        { 
+            song: { }, 
+            loading: true, 
+            fetchError: null 
+        };
     }
 
     componentDidMount()
@@ -26,47 +30,39 @@ class SongVideo extends Component
     {
         return !error
             ? this.setState({ song: payload.Song, loading: false, fetchError: null })
-            : this.setState({ song: {}, loading: true, fetchError: error });
+            : this.setState({ song: { }, loading: true, fetchError: error });
     }
 
     render()
     {
-
-        let showError = this.state.fetchError ? <Modal messageText={this.state.fetchError} messageType={Const.MESSAGE_ERROR} isOpened={true} /> : null;
-
+        let showError = this.state.fetchError 
+            ? <Modal messageText={this.state.fetchError} messageType={Const.MESSAGE_ERROR} isOpened={true} /> 
+            : null;
         return (
             <>
                 {showError}
                 <div className="margin-t-30 margin-b-5">
-
                     <Posed.FadeInDiv initialPose="hidden" pose="visible">
                         <h3>
                             <b>{this.state.song.ArtistName}</b>
                         </h3>
                     </Posed.FadeInDiv>
-
                     <Posed.FadeInDiv initialPose="hidden" pose="visible" className="card margin-t-30 hoverable">
-
                         <div className="card-image">
                             <div className="video-container">
                                 <div>{ReactHtmlParser(`<iframe src="${this.state.song.Url}" frameborder="0"></iframe>`)}</div>
                             </div>
                         </div>
-
                         <div className="card-content">
                             <div>
                                 <span>{this.state.song.Name}</span>
                             </div>
                         </div>
-
                     </Posed.FadeInDiv>
-
                 </div>
             </>
         );
-
     }
-
 }
 
 const mapStateToProps = (state) => { return { state } }

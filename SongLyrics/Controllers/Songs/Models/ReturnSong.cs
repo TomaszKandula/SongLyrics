@@ -3,10 +3,8 @@ using SongLyrics.Shared;
 
 namespace SongLyrics.Controllers.Songs.Models
 {
-
     public class ReturnSong
     {
-
         [JsonPropertyName("Song")]
         public SingleSong Song { get; set; }
 
@@ -14,13 +12,6 @@ namespace SongLyrics.Controllers.Songs.Models
         public bool IsSucceeded { get; set; }
 
         [JsonPropertyName("Error")]
-        public ErrorHandler Error { get; set; }
-
-        public ReturnSong()
-        {
-            Error = new ErrorHandler();
-        }
-
+        public ErrorHandler Error { get; set; } = new ErrorHandler();
     }
-
 }

@@ -4,10 +4,8 @@ using SongLyrics.Controllers.Artists.Models;
 
 namespace SongLyrics.Logic.Artists
 {
-
     public interface IArtists
     {
-
         /// <summary>
         /// Return list of bands from the entire collection.
         /// </summary>
@@ -28,7 +26,5 @@ namespace SongLyrics.Logic.Artists
         /// <param name="AArtistId"></param>
         /// <returns></returns>
         Task<ReturnArtistDetails> GetArtistDetails(int AArtistId);
-
     }
-
 }

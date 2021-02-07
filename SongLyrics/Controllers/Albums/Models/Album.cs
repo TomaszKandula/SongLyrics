@@ -3,10 +3,8 @@ using System.Text.Json.Serialization;
 
 namespace SongLyrics.Controllers.Albums.Models
 {
-
     public class Album
     {
-
         [JsonPropertyName("Id")]
         public int Id { get; set; }
 
@@ -18,7 +16,5 @@ namespace SongLyrics.Controllers.Albums.Models
 
         [JsonPropertyName("ArtistName")]
         public string ArtistName { get; set; }
-
     }
-
 }

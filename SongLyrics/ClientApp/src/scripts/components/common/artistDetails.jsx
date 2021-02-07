@@ -8,7 +8,6 @@ import Modal from "../modals/defaultModal";
 
 class ArtistDetails extends Component
 {
-
     constructor(props)
     {
         super(props);
@@ -17,11 +16,11 @@ class ArtistDetails extends Component
         {
             details:
             {
-                name:        "",
+                name: "",
                 established: "",
                 activeUntil: "",
-                genere:      "",
-                members:     []
+                genere: "",
+                members: []
             },
             loading: true,
             fetchError: null
@@ -38,23 +37,35 @@ class ArtistDetails extends Component
     {
         return !error
             ? this.setState({
-                details: { name: payload.Name, established: payload.Established, activeUntil: payload.ActiveUntil, genere: payload.Genere, members: payload.Members },
+                details: 
+                { 
+                    name: payload.Name, 
+                    established: payload.Established, 
+                    activeUntil: payload.ActiveUntil, 
+                    genere: payload.Genere, 
+                    members: payload.Members 
+                },
                 loading: false,
                 fetchError: null
             })
             : this.setState({
-                details: { name: "", established: "", activeUntil: "", genere: "", members: "" },
+                details: 
+                { 
+                    name: "", 
+                    established: "", 
+                    activeUntil: "", 
+                    genere: "", 
+                    members: "" 
+                },
                 loading: true,
                 fetchError: error
             });
-    }      
+    }
 
     processData()
     {
-
         if (!this.state.details.members)
         {
-
             const processed =
             {
                 established: "n/a",
@@ -62,7 +73,6 @@ class ArtistDetails extends Component
                 currMembers: "n/a",
                 pastMembers: "n/a"
             };
-
             return processed;
         }
 
@@ -71,7 +81,6 @@ class ArtistDetails extends Component
 
         for (let Index = 0; Index < this.state.details.members.length; ++Index)
         {
-
             if (this.state.details.members[Index].Status === "Active")
             {
                 currMembers = currMembers
@@ -82,7 +91,6 @@ class ArtistDetails extends Component
                 pastMembers = pastMembers
                     + ` ${this.state.details.members[Index].FirstName} ${this.state.details.members[Index].LastName},`;
             }
-
         }
 
         currMembers = currMembers.replace(/.$/, ".");
@@ -108,12 +116,10 @@ class ArtistDetails extends Component
         };
 
         return processed;
-
     }
 
     renderTable(processed)
     {
-
         return (
             <table className="detailsTable">
                 <tbody>
@@ -140,16 +146,13 @@ class ArtistDetails extends Component
                         <td className="detailsTableCol1">Past</td>
                         <td className="detailsTableCol2">{processed.pastMembers}</td>
                     </tr>
-
                 </tbody>
             </table>
         );
-
     }
 
     render()
     {
-
         const showError = this.state.fetchError
             ? <Modal messageText={this.state.fetchError} messageType={Const.MESSAGE_ERROR} isOpened={true} />
             : null;
@@ -166,25 +169,20 @@ class ArtistDetails extends Component
             <>
                 {showError}
                 <div className="margin-t-30">
-
                     <Posed.FadeInDiv initialPose="hidden" pose="visible">
                         <h3>
                             <b>{bandName}</b>
                         </h3>
                     </Posed.FadeInDiv>
-
                     <Posed.ScaleDiv initialPose="hidden" pose="visible">
                         <div className="card-panel margin-t-30 white hoverable">
                             {renderedTable}
                         </div>
                     </Posed.ScaleDiv>
-
                 </div>
             </>
         );
-
     }
-
 }
 
 const mapStateToProps = (state) => { return { state } }

@@ -4,10 +4,8 @@ using SongLyrics.Controllers.Songs.Models;
 
 namespace SongLyrics.Logic.Songs
 {
-
     public interface ISongs
     {
-
         /// <summary>
         /// Return specific song (or songs) from given band's album.
         /// </summary>
@@ -21,7 +19,5 @@ namespace SongLyrics.Logic.Songs
         /// <param name="ASongId"></param>
         /// <returns></returns>
         Task<SingleSong> GetSong(int ASongId);
-
     }
-
 }

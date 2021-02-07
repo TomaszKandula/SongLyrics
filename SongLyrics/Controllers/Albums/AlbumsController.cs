@@ -4,19 +4,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SongLyrics.Logic;
 using SongLyrics.Shared;
-using SongLyrics.AppLogger;
+using SongLyrics.Logger;
 using SongLyrics.Controllers.Albums.Models;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace SongLyrics.Controllers.Albums
 {
-
     [Route("api/v1/[controller]")]
     [ApiController]
     [ResponseCache(CacheProfileName = "ResponseCache")]
     public class AlbumsController : ControllerBase
     {
-
         private readonly IAppLogger    FAppLogger;
         private readonly ILogicContext FLogicContext;
 
@@ -40,12 +38,10 @@ namespace SongLyrics.Controllers.Albums
         // ReSharper disable once InconsistentNaming for query string
         public async Task<IActionResult> GetAlbums([FromQuery] int? ArtistId)
         {
-
             var LResponse = new ReturnAlbums();
             try
             {
                 var LResult = await FLogicContext.Albums.GetAlbums(ArtistId);
-
                 if (!LResult.Any())
                 {
                     LResponse.Error.ErrorCode = Constants.Errors.EmptyAlbumList.ErrorCode;
@@ -57,7 +53,6 @@ namespace SongLyrics.Controllers.Albums
                 LResponse.Albums = LResult;
                 LResponse.IsSucceeded = true;
                 return StatusCode(200, LResponse);
-
             }
             catch (Exception LException)
             {
@@ -66,7 +61,6 @@ namespace SongLyrics.Controllers.Albums
                 FAppLogger.LogFatality($"GET api/v1/albums/ | Error has been raised while processing request. Message: {LResponse.Error.ErrorDesc}.");
                 return StatusCode(500, LResponse);
             }
-
         }
 
         /// <summary>
@@ -83,13 +77,10 @@ namespace SongLyrics.Controllers.Albums
         [HttpGet("{AId}")]
         public async Task<IActionResult> GetAlbum([FromRoute] int AId)
         {
-
             var LResponse = new ReturnAlbums();
             try
             {
-
                 var LResult = await FLogicContext.Albums.GetAlbum(AId);
-
                 if (LResult.Count == 0)
                 {
                     LResponse.Error.ErrorCode = Constants.Errors.NoAlbumFound.ErrorCode;
@@ -101,7 +92,6 @@ namespace SongLyrics.Controllers.Albums
                 LResponse.Albums = LResult;
                 LResponse.IsSucceeded = true;
                 return StatusCode(200, LResponse);
-
             }
             catch (Exception LException)
             {
@@ -110,9 +100,6 @@ namespace SongLyrics.Controllers.Albums
                 FAppLogger.LogFatality($"GET api/v1/albums/{AId} | Error has been raised while processing request. Message: {LResponse.Error.ErrorDesc}.");
                 return StatusCode(500, LResponse);
             }
-
         }
-
     }
-
 }

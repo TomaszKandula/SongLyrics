@@ -1,9 +1,7 @@
 export const GetData = (endpoint, callback) =>
 {
-
     const onSuccess = (data) =>
     {
-
         if (data.IsSucceeded)
         {
             callback(data, null);
@@ -13,7 +11,6 @@ export const GetData = (endpoint, callback) =>
             callback(null, data.Error.ErrorDesc);
             console.warn(`${data.Error.ErrorDesc}`);
         }
-
     }
 
     const onError = (error) =>
@@ -23,24 +20,20 @@ export const GetData = (endpoint, callback) =>
     }
 
     fetch(endpoint)
-        .then(response =>
+    .then(response =>
+    {
+        if (!response.ok)
         {
-
-            if (!response.ok)
-            {
-                throw new Error("Error occurred during processing the request.");
-            }
-            
-            return response.json();
-
-        })
-        .then(data => 
-        { 
-            onSuccess(data);
-        })
-        .catch((error) => 
-        {
-            onError(error) 
-        });
-
+            throw new Error("Error occurred during processing the request.");
+        }          
+        return response.json();
+    })
+    .then(data => 
+    { 
+        onSuccess(data);
+    })
+    .catch((error) => 
+    {
+        onError(error) 
+    });
 }

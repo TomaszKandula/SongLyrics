@@ -1,11 +1,9 @@
 ﻿using Serilog;
 
-namespace SongLyrics.AppLogger
+namespace SongLyrics.Logger
 {
-
     public sealed class AppLogger : IAppLogger
     {
-
         public void LogDebug(string AMessage)
         {
             Log.Debug(AMessage);
@@ -30,7 +28,5 @@ namespace SongLyrics.AppLogger
         {
             Log.Fatal(AMessage);
         }
-
     }
-
 }

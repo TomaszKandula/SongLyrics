@@ -4,19 +4,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SongLyrics.Logic;
 using SongLyrics.Shared;
-using SongLyrics.AppLogger;
+using SongLyrics.Logger;
 using SongLyrics.Controllers.Artists.Models;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace SongLyrics.Controllers.Artists
 {
-
     [Route("api/v1/[controller]")]
     [ApiController]
     [ResponseCache(CacheProfileName = "ResponseCache")]
     public class ArtistsController : ControllerBase
     {
-
         private readonly IAppLogger    FAppLogger;
         private readonly ILogicContext FLogicContext;
 
@@ -39,13 +37,10 @@ namespace SongLyrics.Controllers.Artists
         [HttpGet]
         public async Task<IActionResult> GetArtists() 
         {
-
             var LResponse = new ReturnArtists();
             try
             {
-
                 var LResult = await FLogicContext.Artists.GetArtists(null);
-
                 if (!LResult.Any()) 
                 {
                     LResponse.Error.ErrorCode = Constants.Errors.EmptyBandList.ErrorCode;
@@ -57,7 +52,6 @@ namespace SongLyrics.Controllers.Artists
                 LResponse.Artists = LResult;
                 LResponse.IsSucceeded = true;
                 return StatusCode(200, LResponse);
-
             }
             catch (Exception LException)
             {
@@ -66,7 +60,6 @@ namespace SongLyrics.Controllers.Artists
                 FAppLogger.LogFatality($"GET api/v1/artists/ | Error has been raised while processing request. Message: {LResponse.Error.ErrorDesc}.");
                 return StatusCode(500, LResponse);
             }
-
         }
 
         /// <summary>
@@ -82,13 +75,10 @@ namespace SongLyrics.Controllers.Artists
         [HttpGet("{AId}/members/")]
         public async Task<IActionResult> GetMembers([FromRoute] int AId)
         {
-
             var LResponse = new ReturnMembers();
             try
-            {
-                
+            {               
                 var LResult = await FLogicContext.Artists.GetMembers(AId);
-
                 if (!LResult.Any())
                 {
                     LResponse.Error.ErrorCode = Constants.Errors.EmptyMembersList.ErrorCode;
@@ -99,8 +89,7 @@ namespace SongLyrics.Controllers.Artists
 
                 LResponse.Members = LResult;
                 LResponse.IsSucceeded = true;
-                return StatusCode(200, LResponse);
-            
+                return StatusCode(200, LResponse);           
             }
             catch (Exception LException)
             {
@@ -109,7 +98,6 @@ namespace SongLyrics.Controllers.Artists
                 FAppLogger.LogFatality($"GET api/v1/artists/{AId}/members/ | Error has been raised while processing request. Message: {LResponse.Error.ErrorDesc}.");
                 return StatusCode(500, LResponse);
             }
-
         }
 
         /// <summary>
@@ -125,11 +113,9 @@ namespace SongLyrics.Controllers.Artists
         [HttpGet("{AId}/details/")]
         public async Task<IActionResult> GetArtistDetails([FromRoute] int AId)
         {
-
             var LResponse = new ReturnArtistDetails();
             try
             {
-
                 var LBandDetails = await FLogicContext.Artists.GetArtistDetails(AId);
 
                 LResponse.Name        = LBandDetails.Name;
@@ -140,7 +126,6 @@ namespace SongLyrics.Controllers.Artists
 
                 LResponse.IsSucceeded = true;
                 return StatusCode(200, LResponse);
-
             }
             catch (Exception LException)
             {
@@ -149,9 +134,6 @@ namespace SongLyrics.Controllers.Artists
                 FAppLogger.LogFatality($"GET api/v1/artists/{AId}/details/ | Error has been raised while processing request. Message: {LResponse.Error.ErrorDesc}.");
                 return StatusCode(500, LResponse);
             }
-
         }
-
     }
-
 }

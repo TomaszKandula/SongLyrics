@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using SongLyrics.Infrastructure.Database.Seeders;
 using SongLyrics.Infrastructure.Domain.Entities;
 
 namespace SongLyrics.Infrastructure.Database
@@ -25,6 +26,13 @@ namespace SongLyrics.Infrastructure.Database
         {
             base.OnModelCreating(AModelBuilder);
             ApplyConfiguration(AModelBuilder);
+
+            new ArtistsSeeder().Seed(AModelBuilder);
+            new MembersSeeder().Seed(AModelBuilder);
+            new SongsSeeder().Seed(AModelBuilder);
+            new AlbumsSeeder().Seed(AModelBuilder);
+            new ArtistsGeneresSeeder().Seed(AModelBuilder);
+            new GeneresSeeder().Seed(AModelBuilder);
         }
 
         protected void ApplyConfiguration(ModelBuilder AModelBuilder)

@@ -22,7 +22,7 @@ namespace SongLyrics.Infrastructure.Database.Mappings
                 .HasOne(AMembers => AMembers.Artist)
                 .WithMany(AArtists => AArtists.Members)
                 .HasForeignKey(AMembers => AMembers.ArtistId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.ClientNoAction)
                 .HasConstraintName("FK__ArtistId__MembersArtists");
         }
     }

@@ -1,6 +1,6 @@
 # Song Lyrics
 
-Song Lyrics (first React.js test project) allow to traverse through different artists to find songs from albums for lyrics. Project status can be seen here: [Project Board](https://github.com/users/TomaszKandula/projects/6).
+Test project in React.js - allows to traverse through different artists to find songs from albums for lyrics. Project status can be seen here: [Project Board](https://github.com/users/TomaszKandula/projects/6).
 
 ## Tech-stack
 
@@ -12,6 +12,8 @@ Song Lyrics (first React.js test project) allow to traverse through different ar
 1. Materialize CSS via CDN.
 1. React HTML Parser.
 1. React Pose.
+
+Client application uses classes and connects instead of functional approach with React Hooks. However, project using React Hooks can be found here: [TokanPages](https://github.com/users/TomaszKandula/projects/7).
 
 ### Back-end
 

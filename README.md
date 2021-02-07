@@ -1,6 +1,6 @@
 # Song Lyrics
 
-Song Lyrics (demo project) allow to traverse through different artists to find songs from albums for lyrics. Project status can be seen here: [Project Board](https://github.com/users/TomaszKandula/projects/6).
+Song Lyrics (first React.js test project) allow to traverse through different artists to find songs from albums for lyrics. Project status can be seen here: [Project Board](https://github.com/users/TomaszKandula/projects/6).
 
 ## Tech-stack
 

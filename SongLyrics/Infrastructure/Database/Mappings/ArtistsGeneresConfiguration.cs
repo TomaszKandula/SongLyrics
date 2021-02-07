@@ -12,14 +12,14 @@ namespace SongLyrics.Infrastructure.Database.Mappings
                 .HasOne(AArtistsGeneres => AArtistsGeneres.Artist)
                 .WithMany(AArtists => AArtists.ArtistsGeneres)
                 .HasForeignKey(AArtistsGeneres => AArtistsGeneres.ArtistId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.ClientNoAction)
                 .HasConstraintName("FK__ArtistId__ArtistsGeneres");
 
             AEntityBuilder
                 .HasOne(AArtistsGeneres => AArtistsGeneres.Genere)
                 .WithMany(AGeneres => AGeneres.ArtistsGeneres)
                 .HasForeignKey(AArtistsGeneres => AArtistsGeneres.GenereId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.ClientNoAction)
                 .HasConstraintName("FK__GenereId__Generes");
         }
     }

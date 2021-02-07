@@ -27,14 +27,14 @@ namespace SongLyrics.Infrastructure.Database.Mappings
                 .HasOne(ASongs => ASongs.Album)
                 .WithMany(AAlbums => AAlbums.Songs)
                 .HasForeignKey(ASongs => ASongs.AlbumId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.ClientNoAction)
                 .HasConstraintName("FK__AlbumId__Albums");
 
             AEntityBuilder
                 .HasOne(ASongs => ASongs.Artist)
                 .WithMany(AArtists => AArtists.Songs)
                 .HasForeignKey(ASongs => ASongs.ArtistId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.ClientNoAction)
                 .HasConstraintName("FK__ArtistId__Artists");
         }
     }

@@ -21,7 +21,7 @@ namespace SongLyrics.Infrastructure.Database.Mappings
                 .HasOne(AAlbums => AAlbums.Artist)
                 .WithMany(AArtists => AArtists.Albums)
                 .HasForeignKey(AAlbums => AAlbums.ArtistId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.ClientNoAction)
                 .HasConstraintName("FK__ArtistId__AlbumsArtists");
         }
     }

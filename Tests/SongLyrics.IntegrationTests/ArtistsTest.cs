@@ -9,14 +9,12 @@ using SongLyrics.IntegrationTests.Configuration;
 
 namespace SongLyrics.IntegrationTests
 {
-    public class ControllerTest_Artists : IClassFixture<TestFixture<Startup>>
+    public class ArtistsTest : IClassFixture<TestFixture<Startup>>
     {
         private readonly HttpClient FClient;
 
-        public ControllerTest_Artists(TestFixture<Startup> ACustomFixture)
-        {
-            FClient = ACustomFixture.FClient;
-        }
+        public ArtistsTest(TestFixture<Startup> ACustomFixture)
+            => FClient = ACustomFixture.Client;
 
         [Fact]
         public async Task Should_GetArtists()

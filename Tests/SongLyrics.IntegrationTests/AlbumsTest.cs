@@ -9,14 +9,12 @@ using SongLyrics.IntegrationTests.Configuration;
 
 namespace SongLyrics.IntegrationTests
 {
-    public class ControllerTest_Albums : IClassFixture<TestFixture<Startup>>
+    public class AlbumsTest : IClassFixture<TestFixture<Startup>>
     {
         private readonly HttpClient FClient;
 
-        public ControllerTest_Albums(TestFixture<Startup> ACustomFixture)
-        {
-            FClient = ACustomFixture.FClient;
-        }
+        public AlbumsTest(TestFixture<Startup> ACustomFixture)
+            => FClient = ACustomFixture.Client;
 
         [Theory]
         [InlineData(1)]

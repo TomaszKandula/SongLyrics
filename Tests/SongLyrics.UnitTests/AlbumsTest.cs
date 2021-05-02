@@ -5,25 +5,26 @@ using FluentAssertions;
 using MockQueryable.Moq;
 using SongLyrics.Logic.Albums;
 using SongLyrics.UnitTests.Database;
+using SongLyrics.Infrastructure.Database;
 
 namespace SongLyrics.UnitTests
 {
-    public class LogicTest_Albums
+    public class AlbumsTest
     {
         private readonly IAlbums FAlbums;
 
-        public LogicTest_Albums() 
+        public AlbumsTest() 
         {
             // Create instances to mocked all dependencies           
-            var LMockDbContext = new Mock<Infrastructure.Database.MainDbContext>();
+            var LMockDbContext = new Mock<MainDbContext>();
 
             // Upload pre-fixed dummy data
-            var LBandsDbSet        = DummyLoad.ReturnDummyArtists().AsQueryable().BuildMockDbSet();
-            var LAlbumsDbSet       = DummyLoad.ReturnDummyAlbums().AsQueryable().BuildMockDbSet();
-            var LGeneresDbSet      = DummyLoad.ReturnDummyGeneres().AsQueryable().BuildMockDbSet();
+            var LBandsDbSet = DummyLoad.ReturnDummyArtists().AsQueryable().BuildMockDbSet();
+            var LAlbumsDbSet = DummyLoad.ReturnDummyAlbums().AsQueryable().BuildMockDbSet();
+            var LGeneresDbSet = DummyLoad.ReturnDummyGeneres().AsQueryable().BuildMockDbSet();
             var LBandsGeneresDbSet = DummyLoad.ReturnDummyBandsGeneres().AsQueryable().BuildMockDbSet();
-            var LMembersDbSet      = DummyLoad.ReturnDummyMembers().AsQueryable().BuildMockDbSet();
-            var LSongsDbSet        = DummyLoad.ReturnDummySongs().AsQueryable().BuildMockDbSet();
+            var LMembersDbSet = DummyLoad.ReturnDummyMembers().AsQueryable().BuildMockDbSet();
+            var LSongsDbSet = DummyLoad.ReturnDummySongs().AsQueryable().BuildMockDbSet();
 
             // Populate database tables with dummy data
             LMockDbContext.Setup(AMainDbContext => AMainDbContext.Artists).Returns(LBandsDbSet.Object);

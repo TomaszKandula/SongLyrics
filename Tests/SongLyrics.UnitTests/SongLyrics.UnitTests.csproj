@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-
     <IsPackable>false</IsPackable>
+    <RootNamespace>SongLyrics.UnitTests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

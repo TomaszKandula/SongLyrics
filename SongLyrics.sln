@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SongLyrics", "SongLyrics\So
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8F70C3AA-A4B3-4B8E-98F5-BB257E5CCE13}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackEnd.IntegrationTests", "Tests\BackEnd.IntegrationTests\BackEnd.IntegrationTests.csproj", "{D4072946-AAFC-45C1-B4F6-51A83BCB9ECB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SongLyrics.IntegrationTests", "Tests\SongLyrics.IntegrationTests\SongLyrics.IntegrationTests.csproj", "{D4072946-AAFC-45C1-B4F6-51A83BCB9ECB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackEnd.UnitTests", "Tests\BackEnd.UnitTests\BackEnd.UnitTests.csproj", "{795469A1-94FC-4BEE-AAA0-4C50CA7F2273}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SongLyrics.UnitTests", "Tests\SongLyrics.UnitTests\SongLyrics.UnitTests.csproj", "{795469A1-94FC-4BEE-AAA0-4C50CA7F2273}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

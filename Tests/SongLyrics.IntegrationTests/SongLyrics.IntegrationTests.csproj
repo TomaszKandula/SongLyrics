@@ -2,10 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-
     <IsPackable>false</IsPackable>
-
-    <UserSecretsId>3292737f-6119-4056-97bf-26fd8c78167b</UserSecretsId>
+    <RootNamespace>SongLyrics.IntegrationTests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

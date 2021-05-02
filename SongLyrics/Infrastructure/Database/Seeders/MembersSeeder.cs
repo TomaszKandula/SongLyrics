@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using SongLyrics.Infrastructure.Domain.Entities;
 
 namespace SongLyrics.Infrastructure.Database.Seeders
@@ -6,8 +7,12 @@ namespace SongLyrics.Infrastructure.Database.Seeders
     public class MembersSeeder : IMainDbContextSeeder
     {
         public void Seed(ModelBuilder AModelBuilder)
+            => AModelBuilder.Entity<Members>().HasData(CreateMembersList());
+
+        private static IEnumerable<Members> CreateMembersList()
         {
-            AModelBuilder.Entity<Members>().HasData(
+            return new List<Members>
+            {
                 new Members 
                 {
                     Id = 1,
@@ -40,7 +45,7 @@ namespace SongLyrics.Infrastructure.Database.Seeders
                     LastName = "Mercury",
                     IsPresent = false
                 }
-            );
+            };
         }
     }
 }

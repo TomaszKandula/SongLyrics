@@ -10,6 +10,7 @@ namespace SongLyrics.Controllers
     public class __BaseController : ControllerBase
     {
         protected readonly IAppLogger FAppLogger;
+        
         protected readonly ILogicContext FLogicContext;
 
         public __BaseController(IAppLogger AAppLogger, ILogicContext ALogicContext) 

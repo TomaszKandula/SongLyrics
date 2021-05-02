@@ -9,9 +9,7 @@ namespace SongLyrics.Middleware
         private readonly RequestDelegate FRequestDelegate;
 
         public CustomCors(RequestDelegate ARequestDelegate)
-        {
-            FRequestDelegate = ARequestDelegate;
-        }
+            => FRequestDelegate = ARequestDelegate;
 
         public Task Invoke(HttpContext AHttpContext, IConfiguration AConfiguration)
         {
@@ -19,23 +17,21 @@ namespace SongLyrics.Middleware
             var LDeploymentOrigin = AConfiguration.GetSection("DeploymentOrigin").Value;
             var LRequestOrigin = AHttpContext.Request.Headers["Origin"];
 
-            if (LRequestOrigin == LDevelopmentOrigin || LRequestOrigin == LDeploymentOrigin)
-            {
-                AHttpContext.Response.Headers.Add("Access-Control-Allow-Origin", LRequestOrigin);
-                AHttpContext.Response.Headers.Add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-                AHttpContext.Response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE");
-                AHttpContext.Response.Headers.Add("Access-Control-Allow-Credentials", "true");
-                AHttpContext.Response.Headers.Add("Access-Control-Max-Age", "86400");
+            if (LRequestOrigin != LDevelopmentOrigin && LRequestOrigin != LDeploymentOrigin)
+                return FRequestDelegate(AHttpContext);
+            
+            AHttpContext.Response.Headers.Add("Access-Control-Allow-Origin", LRequestOrigin);
+            AHttpContext.Response.Headers.Add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            AHttpContext.Response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE");
+            AHttpContext.Response.Headers.Add("Access-Control-Allow-Credentials", "true");
+            AHttpContext.Response.Headers.Add("Access-Control-Max-Age", "86400");
 
-                // Require for pre-flight
-                if (AHttpContext.Request.Method == "OPTIONS")
-                {
-                    AHttpContext.Response.StatusCode = 200;
-                    return AHttpContext.Response.WriteAsync("OK");
-                }
-            }
-
-            return FRequestDelegate(AHttpContext);
+            // Require for pre-flight
+            if (AHttpContext.Request.Method != "OPTIONS") 
+                return FRequestDelegate(AHttpContext);
+                
+            AHttpContext.Response.StatusCode = 200;
+            return AHttpContext.Response.WriteAsync("OK");
         }
     }
 }

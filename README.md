@@ -1,6 +1,6 @@
 # Song Lyrics
 
-Test project in React.js - allows to traverse through different artists to find songs from albums for lyrics. Project status can be seen here: [Project Board](https://github.com/users/TomaszKandula/projects/6).
+Test project in React.js - allows traversing through different artists to find songs from albums for lyrics. Project status can be seen here: [Project Board](https://github.com/users/TomaszKandula/projects/6).
 
 ## Tech-stack
 
@@ -13,7 +13,7 @@ Test project in React.js - allows to traverse through different artists to find 
 1. React HTML Parser.
 1. React Pose.
 
-Client application uses classes and connects instead of functional approach with React Hooks. However, project using React Hooks can be found here: [TokanPages](https://github.com/users/TomaszKandula/projects/7).
+The client application uses classes and connects instead of a functional approach with React Hooks. However, a project using React Hooks can be found here: [TokanPages](https://github.com/users/TomaszKandula/projects/7).
 
 ### Back-end
 
@@ -24,7 +24,7 @@ Client application uses classes and connects instead of functional approach with
 
 Unit Tests and Integration Tests are provided using [XUnit](https://github.com/xunit/xunit) and [FluentAssertions](https://github.com/fluentassertions/fluentassertions).
 
-Back-end project is relatively small and therefore is not split into sub-projects.
+The back-end project is relatively small and therefore is not split into sub-projects.
 
 ## Setting-up the database
 
@@ -39,11 +39,13 @@ Setup the connection string in the settings file:
 }
 ```
 
-Run following command in Package Manager Console:  
+Run the following command in Package Manager Console:
 
 `Update-Database -StartupProject SongLyrics -Project SongLyrics -Context MainDbContext`
 
-EF Core will create necessary tables and will seed test data. 
+Alternatively, in PowerShell: `dotnet ef database update`.
+
+EF Core will create necessary tables and will seed the test data.
 
 ## Integration Tests
 
@@ -51,7 +53,7 @@ Focuses on testing HTTP responses, dependencies and theirs configuration.
 
 ## Unit Tests
 
-Covers all the logic used in the controllers (please note that the endpoints does not provide any business logic, they are only responsible for handling requests, validation etc.). All dependencies are mocked. For mocking [Moq](https://github.com/moq/moq4) and [MockQueryable.Moq](https://github.com/romantitov/MockQueryable) have been used. 
+It covers all the logic used in the controllers (please note that the endpoints do not provide any business logic, they are only responsible for handling requests, validation etc.). All dependencies are mocked for mocking [Moq](https://github.com/moq/moq4) and [MockQueryable.Moq](https://github.com/romantitov/MockQueryable) have been used. 
 
 ## REST API
 

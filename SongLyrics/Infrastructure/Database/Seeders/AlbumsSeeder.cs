@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using SongLyrics.Infrastructure.Domain.Entities;
 
@@ -7,8 +8,12 @@ namespace SongLyrics.Infrastructure.Database.Seeders
     public class AlbumsSeeder : IMainDbContextSeeder
     {
         public void Seed(ModelBuilder AModelBuilder)
+            => AModelBuilder.Entity<Albums>().HasData(CreateAlbumList());
+
+        private static IEnumerable<Albums> CreateAlbumList()
         {
-            AModelBuilder.Entity<Albums>().HasData(
+            return new List<Albums>
+            {
                 new Albums 
                 {
                     Id = 1,
@@ -114,7 +119,7 @@ namespace SongLyrics.Infrastructure.Database.Seeders
                     AlbumName = "Made in Heaven",
                     Issued = DateTime.Parse("1995-01-01 00:00:00")
                 }
-            );
+            };
         }
     }
 }

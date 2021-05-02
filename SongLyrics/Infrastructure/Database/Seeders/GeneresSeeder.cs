@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using SongLyrics.Infrastructure.Domain.Entities;
 
 namespace SongLyrics.Infrastructure.Database.Seeders
@@ -6,8 +7,12 @@ namespace SongLyrics.Infrastructure.Database.Seeders
     public class GeneresSeeder : IMainDbContextSeeder
     {
         public void Seed(ModelBuilder AModelBuilder)
+            => AModelBuilder.Entity<Generes>().HasData(CreateGeneresList());
+
+        private static IEnumerable<Generes> CreateGeneresList()
         {
-            AModelBuilder.Entity<Generes>().HasData(
+            return new List<Generes>
+            {
                 new Generes 
                 {
                     Id = 1,
@@ -233,7 +238,7 @@ namespace SongLyrics.Infrastructure.Database.Seeders
                     Id = 45,
                     Genere = "Reggae"
                 }
-            );
+            };
         }
     }
 }

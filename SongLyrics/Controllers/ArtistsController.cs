@@ -9,13 +9,12 @@ using SongLyrics.Shared.Dto;
 using SongLyrics.Shared.Resources;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace SongLyrics.Controllers.Artists
+namespace SongLyrics.Controllers
 {
     public class ArtistsController : __BaseController
     {
-        public ArtistsController(IAppLogger AAppLogger, ILogicContext ALogicContext) : base(AAppLogger, ALogicContext)
-        {
-        }
+        public ArtistsController(IAppLogger AAppLogger, ILogicContext ALogicContext) 
+            : base(AAppLogger, ALogicContext) { }
 
         /// <summary>
         /// Returns all bands from the entire collection.
@@ -29,25 +28,20 @@ namespace SongLyrics.Controllers.Artists
             try
             {
                 var LArtists = await FLogicContext.Artists.GetArtists(null);
-                if (!LArtists.Any()) 
+                if (LArtists.Any())
+                    return StatusCode(200, new ReturnArtistsDto { Artists = LArtists });
+                
+                FAppLogger.LogWarn(ErrorCodes.EMPTY_BAND_LIST);
+                return StatusCode(400, new ErrorHandlerDto
                 {
-                    FAppLogger.LogWarn(ErrorCodes.EMPTY_BAND_LIST);
-                    return StatusCode(400, new ErrorHandlerDto
-                    {
-                        ErrorCode = nameof(ErrorCodes.EMPTY_BAND_LIST),
-                        ErrorDesc = ErrorCodes.EMPTY_BAND_LIST
-                    });
-                }
-
-                return StatusCode(200, new ReturnArtistsDto 
-                {
-                    Artists = LArtists
+                    ErrorCode = nameof(ErrorCodes.EMPTY_BAND_LIST),
+                    ErrorDesc = ErrorCodes.EMPTY_BAND_LIST
                 });
             }
-            catch (Exception AException)
+            catch (Exception LException)
             {
-                FAppLogger.LogFatality(ControllerException.Handle(AException).ErrorDesc);
-                return StatusCode(500, ControllerException.Handle(AException));
+                FAppLogger.LogFatality(ControllerException.Handle(LException).ErrorDesc);
+                return StatusCode(500, ControllerException.Handle(LException));
             }
         }
 
@@ -63,25 +57,20 @@ namespace SongLyrics.Controllers.Artists
             try
             {               
                 var LMembers = await FLogicContext.Artists.GetMembers(AId);
-                if (!LMembers.Any())
+                if (LMembers.Any())
+                    return StatusCode(200, new ReturnMembersDto { Members = LMembers });
+                
+                FAppLogger.LogWarn(ErrorCodes.EMPTY_MEMBERS_LIST);
+                return StatusCode(400, new ErrorHandlerDto
                 {
-                    FAppLogger.LogWarn(ErrorCodes.EMPTY_MEMBERS_LIST);
-                    return StatusCode(400, new ErrorHandlerDto
-                    {
-                        ErrorCode = nameof(ErrorCodes.EMPTY_MEMBERS_LIST),
-                        ErrorDesc = ErrorCodes.EMPTY_MEMBERS_LIST
-                    });
-                }
-
-                return StatusCode(200, new ReturnMembersDto 
-                {
-                    Members = LMembers
+                    ErrorCode = nameof(ErrorCodes.EMPTY_MEMBERS_LIST),
+                    ErrorDesc = ErrorCodes.EMPTY_MEMBERS_LIST
                 });
             }
-            catch (Exception AException)
+            catch (Exception LException)
             {
-                FAppLogger.LogFatality(ControllerException.Handle(AException).ErrorDesc);
-                return StatusCode(500, ControllerException.Handle(AException));
+                FAppLogger.LogFatality(ControllerException.Handle(LException).ErrorDesc);
+                return StatusCode(500, ControllerException.Handle(LException));
             }
         }
 
@@ -97,29 +86,27 @@ namespace SongLyrics.Controllers.Artists
             try
             {
                 var LBandDetails = await FLogicContext.Artists.GetArtistDetails(AId);
-                if (LBandDetails == null) 
-                {
-                    FAppLogger.LogWarn(ErrorCodes.UNEXPECTED_ERROR);
-                    return StatusCode(400, new ErrorHandlerDto
+                if (LBandDetails != null)
+                    return StatusCode(200, new ReturnArtistDetailsDto
                     {
-                        ErrorCode = nameof(ErrorCodes.UNEXPECTED_ERROR),
-                        ErrorDesc = ErrorCodes.UNEXPECTED_ERROR
+                        Name = LBandDetails.Name,
+                        Established = LBandDetails.Established,
+                        ActiveUntil = LBandDetails.ActiveUntil,
+                        Genere = LBandDetails.Genere,
+                        Members = LBandDetails.Members
                     });
-                }
-
-                return StatusCode(200, new ReturnArtistDetailsDto 
+                
+                FAppLogger.LogWarn(ErrorCodes.UNEXPECTED_ERROR);
+                return StatusCode(400, new ErrorHandlerDto
                 {
-                    Name = LBandDetails.Name,
-                    Established = LBandDetails.Established,
-                    ActiveUntil = LBandDetails.ActiveUntil,
-                    Genere = LBandDetails.Genere,
-                    Members = LBandDetails.Members
-            });
+                    ErrorCode = nameof(ErrorCodes.UNEXPECTED_ERROR),
+                    ErrorDesc = ErrorCodes.UNEXPECTED_ERROR
+                });
             }
-            catch (Exception AException)
+            catch (Exception LException)
             {
-                FAppLogger.LogFatality(ControllerException.Handle(AException).ErrorDesc);
-                return StatusCode(500, ControllerException.Handle(AException));
+                FAppLogger.LogFatality(ControllerException.Handle(LException).ErrorDesc);
+                return StatusCode(500, ControllerException.Handle(LException));
             }
         }
     }

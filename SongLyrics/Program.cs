@@ -1,15 +1,15 @@
 using System;
 using System.IO;
-using Serilog;
-using Serilog.Events;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Serilog.Events;
+using Serilog;
 
 namespace SongLyrics
 {
-    public class Program
+    public static class Program
     {
-        public static IHostBuilder CreateWebHostBuilder(string[] AArgs) =>
+        private static IHostBuilder CreateWebHostBuilder(string[] AArgs) =>
             Host.CreateDefaultBuilder(AArgs)
                 .ConfigureWebHostDefaults(AWebBuilder =>
                 {
@@ -21,14 +21,13 @@ namespace SongLyrics
         {
             var LOgsPath = AppDomain.CurrentDomain.BaseDirectory + "\\logs";
             if (!Directory.Exists(LOgsPath))
-            {
                 Directory.CreateDirectory(LOgsPath);
-            }
 
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Information()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
                 .Enrich.FromLogContext()
+                .WriteTo.Console()
                 .WriteTo.File
                 (
                     LOgsPath + "\\log-.txt",
@@ -48,7 +47,7 @@ namespace SongLyrics
             }
             catch (Exception LException)
             {
-                Log.Fatal(LException, "WebHost has been terminated unexpectedly.");
+                Log.Fatal(LException, "WebHost has been terminated unexpectedly");
                 return 1;
             }
             finally

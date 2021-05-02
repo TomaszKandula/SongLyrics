@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using SongLyrics.Infrastructure.Domain.Entities;
 
 namespace SongLyrics.Infrastructure.Database.Seeders
@@ -6,8 +7,12 @@ namespace SongLyrics.Infrastructure.Database.Seeders
     public class SongsSeeder : IMainDbContextSeeder
     {
         public void Seed(ModelBuilder AModelBuilder)
+            => AModelBuilder.Entity<Songs>().HasData(CreateSongList());
+
+        private static IEnumerable<Songs> CreateSongList()
         {
-            AModelBuilder.Entity<Songs>().HasData(
+            return new List<Songs>
+            {
                 new Songs
                 {
                     Id = 1,
@@ -98,7 +103,7 @@ namespace SongLyrics.Infrastructure.Database.Seeders
                     SongUrl = "",
                     SongLyrics = "Fear me you lords and lady preachers<br>I descend upon your earth from the skies<br>I command your very souls you unbelievers<br>Bring before me what is mine<br>The seven seas of rhye<br>Can you hear me you peers and privvy counsellors<br>I stand before you naked to the eyes<br>I will destroy any man who dares abuse my trust<br>I swear that you'll be mine<br>The seven seas of rhye<br>Sister I live and lie for you<br>Mister do and I'll die<br>You are mine I possess you<br>I belong to you forever<br>Storm the master marathon I'll fly through<br>By flash and thunder fire I'll survive<br>Then I'll defy the laws of nature and come out alive<br>Then I'll get you<br>Be gone with you; you shod and shady senators<br>Give out the good; leave out the bad evil cries<br>I challenge the mighty titan and his troubadours<br>And with a smile<br>I'll take you to the seven seas of rhye"
                 }
-            );
+            };
         }
     }
 }

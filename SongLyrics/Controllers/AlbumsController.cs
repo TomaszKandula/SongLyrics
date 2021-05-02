@@ -9,13 +9,12 @@ using SongLyrics.Shared.Dto;
 using SongLyrics.Shared.Resources;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace SongLyrics.Controllers.Albums
+namespace SongLyrics.Controllers
 {
     public class AlbumsController : __BaseController
     {
-        public AlbumsController(IAppLogger AAppLogger, ILogicContext ALogicContext) : base(AAppLogger, ALogicContext)
-        {
-        }
+        public AlbumsController(IAppLogger AAppLogger, ILogicContext ALogicContext) 
+            : base(AAppLogger, ALogicContext) { }
 
         /// <summary>
         /// Returns all albums (or given band album) from the entire collection.
@@ -30,25 +29,21 @@ namespace SongLyrics.Controllers.Albums
             try
             {
                 var LAlbums = await FLogicContext.Albums.GetAlbums(ArtistId);
-                if (!LAlbums.Any())
-                {
-                    FAppLogger.LogWarn(ErrorCodes.EMPTY_ALBUM_LIST);
-                    return StatusCode(400, new ErrorHandlerDto 
-                    { 
-                        ErrorCode = nameof(ErrorCodes.EMPTY_ALBUM_LIST),
-                        ErrorDesc = ErrorCodes.EMPTY_ALBUM_LIST
-                    });
-                }
-
-                return StatusCode(200, new ReturnAlbumsDto
-                {
-                    Albums = LAlbums
+                if (LAlbums.Any())
+                    return StatusCode(200, new ReturnAlbumsDto { Albums = LAlbums });
+                
+                FAppLogger.LogWarn(ErrorCodes.EMPTY_ALBUM_LIST);
+                return StatusCode(400, new ErrorHandlerDto 
+                { 
+                    ErrorCode = nameof(ErrorCodes.EMPTY_ALBUM_LIST),
+                    ErrorDesc = ErrorCodes.EMPTY_ALBUM_LIST
                 });
+
             }
-            catch (Exception AException)
+            catch (Exception LException)
             {
-                FAppLogger.LogFatality(ControllerException.Handle(AException).ErrorDesc);
-                return StatusCode(500, ControllerException.Handle(AException));
+                FAppLogger.LogFatality(ControllerException.Handle(LException).ErrorDesc);
+                return StatusCode(500, ControllerException.Handle(LException));
             }
         }
 
@@ -65,25 +60,20 @@ namespace SongLyrics.Controllers.Albums
             try
             {
                 var LAlbum = await FLogicContext.Albums.GetAlbum(AId);
-                if (LAlbum.Count == 0)
+                if (LAlbum.Count != 0)
+                    return StatusCode(200, new ReturnAlbumsDto { Albums = LAlbum });
+                
+                FAppLogger.LogWarn(ErrorCodes.NO_ALBUM_FOUND);
+                return StatusCode(400, new ErrorHandlerDto
                 {
-                    FAppLogger.LogWarn(ErrorCodes.NO_ALBUM_FOUND);
-                    return StatusCode(400, new ErrorHandlerDto
-                    {
-                        ErrorCode = nameof(ErrorCodes.NO_ALBUM_FOUND),
-                        ErrorDesc = ErrorCodes.NO_ALBUM_FOUND
-                    });
-                }
-
-                return StatusCode(200, new ReturnAlbumsDto
-                {
-                    Albums = LAlbum
+                    ErrorCode = nameof(ErrorCodes.NO_ALBUM_FOUND),
+                    ErrorDesc = ErrorCodes.NO_ALBUM_FOUND
                 });
             }
-            catch (Exception AException)
+            catch (Exception LException)
             {
-                FAppLogger.LogFatality(ControllerException.Handle(AException).ErrorDesc);
-                return StatusCode(500, ControllerException.Handle(AException));
+                FAppLogger.LogFatality(ControllerException.Handle(LException).ErrorDesc);
+                return StatusCode(500, ControllerException.Handle(LException));
             }
         }
     }

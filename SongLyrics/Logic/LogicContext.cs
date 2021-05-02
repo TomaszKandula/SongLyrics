@@ -14,14 +14,12 @@ namespace SongLyrics.Logic
         private ISongs FSongs;
 
         public LogicContext(MainDbContext AMainDbContext) 
-        {
-            FMainDbContext = AMainDbContext;
-        }
+            => FMainDbContext = AMainDbContext;
 
-        public IArtists Artists { get { if (FArtists == null) FArtists = new Artists.Artists(FMainDbContext); return FArtists; } }
+        public IArtists Artists => FArtists ??= new Artists.Artists(FMainDbContext);
 
-        public IAlbums Albums { get { if (FAlbums == null) FAlbums = new Albums.Albums(FMainDbContext); return FAlbums; } }
+        public IAlbums Albums => FAlbums ??= new Albums.Albums(FMainDbContext);
 
-        public ISongs Songs { get { if (FSongs == null) FSongs = new Songs.Songs(FMainDbContext); return FSongs; } }
+        public ISongs Songs => FSongs ??= new Songs.Songs(FMainDbContext);
     }
 }

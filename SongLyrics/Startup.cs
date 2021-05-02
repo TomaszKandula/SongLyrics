@@ -16,12 +16,10 @@ namespace SongLyrics
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
         public Startup(IConfiguration AConfiguration)
-        {
-            Configuration = AConfiguration;
-        }
+            => Configuration = AConfiguration;
 
         public void ConfigureServices(IServiceCollection AServices)
         {
@@ -35,10 +33,8 @@ namespace SongLyrics
             }));
 
             AServices.AddControllers();
-            AServices.AddSpaStaticFiles(LConfiguration =>
-            {
-                LConfiguration.RootPath = "ClientApp/build";
-            });
+            AServices.AddSpaStaticFiles(AConfiguration 
+                => AConfiguration.RootPath = "ClientApp/build");
 
             AServices.AddSingleton<IAppLogger, AppLogger>();
             AServices.AddDbContext<MainDbContext>(AOptions => 
@@ -48,11 +44,9 @@ namespace SongLyrics
             });
             
             AServices.AddScoped<ILogicContext, LogicContext>();
-            AServices.AddResponseCompression(AOptions => { AOptions.Providers.Add<GzipCompressionProvider>(); });
-            AServices.AddSwaggerGen(AOption =>
-            {
-                AOption.SwaggerDoc("v1", new OpenApiInfo { Title = "SongLyrics Api", Version = "v1" });
-            });
+            AServices.AddResponseCompression(AOptions => AOptions.Providers.Add<GzipCompressionProvider>());
+            AServices.AddSwaggerGen(AOption 
+                => AOption.SwaggerDoc("v1", new OpenApiInfo { Title = "SongLyrics Api", Version = "v1" }));
         }
 
         public void Configure(IApplicationBuilder AApplication, IWebHostEnvironment AEnvironment) 
@@ -64,28 +58,23 @@ namespace SongLyrics
                 AApplication.UseDeveloperExceptionPage();
 
             AApplication.UseSwagger();
-            AApplication.UseSwaggerUI(AOption =>
-            {
-                AOption.SwaggerEndpoint("/swagger/v1/swagger.json", "SongLyrics Api version 1");
-            });
+            AApplication.UseSwaggerUI(AOption 
+                => AOption.SwaggerEndpoint("/swagger/v1/swagger.json", "SongLyrics Api version 1"));
 
             AApplication.UseStaticFiles();
             AApplication.UseSpaStaticFiles();
             AApplication.UseRouting();
-            AApplication.UseEndpoints(LEndpoints =>
-            {
-                LEndpoints.MapControllerRoute(
+            AApplication.UseEndpoints(AEndpoints 
+                => AEndpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
-            });
+                    pattern: "{controller}/{action=Index}/{id?}"));
 
-            AApplication.UseSpa(LSpa =>
+            AApplication.UseSpa(AConfiguration =>
             {
-                LSpa.Options.SourcePath = "ClientApp";
+                AConfiguration.Options.SourcePath = "ClientApp";
                 if (AEnvironment.IsDevelopment())
-                {
-                    LSpa.UseProxyToSpaDevelopmentServer(Configuration.GetSection("DevelopmentOrigin").Value);
-                }
+                    AConfiguration
+                        .UseProxyToSpaDevelopmentServer(Configuration.GetSection("DevelopmentOrigin").Value);
             });
         }
     }

@@ -5,6 +5,7 @@ export const GetData = (endpoint, callback) =>
     {
         const responseData = response;
         const jsonResponse = response.json();
+        
         jsonResponse
         .then(data =>
         {

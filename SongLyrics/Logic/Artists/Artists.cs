@@ -14,14 +14,13 @@ namespace SongLyrics.Logic.Artists
         private readonly MainDbContext FMainDbContext;
 
         public Artists(MainDbContext AMainDbContext) 
-        {
-            FMainDbContext = AMainDbContext;
-        }
+            => FMainDbContext = AMainDbContext;
 
         /// <summary>
         /// Return list of bands/or band from the entire collection.
         /// </summary>
         /// <param name="AArtistId"></param>
+        /// <param name="ACancellationToken"></param>
         /// <returns></returns>
         public async Task<List<ArtistDto>> GetArtists(int? AArtistId, CancellationToken ACancellationToken = default)
         {
@@ -52,6 +51,7 @@ namespace SongLyrics.Logic.Artists
         /// Return bands members for given Band Id.
         /// </summary>
         /// <param name="AArtistId"></param>
+        /// <param name="ACancellationToken"></param>
         /// <returns></returns>
         public async Task<List<MemberDto>> GetMembers(int AArtistId, CancellationToken ACancellationToken = default) 
         {
@@ -72,10 +72,11 @@ namespace SongLyrics.Logic.Artists
         /// Return band details for given Band Id.
         /// </summary>
         /// <param name="AArtistId"></param>
+        /// <param name="ACancellationToken"></param>
         /// <returns></returns>
         public async Task<ReturnArtistDetailsDto> GetArtistDetails(int AArtistId, CancellationToken ACancellationToken = default) 
         {
-            var LMembers = await GetMembers(AArtistId);
+            var LMembers = await GetMembers(AArtistId, ACancellationToken);
             var LResults = await FMainDbContext.ArtistsGeneres
                 .Include(AArtistsGeneres => AArtistsGeneres.Artist)
                 .Include(AArtistsGeneres => AArtistsGeneres.Genere)
@@ -91,13 +92,13 @@ namespace SongLyrics.Logic.Artists
                 })
                 .ToListAsync(ACancellationToken);
 
-            return LResults.Any() ? LResults.Single() : new ReturnArtistDetailsDto()
+            return LResults.Any() ? LResults.Single() : new ReturnArtistDetailsDto
             {
-                Name        = "n/a",
-                Genere      = "n/a",
+                Name = "n/a",
+                Genere = "n/a",
                 Established = DateTime.Now,
                 ActiveUntil = DateTime.Now,
-                Members     = null
+                Members = null
             };
         }
     }

@@ -13,14 +13,13 @@ namespace SongLyrics.Logic.Albums
         private readonly MainDbContext FMainDbContext;
 
         public Albums(MainDbContext AMainDbContext)
-        {
-            FMainDbContext = AMainDbContext;
-        }
+            => FMainDbContext = AMainDbContext;
 
         /// <summary>
         /// Return all albums/given album (by BandId) from the entire collection.
         /// </summary>
         /// <param name="ABandId"></param>
+        /// <param name="ACancellationToken"></param>
         /// <returns></returns>
         public async Task<List<AlbumDto>> GetAlbums(int? ABandId, CancellationToken ACancellationToken = default)
         {
@@ -57,6 +56,7 @@ namespace SongLyrics.Logic.Albums
         /// Return specific album for given Band Id.
         /// </summary>
         /// <param name="AAlbumId"></param>
+        /// <param name="ACancellationToken"></param>
         /// <returns></returns>
         public async Task<List<AlbumDto>> GetAlbum(int AAlbumId, CancellationToken ACancellationToken = default)
         {

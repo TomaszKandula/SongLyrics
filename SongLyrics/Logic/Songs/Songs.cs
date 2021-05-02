@@ -13,14 +13,13 @@ namespace SongLyrics.Logic.Songs
         private readonly MainDbContext FMainDbContext;
 
         public Songs(MainDbContext AMainDbContext)
-        {
-            FMainDbContext = AMainDbContext;
-        }
+            => FMainDbContext = AMainDbContext;
 
         /// <summary>
         /// Return specific song (or songs) from given band's album.
         /// </summary>
         /// <param name="AAlbumId"></param>
+        /// <param name="ACancellationToken"></param>
         /// <returns></returns>
         public async Task<List<SongDto>> GetAlbumSongs(int? AAlbumId, CancellationToken ACancellationToken = default)
         {
@@ -59,6 +58,7 @@ namespace SongLyrics.Logic.Songs
         /// Return given song from the entire collection.
         /// </summary>
         /// <param name="ASongId"></param>
+        /// <param name="ACancellationToken"></param>
         /// <returns></returns>
         public async Task<SingleSongDto> GetSong(int ASongId, CancellationToken ACancellationToken = default)
         {

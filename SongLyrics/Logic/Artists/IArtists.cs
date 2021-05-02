@@ -11,6 +11,7 @@ namespace SongLyrics.Logic.Artists
         /// Return list of bands from the entire collection.
         /// </summary>
         /// <param name="AArtistId"></param>
+        /// <param name="ACancellationToken"></param>
         /// <returns></returns>
         Task<List<ArtistDto>> GetArtists(int? AArtistId, CancellationToken ACancellationToken = default);
 
@@ -18,6 +19,7 @@ namespace SongLyrics.Logic.Artists
         /// Return bands members for given Band Id.
         /// </summary>
         /// <param name="AArtistId"></param>
+        /// <param name="ACancellationToken"></param>
         /// <returns></returns>
         Task<List<MemberDto>> GetMembers(int AArtistId, CancellationToken ACancellationToken = default);
 
@@ -25,6 +27,7 @@ namespace SongLyrics.Logic.Artists
         /// Return band details for given Band Id.
         /// </summary>
         /// <param name="AArtistId"></param>
+        /// <param name="ACancellationToken"></param>
         /// <returns></returns>
         Task<ReturnArtistDetailsDto> GetArtistDetails(int AArtistId, CancellationToken ACancellationToken = default);
     }

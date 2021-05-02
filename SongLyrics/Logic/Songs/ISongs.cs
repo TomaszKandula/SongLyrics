@@ -11,6 +11,7 @@ namespace SongLyrics.Logic.Songs
         /// Return specific song (or songs) from given band's album.
         /// </summary>
         /// <param name="AAlbumId"></param>
+        /// <param name="ACancellationToken"></param>
         /// <returns></returns>
         Task<List<SongDto>> GetAlbumSongs(int? AAlbumId, CancellationToken ACancellationToken = default);
 
@@ -18,6 +19,7 @@ namespace SongLyrics.Logic.Songs
         /// Return given song from the entire collection.
         /// </summary>
         /// <param name="ASongId"></param>
+        /// <param name="ACancellationToken"></param>
         /// <returns></returns>
         Task<SingleSongDto> GetSong(int ASongId, CancellationToken ACancellationToken = default);
     }

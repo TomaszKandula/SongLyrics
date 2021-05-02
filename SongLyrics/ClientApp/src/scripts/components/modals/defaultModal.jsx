@@ -36,8 +36,8 @@ class Modal extends Component
     {
         switch (selection)
         {
-            case MESSAGE_INFO:  return "Information";
-            case MESSAGE_WARN:  return "Warning";
+            case MESSAGE_INFO: return "Information";
+            case MESSAGE_WARN: return "Warning";
             case MESSAGE_ERROR: return "Error";
             default: return "Information";
         }
